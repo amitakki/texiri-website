@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+/* Texiri design tokens — single source of truth. Mirrors Design-System.dc.html and assets/texiri-theme.css. */
+@theme {
+  --font-sans: var(--font-archivo), system-ui, sans-serif;
+
+  --color-ground: #f5f4f1;
+  --color-surface: #ebe9e4;
+  --color-ink: #0f1a2e;
+  --color-muted: #4a5670;
+  --color-rule: color-mix(in srgb, #0f1a2e 38%, transparent);
+  --color-hairline: color-mix(in srgb, #0f1a2e 14%, transparent);
+
+  --color-navy-900: #0f1a2e;
+  --color-navy-800: #18263f;
+  --color-navy-700: #243553;
+  --color-on-navy: #f5f4f1;
+  --color-on-navy-muted: #aeb8c8;
+
+  --color-accent-100: #fef1e0;
+  --color-accent-200: #fddcb3;
+  --color-accent-300: #fbc27d;
+  --color-accent-400: #f9aa4c;
+  --color-accent: #f7941d;
+  --color-accent-600: #e07f0a;
+  --color-accent-700: #9a4f00;
+  --color-accent-800: #7a3e00;
+  --color-accent-900: #4a2600;
+  --color-data: #2bb5e8;
+
+  /* AI Services vertical */
+  --color-ai: #2bb5e8;
+  --color-ai-600: #1e9ccb;
+  --color-ai-ink: #1546a0;
+  --color-ai-tint: #e3f4fb;
+
+  /* TEXIRI AI Community — the one rounded variant */
+  --color-com-bg: #fff8ec;
+  --color-com-surface: #ffffff;
+  --color-com: #ffc20e;
+  --color-com-600: #f2ae00;
+  --color-com-orange: #f7941d;
+  --color-com-ink: #8a5a00;
+  --color-com-blue: #1546a0;
+  --color-com-tint: #fff0c7;
+
+  /* Modernist: no rounded corners anywhere */
+  --radius-xs: 0; --radius-sm: 0; --radius-md: 0; --radius-lg: 0; --radius-xl: 0;
+
+  --text-display: clamp(2.5rem, 5.8vw, 5rem);
+  --text-display--line-height: 1.02;
+  --text-display--letter-spacing: -0.03em;
+  --text-h2: clamp(1.875rem, 4vw, 3.25rem);
+  --text-h2--line-height: 1.05;
+  --text-h2--letter-spacing: -0.02em;
+  --text-h3: 1.5rem;
+  --text-h3--line-height: 1.15;
+  --text-lead: clamp(1.0625rem, 1.6vw, 1.25rem);
+  --text-lead--line-height: 1.55;
+  --text-kicker: 0.8125rem;
+  --text-kicker--letter-spacing: 0.1em;
+
+  --spacing-section: clamp(4rem, 9vw, 8rem);
+  --spacing-edge: clamp(1.25rem, 4vw, 3rem);
+  --container-content: 80rem;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-ground text-ink font-sans antialiased; text-wrap: pretty; }
+  h1, h2, h3, h4 { @apply font-extrabold; }
+  a { color: inherit; }
+  a:hover { color: var(--color-accent-700); }
+  :focus-visible { outline: 2px solid var(--color-accent-700); outline-offset: 2px; }
+  ::selection { background: var(--color-accent-200); }
+  summary { list-style: none; cursor: pointer; }
+  summary::-webkit-details-marker { display: none; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+  }
+}
+
+@utility container-content {
+  max-width: var(--container-content);
+  margin-inline: auto;
+  padding-inline: var(--spacing-edge);
+}
+@utility rule-section { border-top: 2px solid var(--color-rule); }
+@utility ai-grid {
+  background-image: radial-gradient(color-mix(in srgb, #2bb5e8 28%, transparent) 1px, transparent 1.5px);
+  background-size: 22px 22px;
+}
+/* Community pages opt back into rounding: radius tokens are 0 globally, so use explicit values */
+@utility rounded-com { border-radius: 18px; }
+@utility rounded-com-sm { border-radius: 10px; }
+@utility rounded-pill { border-radius: 999px; }
