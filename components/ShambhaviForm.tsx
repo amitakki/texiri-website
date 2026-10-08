@@ -42,8 +42,12 @@ export function ShambhaviForm() {
 
   function check(e: React.FormEvent<HTMLFormElement>) {
     const ids = cur.fields.map((f) => f.id);
-    const shape = Object.fromEntries(ids.map((id) => [id, true])) as Record<string, true>;
+    const shape = Object.fromEntries(
+      ids.map((id) => [id, true])
+    ) as { [K in keyof typeof s108Schema.shape]?: true };
+
     const r = s108Schema.pick(shape).safeParse(v);
+    
     if (!r.success) {
       e.preventDefault();
       const next: Record<string, string> = {};
