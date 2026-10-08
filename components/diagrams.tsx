@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 const stages = [
   { n: "01", stage: "Implement", service: "SAP Consulting", klicks: null, chips: ["Functional", "Technical", "RE-FX highlight"] },
   { n: "02", stage: "Migrate", service: "S/4HANA Data Migration & MDG", klicks: "2Klicks Create", chips: ["Migration Cockpit", "Data Services", "MDG"] },
-  { n: "03", stage: "Integrate", service: "SAP Integration · Mobility", klicks: null, chips: ["CPI", "PI/PO", "Mobile & IoT"] },
+  { n: "03", stage: "Integrate", service: "SAP Integration", klicks: null, chips: ["CPI", "PI/PO"] },
   { n: "04", stage: "Run", service: "SAP Managed Services", klicks: "2Klicks Update", chips: ["Support", "Optimisation"] },
 ];
 

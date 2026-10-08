@@ -5,7 +5,7 @@ import { Breadcrumbs, CTABand, FAQAccordion, StickyMobileCTA, TestimonialCard } 
 
 export const metadata: Metadata = {
   title: "SAP Services: SAP Consulting, S/4HANA Migration, SAP Integration & Managed Services",
-  description: "SAP services across the lifecycle: SAP implementation and functional consulting (RE-FX, FI/CO, PM, MM, SD), S/4HANA data migration and MDG, SAP CPI and PI/PO integration, managed services and mobility.",
+  description: "SAP services across the lifecycle: SAP implementation and functional consulting (RE-FX, FI/CO, PM, MM, SD), S/4HANA data migration and MDG, SAP CPI and PI/PO integration, and managed services.",
   alternates: { canonical: "/sap/" },
 };
 
@@ -14,7 +14,6 @@ const services = [
   { id: "migration", t: "S/4HANA Data Migration & MDG", d: "Planning, extraction, cleansing and loading, then Master Data Governance so the data stays right.", points: [["Scenarios", "Legacy/ECC to S/4HANA, new implementation, conversion, landscape transformation"], ["Tools", "2Klicks Create, Data Services, SDI, Information Steward, Migration Cockpit"]], href: "/sap/data-migration/" },
   { id: "integration", t: "SAP Integration", d: "Interfaces between SAP and the rest of your landscape, built on SAP CPI and PI/PO.", points: [["SAP CPI", "Cloud integration flows and APIs"], ["PI/PO", "Support today, and a plan before mainstream maintenance ends in 2027"]], href: "/sap/integration/" },
   { id: "managed", t: "SAP Managed Services", d: "Post-go-live support and optimisation from the people who know how your system was built.", points: [["Support", "Incidents, changes and small enhancements"], ["Optimisation", "Process and performance improvements"], ["Mass changes", "Reorganisations handled with 2Klicks Update"]], href: "/sap/managed-services/" },
-  { id: "mobility", t: "Mobility Solutions", d: "Enterprise mobile apps and IoT integration that put SAP processes in the hands of field and plant teams.", points: [], href: "/sap/mobility/" },
 ];
 const faqs = [
   { q: "Do you work alongside our systems integrator?", a: "Yes. We can lead a workstream such as data migration or RE-FX inside a larger programme, with clear hand-offs to your SI." },

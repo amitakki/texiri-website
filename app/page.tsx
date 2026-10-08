@@ -17,7 +17,6 @@ const services = [
   { t: "S/4HANA Data Migration & MDG", d: "Assessment to cutover, accelerated by 2Klicks, with MDG to keep data clean.", href: "/sap/data-migration/", featured: true },
   { t: "SAP Integration", d: "SAP CPI and PI/PO interfaces, built and maintained.", href: "/sap/integration/" },
   { t: "SAP Managed Services", d: "Post-go-live support and continuous optimisation.", href: "/sap/managed-services/" },
-  { t: "Mobility Solutions", d: "Enterprise mobile apps and IoT integration with SAP.", href: "/sap/mobility/" },
 ];
 const cases = [
   { sector: "Utility · Australia", title: "S/4HANA data migration for an asset-intensive utility", metric: "[X]%", metricLabel: "fewer load defects across mock cycles", href: "/case-studies/utility-australia/" },
@@ -67,7 +66,7 @@ export default function HomePage() {
           <div><Kicker>SAP Services</Kicker><H2 id="svc-h" className="max-w-[18ch]">Everything your SAP landscape needs</H2></div>
           <Link href="/sap/" className="flex min-h-11 items-center gap-2 font-extrabold no-underline">All SAP services<ArrowRight aria-hidden className="size-4.5" /></Link>
         </div>
-        <div className="mt-[clamp(2.5rem,5vw,4rem)] grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-[clamp(2.5rem,5vw,4rem)] grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((s, i) => (
             <Link key={s.href} href={s.href} className={`flex flex-col gap-3 border-t-4 bg-surface p-6 no-underline hover:bg-[#d7d3d3] hover:text-ink ${s.featured ? "border-accent" : "border-ink"}`}>
               <span className="text-sm font-extrabold text-accent-700">{String(i + 1).padStart(2, "0")}</span>

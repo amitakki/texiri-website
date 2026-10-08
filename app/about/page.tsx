@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 const verticals = [
-  { t: "SAP Services", d: "Consulting, S/4HANA data migration and MDG, integration, managed services and mobility.", href: "/sap/", tone: "border-accent" },
+  { t: "SAP Services", d: "Consulting, S/4HANA data migration and MDG, integration and managed services.", href: "/sap/", tone: "border-accent" },
   { t: "2Klicks", d: "Patented tools for SAP data migration and mass updates through Excel.", href: "/2klicks/", tone: "border-accent" },
   { t: "AI Services & Community", d: "Applied AI for enterprises, and an open community for anyone learning AI.", href: "/ai-services/", tone: "border-ai" },
 ];

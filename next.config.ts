@@ -9,7 +9,8 @@ const config: NextConfig = {
       ["/services/single-service/", "/sap/consulting/"],
       ["/services/managed-services/", "/sap/managed-services/"],
       ["/services/data-migration/", "/sap/data-migration/"],
-      ["/mobility-solutions/", "/sap/mobility/"],
+      ["/mobility-solutions/", "/sap/"],
+      ["/sap/mobility/", "/sap/"],
       ["/2klicks-create/", "/2klicks/create/"],
       ["/about/2klicks-update/", "/2klicks/update/"],
       ["/texiri-ai-community/", "/ai-community/"],
@@ -17,7 +18,9 @@ const config: NextConfig = {
       ["/services/careers/", "/careers/"],
       ["/about/team/", "/about/leadership/"],
       ["/about/contact/", "/contact/"],
-    ].map(([source, destination]) => ({ source, destination, permanent: true }));
+    ].map(([source, destination]) => ({ source, destination, permanent: true }))
+      // Demo requests live in the form on the 2Klicks Create page.
+      .concat({ source: "/2klicks/demo/", destination: "/2klicks/create/#demo", permanent: false });
   },
 };
 

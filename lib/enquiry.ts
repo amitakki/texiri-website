@@ -24,7 +24,8 @@ export const enquirySchema = z.object({
   phone: z.string().trim().max(30).optional().or(z.literal("")),
   message: z.string().trim().max(4000).optional().or(z.literal("")),
   consent: z.literal(true, { errorMap: () => ({ message: "Please accept the Privacy Policy so we can reply." }) }),
-  turnstileToken: z.string().min(1),
+  // Required by the server action only when TURNSTILE_SECRET_KEY is set.
+  turnstileToken: z.string().optional(),
 });
 
 export type Enquiry = z.infer<typeof enquirySchema>;

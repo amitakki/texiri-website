@@ -4,7 +4,7 @@ import { Linkedin } from "lucide-react";
 import { contact } from "@/lib/site";
 
 const cols: { title: string; links: [string, string][] }[] = [
-  { title: "SAP Services", links: [["Overview", "/sap/"], ["SAP Consulting", "/sap/consulting/"], ["S/4HANA Data Migration", "/sap/data-migration/"], ["SAP Integration", "/sap/integration/"], ["Managed Services", "/sap/managed-services/"], ["Mobility Solutions", "/sap/mobility/"]] },
+  { title: "SAP Services", links: [["Overview", "/sap/"], ["SAP Consulting", "/sap/consulting/"], ["S/4HANA Data Migration", "/sap/data-migration/"], ["SAP Integration", "/sap/integration/"], ["Managed Services", "/sap/managed-services/"]] },
   { title: "2Klicks", links: [["2Klicks Create", "/2klicks/create/"], ["2Klicks Update", "/2klicks/update/"], ["Request a demo", "/2klicks/demo/"]] },
   { title: "AI Services", links: [["Overview", "/ai-services/"], ["AI Strategy & Readiness", "/ai-services/strategy-readiness/"], ["Generative AI & RAG", "/ai-services/generative-ai/"], ["MLOps & Governance", "/ai-services/mlops-governance/"]] },
   { title: "AI Community", links: [["About the community", "/ai-community/"], ["Learning paths", "/ai-community/learning-paths/"], ["Events & workshops", "/ai-community/events/"], ["Join the community", "/ai-community/join/"]] },

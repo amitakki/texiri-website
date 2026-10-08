@@ -24,12 +24,10 @@ export const primaryNav: NavItem[] = [
         { label: "S/4HANA Data Migration & MDG", href: "/sap/data-migration/", description: "Assess, extract, cleanse and load — then keep master data governed." },
         { label: "SAP Integration", href: "/sap/integration/", description: "SAP CPI and PI/PO." },
         { label: "SAP Managed Services", href: "/sap/managed-services/", description: "Post-go-live support and continuous optimisation." },
-        { label: "Mobility Solutions", href: "/sap/mobility/", description: "Enterprise mobile apps and IoT integration with SAP." },
       ],
       feature: { kicker: "Our SAP tools", label: "2Klicks Create & Update", href: "/2klicks/", description: "Migration programs on day 1, not day 120." },
     },
   },
-  { label: "2Klicks", href: "/2klicks/", vertical: "sap" },
   {
     label: "AI Services", href: "/ai-services/", vertical: "ai",
     mega: {

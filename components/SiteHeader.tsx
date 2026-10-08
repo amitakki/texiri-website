@@ -90,6 +90,7 @@ export function SiteHeader() {
                 <div className="flex flex-col pb-3 pl-4">
                   <Link href={item.href} className="flex min-h-11 items-center font-bold no-underline">Overview</Link>
                   {item.mega.links.map((l) => <Link key={l.href} href={l.href} className="flex min-h-11 items-center no-underline">{l.label}</Link>)}
+                  <Link href={item.mega.feature.href} className="flex min-h-11 items-center font-bold no-underline">{item.mega.feature.label}</Link>
                 </div>
               </details>
             ) : (

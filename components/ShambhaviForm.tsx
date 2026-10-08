@@ -9,6 +9,7 @@ import { S108_STEPS } from "@/lib/company";
 import { s108Schema } from "@/lib/shambhavi";
 
 const KEY = "texiri-s108-draft";
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 const input = "min-h-12 w-full border border-rule bg-surface px-3 text-base text-ink hover:border-ink/45 focus-visible:border-accent-700 aria-[invalid=true]:border-accent-700";
 const err = "mt-1 block min-h-[18px] text-[13px] font-semibold text-accent-800";
 type Vals = Record<string, string | boolean>;
@@ -108,7 +109,7 @@ export function ShambhaviForm() {
           })}
         </div>
         {step === 3 && <p className="mb-0 mt-2 text-sm text-muted">By submitting, you agree that Texiri Solutions may use these details to assess your application, as described in the <Link href="/legal/privacy/" className="font-bold text-ink underline">Privacy Policy</Link>.</p>}
-        {step === 3 && <div className="cf-turnstile mt-4" data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY} data-appearance="interaction-only" />}
+        {step === 3 && TURNSTILE_SITE_KEY && <div className="cf-turnstile mt-4" data-sitekey={TURNSTILE_SITE_KEY} data-appearance="interaction-only" />}
         {state && !state.ok && state.message && <p role="alert" className="mb-0 mt-4 font-semibold text-accent-800">{state.message}</p>}
         <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-hairline pt-6">
           {step > 0 && <button type="button" onClick={() => { setErrors({}); setStep(step - 1); requestAnimationFrame(() => heading.current?.focus()); }} className="inline-flex min-h-13 items-center border-2 border-ink px-5 font-extrabold hover:bg-ink/5">Back</button>}
@@ -117,7 +118,7 @@ export function ShambhaviForm() {
           </button>
           <span className="text-[13px] text-muted">Step {step + 1} of 4</span>
         </div>
-        <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" strategy="lazyOnload" />
+        {TURNSTILE_SITE_KEY && <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" strategy="lazyOnload" />}
       </form>
     </>
   );

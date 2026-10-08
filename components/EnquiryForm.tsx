@@ -7,7 +7,8 @@ import { ArrowRight, Check } from "lucide-react";
 import { submitEnquiry, type EnquiryState } from "@/app/actions/enquiry";
 import { ENQUIRY_TYPES, enquirySchema } from "@/lib/enquiry";
 
-const input = "min-h-12 w-full border border-rule bg-surface px-3 text-base text-ink caret-accent-700 hover:border-ink/45 focus-visible:border-accent-700 aria-[invalid=true]:border-accent-700";
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+const input ="min-h-12 w-full border border-rule bg-surface px-3 text-base text-ink caret-accent-700 hover:border-ink/45 focus-visible:border-accent-700 aria-[invalid=true]:border-accent-700";
 const label = "mb-1.5 block text-sm font-semibold";
 const err = "mt-1 block min-h-[18px] text-[13px] font-semibold text-accent-800";
 
@@ -70,14 +71,14 @@ export function EnquiryForm({ defaultType = "SAP implementation / consulting", h
         </label>
         <span id="f-consent-error" className={err}>{errors.consent}</span>
       </div>
-      <div className="cf-turnstile sm:col-span-2" data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY} data-appearance="interaction-only" />
+      {TURNSTILE_SITE_KEY && <div className="cf-turnstile sm:col-span-2" data-sitekey={TURNSTILE_SITE_KEY} data-appearance="interaction-only" />}
       {state && !state.ok && state.message && <p role="alert" className="m-0 font-semibold text-accent-800 sm:col-span-2">{state.message}</p>}
       <div className="sm:col-span-2">
         <button type="submit" disabled={pending} className="inline-flex min-h-13 items-center gap-2.5 bg-accent px-5 font-extrabold text-ink hover:bg-accent-600 disabled:opacity-45">
           {pending ? "Sending…" : "Send enquiry"}<ArrowRight aria-hidden className="size-4.5" />
         </button>
       </div>
-      <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" strategy="lazyOnload" />
+      {TURNSTILE_SITE_KEY && <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" strategy="lazyOnload" />}
     </form>
   );
 }
