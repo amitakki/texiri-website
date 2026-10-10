@@ -1,5 +1,11 @@
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.texiri.com";
 
+// Until www.texiri.com points at this site, share images and canonical links must use the deployment's own
+// address: www.texiri.com is still the old WordPress site, so link previews there find no image.
+const vercelHost = process.env.VERCEL_ENV === "production" ? process.env.VERCEL_PROJECT_PRODUCTION_URL : process.env.VERCEL_URL;
+/** Origin for metadata URLs (og:image, canonical). SITE_URL once NEXT_PUBLIC_SITE_ENV=production. */
+export const METADATA_BASE = process.env.NEXT_PUBLIC_SITE_ENV === "production" || !vercelHost ? SITE_URL : `https://${vercelHost}`;
+
 /** Demo requests live in the form on the 2Klicks Create page. Link here directly, not via the /2klicks/demo/ redirect. */
 export const DEMO_HREF = "/2klicks/create/#demo";
 

@@ -4,17 +4,18 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { Motion } from "@/components/Motion";
 import { SiteFooter } from "@/components/SiteFooter";
 import { isProd } from "@/lib/env";
-import { SITE_URL, organizationJsonLd } from "@/lib/site";
+import { METADATA_BASE, organizationJsonLd } from "@/lib/site";
 import "./globals.css";
 
 // Self-hosted at build time by next/font — no layout shift, no third-party request.
 const archivo = Archivo({ subsets: ["latin"], weight: ["400", "600", "800"], variable: "--font-archivo", display: "swap" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
+  metadataBase: new URL(METADATA_BASE),
   title: { default: "Texiri Solutions — SAP Consulting & S/4HANA Migration", template: "%s | Texiri Solutions" },
   description: "Founder-led SAP consultancy: SAP implementation, S/4HANA data migration, integration and managed services, with 2Klicks migration tools.",
-  // Share image comes from app/opengraph-image.tsx; icons from app/icon.tsx and app/apple-icon.tsx.
+  // Share images and icons are static files in app/ (opengraph-image.png, twitter-image.png, icon.png, apple-icon.png),
+  // rendered by scripts/generate-brand-images.mjs.
   openGraph: { siteName: "Texiri Solutions", type: "website", locale: "en_GB" },
   twitter: { card: "summary_large_image" },
   generator: null,
