@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import { images } from "@/lib/images";
 import { Check } from "lucide-react";
-import { H2, Placeholder, Section } from "@/components/ui";
+import { H2, Placeholder, Section, SiteImage } from "@/components/ui";
 import { Breadcrumbs, CTABand, FAQAccordion, StickyMobileCTA } from "@/components/sections";
 import { AiReferenceArchitecture } from "@/components/diagrams";
 
@@ -58,7 +59,7 @@ export default function AiServicesPage() {
       <section aria-labelledby="hero-h" className="surface-dark ai-grid bg-navy-900 text-on-navy">
         <Breadcrumbs tone="navy" items={[{ label: "Home", href: "/" }, { label: "AI Services", href: "/ai-services/" }]} />
         <div className="container-content grid items-end gap-[clamp(2.5rem,5vw,5rem)] py-[clamp(3rem,7vw,6.5rem)] lg:grid-cols-2">
-          <div>
+          <div className="hero-enter">
             <span className="mb-6 inline-flex items-center gap-2 text-kicker font-semibold uppercase tracking-[0.1em] text-ai"><span aria-hidden className="size-2.5 bg-ai" />Texiri AI Services</span>
             <h1 id="hero-h" className="m-0 -ml-[0.04em] max-w-[14ch] text-display text-on-navy">Practical AI, from strategy to production.</h1>
             <p className="mt-6 max-w-[52ch] text-lead text-on-navy-muted">We help organisations pick the AI use cases worth doing, get their data ready, and run models and assistants in production with the governance to back them.</p>
@@ -67,7 +68,7 @@ export default function AiServicesPage() {
               <a href="#engagement" className="inline-flex min-h-13 items-center border-2 border-on-navy px-5 font-extrabold text-on-navy no-underline hover:bg-navy-700 hover:text-on-navy">How we work</a>
             </div>
           </div>
-          <ul className="m-0 grid list-none grid-cols-2 gap-0.5 border-2 border-ai/40 bg-ai/40 p-0">
+          <ul className="hero-enter-late m-0 grid list-none grid-cols-2 gap-0.5 border-2 border-ai/40 bg-ai/40 p-0">
             {[["Strategy", "Readiness and use-case roadmap"], ["Generative AI", "RAG, assistants, documents"], ["Machine learning", "Prediction and forecasting"], ["MLOps & governance", "Run it, monitor it, prove it"]].map(([t, d]) => (
               <li key={t} className="bg-navy-900 p-6"><strong className="block text-lg">{t}</strong><span className="text-sm text-on-navy-muted">{d}</span></li>
             ))}
@@ -78,6 +79,7 @@ export default function AiServicesPage() {
       <Section labelledBy="prob-h">
         <AiKicker>The problem</AiKicker>
         <H2 id="prob-h" className="max-w-[20ch]">Most AI pilots never reach production.</H2>
+        <SiteImage {...images.aiWorkshop} ratio="aspect-[4/3] md:aspect-[2/1]" className="mt-[clamp(2.5rem,5vw,4rem)]" sizes="(min-width: 1280px) 1280px, 100vw" />
         <ol className="mt-[clamp(2.5rem,5vw,4rem)] grid list-none gap-8 p-0 md:grid-cols-3">
           {[["No clear use case", "Pilots start from the technology rather than a business problem with a measurable target."], ["Data that isn't ready", "Gaps, silos and one-off extracts mean the model can't be rebuilt or trusted next month."], ["No governance", "Without evaluation, access control and documentation, risk teams won't sign off production use."]].map(([t, d], i) => (
             <li key={t} className="border-t-2 border-ink pt-4"><span className="text-sm font-extrabold text-ai-ink">0{i + 1}</span><h3 className="mb-2 mt-3 text-[22px]">{t}</h3><p className="m-0 text-muted">{d}</p></li>

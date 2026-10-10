@@ -10,7 +10,7 @@ export function LegalPage({ title, href, updated, intro, sections }: { title: st
     <>
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: title, href }]} />
       <section aria-labelledby="hero-h" className="pb-[clamp(2rem,4vw,3rem)] pt-[clamp(2.5rem,6vw,5rem)]">
-        <div className="container-content">
+        <div className="hero-enter container-content">
           <Kicker>Legal</Kicker>
           <h1 id="hero-h" className="m-0 -ml-[0.04em] text-h2">{title}</h1>
           <div className="mt-4 flex flex-wrap items-center gap-3 text-sm text-muted">

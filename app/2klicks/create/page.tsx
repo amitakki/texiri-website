@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Button, H2, ImagePlaceholder, Kicker, Placeholder, Section } from "@/components/ui";
+import { Button, H2, Kicker, Placeholder, Section, SiteImage } from "@/components/ui";
+import { images } from "@/lib/images";
 import { Breadcrumbs, FAQAccordion, NumberedGrid, StickyMobileCTA } from "@/components/sections";
 import { EnquiryForm } from "@/components/EnquiryForm";
 
@@ -36,7 +37,7 @@ export default function TwoKlicksCreatePage() {
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "2Klicks", href: "/2klicks/" }, { label: "2Klicks Create", href: "/2klicks/create/" }]} />
       <section aria-labelledby="hero-h" className="pt-[clamp(2.5rem,6vw,5rem)]">
         <div className="container-content">
-          <div className="grid items-end gap-x-[clamp(2.5rem,5vw,5rem)] gap-y-6 lg:grid-cols-2">
+          <div className="hero-enter grid items-end gap-x-[clamp(2.5rem,5vw,5rem)] gap-y-6 lg:grid-cols-2">
             <div>
               <div className="mb-6 flex items-center gap-2.5"><span className="bg-navy-900 px-2.5 py-1 text-xs font-extrabold uppercase tracking-[0.08em] text-on-navy">2Klicks by Texiri</span><span className="text-kicker font-semibold uppercase tracking-[0.1em] text-accent-700">Create</span></div>
               <h1 id="hero-h" className="m-0 -ml-[0.04em] max-w-[13ch] text-display">SAP migration programs on day 1.</h1>
@@ -49,9 +50,9 @@ export default function TwoKlicksCreatePage() {
               </div>
             </div>
           </div>
-          <div className="mt-[clamp(2.5rem,5vw,4rem)] border-2 border-b-0 border-ink">
+          <div className="hero-enter-late mt-[clamp(2.5rem,5vw,4rem)] border-2 border-b-0 border-ink">
             <div className="flex items-center gap-3 border-b-2 border-ink bg-navy-900 px-4 py-2.5 text-[13px] font-bold text-on-navy"><span aria-hidden className="size-2.5 bg-accent" />2Klicks Create</div>
-            <ImagePlaceholder label="product UI · template selection → upload → validation log" ratio="aspect-[21/9] min-h-56" />
+            <SiteImage {...images.klicksUi} ratio="aspect-[16/10]" priority sizes="(min-width: 1280px) 1280px, 100vw" />
           </div>
         </div>
       </section>

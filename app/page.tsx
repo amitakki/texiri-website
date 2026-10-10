@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { Button, H2, ImagePlaceholder, Kicker, Placeholder, Section } from "@/components/ui";
+import { Button, H2, Kicker, Placeholder, Section, SiteImage } from "@/components/ui";
 import { CaseStudyCard, CredibilityStrip, CTABand, StickyMobileCTA, TestimonialCard } from "@/components/sections";
 import { SapLifecycleDiagram } from "@/components/diagrams";
 import { testimonials } from "@/lib/company";
+import { images } from "@/lib/images";
 import { DEMO_HREF } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -32,9 +33,9 @@ const industries = [
   { t: "Retail", d: "SAP MM and SD master data at volume, and fast mass updates when the business reorganises.", href: "/industries/retail/" },
 ];
 const insights = [
-  { cat: "S/4HANA & Migration", title: "ECC mainstream maintenance ends in 2027. Start with the data.", href: "/insights/ecc-2027-start-with-the-data/" },
-  { cat: "SAP", title: "RE-FX after go-live: keeping lease data clean", href: "/insights/re-fx-after-go-live/" },
-  { cat: "AI", title: "Choosing your first AI use case in one day", href: "/insights/first-ai-use-case/" },
+  { cat: "S/4HANA & Migration", title: "ECC mainstream maintenance ends in 2027. Start with the data.", href: "/insights/ecc-2027-start-with-the-data/", img: images.articleEcc },
+  { cat: "SAP", title: "RE-FX after go-live: keeping lease data clean", href: "/insights/re-fx-after-go-live/", img: images.articleRefx },
+  { cat: "AI", title: "Choosing your first AI use case in one day", href: "/insights/first-ai-use-case/", img: images.articleAi },
 ];
 
 export default function HomePage() {
@@ -42,7 +43,7 @@ export default function HomePage() {
     <>
       <section aria-labelledby="hero-h" className="py-[clamp(3rem,7vw,6.5rem)]">
         <div className="container-content grid items-center gap-[clamp(2.5rem,5vw,5rem)] lg:grid-cols-2">
-          <div>
+          <div className="hero-enter">
             <Kicker>SAP consulting, founder-led</Kicker>
             <h1 id="hero-h" className="m-0 -ml-[0.04em] text-display">
               <span className="block">Implement SAP.</span><span className="block">Migrate to S/4HANA.</span><span className="block">Run it well.</span>
@@ -53,7 +54,7 @@ export default function HomePage() {
               <Button href={DEMO_HREF} variant="secondary" data-track="2klicks_demo_click">Request a 2Klicks demo</Button>
             </div>
           </div>
-          <SapLifecycleDiagram />
+          <div className="hero-enter-late"><SapLifecycleDiagram /></div>
         </div>
       </section>
 
@@ -66,7 +67,7 @@ export default function HomePage() {
         </div>
         <div className="mt-[clamp(2.5rem,5vw,4rem)] grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((s, i) => (
-            <Link key={s.href} href={s.href} className={`flex flex-col gap-3 border-t-4 bg-surface p-6 no-underline hover:bg-surface-strong hover:text-ink ${s.featured ? "border-accent" : "border-ink"}`}>
+            <Link key={s.href} href={s.href} className={`lift flex flex-col gap-3 border-t-4 bg-surface p-6 no-underline hover:bg-surface-strong hover:text-ink ${s.featured ? "border-accent" : "border-ink"}`}>
               <span className="text-sm font-extrabold text-accent-700">{String(i + 1).padStart(2, "0")}</span>
               <h3 className="m-0 text-[21px]">{s.t}</h3>
               <p className="m-0 flex-1 text-[15px] text-muted">{s.d}</p>
@@ -101,7 +102,7 @@ export default function HomePage() {
               <Button href="/2klicks/create/" variant="outline-on-navy">See 2Klicks Create</Button>
             </div>
           </div>
-          <ImagePlaceholder label="product UI · 2Klicks Create template screen" ratio="aspect-[16/10]" onNavy />
+          <SiteImage {...images.klicksUi} ratio="aspect-[16/10]" />
         </div>
       </Section>
 
@@ -157,7 +158,7 @@ export default function HomePage() {
             <Link href="/ai-community/join/" data-track="cta_click" data-vertical="community" className="rounded-pill mt-8 inline-flex min-h-13 items-center gap-2.5 bg-com px-6 font-extrabold text-navy-900 no-underline hover:bg-com-600 hover:text-navy-900">Join the community<ArrowRight aria-hidden className="size-4.5" /></Link>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
-            <Link href="/ai-community/events/" className="rounded-com flex flex-col gap-2 bg-com-surface p-6 no-underline shadow-sm hover:shadow-md">
+            <Link href="/ai-community/events/" className="lift rounded-com flex flex-col gap-2 bg-com-surface p-6 no-underline shadow-sm hover:shadow-md">
               <span className="text-xs font-bold uppercase tracking-[0.08em] text-com-ink">Next event</span>
               <strong className="text-[19px]">[Event title]</strong>
               <span className="text-sm text-muted">[Date] · Vijayapura + online</span>
@@ -181,7 +182,7 @@ export default function HomePage() {
         <div className="mt-[clamp(2.5rem,5vw,4rem)] grid gap-6 md:grid-cols-3">
           {insights.map((a) => (
             <Link key={a.href} href={a.href} className="flex flex-col gap-3 no-underline">
-              <ImagePlaceholder label="article illustration" />
+              <SiteImage {...a.img} alt="" sizes="(min-width: 768px) 33vw, 100vw" />
               <span className="text-xs font-semibold uppercase tracking-[0.1em] text-accent-700">{a.cat}</span>
               <h3 className="m-0 text-xl leading-tight">{a.title}</h3>
             </Link>

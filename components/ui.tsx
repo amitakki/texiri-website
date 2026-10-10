@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { ComponentProps, ReactNode } from "react";
@@ -53,13 +54,18 @@ export function H2({ id, children, className = "" }: { id: string; children: Rea
   return <h2 id={id} className={`m-0 max-w-[22ch] text-h2 ${className}`}>{children}</h2>;
 }
 
-export function ImagePlaceholder({ label, ratio = "aspect-video", onNavy }: { label: string; ratio?: string; onNavy?: boolean }) {
-  const stripes = onNavy
-    ? "bg-[repeating-linear-gradient(135deg,var(--color-navy-800)_0_12px,var(--color-navy-700)_12px_24px)]"
-    : "bg-[repeating-linear-gradient(135deg,var(--color-surface)_0_12px,var(--color-surface-strong)_12px_24px)]";
+/**
+ * Image slot. Set `placeholder` while the image is a stand-in illustration from public/images/placeholders/
+ * (shows a badge; tracked in docs/content-decisions.md). Swapping in the real photo is a change of `src`.
+ * `ratio` takes Tailwind aspect classes and may be responsive, e.g. "aspect-[4/3] md:aspect-[21/9]".
+ */
+export function SiteImage({ src, alt, ratio = "aspect-video", placeholder, priority, sizes = "(min-width: 1024px) 50vw, 100vw", className = "", imgClassName = "" }:
+  { src: string; alt: string; ratio?: string; placeholder?: boolean; priority?: boolean; sizes?: string; className?: string; imgClassName?: string }) {
   return (
-    <div role="img" aria-label={`Placeholder: ${label}`} className={`flex items-end p-4 ${ratio} ${stripes}`}>
-      <span className="bg-ground px-2 py-1 font-mono text-xs text-muted">{label}</span>
+    <div className={`img-zoom @container relative overflow-hidden bg-surface ${ratio} ${className}`}>
+      <Image src={src} alt={alt} fill sizes={sizes} priority={priority} unoptimized={src.endsWith(".svg")} className={`object-cover ${imgClassName}`} />
+      {/* Shorter badge on small tiles so it never wraps over the picture */}
+      {placeholder && <span className="absolute bottom-2 left-2 whitespace-nowrap @sm:bottom-3 @sm:left-3"><Placeholder><span className="@max-[14rem]:hidden">PLACEHOLDER IMAGE</span><span className="hidden @max-[14rem]:inline">PLACEHOLDER</span></Placeholder></span>}
     </div>
   );
 }

@@ -18,6 +18,39 @@ for (const path of routes) {
   });
 }
 
+test("pages fit the screen without sideways scrolling", async ({ page }) => {
+  for (const width of [320, 390]) {
+    await page.setViewportSize({ width, height: 800 });
+    for (const path of routes) {
+      await page.goto(path);
+      const [scroll, client] = await page.evaluate(() => [document.documentElement.scrollWidth, document.documentElement.clientWidth]);
+      expect(scroll, `${path} at ${width}px`).toBeLessThanOrEqual(client);
+    }
+  }
+});
+
+test("menu toggle and header CTA are fully on screen on small phones", async ({ page, isMobile }) => {
+  test.skip(!isMobile, "mobile header only");
+  await page.setViewportSize({ width: 320, height: 700 });
+  await page.goto("/");
+  for (const el of [page.getByRole("button", { name: "Open menu" }), page.getByRole("link", { name: "Talk to us" })]) {
+    const box = (await el.boundingBox())!;
+    expect(box.x + box.width).toBeLessThanOrEqual(320);
+  }
+});
+
+test("founder photo is shown on the leadership page", async ({ page }) => {
+  await page.goto("/about/leadership/");
+  const photo = page.getByRole("img", { name: /Muttu Sarashetti/ });
+  await expect(photo).toBeVisible();
+  expect(await photo.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
+});
+
+test("placeholder images are labelled as placeholders", async ({ page }) => {
+  await page.goto("/careers/");
+  await expect(page.getByText("PLACEHOLDER IMAGE").first()).toBeVisible();
+});
+
 test("previews are kept out of search engines", async ({ page, request }) => {
   const res = await page.goto("/");
   expect(res?.headers()["x-robots-tag"]).toContain("noindex");

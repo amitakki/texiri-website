@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import { images } from "@/lib/images";
 import Link from "next/link";
 import { Suspense } from "react";
 import { Mail, Phone } from "lucide-react";
-import { Kicker } from "@/components/ui";
+import { Kicker, SiteImage } from "@/components/ui";
 import { Breadcrumbs, NumberedGrid } from "@/components/sections";
 import { ContactEnquiryForm } from "@/components/ContactEnquiryForm";
 import { EnquiryForm } from "@/components/EnquiryForm";
@@ -26,7 +27,7 @@ export default function ContactPage() {
     <>
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Contact", href: "/contact/" }]} />
       <section aria-labelledby="hero-h" className="pb-[clamp(2.5rem,5vw,4rem)] pt-[clamp(2.5rem,6vw,5rem)]">
-        <div className="container-content">
+        <div className="hero-enter container-content">
           <Kicker>Contact</Kicker>
           <h1 id="hero-h" className="m-0 -ml-[0.04em] max-w-[14ch] text-display">Tell us what you&apos;re working on.</h1>
           <p className="mt-6 max-w-[52ch] text-lead text-muted">A senior consultant reads every enquiry and replies within one business day. No sales sequence, no call centre.</p>
@@ -48,6 +49,7 @@ export default function ContactPage() {
             </div>
             <div>
               <h2 className="mb-3 mt-0 text-kicker font-semibold uppercase tracking-[0.1em] text-muted">Offices</h2>
+              <SiteImage {...images.office} ratio="aspect-[2/1]" className="mb-4" sizes="(min-width: 1024px) 40vw, 100vw" />
               <div className="grid gap-4 sm:grid-cols-2">
                 {offices.map((o) => (
                   <address key={o.name} className="border-t-2 border-ink pt-3 not-italic">

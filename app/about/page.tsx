@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import { images } from "@/lib/images";
 import Link from "next/link";
-import { Button, Kicker, Placeholder, H2 } from "@/components/ui";
+import { Button, Kicker, Placeholder, H2, SiteImage } from "@/components/ui";
 import { Breadcrumbs, CTABand, CredibilityStrip, NumberedGrid } from "@/components/sections";
 import { LeadershipSection } from "@/components/LeadershipSection";
 import { principles } from "@/lib/company";
@@ -23,7 +24,7 @@ export default function AboutPage() {
     <>
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "About", href: "/about/" }]} />
       <section aria-labelledby="hero-h" className="pb-[clamp(3.5rem,7vw,6rem)] pt-[clamp(2.5rem,6vw,5.5rem)]">
-        <div className="container-content">
+        <div className="hero-enter container-content">
           <Kicker>About Texiri</Kicker>
           <h1 id="hero-h" className="m-0 -ml-[0.04em] max-w-[15ch] text-display">An SAP company, founded by an SAP engineer.</h1>
           <div className="mt-8 grid items-end gap-x-[clamp(2.5rem,5vw,5rem)] gap-y-6 lg:grid-cols-2">
@@ -36,7 +37,7 @@ export default function AboutPage() {
 
       <section aria-labelledby="story-h" className="py-section">
         <div className="container-content grid gap-x-[clamp(2.5rem,5vw,5rem)] gap-y-8 lg:grid-cols-2">
-          <div><Kicker>Our story</Kicker><H2 id="story-h" className="max-w-[14ch]">Built from Vijayapura for SAP teams worldwide.</H2></div>
+          <div className="flex flex-col gap-8"><div><Kicker>Our story</Kicker><H2 id="story-h" className="max-w-[14ch]">Built from Vijayapura for SAP teams worldwide.</H2></div><SiteImage {...images.office} ratio="aspect-[4/3]" /></div>
           <div className="flex max-w-[60ch] flex-col gap-4 text-[17px] leading-relaxed">
             <p className="m-0">Texiri started with one observation from years of SAP projects: the hardest weeks are rarely the configuration. They&apos;re the data. Every migration object needed its own programs before a single record could load.</p>
             <p className="m-0">So we built 2Klicks, patented tools <Placeholder>PATENT TO VERIFY</Placeholder> that turn Excel templates into SAP loads and mass updates. Around them we grew a consulting practice covering the full lifecycle, from blueprint to managed services.</p>

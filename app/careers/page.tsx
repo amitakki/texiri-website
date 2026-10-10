@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Check } from "lucide-react";
-import { Button, ImagePlaceholder, Kicker, Placeholder, H2 } from "@/components/ui";
+import { Button, Kicker, Placeholder, H2, SiteImage } from "@/components/ui";
+import { images } from "@/lib/images";
 import { Breadcrumbs, NumberedGrid } from "@/components/sections";
 import { RoleList } from "@/components/RoleList";
 import { Shambhavi108 } from "@/components/Shambhavi108";
@@ -17,7 +18,7 @@ export default function CareersPage() {
     <>
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Careers", href: "/careers/" }]} />
       <section aria-labelledby="hero-h" className="pb-[clamp(3.5rem,7vw,6rem)] pt-[clamp(2.5rem,6vw,5.5rem)]">
-        <div className="container-content">
+        <div className="hero-enter container-content">
           <Kicker>Careers</Kicker>
           <h1 id="hero-h" className="m-0 -ml-[0.04em] max-w-[15ch] text-display">Do real SAP and AI work from day one.</h1>
           <div className="mt-8 grid items-end gap-x-[clamp(2.5rem,5vw,5rem)] gap-y-6 lg:grid-cols-2">
@@ -41,7 +42,7 @@ export default function CareersPage() {
         <div className="container-content">
           <Kicker>Life at Texiri</Kicker><H2 id="life-h" className="max-w-[18ch]">Why people join, and why they stay</H2>
           <div className="mt-[clamp(2.5rem,5vw,4rem)] grid items-start gap-x-[clamp(2rem,4vw,4rem)] gap-y-8 lg:grid-cols-2">
-            <div className="grayscale"><ImagePlaceholder label="Team photo · Vijayapura office" ratio="aspect-[4/3]" /></div>
+            <SiteImage {...images.teamPhoto} ratio="aspect-[4/3]" />
             <ul className="m-0 grid list-none gap-x-6 p-0 sm:grid-cols-2">
               {lifeAtTexiri.map((l) => (
                 <li key={l.t} className="grid grid-cols-[28px_1fr] gap-3 border-t-2 border-ink py-6">

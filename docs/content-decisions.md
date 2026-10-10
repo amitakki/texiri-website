@@ -84,7 +84,7 @@ This file lists every piece of website content that still needs a decision. Each
 
 | ID | Where it appears | What's needed | Old-site value | Owner | Decision | Status |
 | --- | --- | --- | --- | --- | --- | --- |
-| L1 | About, Leadership | Founder portrait photo | Photo on the old Team page | Founder | | Open |
+| L1 | About, Leadership | A high-resolution founder portrait. The old-site photo is now used, but it is only 343×444 px | Photo on the old Team page (now in `public/images/team/`) | Founder | | Agreed |
 | L2 | Leadership → "LinkedIn profile" link | The founder's personal LinkedIn URL (currently points to the company page) | Not published | Founder | | Open |
 | L3 | Leadership | Any other leaders to list? | Only the founder | Founder | | Open |
 
@@ -98,7 +98,25 @@ This file lists every piece of website content that still needs a decision. Each
 | G4 | `/legal/cookies/` | Lawyer review of the draft Cookie Policy (update when analytics is added) | No policy published | Legal counsel | | Open |
 | G5 | `/legal/terms/` | Lawyer review of the draft Terms; confirm the courts of jurisdiction | None | Legal counsel | | Open |
 
-## 9. Insights and industries
+## 9. Photos and screenshots
+
+Every image below is currently an on-brand placeholder illustration with a "PLACEHOLDER IMAGE" badge. Each is listed in `lib/images.ts`. To use the real one: add it under `public/images/`, change its `src`, and delete `placeholder: true`. Photos of people need their consent.
+
+| ID | Where it appears | Image needed | Current placeholder | Owner | Decision | Status |
+| --- | --- | --- | --- | --- | --- | --- |
+| IMG1 | SAP Services, interim SAP pages | SAP consultants working with a client team | `consulting-team.svg` | Marketing | | Open |
+| IMG2 | Careers → Life at Texiri | Team photo, Vijayapura office | `team-photo.svg` | HR | | Open |
+| IMG3 | About → Our story, Contact → Offices | Photo of the Vijayapura office | `office.svg` | Founder | | Open |
+| IMG4 | S/4HANA Data Migration, case studies | Migration diagram or project photo | `data-migration.svg` | Delivery lead | | Open |
+| IMG5 | Home → 2Klicks band, 2Klicks Create | Real 2Klicks Create screenshot (same as K7) | `2klicks-ui.svg` | 2Klicks product lead | | Open |
+| IMG6 | AI Services, interim AI pages | AI workshop photo | `ai-workshop.svg` | AI practice lead | | Open |
+| IMG7 | Community hero, events page | Community workshop photo (same as M7) | `community-workshop.svg` | Community lead | | Open |
+| IMG8 | Community hero, Join page, learning paths | Member presenting a project | `community-demo.svg` | Community lead | | Open |
+| IMG9 | Community → Built by members | Three member project screenshots (same as M6) | `project-vision.svg`, `project-chatbot.svg`, `project-forecast.svg` | Community lead | | Open |
+| IMG10 | Home → Latest thinking, Insights pages | Article cover images (same as I3) | `article-ecc-2027.svg`, `article-refx.svg`, `article-first-ai.svg` | Marketing | | Open |
+| IMG11 | Shambhavi 108 page | Photo of programme learners | `learners.svg` | Programme lead | | Open |
+
+## 10. Insights and industries
 
 | ID | Where it appears | What's needed | Old-site value | Owner | Decision | Status |
 | --- | --- | --- | --- | --- | --- | --- |

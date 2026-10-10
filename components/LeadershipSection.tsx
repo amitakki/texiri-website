@@ -1,15 +1,16 @@
-import { ImagePlaceholder, Kicker, Placeholder } from "./ui";
+import { Kicker, Placeholder, SiteImage } from "./ui";
+import { images } from "@/lib/images";
 import { founder } from "@/lib/company";
 
 export function LeadershipSection({ asPage }: { asPage?: boolean }) {
   const Title = asPage ? "h1" : "h2";
   return (
     <section id="leadership" aria-labelledby="lead-h" className="scroll-mt-20 border-t-2 border-rule py-section">
-      <div className="container-content">
+      <div className={`container-content ${asPage ? "hero-enter" : ""}`}>
         <Kicker>Leadership</Kicker>
         <Title id="lead-h" className="m-0 max-w-[18ch] text-h2">Senior people who still work on the projects.</Title>
         <article aria-labelledby="ceo-h" className="mt-[clamp(2.5rem,5vw,4rem)] grid gap-x-[clamp(2rem,4vw,4rem)] gap-y-6 border-t-2 border-ink pt-6 md:grid-cols-2">
-          <div className="grayscale max-w-[420px]"><ImagePlaceholder label={`Portrait · ${founder.name}`} ratio="aspect-[4/5]" /></div>
+          <div className="w-full max-w-[360px]"><SiteImage {...images.founder} ratio="aspect-[4/5]" sizes="360px" imgClassName="grayscale transition-[filter] duration-700 hover:grayscale-0" /></div>
           <div className="flex flex-col gap-4">
             <span className="text-kicker font-semibold uppercase tracking-[0.1em] text-muted">{founder.role}</span>
             <h3 id="ceo-h" className="m-0 text-[clamp(1.75rem,3.4vw,2.75rem)] leading-[1.05]">{founder.name}</h3>

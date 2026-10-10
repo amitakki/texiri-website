@@ -37,7 +37,7 @@ export function SiteFooter() {
             ))}
           </div>
         </div>
-        <div className="grid gap-8 py-8 sm:grid-cols-2 lg:grid-cols-6">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-8 py-8 md:grid-cols-3 lg:grid-cols-6">
           {cols.map((c) => (
             <nav key={c.title} aria-label={c.title} className="flex flex-col gap-0.5 text-[15px]">
               <span className="mb-2 text-xs font-semibold uppercase tracking-[0.1em] text-on-navy-muted">{c.title}</span>

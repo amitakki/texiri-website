@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Archivo } from "next/font/google";
 import { SiteHeader } from "@/components/SiteHeader";
+import { Motion } from "@/components/Motion";
 import { SiteFooter } from "@/components/SiteFooter";
 import { isProd } from "@/lib/env";
 import { SITE_URL, organizationJsonLd } from "@/lib/site";
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteHeader />
         <main id="main">{children}</main>
         <SiteFooter />
+        <Motion />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
       </body>
     </html>

@@ -15,6 +15,7 @@ export function SiteHeader() {
   const cta = verticalCta[vertical];
   const [open, setOpen] = useState<string | null>(null);
   const [drawer, setDrawer] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const ref = useRef<HTMLElement>(null);
   const toggle = useRef<HTMLButtonElement>(null);
   const drawerNav = useRef<HTMLElement>(null);
@@ -34,6 +35,13 @@ export function SiteHeader() {
     return () => { document.removeEventListener("keydown", onKey); document.removeEventListener("mousedown", onDown); };
   }, []);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   // Mobile drawer: move focus into it on open and stop the page scrolling behind it.
   useEffect(() => {
     if (!drawer) return;
@@ -51,12 +59,12 @@ export function SiteHeader() {
   const bar = (item: (typeof primaryNav)[number]) => (active(item.href) ? accentBar[vertical === "community" && item.vertical === "ai" ? "community" : item.vertical ?? "sap"] : "border-transparent");
 
   return (
-    <header ref={ref} className={`sticky top-0 z-50 border-b-2 border-rule ${vertical === "community" ? "bg-com-bg" : "bg-ground"}`}>
+    <header ref={ref} className={`sticky top-0 z-50 border-b-2 border-rule transition-shadow duration-300 ${scrolled ? "shadow-[0_8px_24px_-12px_rgba(15,26,46,0.35)]" : ""} ${vertical === "community" ? "bg-com-bg" : "bg-ground"}`}>
       <a href="#main" className="absolute -left-[9999px] top-2 z-[60] bg-ink px-4 py-3 font-semibold text-ground focus:left-4">Skip to content</a>
-      <div className="container-content flex h-18 items-center gap-6">
+      <div className="container-content flex h-18 items-center gap-3 sm:gap-6">
         <Link href="/" aria-label="Texiri Solutions — home" className="flex min-h-11 flex-none items-center">
           {/* Source is 500×185 */}
-          <Image src="/texiri-logo.png" alt="Texiri Solutions" width={120} height={44} priority />
+          <Image src="/texiri-logo.png" alt="Texiri Solutions" width={120} height={44} priority className="h-auto w-[100px] sm:w-[120px]" />
         </Link>
 
         <nav aria-label="Primary" className="ml-auto hidden h-18 items-stretch xl:flex">
@@ -65,7 +73,7 @@ export function SiteHeader() {
               <button key={item.label} type="button" aria-expanded={open === item.label} aria-controls={open === item.label ? `mega-${item.vertical}` : undefined}
                 onClick={() => setOpen(open === item.label ? null : item.label)}
                 className={`-mb-0.5 flex items-center gap-1 whitespace-nowrap border-b-3 px-2.5 text-sm font-semibold hover:text-accent-700 ${bar(item)}`}>
-                {item.label}<ChevronDown aria-hidden className="size-4" />
+                {item.label}<ChevronDown aria-hidden className={`size-4 transition-transform duration-200 ${open === item.label ? "rotate-180" : ""}`} />
               </button>
             ) : (
               <Link key={item.label} href={item.href} aria-current={active(item.href) ? "page" : undefined}
@@ -76,7 +84,7 @@ export function SiteHeader() {
           )}
         </nav>
         <Link href={cta.href} data-track="cta_click" data-vertical={vertical}
-          className={`ml-auto inline-flex min-h-11 items-center whitespace-nowrap px-4 font-extrabold text-navy-900 no-underline hover:text-navy-900 xl:ml-0 ${cta.className}`}>
+          className={`ml-auto inline-flex min-h-11 items-center whitespace-nowrap px-3 text-[15px] font-extrabold text-navy-900 no-underline hover:text-navy-900 sm:px-4 sm:text-base xl:ml-0 ${cta.className}`}>
           <span className="xl:hidden">{cta.short}</span><span className="hidden xl:inline">{cta.label}</span>
         </Link>
         <button ref={toggle} type="button" className="grid size-11 flex-none place-items-center border-2 border-rule xl:hidden"
@@ -86,7 +94,7 @@ export function SiteHeader() {
       </div>
 
       {primaryNav.filter((i) => i.mega && open === i.label).map((item) => (
-        <div key={item.label} id={`mega-${item.vertical}`} role="region" aria-label={item.label} className="absolute inset-x-0 top-full hidden border-b-2 border-rule bg-ground shadow-xl xl:block">
+        <div key={item.label} id={`mega-${item.vertical}`} role="region" aria-label={item.label} className="animate-drop absolute inset-x-0 top-full hidden border-b-2 border-rule bg-ground shadow-xl xl:block">
           <div className="container-content pt-6">
             <Link href={item.href} className="inline-flex min-h-11 items-center gap-2 font-extrabold no-underline">
               {item.label} overview<ArrowRight aria-hidden className="size-4.5" />
@@ -109,11 +117,11 @@ export function SiteHeader() {
       ))}
 
       {drawer && (
-        <nav ref={drawerNav} id="mobile-nav" aria-label="Primary" className="absolute inset-x-0 top-full max-h-[calc(100dvh-72px)] overflow-auto overscroll-contain border-b-2 border-rule bg-ground shadow-xl xl:hidden">
+        <nav ref={drawerNav} id="mobile-nav" aria-label="Primary" className="animate-drop absolute inset-x-0 top-full max-h-[calc(100dvh-72px)] overflow-auto overscroll-contain border-b-2 border-rule bg-ground shadow-xl xl:hidden">
           <div className="container-content flex flex-col pb-6 pt-2">
             {primaryNav.map((item) => item.mega ? (
-              <details key={item.label} className="border-b border-hairline">
-                <summary className="flex min-h-13 items-center justify-between font-bold">{item.label}<ChevronDown aria-hidden className="size-4.5" /></summary>
+              <details key={item.label} className="group border-b border-hairline">
+                <summary className="flex min-h-13 items-center justify-between font-bold">{item.label}<ChevronDown aria-hidden className="size-4.5 transition-transform duration-200 group-open:rotate-180" /></summary>
                 <div className="flex flex-col pb-3 pl-4">
                   <Link href={item.href} className="flex min-h-11 items-center font-bold no-underline">Overview</Link>
                   {item.mega.links.map((l) => <Link key={l.href} href={l.href} className="flex min-h-11 items-center no-underline">{l.label}</Link>)}

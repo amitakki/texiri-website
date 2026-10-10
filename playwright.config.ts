@@ -9,7 +9,8 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
   reporter: process.env.CI ? [["github"], ["html", { open: "never" }]] : "list",
-  use: { baseURL: `http://localhost:${PORT}`, trace: "on-first-retry" },
+  // Reduced motion keeps screenshots and axe checks deterministic; e2e/motion.spec.ts turns motion back on.
+  use: { baseURL: `http://localhost:${PORT}`, trace: "on-first-retry", reducedMotion: "reduce" },
   projects: [
     { name: "desktop", use: { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 900 } } },
     { name: "mobile", use: { ...devices["Pixel 7"] } },

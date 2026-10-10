@@ -87,6 +87,8 @@
   ::selection { background: var(--color-accent-200); }
   summary { list-style: none; cursor: pointer; }
   summary::-webkit-details-marker { display: none; }
+  /* Smooth hover and focus changes everywhere */
+  a, button, summary { transition: color 0.2s, background-color 0.2s, border-color 0.2s, box-shadow 0.2s, opacity 0.2s; }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after { transition: none !important; animation: none !important; }
@@ -105,4 +107,53 @@
 @utility ai-grid {
   background-image: radial-gradient(color-mix(in srgb, var(--color-ai) 28%, transparent) 1px, transparent 1.5px);
   background-size: 22px 22px;
+}
+
+/* ── Motion ────────────────────────────────────────────────────────────────────────────
+   Everything here is switched off by the prefers-reduced-motion rule in @layer base.
+   hero-enter      children rise in one after another on page load (pure CSS, no JS)
+   hero-enter-late the hero's second column (diagram, image, form) follows
+   reveal-*        set by components/Motion.tsx: blocks below the fold fade up as they scroll in
+   lift / img-zoom hover feedback on cards and images */
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes drop { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+
+@layer components {
+  .hero-enter > * { animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  .hero-enter > :nth-child(2) { animation-delay: 0.08s; }
+  .hero-enter > :nth-child(3) { animation-delay: 0.16s; }
+  .hero-enter > :nth-child(4) { animation-delay: 0.24s; }
+  .hero-enter > :nth-child(n + 5) { animation-delay: 0.32s; }
+  .hero-enter-late { animation: rise 0.9s 0.3s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  /* Items inside a hero-enter-late block (e.g. the SAP lifecycle stages) follow one by one */
+  .hero-stagger > * { animation: rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  .hero-stagger > :nth-child(1) { animation-delay: 0.5s; }
+  .hero-stagger > :nth-child(2) { animation-delay: 0.62s; }
+  .hero-stagger > :nth-child(3) { animation-delay: 0.74s; }
+  .hero-stagger > :nth-child(n + 4) { animation-delay: 0.86s; }
+
+  .reveal-armed { opacity: 0; transform: translateY(28px); }
+  .reveal-armed.reveal-in {
+    opacity: 1; transform: none;
+    transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+    transition-delay: var(--reveal-delay, 0s);
+  }
+
+  /* Arrows nudge forward when their link or button is hovered */
+  :is(a, button) .lucide-arrow-right { transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1); }
+  :is(a, button):hover .lucide-arrow-right { transform: translateX(4px); }
+
+  .lift { transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.35s; }
+  .lift:hover, a:hover > .lift { transform: translateY(-4px); }
+  .img-zoom img { transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), filter 0.7s; }
+  a:hover .img-zoom img { transform: scale(1.04); }
+
+  /* Menus, accordions and form results */
+  .animate-drop { animation: drop 0.22s ease-out both; }
+  details[open] > :not(summary) { animation: rise 0.35s ease-out both; }
+  form [role="alert"], [role="status"] { animation: rise 0.45s ease-out both; }
+}
+
+@media print {
+  .reveal-armed { opacity: 1 !important; transform: none !important; }
 }

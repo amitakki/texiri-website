@@ -5,7 +5,7 @@ import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 
 const ROOTS = ["app", "components", "lib"];
-const MARKERS = /TO VERIFY|TO CONFIRM|CLIENT APPROVAL|CONTENT IN PROGRESS|PLACEHOLDER|<Placeholder|\[X\]|\[(?:Event title|Project title|Member name|Date[^\]]*|Year|Grievance officer|Full postal address)\]/;
+const MARKERS = /placeholder: true|TO VERIFY|TO CONFIRM|CLIENT APPROVAL|CONTENT IN PROGRESS|PLACEHOLDER|<Placeholder|\[X\]|\[(?:Event title|Project title|Member name|Date[^\]]*|Year|Grievance officer|Full postal address)\]/;
 const strict = process.argv.includes("--strict");
 
 function* files(dir) {

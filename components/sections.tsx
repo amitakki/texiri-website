@@ -36,13 +36,13 @@ export function Hero({ kicker, title, lead, actions, aside, id = "hero-h" }:
   return (
     <section aria-labelledby={id} className="py-[clamp(2.5rem,6vw,5.5rem)]">
       <div className="container-content grid items-end gap-[clamp(2.5rem,5vw,5rem)] lg:grid-cols-2">
-        <div>
+        <div className="hero-enter">
           <Kicker>{kicker}</Kicker>
           <h1 id={id} className="m-0 -ml-[0.04em] max-w-[16ch] text-display">{title}</h1>
           <p className="mt-6 max-w-[52ch] text-lead text-muted">{lead}</p>
           <div className="mt-8 flex flex-wrap gap-3">{actions}</div>
         </div>
-        {aside}
+        {aside && <div className="hero-enter-late">{aside}</div>}
       </div>
     </section>
   );

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import { images } from "@/lib/images";
 import Link from "next/link";
-import { Button, H2, Kicker, Placeholder, Section } from "@/components/ui";
+import { Button, H2, Kicker, Placeholder, Section, SiteImage } from "@/components/ui";
 import { Breadcrumbs, CheckList, CTABand, FAQAccordion, NumberedGrid, StickyMobileCTA, TestimonialCard } from "@/components/sections";
 import { testimonials } from "@/lib/company";
 import { DEMO_HREF } from "@/lib/site";
@@ -47,7 +48,7 @@ export default function DataMigrationPage() {
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "SAP Services", href: "/sap/" }, { label: "S/4HANA Data Migration & MDG", href: "/sap/data-migration/" }]} />
       <section aria-labelledby="hero-h" className="pb-[clamp(3.5rem,7vw,6rem)] pt-[clamp(2.5rem,6vw,5.5rem)]">
         <div className="container-content grid items-end gap-[clamp(2.5rem,5vw,5rem)] lg:grid-cols-2">
-          <div>
+          <div className="hero-enter">
             <Kicker>S/4HANA Data Migration &amp; MDG</Kicker>
             <h1 id="hero-h" className="m-0 -ml-[0.04em] max-w-[15ch] text-display">Move to S/4HANA with data the business signs off.</h1>
             <p className="mt-6 max-w-[52ch] text-lead text-muted">For SAP programme directors and data owners moving from ECC or legacy systems. We plan, extract, cleanse and load your data, then keep it governed with MDG.</p>
@@ -56,7 +57,7 @@ export default function DataMigrationPage() {
               <Button href="/2klicks/create/" variant="secondary">See 2Klicks Create</Button>
             </div>
           </div>
-          <div className="border-t-4 border-ink bg-surface p-8">
+          <div className="hero-enter-late border-t-4 border-ink bg-surface p-8">
             <span className="text-xs font-semibold uppercase tracking-[0.1em] text-muted">The business challenge</span>
             <p className="mb-0 mt-3 text-xl font-semibold leading-[1.45]">Data is the most common reason S/4HANA timelines slip. Programs are built late, mock loads fail on custom fields, and reconciliation drags into cutover.</p>
           </div>
@@ -79,6 +80,7 @@ export default function DataMigrationPage() {
         <Kicker>The Texiri solution</Kicker>
         <H2 id="sol-h" className="max-w-[20ch]">Data-first migration, with our own IP doing the heavy lifting</H2>
         <p className="mb-[clamp(2.5rem,5vw,4rem)] mt-6 max-w-[60ch] text-lg text-muted">2Klicks Create gives your project migration programs on day 1, aware of your custom fields and validations. Our consultants spend their time on data quality and business sign-off instead of writing load programs.</p>
+        <SiteImage {...images.dataMigration} ratio="aspect-[4/3] sm:aspect-video" className="mb-[clamp(2.5rem,5vw,4rem)]" sizes="(min-width: 1280px) 1280px, 100vw" />
         <CheckList items={caps} />
       </Section>
 

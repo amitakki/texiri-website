@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import { images } from "@/lib/images";
 import Link from "next/link";
-import { Button, Kicker } from "@/components/ui";
+import { Button, Kicker, SiteImage } from "@/components/ui";
 import { Breadcrumbs, CTABand, FAQAccordion, StickyMobileCTA, TestimonialCard } from "@/components/sections";
 import { testimonials } from "@/lib/company";
 import { DEMO_HREF } from "@/lib/site";
@@ -29,7 +30,7 @@ export default function SapServicesPage() {
     <>
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "SAP Services", href: "/sap/" }]} />
       <section aria-labelledby="hero-h" className="pb-[clamp(3.5rem,7vw,6rem)] pt-[clamp(2.5rem,6vw,5.5rem)]">
-        <div className="container-content">
+        <div className="hero-enter container-content">
           <Kicker>SAP Services</Kicker>
           <h1 id="hero-h" className="m-0 -ml-[0.04em] max-w-[16ch] text-display">SAP consulting for the whole lifecycle.</h1>
           <div className="mt-8 grid items-end gap-x-[clamp(2.5rem,5vw,5rem)] gap-y-6 lg:grid-cols-2">
@@ -38,6 +39,10 @@ export default function SapServicesPage() {
           </div>
         </div>
       </section>
+
+      <div className="container-content pb-[clamp(2.5rem,5vw,4rem)]">
+        <SiteImage {...images.consultingTeam} ratio="aspect-[4/3] md:aspect-[2/1]" priority sizes="(min-width: 1280px) 1280px, 100vw" />
+      </div>
 
       <section aria-label="Service index" className="border-t-2 border-ink">
         <div className="container-content">

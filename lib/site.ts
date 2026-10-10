@@ -61,8 +61,8 @@ export const primaryNav: NavItem[] = [
 ];
 
 export const verticalCta: Record<Vertical, { label: string; short: string; href: string; className: string }> = {
-  sap: { label: "Talk to an SAP expert", short: "Talk to an expert", href: "/contact/", className: "bg-accent hover:bg-accent-600" },
-  ai: { label: "Talk to an AI expert", short: "Talk to an expert", href: "/contact/?type=ai", className: "bg-ai hover:bg-ai-600" },
+  sap: { label: "Talk to an SAP expert", short: "Talk to us", href: "/contact/", className: "bg-accent hover:bg-accent-600" },
+  ai: { label: "Talk to an AI expert", short: "Talk to us", href: "/contact/?type=ai", className: "bg-ai hover:bg-ai-600" },
   community: { label: "Join the community", short: "Join", href: "/ai-community/join/", className: "rounded-pill bg-com hover:bg-com-600" },
 };
 
