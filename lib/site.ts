@@ -8,11 +8,20 @@ export const contact = {
   phoneDisplay: "+91 79753 05499",
   email: "info@texiri.com",
   hours: "Mon–Fri, 9am–7pm IST",
-  // [TO CONFIRM] registered legal name, CIN and full postal addresses
-  legalName: "[REGISTERED LEGAL NAME]",
-  cin: "[TO CONFIRM]",
-  linkedin: "https://www.linkedin.com/company/texiri", // [TO CONFIRM]
+  // From the old site (www.texiri.com); confirm with the founder (docs/content-decisions.md C3–C5).
+  legalName: "Texiri Solutions Private Limited",
+  /** [TO CONFIRM] Company Identification Number (content decision C1). Hidden on the site while null. */
+  cin: null as string | null,
+  linkedin: "https://www.linkedin.com/company/texiri-solutions/",
+  instagram: "https://www.instagram.com/texirisolutions/",
 };
+
+export type Office = { name: string; label: string; street: string[]; locality: string; region: string; postalCode: string; hq?: boolean };
+
+export const offices: Office[] = [
+  { name: "Vijayapura (HQ)", label: "Headquarters", street: ["1st Floor, Toravi building, Anand Nagar", "Ashram Road, Opp. BLDE Engineering College"], locality: "Vijayapura", region: "Karnataka", postalCode: "586103", hq: true },
+  { name: "Navi Mumbai", label: "Office", street: ["CG Parivar House, EL-86, T.T.C Industrial Area", "MIDC Mahape"], locality: "Navi Mumbai", region: "Maharashtra", postalCode: "400701" },
+];
 
 export type Vertical = "sap" | "ai" | "community";
 export type NavLink = { label: string; href: string; description?: string };
@@ -68,14 +77,19 @@ export const organizationJsonLd = {
   "@type": "Organization",
   name: "Texiri Solutions",
   legalName: contact.legalName,
+  ...(contact.cin ? { identifier: contact.cin } : {}),
   url: SITE_URL,
   logo: `${SITE_URL}/texiri-logo.png`,
   email: contact.email,
   telephone: contact.phone,
   founder: { "@type": "Person", name: "Muttu Sarashetti", jobTitle: "Founder & CEO" },
-  address: [
-    { "@type": "PostalAddress", addressLocality: "Vijayapura", addressRegion: "Karnataka", addressCountry: "IN" },
-    { "@type": "PostalAddress", addressLocality: "Navi Mumbai", addressRegion: "Maharashtra", addressCountry: "IN" },
-  ],
-  sameAs: [contact.linkedin],
+  address: offices.map((o) => ({
+    "@type": "PostalAddress",
+    streetAddress: o.street.join(", "),
+    addressLocality: o.locality,
+    addressRegion: o.region,
+    postalCode: o.postalCode,
+    addressCountry: "IN",
+  })),
+  sameAs: [contact.linkedin, contact.instagram],
 };

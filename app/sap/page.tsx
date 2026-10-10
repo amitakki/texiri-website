@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Button, Kicker, Placeholder } from "@/components/ui";
+import { Button, Kicker } from "@/components/ui";
 import { Breadcrumbs, CTABand, FAQAccordion, StickyMobileCTA, TestimonialCard } from "@/components/sections";
+import { testimonials } from "@/lib/company";
 import { DEMO_HREF } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -76,8 +77,8 @@ export default function SapServicesPage() {
 
       <section aria-labelledby="proof-h" className="py-section">
         <div className="container-content max-w-[60rem]">
-          <div className="mb-4 flex flex-wrap items-center gap-3"><h2 id="proof-h" className="m-0 text-kicker font-semibold uppercase tracking-[0.1em] text-accent-700">Proof</h2><Placeholder>CLIENT APPROVAL NEEDED</Placeholder></div>
-          <TestimonialCard quote="Lease data is hard to move. Texiri moved our RE-FX contracts with every validation intact and kept us informed throughout." who="Real-estate company, USA" />
+          <h2 id="proof-h" className="mb-4 mt-0 text-kicker font-semibold uppercase tracking-[0.1em] text-accent-700">Proof</h2>
+          <TestimonialCard {...testimonials.realEstate} />
         </div>
       </section>
 

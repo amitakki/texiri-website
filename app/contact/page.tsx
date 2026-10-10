@@ -5,7 +5,7 @@ import { Kicker } from "@/components/ui";
 import { Breadcrumbs, NumberedGrid } from "@/components/sections";
 import { EnquiryForm } from "@/components/EnquiryForm";
 import { ENQUIRY_TYPES } from "@/lib/enquiry";
-import { DEMO_HREF, contact } from "@/lib/site";
+import { DEMO_HREF, contact, offices } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact: Talk to an SAP or AI Expert",
@@ -51,8 +51,12 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
             <div>
               <h2 className="mb-3 mt-0 text-kicker font-semibold uppercase tracking-[0.1em] text-muted">Offices</h2>
               <div className="grid gap-4 sm:grid-cols-2">
-                <address className="border-t-2 border-ink pt-3 not-italic"><strong className="text-lg">Vijayapura (HQ)</strong><div className="text-[15px] text-muted">Karnataka, India</div><div className="mt-1 text-sm text-muted">[Full postal address]</div></address>
-                <address className="border-t-2 border-ink pt-3 not-italic"><strong className="text-lg">Navi Mumbai</strong><div className="text-[15px] text-muted">Maharashtra, India</div><div className="mt-1 text-sm text-muted">[Full postal address]</div></address>
+                {offices.map((o) => (
+                  <address key={o.name} className="border-t-2 border-ink pt-3 not-italic">
+                    <strong className="text-lg">{o.name}</strong>
+                    <div className="mt-1 text-[15px] text-muted">{o.street.map((line) => <div key={line}>{line}</div>)}{o.locality}, {o.region} {o.postalCode}<div>India</div></div>
+                  </address>
+                ))}
               </div>
             </div>
             <div>

@@ -4,16 +4,17 @@ import { Button, Kicker, Placeholder, H2 } from "@/components/ui";
 import { Breadcrumbs, CTABand, CredibilityStrip, NumberedGrid } from "@/components/sections";
 import { LeadershipSection } from "@/components/LeadershipSection";
 import { principles } from "@/lib/company";
+import { offices } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About Us: Founder-led SAP Consulting",
-  description: "Texiri Solutions is a founder-led SAP consultancy. Our CEO began his career at SAP Labs India. 20+ years in SAP, delivery across five countries, and the patented 2Klicks migration tools.",
+  description: "Texiri Solutions is a founder-led SAP consultancy. Our CEO began his career at SAP Labs India. 20+ years in SAP, delivery across five countries, and our own 2Klicks migration tools.",
   alternates: { canonical: "/about/" },
 };
 
 const verticals = [
   { t: "SAP Services", d: "Consulting, S/4HANA data migration and MDG, integration and managed services.", href: "/sap/", tone: "border-accent" },
-  { t: "2Klicks", d: "Patented tools for SAP data migration and mass updates through Excel.", href: "/2klicks/", tone: "border-accent" },
+  { t: "2Klicks", d: "Our own tools for SAP data migration and mass updates through Excel.", href: "/2klicks/", tone: "border-accent" },
   { t: "AI Services & Community", d: "Applied AI for enterprises, and an open community for anyone learning AI.", href: "/ai-services/", tone: "border-ai" },
 ];
 
@@ -38,7 +39,7 @@ export default function AboutPage() {
           <div><Kicker>Our story</Kicker><H2 id="story-h" className="max-w-[14ch]">Built from Vijayapura for SAP teams worldwide.</H2></div>
           <div className="flex max-w-[60ch] flex-col gap-4 text-[17px] leading-relaxed">
             <p className="m-0">Texiri started with one observation from years of SAP projects: the hardest weeks are rarely the configuration. They&apos;re the data. Every migration object needed its own programs before a single record could load.</p>
-            <p className="m-0">So we built 2Klicks, patented tools that turn Excel templates into SAP loads and mass updates. Around them we grew a consulting practice covering the full lifecycle, from blueprint to managed services.</p>
+            <p className="m-0">So we built 2Klicks, patented tools <Placeholder>PATENT TO VERIFY</Placeholder> that turn Excel templates into SAP loads and mass updates. Around them we grew a consulting practice covering the full lifecycle, from blueprint to managed services.</p>
             <p className="m-0">Today we deliver from Vijayapura, Karnataka and Navi Mumbai to clients in India, the USA, Germany, Singapore and Australia. We also run the TEXIRI AI Community, an open learning group that began in Vijayapura.</p>
             <div className="flex flex-wrap items-center gap-2 text-sm text-muted">Founded <strong className="text-ink">[Year]</strong><Placeholder>TO CONFIRM</Placeholder></div>
           </div>
@@ -69,8 +70,13 @@ export default function AboutPage() {
         <div className="container-content">
           <Kicker>Where we are</Kicker><H2 id="off-h">Two offices, five delivery countries</H2>
           <div className="mt-[clamp(2.5rem,5vw,4rem)] grid gap-6 md:grid-cols-3">
-            <div className="border-t-4 border-accent pt-4"><span className="text-xs font-semibold uppercase tracking-[0.1em] text-muted">Headquarters</span><div className="mt-1 text-2xl font-extrabold">Vijayapura, Karnataka</div><div className="mt-2 text-[15px] text-muted">[Full postal address]</div></div>
-            <div className="border-t-4 border-ink pt-4"><span className="text-xs font-semibold uppercase tracking-[0.1em] text-muted">Office</span><div className="mt-1 text-2xl font-extrabold">Navi Mumbai, Maharashtra</div><div className="mt-2 text-[15px] text-muted">[Full postal address]</div></div>
+            {offices.map((o) => (
+              <address key={o.name} className={`border-t-4 pt-4 not-italic ${o.hq ? "border-accent" : "border-ink"}`}>
+                <span className="text-xs font-semibold uppercase tracking-[0.1em] text-muted">{o.label}</span>
+                <div className="mt-1 text-2xl font-extrabold">{o.locality}, {o.region}</div>
+                <div className="mt-2 text-[15px] text-muted">{o.street.map((line) => <div key={line}>{line}</div>)}{o.locality} {o.postalCode}</div>
+              </address>
+            ))}
             <div className="border-t-4 border-ink pt-4"><span className="text-xs font-semibold uppercase tracking-[0.1em] text-muted">Delivery experience</span><div className="mt-1 text-2xl font-extrabold">India · USA · Germany · Singapore · Australia</div></div>
           </div>
         </div>

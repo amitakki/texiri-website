@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Check, Plus } from "lucide-react";
 import type { ReactNode } from "react";
 import { Button, H2, Kicker, Placeholder } from "./ui";
+import { credentials } from "@/lib/company";
 import { SITE_URL } from "@/lib/site";
 
 export const isUnconfirmed = (text: string) => /\[TO (CONFIRM|VERIFY)\]/.test(text);
@@ -48,19 +49,14 @@ export function Hero({ kicker, title, lead, actions, aside, id = "hero-h" }:
 }
 
 export function CredibilityStrip() {
-  const items = [
-    ["Founder-led since SAP Labs India", "Our CEO began his career at SAP Labs India."],
-    ["20+ years in SAP", "Consulting and enterprise transformation."],
-    ["Delivery across 5 countries", "India, USA, Germany, Singapore, Australia."],
-    ["Patented SAP migration tools", "2Klicks Create and 2Klicks Update."],
-  ];
   return (
     <section aria-label="Credentials" className="border-y-2 border-rule">
       <div className="container-content grid sm:grid-cols-2 lg:grid-cols-4">
-        {items.map(([t, d]) => (
+        {credentials.map(({ t, d, verify }) => (
           <div key={t} className="border-hairline py-6 pr-6 lg:border-r lg:last:border-r-0">
             <div className="text-lg font-extrabold">{t}</div>
             <div className="mt-1 text-sm text-muted">{d}</div>
+            {verify && <div className="mt-2"><Placeholder>{verify}</Placeholder></div>}
           </div>
         ))}
       </div>

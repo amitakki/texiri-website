@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { Button, H2, ImagePlaceholder, Kicker, Placeholder, Section } from "@/components/ui";
 import { CaseStudyCard, CredibilityStrip, CTABand, StickyMobileCTA, TestimonialCard } from "@/components/sections";
 import { SapLifecycleDiagram } from "@/components/diagrams";
+import { testimonials } from "@/lib/company";
 import { DEMO_HREF } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -24,11 +25,7 @@ const cases = [
   { sector: "Retail · USA", title: "Mass master-data update after a business reorganisation", metric: "[X]k", metricLabel: "records updated with 2Klicks Update", href: "/case-studies/retail-usa/" },
   { sector: "Real estate · USA", title: "RE-FX lease portfolio migrated with validations intact", metric: "[X]", metricLabel: "weeks from template to first load", href: "/case-studies/real-estate-usa/" },
 ];
-const quotes = [ // [CLIENT APPROVAL NEEDED] rewritten from existing testimonials
-  { quote: "Texiri had our migration objects ready far earlier than planned. We ran more mock loads and went into cutover with confidence.", who: "Utility, Australia" },
-  { quote: "They knew our SAP data down to the field. Reconciliations were clean and the business signed off first time.", who: "Major retailer, USA" },
-  { quote: "Lease data is hard to move. Texiri moved our RE-FX contracts with every validation intact and kept us informed throughout.", who: "Real-estate company, USA" },
-];
+const quotes = [testimonials.utility, testimonials.retail, testimonials.realEstate];
 const industries = [
   { t: "Real Estate", d: "SAP RE-FX implementation, lease and contract migration, and portfolio changes with 2Klicks Update.", href: "/industries/real-estate/" },
   { t: "Utilities", d: "SAP PM asset and maintenance data, FI/CO structures and governed master data.", href: "/industries/utilities/" },
@@ -117,7 +114,7 @@ export default function HomePage() {
       </Section>
 
       <Section labelledBy="quotes-h" ruled>
-        <div className="flex flex-wrap items-center gap-3"><Kicker>What clients say</Kicker><Placeholder>CLIENT APPROVAL NEEDED</Placeholder></div>
+        <Kicker>What clients say</Kicker>
         <H2 id="quotes-h">In their words</H2>
         <div className="mt-[clamp(2.5rem,5vw,4rem)] grid gap-8 lg:grid-cols-3">{quotes.map((q) => <TestimonialCard key={q.who} {...q} />)}</div>
       </Section>

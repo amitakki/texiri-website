@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Button, H2, Kicker, Placeholder, Section } from "@/components/ui";
 import { Breadcrumbs, CheckList, CTABand, FAQAccordion, NumberedGrid, StickyMobileCTA, TestimonialCard } from "@/components/sections";
+import { testimonials } from "@/lib/company";
 import { DEMO_HREF } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -131,8 +132,8 @@ export default function DataMigrationPage() {
       <Section labelledBy="proof-h">
         <div className="grid gap-[clamp(2.5rem,5vw,5rem)] lg:grid-cols-2">
           <div>
-            <div className="mb-4 flex flex-wrap items-center gap-3"><h2 id="proof-h" className="m-0 text-kicker font-semibold uppercase tracking-[0.1em] text-accent-700">Proof</h2><Placeholder>CLIENT APPROVAL NEEDED</Placeholder></div>
-            <TestimonialCard quote="Texiri had our migration objects ready far earlier than planned. We ran more mock loads and went into cutover with confidence." who="Utility, Australia" />
+            <h2 id="proof-h" className="mb-4 mt-0 text-kicker font-semibold uppercase tracking-[0.1em] text-accent-700">Proof</h2>
+            <TestimonialCard {...testimonials.utility} />
           </div>
           <Link href="/case-studies/utility-australia/" className="flex flex-col gap-3 border-t-4 border-ink bg-surface p-8 no-underline" data-track="case_study_view">
             <span className="text-xs font-semibold uppercase tracking-[0.1em] text-muted">Case study · Utility · Australia</span>
