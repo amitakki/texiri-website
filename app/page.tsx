@@ -134,7 +134,7 @@ export default function HomePage() {
       </Section>
 
       {/* VerticalBand — AI Services: a second business line, its own accent and dot-grid motif */}
-      <section aria-labelledby="ai-h" className="ai-grid bg-navy-900 py-[clamp(4rem,9vw,7rem)] text-on-navy">
+      <section aria-labelledby="ai-h" className="surface-dark ai-grid bg-navy-900 py-[clamp(4rem,9vw,7rem)] text-on-navy">
         <div className="container-content grid items-end gap-[clamp(2.5rem,5vw,5rem)] lg:grid-cols-2">
           <div>
             <span className="mb-4 inline-flex items-center gap-2 text-kicker font-semibold uppercase tracking-[0.1em] text-ai"><span aria-hidden className="size-2.5 bg-ai" />Also from Texiri · AI Services</span>

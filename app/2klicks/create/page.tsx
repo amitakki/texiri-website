@@ -118,7 +118,7 @@ export default function TwoKlicksCreatePage() {
       </Section>
 
       <FAQAccordion id="faq-h" title="About 2Klicks Create" faqs={faqs} />
-      <section aria-label="Related" className="bg-navy-900 text-on-navy">
+      <section aria-label="Related" className="surface-dark bg-navy-900 text-on-navy">
         <div className="container-content grid md:grid-cols-2">
           <Link href="/2klicks/update/" className="flex flex-col gap-2 py-8 pr-8 text-on-navy no-underline hover:text-accent"><span className="text-xs font-semibold uppercase tracking-[0.1em] text-on-navy-muted">Same workflow, existing data</span><h2 className="m-0 text-[26px] text-inherit">2Klicks Update →</h2></Link>
           <Link href="/sap/data-migration/" className="flex flex-col gap-2 border-on-navy/20 py-8 text-on-navy no-underline hover:text-accent md:border-l md:pl-8"><span className="text-xs font-semibold uppercase tracking-[0.1em] text-on-navy-muted">The service around it</span><h2 className="m-0 text-[26px] text-inherit">S/4HANA Data Migration &amp; MDG →</h2></Link>

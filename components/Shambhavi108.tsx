@@ -5,7 +5,7 @@ import { shambhavi108 } from "@/lib/company";
 export function Shambhavi108({ asPage }: { asPage?: boolean }) {
   const Title = asPage ? "h1" : "h2";
   return (
-    <section id="shambhavi-108" aria-labelledby="s108-h" className="scroll-mt-20 bg-accent py-section text-navy-900">
+    <section id="shambhavi-108" aria-labelledby="s108-h" className="surface-bright scroll-mt-20 bg-accent py-section text-navy-900">
       <div className="container-content">
         <span className="mb-6 block text-kicker font-bold uppercase tracking-[0.1em]">Career restart programme</span>
         <Title id="s108-h" className="m-0 -ml-[0.04em] text-[clamp(3.5rem,10vw,10rem)] leading-[0.9] tracking-[-0.04em] text-navy-900">Shambhavi 108</Title>

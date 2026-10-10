@@ -42,7 +42,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
             <EnquiryForm defaultType={defaultType} headingId="form-h" />
           </div>
           <aside aria-label="Contact details" className="flex flex-col gap-8 py-[clamp(2rem,4vw,3.5rem)]">
-            <div className="flex flex-col gap-3 border-t-4 border-accent bg-navy-900 p-6 text-on-navy">
+            <div className="surface-dark flex flex-col gap-3 border-t-4 border-accent bg-navy-900 p-6 text-on-navy">
               <span className="text-xs font-semibold uppercase tracking-[0.1em] text-accent">Direct</span>
               <a href={`tel:${contact.phone.replace(/\s/g, "")}`} className="flex min-h-11 items-center gap-2.5 text-[22px] font-extrabold text-on-navy no-underline hover:text-accent"><Phone aria-hidden className="size-5" />{contact.phoneDisplay}</a>
               <a href={`mailto:${contact.email}`} className="flex min-h-11 items-center gap-2.5 text-[22px] font-extrabold text-on-navy no-underline hover:text-accent"><Mail aria-hidden className="size-5" />{contact.email}</a>

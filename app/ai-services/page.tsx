@@ -55,8 +55,8 @@ const faqs = [
 export default function AiServicesPage() {
   return (
     <>
-      <section aria-labelledby="hero-h" className="ai-grid bg-navy-900 text-on-navy">
-        <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "AI Services", href: "/ai-services/" }]} />
+      <section aria-labelledby="hero-h" className="surface-dark ai-grid bg-navy-900 text-on-navy">
+        <Breadcrumbs tone="navy" items={[{ label: "Home", href: "/" }, { label: "AI Services", href: "/ai-services/" }]} />
         <div className="container-content grid items-end gap-[clamp(2.5rem,5vw,5rem)] py-[clamp(3rem,7vw,6.5rem)] lg:grid-cols-2">
           <div>
             <span className="mb-6 inline-flex items-center gap-2 text-kicker font-semibold uppercase tracking-[0.1em] text-ai"><span aria-hidden className="size-2.5 bg-ai" />Texiri AI Services</span>
@@ -131,7 +131,7 @@ export default function AiServicesPage() {
         </div>
       </Section>
 
-      <section aria-labelledby="arch-h" className="ai-grid bg-navy-900 py-section text-on-navy">
+      <section aria-labelledby="arch-h" className="surface-dark ai-grid bg-navy-900 py-section text-on-navy">
         <div className="container-content">
           <span className="mb-4 block text-kicker font-semibold uppercase tracking-[0.1em] text-ai">Reference architecture</span>
           <H2 id="arch-h" className="text-on-navy">From your data to an AI application</H2>

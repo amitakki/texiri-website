@@ -71,7 +71,8 @@
   h1, h2, h3, h4 { @apply font-extrabold; }
   a { color: inherit; }
   a:hover { color: var(--color-accent-700); }
-  :focus-visible { outline: 2px solid var(--color-accent-700); outline-offset: 2px; }
+  /* --focus-ring is overridden by surface-dark / surface-bright so the ring keeps ≥3:1 contrast on every background */
+  :focus-visible { outline: 2px solid var(--focus-ring, var(--color-accent-700)); outline-offset: 2px; }
   ::selection { background: var(--color-accent-200); }
   summary { list-style: none; cursor: pointer; }
   summary::-webkit-details-marker { display: none; }
@@ -87,6 +88,9 @@
   padding-inline: var(--spacing-edge);
 }
 @utility rule-section { border-top: 2px solid var(--color-rule); }
+/* Focus ring colour for focusable content on navy (orange ring) and on orange/blue fills (navy ring) */
+@utility surface-dark { --focus-ring: var(--color-accent); }
+@utility surface-bright { --focus-ring: var(--color-navy-900); }
 @utility ai-grid {
   background-image: radial-gradient(color-mix(in srgb, #2bb5e8 28%, transparent) 1px, transparent 1.5px);
   background-size: 22px 22px;

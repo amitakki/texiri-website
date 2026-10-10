@@ -41,7 +41,7 @@ export function PilotLabel() {
 
 export function Section({ id, labelledBy, tone = "ground", ruled, className = "", children }:
   { id?: string; labelledBy?: string; tone?: "ground" | "surface" | "navy" | "accent"; ruled?: boolean; className?: string; children: ReactNode }) {
-  const tones = { ground: "", surface: "bg-surface", navy: "bg-navy-900 text-on-navy", accent: "bg-accent text-navy-900" };
+  const tones = { ground: "", surface: "bg-surface", navy: "surface-dark bg-navy-900 text-on-navy", accent: "surface-bright bg-accent text-navy-900" };
   return (
     <section id={id} aria-labelledby={labelledBy} className={`py-section ${tones[tone]} ${ruled ? "rule-section" : ""} ${className}`}>
       <div className="container-content">{children}</div>

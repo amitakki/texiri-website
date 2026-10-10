@@ -14,11 +14,11 @@ const cols: { title: string; links: [string, string][] }[] = [
 
 export function SiteFooter() {
   return (
-    <footer className="bg-navy-900 text-on-navy">
+    <footer className="surface-dark bg-navy-900 text-on-navy">
       <div className="container-content pb-8 pt-16">
         <div className="grid gap-8 border-b-2 border-on-navy/20 pb-8 md:grid-cols-2">
           <div className="flex flex-col gap-4">
-            <Image src="/texiri-logo.png" alt="Texiri Solutions" width={128} height={32} />
+            <Image src="/texiri-logo.png" alt="Texiri Solutions" width={128} height={47} />
             <p className="m-0 max-w-[34ch] text-[15px] text-on-navy-muted">A founder-led SAP consultancy: implementation, S/4HANA migration, integration and support, with our own 2Klicks migration tools.</p>
           </div>
           <address className="flex flex-col gap-1.5 text-[15px] not-italic">

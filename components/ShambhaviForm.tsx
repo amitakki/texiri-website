@@ -116,7 +116,7 @@ export function ShambhaviForm() {
                     <legend className="mb-1.5 p-0 text-sm font-semibold">{f.label} *</legend>
                     <div className="flex flex-wrap">
                       {f.opts.map((o, i) => (
-                        <label key={o} className={`-ml-0.5 flex min-h-12 min-w-14 cursor-pointer items-center border-2 border-ink px-4 font-bold has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-accent ${v[f.id] === o ? "bg-ink text-ground" : "bg-ground"}`}>
+                        <label key={o} className={`-ml-0.5 flex min-h-12 min-w-14 cursor-pointer items-center border-2 border-ink px-4 font-bold has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-accent-700 ${v[f.id] === o ? "bg-ink text-ground" : "bg-ground"}`}>
                           <input id={i === 0 ? id : undefined} type="radio" name={f.id} value={o} checked={v[f.id] === o} onChange={() => set(f.id, o)} aria-invalid={invalid} className="sr-only" />{o}
                         </label>
                       ))}

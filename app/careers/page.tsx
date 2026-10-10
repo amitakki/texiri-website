@@ -54,7 +54,7 @@ export default function CareersPage() {
         </div>
       </section>
 
-      <section aria-labelledby="proc-h" className="bg-navy-900 py-[clamp(3.5rem,7vw,6rem)] text-on-navy">
+      <section aria-labelledby="proc-h" className="surface-dark bg-navy-900 py-[clamp(3.5rem,7vw,6rem)] text-on-navy">
         <div className="container-content">
           <div className="mb-4 flex flex-wrap items-center gap-3"><Kicker onNavy>How we hire</Kicker><Placeholder>TIMINGS TO CONFIRM</Placeholder></div>
           <H2 id="proc-h" className="text-on-navy">Four steps, no surprises</H2>

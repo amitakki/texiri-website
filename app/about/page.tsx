@@ -45,7 +45,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section aria-labelledby="what-h" className="bg-navy-900 py-[clamp(4rem,9vw,7rem)] text-on-navy">
+      <section aria-labelledby="what-h" className="surface-dark bg-navy-900 py-[clamp(4rem,9vw,7rem)] text-on-navy">
         <div className="container-content">
           <Kicker onNavy>What we do</Kicker>
           <H2 id="what-h" className="text-on-navy">SAP first. Tools and AI where they help.</H2>

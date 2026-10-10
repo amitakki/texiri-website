@@ -4,18 +4,22 @@ import type { ReactNode } from "react";
 import { Button, H2, Kicker, Placeholder } from "./ui";
 import { SITE_URL } from "@/lib/site";
 
-export function Breadcrumbs({ items }: { items: { label: string; href: string }[] }) {
+/** Use tone="navy" when the breadcrumbs sit on a navy background (e.g. the AI Services hero). */
+export function Breadcrumbs({ items, tone = "light" }: { items: { label: string; href: string }[]; tone?: "light" | "navy" }) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: items.map((it, i) => ({ "@type": "ListItem", position: i + 1, name: it.label, item: `${SITE_URL}${it.href}` })),
   };
+  const navy = tone === "navy";
   return (
     <nav aria-label="Breadcrumb" className="container-content pt-4">
-      <ol className="m-0 flex list-none flex-wrap gap-2 p-0 text-[13px] text-muted">
+      <ol className={`m-0 flex list-none flex-wrap gap-2 p-0 text-[13px] ${navy ? "text-on-navy-muted" : "text-muted"}`}>
         {items.map((it, i) => (
           <li key={it.href} className="flex gap-2">
-            {i < items.length - 1 ? <><Link href={it.href}>{it.label}</Link><span aria-hidden>/</span></> : <span aria-current="page" className="font-semibold text-ink">{it.label}</span>}
+            {i < items.length - 1
+              ? <><Link href={it.href} className={navy ? "hover:text-ai" : undefined}>{it.label}</Link><span aria-hidden>/</span></>
+              : <span aria-current="page" className={`font-semibold ${navy ? "text-on-navy" : "text-ink"}`}>{it.label}</span>}
           </li>
         ))}
       </ol>
@@ -142,7 +146,7 @@ export function FAQAccordion({ id, title, faqs }: { id: string; title: string; f
 export function CTABand({ id = "contact", title, note, primary, secondary, vertical = "sap" }:
   { id?: string; title: ReactNode; note: string; primary: { label: string; href: string }; secondary?: { label: string; href: string }; vertical?: "sap" | "ai" }) {
   return (
-    <section id={id} aria-labelledby={`${id}-h`} className={`${vertical === "ai" ? "bg-ai" : "bg-accent"} py-[clamp(4rem,9vw,7.5rem)] text-navy-900`}>
+    <section id={id} aria-labelledby={`${id}-h`} className={`surface-bright ${vertical === "ai" ? "bg-ai" : "bg-accent"} py-[clamp(4rem,9vw,7.5rem)] text-navy-900`}>
       <div className="container-content">
         <h2 id={`${id}-h`} className="m-0 max-w-[22ch] text-[clamp(2rem,4.6vw,3.75rem)] leading-[1.04] tracking-[-0.025em] text-navy-900">{title}</h2>
         <div className="mt-8 flex flex-wrap gap-3">

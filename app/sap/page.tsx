@@ -66,7 +66,7 @@ export default function SapServicesPage() {
         </div>
       </section>
 
-      <section aria-labelledby="k-h" className="bg-navy-900 text-on-navy">
+      <section aria-labelledby="k-h" className="surface-dark bg-navy-900 text-on-navy">
         <Link href="/2klicks/" className="container-content grid items-end gap-x-8 gap-y-6 py-[clamp(3rem,6vw,5rem)] text-on-navy no-underline hover:text-on-navy md:grid-cols-2">
           <div><Kicker onNavy>Our SAP tools</Kicker><h2 id="k-h" className="m-0 max-w-[20ch] text-[clamp(1.75rem,3.4vw,2.75rem)] leading-[1.08]">2Klicks Create and 2Klicks Update</h2></div>
           <div><p className="m-0 max-w-[46ch] text-[17px] text-on-navy-muted">Download a template, enter or modify data, upload. Migration programs on day 1, and mass updates without new code.</p><span className="mt-4 inline-block font-extrabold text-accent">Explore 2Klicks →</span></div>
