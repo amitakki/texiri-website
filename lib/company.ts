@@ -91,5 +91,6 @@ export const S108_STEPS = [
     { id: "acceptJob", label: "If offered the job after training, are you willing to take it up?", kind: "choice", opts: ["Yes", "No"] },
     { id: "describe", label: "Describe yourself in a few words", kind: "text" },
     { id: "pledge", label: "I understand this programme requires consistent effort, and I commit to completing it sincerely.", kind: "check" },
+    { id: "consent", label: "I agree that Texiri Solutions may use the details in this form, including my answers about age, family and my career break, to assess my application, as described in the Privacy Policy.", kind: "check" },
   ] },
 ] as const;
