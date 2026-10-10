@@ -19,7 +19,8 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const href = pathOf((await params).slug);
   const page = interimPages[href];
-  return page ? { title: page.title, description: page.lead, alternates: { canonical: href } } : {};
+  // Interim content stays out of search results until each page gets its real content.
+  return page ? { title: page.title, description: page.lead, alternates: { canonical: href }, robots: { index: false, follow: true } } : {};
 }
 
 export default async function InterimPage({ params }: Props) {

@@ -4,9 +4,10 @@ import { ArrowRight } from "lucide-react";
 import { Button, H2, ImagePlaceholder, Kicker, Placeholder, Section } from "@/components/ui";
 import { CaseStudyCard, CredibilityStrip, CTABand, StickyMobileCTA, TestimonialCard } from "@/components/sections";
 import { SapLifecycleDiagram } from "@/components/diagrams";
+import { DEMO_HREF } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: { absolute: "Texiri Solutions — SAP Consulting, S/4HANA Data Migration & Managed Services" },
+  title: { absolute: "Texiri Solutions — SAP Consulting & S/4HANA Migration" },
   description: "Founder-led SAP consultancy: SAP implementation and consulting, S/4HANA data migration and MDG, SAP integration and managed services, with 2Klicks migration tools that have programs ready on day 1.",
   alternates: { canonical: "/" },
 };
@@ -52,7 +53,7 @@ export default function HomePage() {
             <p className="mt-6 max-w-[52ch] text-lead text-muted">Texiri Solutions is led by a founder who started at SAP Labs India and has spent 20+ years delivering SAP across five countries. Our own 2Klicks tools get migration programs running on day 1.</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button href="/contact/" arrow data-track="cta_click" data-vertical="sap">Talk to an SAP expert</Button>
-              <Button href="/2klicks/demo/" variant="secondary" data-track="2klicks_demo_click">Request a 2Klicks demo</Button>
+              <Button href={DEMO_HREF} variant="secondary" data-track="2klicks_demo_click">Request a 2Klicks demo</Button>
             </div>
           </div>
           <SapLifecycleDiagram />
@@ -99,7 +100,7 @@ export default function HomePage() {
               ))}
             </ol>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button href="/2klicks/demo/" arrow data-track="2klicks_demo_click">Request a 2Klicks demo</Button>
+              <Button href={DEMO_HREF} arrow data-track="2klicks_demo_click">Request a 2Klicks demo</Button>
               <Button href="/2klicks/create/" variant="outline-on-navy">See 2Klicks Create</Button>
             </div>
           </div>
@@ -195,7 +196,7 @@ export default function HomePage() {
         title={<><span className="block">Planning an SAP implementation or S/4HANA migration?</span><span className="block">Talk to a senior SAP consultant.</span></>}
         note="A senior SAP consultant replies within one business day."
         primary={{ label: "Talk to an SAP expert", href: "/contact/" }}
-        secondary={{ label: "Request a 2Klicks demo", href: "/2klicks/demo/" }}
+        secondary={{ label: "Request a 2Klicks demo", href: DEMO_HREF }}
       />
       <StickyMobileCTA label="Talk to an SAP expert" href="/contact/" />
     </>

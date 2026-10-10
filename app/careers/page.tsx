@@ -7,7 +7,7 @@ import { Shambhavi108 } from "@/components/Shambhavi108";
 import { CAREERS_EMAIL, hiringSteps, lifeAtTexiri } from "@/lib/company";
 
 export const metadata: Metadata = {
-  title: "Careers at Texiri Solutions: SAP and AI Jobs in Vijayapura and Navi Mumbai | Shambhavi 108",
+  title: "Careers: SAP & AI Jobs in Vijayapura",
   description: "Work on real SAP and AI projects with a founder-led team. Open roles in SAP consulting, data migration, integration and AI, plus the Shambhavi 108 programme.",
   alternates: { canonical: "/careers/" },
 };

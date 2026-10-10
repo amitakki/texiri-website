@@ -5,7 +5,7 @@ import { Breadcrumbs, CTABand, FAQAccordion, StickyMobileCTA } from "@/component
 import { AiReferenceArchitecture } from "@/components/diagrams";
 
 export const metadata: Metadata = {
-  title: "AI Services: AI Strategy, Generative AI & RAG, Machine Learning, MLOps & AI Governance",
+  title: "AI Services: Strategy, GenAI, ML & MLOps",
   description: "Practical AI, from strategy to production: AI readiness workshops, generative AI and RAG, machine learning and forecasting, MLOps, and governance aligned to the EU AI Act and ISO/IEC 42001.",
   alternates: { canonical: "/ai-services/" },
 };

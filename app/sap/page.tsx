@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Button, Kicker, Placeholder } from "@/components/ui";
 import { Breadcrumbs, CTABand, FAQAccordion, StickyMobileCTA, TestimonialCard } from "@/components/sections";
+import { DEMO_HREF } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "SAP Services: SAP Consulting, S/4HANA Migration, SAP Integration & Managed Services",
+  title: "SAP Consulting & Managed Services",
   description: "SAP services across the lifecycle: SAP implementation and functional consulting (RE-FX, FI/CO, PM, MM, SD), S/4HANA data migration and MDG, SAP CPI and PI/PO integration, and managed services.",
   alternates: { canonical: "/sap/" },
 };
@@ -32,7 +33,7 @@ export default function SapServicesPage() {
           <h1 id="hero-h" className="m-0 -ml-[0.04em] max-w-[16ch] text-display">SAP consulting for the whole lifecycle.</h1>
           <div className="mt-8 grid items-end gap-x-[clamp(2.5rem,5vw,5rem)] gap-y-6 lg:grid-cols-2">
             <p className="m-0 max-w-[52ch] text-lead text-muted">For CIOs, SAP programme leads and finance and operations owners on ECC or S/4HANA. One senior team from blueprint to go-live to steady-state support.</p>
-            <div className="flex flex-wrap gap-3"><Button href="/contact/" arrow>Talk to an SAP expert</Button><Button href="/2klicks/demo/" variant="secondary">Request a 2Klicks demo</Button></div>
+            <div className="flex flex-wrap gap-3"><Button href="/contact/" arrow>Talk to an SAP expert</Button><Button href={DEMO_HREF} variant="secondary">Request a 2Klicks demo</Button></div>
           </div>
         </div>
       </section>

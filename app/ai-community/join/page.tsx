@@ -4,7 +4,7 @@ import { Breadcrumbs } from "@/components/sections";
 import { CommunityJoinForm } from "@/components/CommunityJoinForm";
 
 export const metadata: Metadata = {
-  title: "Join the TEXIRI AI Community | Learn AI with Others, Beginner to Advanced",
+  title: "Join the TEXIRI AI Community",
   description: "Join the TEXIRI AI Community: learning paths, live sessions, workshops and projects for students, professionals, developers, educators and entrepreneurs. No experience needed.",
   alternates: { canonical: "/ai-community/join/" },
 };

@@ -1,5 +1,8 @@
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.texiri.com";
 
+/** Demo requests live in the form on the 2Klicks Create page. Link here directly, not via the /2klicks/demo/ redirect. */
+export const DEMO_HREF = "/2klicks/create/#demo";
+
 export const contact = {
   phone: "+91 7975305499",
   phoneDisplay: "+91 79753 05499",

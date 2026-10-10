@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Button, H2, Kicker, Placeholder, Section } from "@/components/ui";
 import { Breadcrumbs, CheckList, CTABand, FAQAccordion, NumberedGrid, StickyMobileCTA, TestimonialCard } from "@/components/sections";
+import { DEMO_HREF } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "S/4HANA Data Migration & Master Data Governance (MDG) | SAP Data Migration Services",
+  title: "S/4HANA Data Migration & MDG Services",
   description: "S/4HANA data migration from ECC or legacy systems: assessment, extraction, cleansing, loading and SAP MDG, accelerated by 2Klicks Create. SAP Data Services, SDI and Migration Cockpit.",
   alternates: { canonical: "/sap/data-migration/" },
 };
@@ -109,7 +110,7 @@ export default function DataMigrationPage() {
           </div>
           <div className="flex flex-wrap gap-3">
             <Button href="/2klicks/create/">See 2Klicks Create</Button>
-            <Button href="/2klicks/demo/" variant="outline-on-navy" data-track="2klicks_demo_click">Request a demo</Button>
+            <Button href={DEMO_HREF} variant="outline-on-navy" data-track="2klicks_demo_click">Request a demo</Button>
           </div>
         </div>
       </Section>
@@ -142,7 +143,7 @@ export default function DataMigrationPage() {
       </Section>
 
       <FAQAccordion id="faq-h" title="Migration questions" faqs={faqs} />
-      <CTABand title="Get a data-readiness view of your S/4HANA migration." note="A senior consultant replies within one business day." primary={{ label: "Talk to a migration architect", href: "/contact/?type=migration" }} secondary={{ label: "Request a 2Klicks demo", href: "/2klicks/demo/" }} />
+      <CTABand title="Get a data-readiness view of your S/4HANA migration." note="A senior consultant replies within one business day." primary={{ label: "Talk to a migration architect", href: "/contact/?type=migration" }} secondary={{ label: "Request a 2Klicks demo", href: DEMO_HREF }} />
       <StickyMobileCTA label="Talk to a migration architect" href="/contact/?type=migration" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
     </>

@@ -5,7 +5,7 @@ import { Breadcrumbs, FAQAccordion, NumberedGrid, StickyMobileCTA } from "@/comp
 import { EnquiryForm } from "@/components/EnquiryForm";
 
 export const metadata: Metadata = {
-  title: "2Klicks Create — Template-Based SAP Data Migration Tool for S/4HANA",
+  title: "2Klicks Create — SAP Data Migration Tool",
   description: "2Klicks Create is a template-based SAP data migration tool. It recognises custom fields and validations, removes 8+ programs per object, and makes migration programs available on day 1. RE-FX, MM, PM, FI/CO, SD.",
   alternates: { canonical: "/2klicks/create/" },
 };

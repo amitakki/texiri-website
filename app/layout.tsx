@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Archivo } from "next/font/google";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { isProd } from "@/lib/env";
 import { SITE_URL, organizationJsonLd } from "@/lib/site";
 import "./globals.css";
 
@@ -12,9 +13,12 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: { default: "Texiri Solutions — SAP Consulting & S/4HANA Migration", template: "%s | Texiri Solutions" },
   description: "Founder-led SAP consultancy: SAP implementation, S/4HANA data migration, integration and managed services, with 2Klicks migration tools.",
-  openGraph: { siteName: "Texiri Solutions", type: "website", images: ["/og/default.png"] },
+  // Share image comes from app/opengraph-image.tsx; icons from app/icon.tsx and app/apple-icon.tsx.
+  openGraph: { siteName: "Texiri Solutions", type: "website", locale: "en_GB" },
   twitter: { card: "summary_large_image" },
   generator: null,
+  // Previews and local builds stay out of search engines; see lib/env.ts.
+  robots: isProd ? undefined : { index: false, follow: false },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -1,4 +1,4 @@
-import type { Vertical } from "./site";
+import { DEMO_HREF, type Vertical } from "./site";
 
 /**
  * Interim pages for routes the navigation already links to.
@@ -98,9 +98,9 @@ export const interimPages: Record<string, InterimPage> = Object.fromEntries([
     { t: "Mass changes", d: "Reorganisations handled with 2Klicks Update." },
   ]),
 
-  ["/2klicks/", { title: "2Klicks Create and 2Klicks Update", kicker: "Our SAP tools", lead: "Download a template, enter or modify data, upload. Migration programs on day 1, and mass updates without new code.", crumbs: [home, klicks], cta: { label: "Request a 2Klicks demo", href: "/2klicks/create/#demo" },
+  ["/2klicks/", { title: "2Klicks Create and 2Klicks Update", kicker: "Our SAP tools", lead: "Download a template, enter or modify data, upload. Migration programs on day 1, and mass updates without new code.", crumbs: [home, klicks], cta: { label: "Request a 2Klicks demo", href: DEMO_HREF },
     related: [{ label: "2Klicks Create", href: "/2klicks/create/" }, { label: "2Klicks Update", href: "/2klicks/update/" }, { label: "S/4HANA Data Migration & MDG", href: "/sap/data-migration/" }] }],
-  ["/2klicks/update/", { title: "2Klicks Update", kicker: "Our SAP tools", lead: "The same template workflow as 2Klicks Create, applied to data already in SAP: mass changes after reorganisations, without new code.", crumbs: [home, klicks, { label: "2Klicks Update", href: "/2klicks/update/" }], cta: { label: "Request a 2Klicks demo", href: "/2klicks/create/#demo" },
+  ["/2klicks/update/", { title: "2Klicks Update", kicker: "Our SAP tools", lead: "The same template workflow as 2Klicks Create, applied to data already in SAP: mass changes after reorganisations, without new code.", crumbs: [home, klicks, { label: "2Klicks Update", href: "/2klicks/update/" }], cta: { label: "Request a 2Klicks demo", href: DEMO_HREF },
     related: [{ label: "2Klicks Create", href: "/2klicks/create/" }, { label: "SAP Managed Services", href: "/sap/managed-services/" }] }],
 
   aiService("strategy-readiness", "AI Strategy & Readiness", "A one-day workshop, a data readiness review and a prioritised roadmap of use cases worth piloting."),

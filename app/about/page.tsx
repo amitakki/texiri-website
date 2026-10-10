@@ -6,7 +6,7 @@ import { LeadershipSection } from "@/components/LeadershipSection";
 import { principles } from "@/lib/company";
 
 export const metadata: Metadata = {
-  title: "About Texiri Solutions: Founder-led SAP Consulting from Vijayapura and Navi Mumbai",
+  title: "About Us: Founder-led SAP Consulting",
   description: "Texiri Solutions is a founder-led SAP consultancy. Our CEO began his career at SAP Labs India. 20+ years in SAP, delivery across five countries, and the patented 2Klicks migration tools.",
   alternates: { canonical: "/about/" },
 };

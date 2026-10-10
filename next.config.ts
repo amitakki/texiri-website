@@ -1,9 +1,15 @@
 import type { NextConfig } from "next";
 
-// 301 map from the old WordPress URLs. Security headers are added in step 9.
+// Mirrors lib/env.ts: only the production deployment may be indexed.
+const isProd = process.env.NEXT_PUBLIC_SITE_ENV === "production";
+
 const config: NextConfig = {
   poweredByHeader: false,
   trailingSlash: true,
+  async headers() {
+    return isProd ? [] : [{ source: "/:path*", headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }] }];
+  },
+  // 301 map from the old WordPress URLs.
   async redirects() {
     return [
       ["/services/single-service/", "/sap/consulting/"],
@@ -18,6 +24,8 @@ const config: NextConfig = {
       ["/services/careers/", "/careers/"],
       ["/about/team/", "/about/leadership/"],
       ["/about/contact/", "/contact/"],
+      ["/services/", "/sap/"],
+      ["/home/footer/", "/"],
     ].map(([source, destination]) => ({ source, destination, permanent: true }))
       // Demo requests live in the form on the 2Klicks Create page.
       .concat({ source: "/2klicks/demo/", destination: "/2klicks/create/#demo", permanent: false });

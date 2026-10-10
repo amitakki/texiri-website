@@ -5,16 +5,16 @@ import { Kicker } from "@/components/ui";
 import { Breadcrumbs, NumberedGrid } from "@/components/sections";
 import { EnquiryForm } from "@/components/EnquiryForm";
 import { ENQUIRY_TYPES } from "@/lib/enquiry";
-import { contact } from "@/lib/site";
+import { DEMO_HREF, contact } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Contact Texiri Solutions: Talk to an SAP or AI Expert",
+  title: "Contact: Talk to an SAP or AI Expert",
   description: "Contact Texiri Solutions about SAP consulting, S/4HANA data migration, SAP integration, managed services, 2Klicks demos or AI Services. A senior consultant replies within one business day.",
   alternates: { canonical: "/contact/" },
 };
 
 const TYPE_PARAM: Record<string, (typeof ENQUIRY_TYPES)[number]> = { ai: "AI Services", "2klicks": "2Klicks demo", migration: "S/4HANA data migration", partner: "Partnership" };
-const others = [["Jobs and Shambhavi 108", "/careers/"], ["Join the TEXIRI AI Community", "/ai-community/join/"], ["Book a 2Klicks demo", "/2klicks/create/#demo"]];
+const others = [["Jobs and Shambhavi 108", "/careers/"], ["Join the TEXIRI AI Community", "/ai-community/join/"], ["Book a 2Klicks demo", DEMO_HREF]];
 const next = [
   { title: "A senior reply", body: "Within one business day, the right practice lead reads your note and emails you directly." },
   { title: "A scoping call", body: "30 minutes on your landscape, timeline and constraints. An NDA first if you need one." },

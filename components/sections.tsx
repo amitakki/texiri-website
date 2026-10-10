@@ -4,6 +4,8 @@ import type { ReactNode } from "react";
 import { Button, H2, Kicker, Placeholder } from "./ui";
 import { SITE_URL } from "@/lib/site";
 
+export const isUnconfirmed = (text: string) => /\[TO (CONFIRM|VERIFY)\]/.test(text);
+
 /** Use tone="navy" when the breadcrumbs sit on a navy background (e.g. the AI Services hero). */
 export function Breadcrumbs({ items, tone = "light" }: { items: { label: string; href: string }[]; tone?: "light" | "navy" }) {
   const jsonLd = {
@@ -122,7 +124,8 @@ export function CaseStudyCard({ sector, title, metric, metricLabel, href }:
 }
 
 export function FAQAccordion({ id, title, faqs }: { id: string; title: string; faqs: { q: string; a: string }[] }) {
-  const jsonLd = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) };
+  // Answers still awaiting confirmation ("[TO CONFIRM]") are left out of the structured data.
+  const jsonLd = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.filter((f) => !isUnconfirmed(f.a)).map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) };
   return (
     <section aria-labelledby={id} className="py-section">
       <div className="container-content flex flex-wrap gap-8">

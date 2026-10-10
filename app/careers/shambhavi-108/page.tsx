@@ -7,7 +7,7 @@ import { contact } from "@/lib/site";
 import { shambhavi108 } from "@/lib/company";
 
 export const metadata: Metadata = {
-  title: "Shambhavi 108: Restart Your Career in Software | Register",
+  title: "Shambhavi 108 Career Restart Programme",
   description: "Shambhavi 108 is a Texiri Solutions training programme for people restarting their career in software after a career break. Register in four short steps.",
   alternates: { canonical: "/careers/shambhavi-108/" },
 };

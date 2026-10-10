@@ -5,7 +5,7 @@ import { founder } from "@/lib/company";
 import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Leadership | Texiri Solutions",
+  title: "Leadership",
   description: `Meet the leadership of Texiri Solutions, led by founder and CEO ${founder.name}, who began his career at SAP Labs India.`,
   alternates: { canonical: "/about/leadership/" },
 };

@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Plus } from "lucide-react";
 import { Placeholder } from "@/components/ui";
-import { Breadcrumbs, StickyMobileCTA } from "@/components/sections";
+import { Breadcrumbs, StickyMobileCTA, isUnconfirmed } from "@/components/sections";
 
 export const metadata: Metadata = {
-  title: "TEXIRI AI Community — Learn AI, Build with AI, Grow Together | Vijayapura & Online",
+  title: "TEXIRI AI Community: Learn AI Together",
   description: "The TEXIRI AI Community is a learning community for anyone curious about AI: students, professionals, developers, educators and entrepreneurs. Learning paths, workshops, projects and resources. Started in Vijayapura.",
   alternates: { canonical: "/ai-community/" },
 };
@@ -166,7 +166,7 @@ export default function CommunityPage() {
             ))}
           </div>
         </div>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) }) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.filter((f) => !isUnconfirmed(f.a)).map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) }) }} />
       </section>
 
       <section id="join" aria-labelledby="join-h" className="px-[var(--spacing-edge)] py-[clamp(3rem,6vw,5rem)]">
