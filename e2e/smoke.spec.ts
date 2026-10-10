@@ -51,6 +51,17 @@ test("placeholder images are labelled as placeholders", async ({ page }) => {
   await expect(page.getByText("PLACEHOLDER IMAGE").first()).toBeVisible();
 });
 
+test("link previews get the logo image without a redirect", async ({ page, request }) => {
+  await page.goto("/");
+  for (const selector of ['meta[property="og:image"]', 'meta[name="twitter:image"]', 'link[rel="icon"]', 'link[rel="apple-touch-icon"]']) {
+    const url = new URL((await page.locator(selector).getAttribute(selector.startsWith("meta") ? "content" : "href"))!, "http://localhost");
+    // Crawlers such as WhatsApp's don't reliably follow redirects, so the image must answer directly.
+    const res = await request.get(url.pathname + url.search, { maxRedirects: 0 });
+    expect(res.status(), selector).toBe(200);
+    expect(res.headers()["content-type"], selector).toContain("image/png");
+  }
+});
+
 test("previews are kept out of search engines", async ({ page, request }) => {
   const res = await page.goto("/");
   expect(res?.headers()["x-robots-tag"]).toContain("noindex");

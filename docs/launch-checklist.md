@@ -56,6 +56,7 @@ Set these in **Project → Settings → Environment Variables**. "Prod only" mea
 - [ ] Test every old URL redirects to its new page:
   `/services/`, `/services/single-service/`, `/services/managed-services/`, `/services/data-migration/`, `/mobility-solutions/`, `/2klicks-create/`, `/about/2klicks-update/`, `/texiri-ai-community/`, `/shambhavi-108/`, `/services/careers/`, `/about/team/`, `/about/contact/`, `/home/footer/`.
 - [ ] Check that `/robots.txt` on production allows crawling and lists the sitemap.
+- [ ] Share `https://www.texiri.com/` in WhatsApp or LinkedIn (or use the LinkedIn Post Inspector / opengraph.xyz) and check the preview shows the logo image. Link previews are cached, so use the inspector's re-scrape button if an old preview appears.
 
 ## 8. Search engines
 - [ ] Verify `www.texiri.com` in Google Search Console and Bing Webmaster Tools.
