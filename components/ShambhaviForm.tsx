@@ -112,12 +112,12 @@ export function ShambhaviForm() {
                 {f.kind === "area" ? (
                   <><label htmlFor={id} className="mb-1.5 block text-sm font-semibold">{f.label} *</label><textarea id={id} name={f.id} rows={3} value={String(v[f.id] ?? "")} onChange={(x) => set(f.id, x.target.value)} className={`${input} py-2`} {...aria} /></>
                 ) : f.kind === "choice" ? (
-                  <fieldset className="m-0 border-0 p-0" aria-describedby={`${id}-err`}>
+                  <fieldset role="radiogroup" className="m-0 border-0 p-0" aria-invalid={invalid} aria-describedby={`${id}-err`}>
                     <legend className="mb-1.5 p-0 text-sm font-semibold">{f.label} *</legend>
                     <div className="flex flex-wrap">
                       {f.opts.map((o, i) => (
                         <label key={o} className={`-ml-0.5 flex min-h-12 min-w-14 cursor-pointer items-center border-2 border-ink px-4 font-bold has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-accent-700 ${v[f.id] === o ? "bg-ink text-ground" : "bg-ground"}`}>
-                          <input id={i === 0 ? id : undefined} type="radio" name={f.id} value={o} checked={v[f.id] === o} onChange={() => set(f.id, o)} aria-invalid={invalid} className="sr-only" />{o}
+                          <input id={i === 0 ? id : undefined} type="radio" name={f.id} value={o} checked={v[f.id] === o} onChange={() => set(f.id, o)} className="sr-only" />{o}
                         </label>
                       ))}
                     </div>

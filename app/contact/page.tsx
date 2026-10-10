@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import { Mail, Phone } from "lucide-react";
 import { Kicker } from "@/components/ui";
 import { Breadcrumbs, NumberedGrid } from "@/components/sections";
+import { ContactEnquiryForm } from "@/components/ContactEnquiryForm";
 import { EnquiryForm } from "@/components/EnquiryForm";
-import { ENQUIRY_TYPES } from "@/lib/enquiry";
 import { DEMO_HREF, contact, offices } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -13,7 +14,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/contact/" },
 };
 
-const TYPE_PARAM: Record<string, (typeof ENQUIRY_TYPES)[number]> = { ai: "AI Services", "2klicks": "2Klicks demo", migration: "S/4HANA data migration", partner: "Partnership" };
 const others = [["Jobs and Shambhavi 108", "/careers/"], ["Join the TEXIRI AI Community", "/ai-community/join/"], ["Book a 2Klicks demo", DEMO_HREF]];
 const next = [
   { title: "A senior reply", body: "Within one business day, the right practice lead reads your note and emails you directly." },
@@ -21,9 +21,7 @@ const next = [
   { title: "A clear proposal", body: "Scope, team and approach in writing, or an honest referral if we're not the fit." },
 ];
 
-export default async function ContactPage({ searchParams }: { searchParams: Promise<{ type?: string }> }) {
-  const { type } = await searchParams;
-  const defaultType = (type && TYPE_PARAM[type]) || "SAP implementation / consulting";
+export default function ContactPage() {
   return (
     <>
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Contact", href: "/contact/" }]} />
@@ -38,8 +36,8 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
         <div className="container-content grid gap-x-[clamp(2.5rem,5vw,5rem)] lg:grid-cols-2">
           <div className="py-[clamp(2rem,4vw,3.5rem)]">
             <h2 id="form-h" className="mb-6 mt-0 text-[clamp(1.5rem,2.6vw,2rem)]">Send an enquiry</h2>
-            {/* Routing by enquiry type happens in app/actions/enquiry.ts once the CRM is chosen */}
-            <EnquiryForm defaultType={defaultType} headingId="form-h" />
+            {/* ?type= (e.g. /contact/?type=ai) preselects the enquiry type on the client, keeping this page static */}
+            <Suspense fallback={<EnquiryForm headingId="form-h" />}><ContactEnquiryForm headingId="form-h" /></Suspense>
           </div>
           <aside aria-label="Contact details" className="flex flex-col gap-8 py-[clamp(2rem,4vw,3.5rem)]">
             <div className="surface-dark flex flex-col gap-3 border-t-4 border-accent bg-navy-900 p-6 text-on-navy">

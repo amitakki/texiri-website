@@ -66,7 +66,7 @@ export default function HomePage() {
         </div>
         <div className="mt-[clamp(2.5rem,5vw,4rem)] grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((s, i) => (
-            <Link key={s.href} href={s.href} className={`flex flex-col gap-3 border-t-4 bg-surface p-6 no-underline hover:bg-[#d7d3d3] hover:text-ink ${s.featured ? "border-accent" : "border-ink"}`}>
+            <Link key={s.href} href={s.href} className={`flex flex-col gap-3 border-t-4 bg-surface p-6 no-underline hover:bg-surface-strong hover:text-ink ${s.featured ? "border-accent" : "border-ink"}`}>
               <span className="text-sm font-extrabold text-accent-700">{String(i + 1).padStart(2, "0")}</span>
               <h3 className="m-0 text-[21px]">{s.t}</h3>
               <p className="m-0 flex-1 text-[15px] text-muted">{s.d}</p>

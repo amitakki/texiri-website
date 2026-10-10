@@ -1,55 +1,102 @@
 # Texiri Solutions — website (Next.js)
 
-Production code matching the HTML design files in the project root (`Design-System.dc.html`, `Home.dc.html`, `Data-and-AI.dc.html`, `SAP-AI-Hub.dc.html`, `SAP-Data-Migration.dc.html`, `2Klicks-Create.dc.html`).
+The new www.texiri.com, replacing the WordPress site. It covers SAP Services, 2Klicks, AI Services, the TEXIRI AI Community, careers and Shambhavi 108.
 
-**Status: steps 1–6 of 10.** Tokens for three verticals (corporate, AI Services, AI Community), layout shell with per-vertical header CTA, Home, `/sap/`, `/sap/data-migration/`, `/2klicks/create/`, `/ai-services/`, `/ai-community/`, `/ai-community/join/`, the business enquiry form and the separate community join form, plus the 301 redirect map in `next.config.ts`. `/ai-community/` sits under the AI Services menu. CMS, SEO layer, consent, analytics and deployment come in steps 7–10.
+**Status:** steps 1–6 of 10 are built, and the review fixes are in: the forms deliver submissions, draft legal pages exist, there are SEO and security headers, and tests and CI are set up. Next come steps 7–10: CRM, CMS, consent banner and analytics, and launch. Before launch, work through [docs/launch-checklist.md](docs/launch-checklist.md). Open content questions are in [docs/content-decisions.md](docs/content-decisions.md).
 
 ## Stack
-Next.js 15 (App Router, RSC, SSG) · TypeScript strict · Tailwind CSS v4 (tokens in `app/globals.css` `@theme`) · lucide-react · next/font (Archivo, self-hosted) · Zod · Cloudflare Turnstile.
+Next.js 15 (App Router, React Server Components, static pages) · TypeScript strict · Tailwind CSS v4 (tokens in `app/globals.css` `@theme`) · lucide-react · next/font (Archivo) · Zod · Cloudflare Turnstile · Resend (email) · Google Sheets (via Apps Script) · Vitest · Playwright + axe.
+
+## Setup
+```bash
+npm install
+cp .env.example .env.local   # all optional locally; see below
+npm run dev                  # http://localhost:3000
+```
+With no delivery keys set, local form submissions are accepted and only the form name is logged. Set the Turnstile test keys from `.env.example` to try the widget.
+
+## Scripts
+| Command | What it does |
+| --- | --- |
+| `npm run dev` | Development server (Turbopack) |
+| `npm run build` / `npm start` | Production build / serve it |
+| `npm run typecheck` | `tsc --noEmit` |
+| `npm run lint` | ESLint (`eslint.config.mjs`: next core-web-vitals + TypeScript) |
+| `npm run format` | Prettier with the Tailwind class-sorting plugin |
+| `npm test` | Vitest unit tests (`tests/unit/`): schemas, form helpers, lead delivery |
+| `npm run test:e2e` | Playwright against a production build (run `npm run build` first): every route loads, one `<h1>`, no serious axe violations, navigation, forms, headers, redirects |
+| `npm run placeholders` | Lists unconfirmed content (`TO VERIFY`, `TO CONFIRM`, `[X]`, `<Placeholder>`). Add `-- --strict` to fail if any remain |
+
+CI (`.github/workflows/ci.yml`) runs typecheck, lint, unit tests, build and Playwright on every push to `master` and on pull requests.
 
 ## Structure
 ```
 app/
-  layout.tsx            header, footer, skip link, Organization JSON-LD
-  globals.css           design tokens — the single source of truth
-  page.tsx              Home
-  ai/page.tsx           Data & AI
-  sap-ai/page.tsx       SAP + AI hub
-  sap/data-migration/   S/4HANA Data Migration & MDG
-  2klicks/create/       2Klicks Create (+ demo form)
-  actions/enquiry.ts    Server Action: validate → Turnstile → CRM/email (stubbed)
+  layout.tsx              header, footer, skip link, Organization JSON-LD, noindex outside production
+  globals.css             design tokens — the single source of truth
+  page.tsx                Home
+  sap/, sap/data-migration/, 2klicks/create/, ai-services/, ai-community/, ai-community/join/
+  about/, about/leadership/, careers/, careers/shambhavi-108/, contact/
+  legal/privacy|cookies|terms/   draft legal pages (pending lawyer review)
+  [...slug]/page.tsx      interim pages for routes in lib/pages.ts (always noindex)
+  actions/                server actions: enquiry, community, shambhavi
+  robots.ts, sitemap.ts, opengraph-image.tsx, icon.tsx, apple-icon.tsx
 components/
-  ui.tsx                Button, Kicker, Placeholder, PilotLabel, Section, H2, ImagePlaceholder
-  sections.tsx          Breadcrumbs, Hero, CredibilityStrip, NumberedGrid, CheckList,
-                        TestimonialCard, CaseStudyCard, FAQAccordion, CTABand, StickyMobileCTA
-  diagrams.tsx          HeroDiagram, ReferenceArchitecture (semantic HTML, no raster)
-  SiteHeader.tsx        mega-menu + mobile drawer (client)
-  SiteFooter.tsx
-  EnquiryForm.tsx       pathway form (client), shared Zod schema
+  ui.tsx                  Button, Kicker, Placeholder, PilotLabel, Section, H2, ImagePlaceholder
+  sections.tsx            Breadcrumbs, Hero, CredibilityStrip, NumberedGrid, CheckList, TestimonialCard,
+                          CaseStudyCard, FAQAccordion, CTABand, StickyMobileCTA
+  diagrams.tsx            SapLifecycleDiagram, AiReferenceArchitecture (semantic HTML, no raster)
+  SiteHeader.tsx          mega-menu + mobile drawer (client)
+  SiteFooter.tsx, LeadershipSection.tsx, Shambhavi108.tsx, RoleList.tsx, LegalPage.tsx, BrandMark.tsx
+  EnquiryForm.tsx, ContactEnquiryForm.tsx, CommunityJoinForm.tsx, ShambhaviForm.tsx
+  Turnstile.tsx, Honeypot.tsx
 lib/
-  site.ts               nav, contact, Organization JSON-LD
-  enquiry.ts            Zod schema + enquiry types
+  site.ts                 contact details, offices, nav, DEMO_HREF, Organization JSON-LD
+  company.ts              credentials, testimonials, founder, roles, hiring steps, Shambhavi 108 steps
+  pages.ts                interim page content
+  enquiry.ts, community.ts, shambhavi.ts   Zod schemas shared by client and server
+  leads.ts                delivery: Resend notification + acknowledgement, Google Sheet row
+  forms.ts, turnstile.ts, rate-limit.ts    shared form helpers, Turnstile check, optional Upstash limit
+  env.ts                  isProd (NEXT_PUBLIC_SITE_ENV)
+docs/
+  content-decisions.md    every open placeholder, its old-site value and owner
+  launch-checklist.md     env vars, DNS, email, Sheet, redirects, Search Console, old-site clean-up
+  google-sheet-webhook.gs Apps Script that receives form rows
+tests/unit/, e2e/         Vitest and Playwright tests
 ```
 
-## Setup
-```bash
-pnpm install
-cp .env.example .env.local
-pnpm dev
-```
-Copy `assets/texiri-logo.png` from the design project to `public/texiri-logo.png`. Add `@/*` → `./*` to `tsconfig.json` paths.
+## How form submissions work
+Each form validates on the client and again in its server action, with one shared Zod schema. The server action then:
+1. silently drops bots that fill the hidden honeypot field;
+2. applies the rate limit (if Upstash is configured);
+3. verifies Turnstile (if `TURNSTILE_SECRET_KEY` is set);
+4. calls `deliverLead()`, which emails the right inbox, appends a row to the Google Sheet, and emails the person an acknowledgement.
+
+A submission counts as delivered if the email or the Sheet succeeds. If neither channel is configured, any environment other than local development rejects the submission, so a misconfigured deployment can't silently lose leads. Community members and Shambhavi applicants are never sent to the sales inbox or CRM.
 
 ## Environment variables
+See [.env.example](.env.example) and the table in [docs/launch-checklist.md](docs/launch-checklist.md#5-vercel-environment-variables).
+
 | Name | Purpose |
 | --- | --- |
 | `NEXT_PUBLIC_SITE_URL` | Canonical origin, e.g. https://www.texiri.com |
+| `NEXT_PUBLIC_SITE_ENV` | `production` on the production deployment only. Anything else adds noindex and `Disallow: /` |
 | `NEXT_PUBLIC_TURNSTILE_SITE_KEY` / `TURNSTILE_SECRET_KEY` | Cloudflare Turnstile |
+| `RESEND_API_KEY`, `LEAD_FROM` | Email delivery |
+| `LEAD_NOTIFY_TO`, `COMMUNITY_NOTIFY_TO`, `CAREERS_NOTIFY_TO` | Inbox per form (default info@texiri.com) |
+| `SHEETS_WEBHOOK_URL`, `SHEETS_WEBHOOK_SECRET` | Google Sheet log |
+| `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` | Optional rate limiting |
 | `CRM_PROVIDER` | `hubspot` or `zoho` (step 7) |
-| `RESEND_API_KEY`, `LEAD_NOTIFY_TO` | Email notification (step 7) |
 
-## Design rules carried into code
-- Radius 0 everywhere; 2px section rules; labels flush left, including buttons.
-- Orange (`accent`) is a fill only; small accent text uses `accent-700`; button labels on orange are navy.
-- Every unverified claim uses `<Placeholder>` — search the codebase for `TO VERIFY`, `TO CONFIRM` and `CLIENT APPROVAL NEEDED` before launch.
+## Design and content rules carried into code
+- Radius 0 everywhere (`--radius-*: initial`). Only the community pages use the `rounded-com`, `rounded-com-sm`, `rounded-tile`, `rounded-chip` and `rounded-pill` tokens.
+- 2px section rules; labels flush left, including buttons.
+- Orange (`accent`) is a fill only. Small accent text uses `accent-700`, and button labels on orange are navy.
+- Focus rings keep 3:1 contrast: put `surface-dark` on navy sections and `surface-bright` on orange or blue fills. `<Section tone="navy">`, the footer and `CTABand` already do. Components that can sit on navy take a prop (`Breadcrumbs tone="navy"`, `NumberedGrid onNavy`).
+- Every unverified claim uses `<Placeholder>`. Track each one in `docs/content-decisions.md` and run `npm run placeholders` before launch.
 - Pilots always carry `<PilotLabel>`; never present them as delivered work.
-- One `<h1>` per page.
+- One `<h1>` per page (checked by the e2e suite).
+
+## Known follow-ups
+- `npm audit` reports PostCSS advisories in the copy bundled inside Next 15. It only processes our own CSS at build time, and the fix requires Next 16.
+- Vitest 2 has dev-only advisories. Upgrading to Vitest 4 currently hits a peer-dependency conflict.

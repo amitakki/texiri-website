@@ -55,12 +55,12 @@ export function CommunityJoinForm() {
       <div><label htmlFor="f-email" className="mb-1.5 block text-sm font-semibold">Email *</label><input id="f-email" name="email" type="email" autoComplete="email" className={input} {...a("email")} /><span id="f-email-error" className={err}>{errors.email}</span></div>
       <div><label htmlFor="f-city" className="mb-1.5 block text-sm font-semibold">City *</label><input id="f-city" name="city" autoComplete="address-level2" className={input} {...a("city")} /><span id="f-city-error" className={err}>{errors.city}</span></div>
       <div><label htmlFor="f-role" className="mb-1.5 block text-sm font-semibold">Current role *</label><select id="f-role" name="role" defaultValue="" className={input} {...a("role")}><option value="">Choose one</option>{COMMUNITY_ROLES.map((r) => <option key={r}>{r}</option>)}</select><span id="f-role-error" className={err}>{errors.role}</span></div>
-      <fieldset className="m-0 border-0 p-0 sm:col-span-2" aria-describedby="f-level-error">
+      <fieldset role="radiogroup" className="m-0 border-0 p-0 sm:col-span-2" aria-invalid={errors.level ? true : undefined} aria-describedby="f-level-error">
         <legend className="mb-2 p-0 text-sm font-semibold">Your AI experience *</legend>
         <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
           {EXPERIENCE_LEVELS.map((l) => (
             <label key={l.value} className={`rounded-com-sm flex min-h-14 cursor-pointer items-center gap-2.5 border-2 px-3.5 py-2.5 text-[15px] font-semibold ${level === l.value ? "border-navy-900 bg-com-tint" : "border-hairline bg-com-bg"}`}>
-              <input type="radio" name="level" value={l.value} onChange={() => setLevel(l.value)} aria-invalid={errors.level ? true : undefined} className="m-0 size-4.5 flex-none accent-navy-900" />{l.label}
+              <input type="radio" name="level" value={l.value} onChange={() => setLevel(l.value)} className="m-0 size-4.5 flex-none accent-navy-900" />{l.label}
             </label>
           ))}
         </div>

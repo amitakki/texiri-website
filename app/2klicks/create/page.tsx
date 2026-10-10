@@ -59,7 +59,7 @@ export default function TwoKlicksCreatePage() {
       <Section labelledBy="wf-h" tone="navy">
         <Kicker onNavy>How it works</Kicker>
         <H2 id="wf-h" className="text-on-navy">Three steps. No new code.</H2>
-        <NumberedGrid items={[
+        <NumberedGrid onNavy items={[
           { title: "Download template", body: "Pick the object. The template is generated from your system, custom fields included." },
           { title: "Enter or modify data", body: "Business and data teams fill it in Excel, using the format they already know." },
           { title: "Upload", body: "2Klicks applies your validations and loads the data into SAP." },

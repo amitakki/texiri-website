@@ -56,7 +56,7 @@ export function H2({ id, children, className = "" }: { id: string; children: Rea
 export function ImagePlaceholder({ label, ratio = "aspect-video", onNavy }: { label: string; ratio?: string; onNavy?: boolean }) {
   const stripes = onNavy
     ? "bg-[repeating-linear-gradient(135deg,var(--color-navy-800)_0_12px,var(--color-navy-700)_12px_24px)]"
-    : "bg-[repeating-linear-gradient(135deg,var(--color-surface)_0_12px,#d7d3d3_12px_24px)]";
+    : "bg-[repeating-linear-gradient(135deg,var(--color-surface)_0_12px,var(--color-surface-strong)_12px_24px)]";
   return (
     <div role="img" aria-label={`Placeholder: ${label}`} className={`flex items-end p-4 ${ratio} ${stripes}`}>
       <span className="bg-ground px-2 py-1 font-mono text-xs text-muted">{label}</span>

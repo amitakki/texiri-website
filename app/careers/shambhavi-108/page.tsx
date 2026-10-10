@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Kicker, Placeholder, H2 } from "@/components/ui";
-import { Breadcrumbs, NumberedGrid } from "@/components/sections";
+import { Breadcrumbs } from "@/components/sections";
 import { Shambhavi108 } from "@/components/Shambhavi108";
 import { ShambhaviForm } from "@/components/ShambhaviForm";
 import { contact } from "@/lib/site";
-import { shambhavi108 } from "@/lib/company";
 
 export const metadata: Metadata = {
   title: "Shambhavi 108 Career Restart Programme",
@@ -17,10 +16,10 @@ export default function Shambhavi108Page() {
     <>
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Careers", href: "/careers/" }, { label: "Shambhavi 108", href: "/careers/shambhavi-108/" }]} />
       <Shambhavi108 asPage />
-      <section aria-labelledby="about-h" className="py-section">
+      <section aria-labelledby="about-h" className="py-[clamp(3rem,6vw,5rem)]">
         <div className="container-content">
           <H2 id="about-h" className="max-w-[20ch]">A break in your CV is not the end of your career.</H2>
-          <NumberedGrid items={shambhavi108.blocks.map(([title, body]) => ({ title, body }))} cols={3} />
+          {/* The three "who / what / after" blocks are in the hero above. Content decisions S1–S4. */}
           <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-muted"><Placeholder>TO CONFIRM</Placeholder>Training duration, format (online or Vijayapura), tracks and fees.</div>
         </div>
       </section>

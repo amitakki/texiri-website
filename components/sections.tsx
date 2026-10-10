@@ -64,15 +64,16 @@ export function CredibilityStrip() {
   );
 }
 
-export function NumberedGrid({ items, cols = 3 }: { items: { title: string; body: string }[]; cols?: 3 | 4 | 5 }) {
+/** Pass onNavy when the grid sits on a navy section, so numbers and body text keep their contrast. */
+export function NumberedGrid({ items, cols = 3, onNavy }: { items: { title: string; body: string }[]; cols?: 3 | 4 | 5; onNavy?: boolean }) {
   const c = { 3: "md:grid-cols-3", 4: "md:grid-cols-2 lg:grid-cols-4", 5: "md:grid-cols-3 lg:grid-cols-5" }[cols];
   return (
     <ol className={`mt-[clamp(2.5rem,5vw,4rem)] grid list-none gap-8 p-0 ${c}`}>
       {items.map((it, i) => (
         <li key={it.title} className="border-t-2 border-current pt-4">
-          <span className="text-sm font-extrabold text-accent-700">{String(i + 1).padStart(2, "0")}</span>
+          <span className={`text-sm font-extrabold ${onNavy ? "text-accent" : "text-accent-700"}`}>{String(i + 1).padStart(2, "0")}</span>
           <h3 className="mb-2 mt-3 text-[22px]">{it.title}</h3>
-          <p className="m-0 text-base text-muted">{it.body}</p>
+          <p className={`m-0 text-base ${onNavy ? "text-on-navy-muted" : "text-muted"}`}>{it.body}</p>
         </li>
       ))}
     </ol>

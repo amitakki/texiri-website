@@ -6,6 +6,7 @@
 
   --color-ground: #f5f4f1;
   --color-surface: #ebe9e4;
+  --color-surface-strong: #d7d3d3;
   --color-ink: #0f1a2e;
   --color-muted: #4a5670;
   --color-rule: color-mix(in srgb, #0f1a2e 38%, transparent);
@@ -43,9 +44,19 @@
   --color-com-ink: #8a5a00;
   --color-com-blue: #1546a0;
   --color-com-tint: #fff0c7;
+  --color-com-tint-strong: #ffe6a3;
+  --color-com-blue-tint: #e3ecfb;
+  --color-com-blue-tint-strong: #cfdcf5;
+  --color-com-orange-tint: #fde3c4;
 
-  /* Modernist: no rounded corners anywhere */
-  --radius-xs: 0; --radius-sm: 0; --radius-md: 0; --radius-lg: 0; --radius-xl: 0;
+  /* Modernist: no rounded corners. Clearing every default radius means only these community tokens exist
+     (rounded-com, rounded-com-sm, rounded-tile, rounded-chip, rounded-pill); rounded-full still works. */
+  --radius-*: initial;
+  --radius-com: 18px;
+  --radius-com-sm: 10px;
+  --radius-tile: 12px;
+  --radius-chip: 6px;
+  --radius-pill: 999px;
 
   --text-display: clamp(2.5rem, 5.8vw, 5rem);
   --text-display--line-height: 1.02;
@@ -92,10 +103,6 @@
 @utility surface-dark { --focus-ring: var(--color-accent); }
 @utility surface-bright { --focus-ring: var(--color-navy-900); }
 @utility ai-grid {
-  background-image: radial-gradient(color-mix(in srgb, #2bb5e8 28%, transparent) 1px, transparent 1.5px);
+  background-image: radial-gradient(color-mix(in srgb, var(--color-ai) 28%, transparent) 1px, transparent 1.5px);
   background-size: 22px 22px;
 }
-/* Community pages opt back into rounding: radius tokens are 0 globally, so use explicit values */
-@utility rounded-com { border-radius: 18px; }
-@utility rounded-com-sm { border-radius: 10px; }
-@utility rounded-pill { border-radius: 999px; }

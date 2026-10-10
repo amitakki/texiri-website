@@ -58,7 +58,7 @@ export default function CareersPage() {
         <div className="container-content">
           <Kicker onNavy>How we hire</Kicker>
           <H2 id="proc-h" className="text-on-navy">Four steps, no surprises</H2>
-          <NumberedGrid items={hiringSteps} cols={4} />
+          <NumberedGrid items={hiringSteps} cols={4} onNavy />
         </div>
       </section>
     </>
