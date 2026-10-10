@@ -1,4 +1,4 @@
-import type { Vertical } from "./site";
+import { DEMO_HREF, type Vertical } from "./site";
 
 /**
  * Interim pages for routes the navigation already links to.
@@ -23,7 +23,6 @@ const community = { label: "AI Community", href: "/ai-community/" };
 const industries = { label: "Industries", href: "/industries/" };
 const cases = { label: "Case Studies", href: "/case-studies/" };
 const insights = { label: "Insights", href: "/insights/" };
-const legal = { label: "Legal", href: "/legal/privacy/" };
 
 const sapCta = { label: "Talk to an SAP expert", href: "/contact/" };
 const aiCta = { label: "Talk to an AI expert", href: "/contact/?type=ai" };
@@ -77,10 +76,6 @@ function article(slug: string, cat: string, title: string): [string, InterimPage
   const href = `/insights/${slug}/`;
   return [href, { title, kicker: cat, lead: "This article is being written.", vertical: cat === "AI" ? "ai" : "sap", crumbs: [home, insights, { label: title, href }], related: insightRelated.filter((r) => r.href !== href) }];
 }
-function legalPage(slug: string, title: string): [string, InterimPage] {
-  const href = `/legal/${slug}/`;
-  return [href, { title, kicker: "Legal", lead: `Our ${title.toLowerCase()} is being finalised. For any questions in the meantime, email info@texiri.com.`, crumbs: [home, { ...legal, label: title, href }] }];
-}
 
 export const interimPages: Record<string, InterimPage> = Object.fromEntries([
   sapService("consulting", "SAP Consulting", "Implementation, functional and technical consulting for teams that need SAP configured to how the business actually works.", [
@@ -98,9 +93,9 @@ export const interimPages: Record<string, InterimPage> = Object.fromEntries([
     { t: "Mass changes", d: "Reorganisations handled with 2Klicks Update." },
   ]),
 
-  ["/2klicks/", { title: "2Klicks Create and 2Klicks Update", kicker: "Our SAP tools", lead: "Download a template, enter or modify data, upload. Migration programs on day 1, and mass updates without new code.", crumbs: [home, klicks], cta: { label: "Request a 2Klicks demo", href: "/2klicks/create/#demo" },
+  ["/2klicks/", { title: "2Klicks Create and 2Klicks Update", kicker: "Our SAP tools", lead: "Download a template, enter or modify data, upload. Migration programs on day 1, and mass updates without new code.", crumbs: [home, klicks], cta: { label: "Request a 2Klicks demo", href: DEMO_HREF },
     related: [{ label: "2Klicks Create", href: "/2klicks/create/" }, { label: "2Klicks Update", href: "/2klicks/update/" }, { label: "S/4HANA Data Migration & MDG", href: "/sap/data-migration/" }] }],
-  ["/2klicks/update/", { title: "2Klicks Update", kicker: "Our SAP tools", lead: "The same template workflow as 2Klicks Create, applied to data already in SAP: mass changes after reorganisations, without new code.", crumbs: [home, klicks, { label: "2Klicks Update", href: "/2klicks/update/" }], cta: { label: "Request a 2Klicks demo", href: "/2klicks/create/#demo" },
+  ["/2klicks/update/", { title: "2Klicks Update", kicker: "Our SAP tools", lead: "The same template workflow as 2Klicks Create, applied to data already in SAP: mass changes after reorganisations, without new code.", crumbs: [home, klicks, { label: "2Klicks Update", href: "/2klicks/update/" }], cta: { label: "Request a 2Klicks demo", href: DEMO_HREF },
     related: [{ label: "2Klicks Create", href: "/2klicks/create/" }, { label: "SAP Managed Services", href: "/sap/managed-services/" }] }],
 
   aiService("strategy-readiness", "AI Strategy & Readiness", "A one-day workshop, a data readiness review and a prioritised roadmap of use cases worth piloting."),
@@ -125,8 +120,4 @@ export const interimPages: Record<string, InterimPage> = Object.fromEntries([
   article("ecc-2027-start-with-the-data", "S/4HANA & Migration", "ECC mainstream maintenance ends in 2027. Start with the data."),
   article("re-fx-after-go-live", "SAP", "RE-FX after go-live: keeping lease data clean"),
   article("first-ai-use-case", "AI", "Choosing your first AI use case in one day"),
-
-  legalPage("privacy", "Privacy Policy"),
-  legalPage("cookies", "Cookie Policy"),
-  legalPage("terms", "Terms of Use"),
 ]);

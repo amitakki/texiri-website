@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import { images } from "@/lib/images";
 import Link from "next/link";
-import { Button, Kicker, Placeholder } from "@/components/ui";
+import { Button, Kicker, SiteImage } from "@/components/ui";
 import { Breadcrumbs, CTABand, FAQAccordion, StickyMobileCTA, TestimonialCard } from "@/components/sections";
+import { testimonials } from "@/lib/company";
+import { DEMO_HREF } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "SAP Services: SAP Consulting, S/4HANA Migration, SAP Integration & Managed Services",
+  title: "SAP Consulting & Managed Services",
   description: "SAP services across the lifecycle: SAP implementation and functional consulting (RE-FX, FI/CO, PM, MM, SD), S/4HANA data migration and MDG, SAP CPI and PI/PO integration, and managed services.",
   alternates: { canonical: "/sap/" },
 };
@@ -27,15 +30,19 @@ export default function SapServicesPage() {
     <>
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "SAP Services", href: "/sap/" }]} />
       <section aria-labelledby="hero-h" className="pb-[clamp(3.5rem,7vw,6rem)] pt-[clamp(2.5rem,6vw,5.5rem)]">
-        <div className="container-content">
+        <div className="hero-enter container-content">
           <Kicker>SAP Services</Kicker>
           <h1 id="hero-h" className="m-0 -ml-[0.04em] max-w-[16ch] text-display">SAP consulting for the whole lifecycle.</h1>
           <div className="mt-8 grid items-end gap-x-[clamp(2.5rem,5vw,5rem)] gap-y-6 lg:grid-cols-2">
             <p className="m-0 max-w-[52ch] text-lead text-muted">For CIOs, SAP programme leads and finance and operations owners on ECC or S/4HANA. One senior team from blueprint to go-live to steady-state support.</p>
-            <div className="flex flex-wrap gap-3"><Button href="/contact/" arrow>Talk to an SAP expert</Button><Button href="/2klicks/demo/" variant="secondary">Request a 2Klicks demo</Button></div>
+            <div className="flex flex-wrap gap-3"><Button href="/contact/" arrow>Talk to an SAP expert</Button><Button href={DEMO_HREF} variant="secondary">Request a 2Klicks demo</Button></div>
           </div>
         </div>
       </section>
+
+      <div className="container-content pb-[clamp(2.5rem,5vw,4rem)]">
+        <SiteImage {...images.consultingTeam} ratio="aspect-[4/3] md:aspect-[2/1]" priority sizes="(min-width: 1280px) 1280px, 100vw" />
+      </div>
 
       <section aria-label="Service index" className="border-t-2 border-ink">
         <div className="container-content">
@@ -66,7 +73,7 @@ export default function SapServicesPage() {
         </div>
       </section>
 
-      <section aria-labelledby="k-h" className="bg-navy-900 text-on-navy">
+      <section aria-labelledby="k-h" className="surface-dark bg-navy-900 text-on-navy">
         <Link href="/2klicks/" className="container-content grid items-end gap-x-8 gap-y-6 py-[clamp(3rem,6vw,5rem)] text-on-navy no-underline hover:text-on-navy md:grid-cols-2">
           <div><Kicker onNavy>Our SAP tools</Kicker><h2 id="k-h" className="m-0 max-w-[20ch] text-[clamp(1.75rem,3.4vw,2.75rem)] leading-[1.08]">2Klicks Create and 2Klicks Update</h2></div>
           <div><p className="m-0 max-w-[46ch] text-[17px] text-on-navy-muted">Download a template, enter or modify data, upload. Migration programs on day 1, and mass updates without new code.</p><span className="mt-4 inline-block font-extrabold text-accent">Explore 2Klicks →</span></div>
@@ -75,8 +82,8 @@ export default function SapServicesPage() {
 
       <section aria-labelledby="proof-h" className="py-section">
         <div className="container-content max-w-[60rem]">
-          <div className="mb-4 flex flex-wrap items-center gap-3"><h2 id="proof-h" className="m-0 text-kicker font-semibold uppercase tracking-[0.1em] text-accent-700">Proof</h2><Placeholder>CLIENT APPROVAL NEEDED</Placeholder></div>
-          <TestimonialCard quote="Lease data is hard to move. Texiri moved our RE-FX contracts with every validation intact and kept us informed throughout." who="Real-estate company, USA" />
+          <h2 id="proof-h" className="mb-4 mt-0 text-kicker font-semibold uppercase tracking-[0.1em] text-accent-700">Proof</h2>
+          <TestimonialCard {...testimonials.realEstate} />
         </div>
       </section>
 

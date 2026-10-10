@@ -12,9 +12,9 @@ export const EXPERIENCE_LEVELS = [
 
 /** Community joins — essential fields only. Routed to the community list, never the sales CRM. */
 export const communityJoinSchema = z.object({
-  name: z.string().trim().min(1, "Tell us what to call you."),
-  email: z.string().trim().email("Enter a valid email, like you@example.com."),
-  city: z.string().trim().min(1, "Enter your city."),
+  name: z.string().trim().min(1, "Tell us what to call you.").max(120),
+  email: z.string().trim().email("Enter a valid email, like you@example.com.").max(200),
+  city: z.string().trim().min(1, "Enter your city.").max(120),
   role: z.enum(COMMUNITY_ROLES, { errorMap: () => ({ message: "Choose the role closest to yours." }) }),
   level: z.enum(EXPERIENCE_LEVELS.map((l) => l.value) as [string, ...string[]], { errorMap: () => ({ message: "Pick the option that sounds most like you." }) }),
   why: z.string().trim().max(1000).optional().or(z.literal("")),

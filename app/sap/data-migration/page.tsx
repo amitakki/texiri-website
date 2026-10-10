@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import { images } from "@/lib/images";
 import Link from "next/link";
-import { Button, H2, Kicker, Placeholder, Section } from "@/components/ui";
+import { Button, H2, Kicker, Placeholder, Section, SiteImage } from "@/components/ui";
 import { Breadcrumbs, CheckList, CTABand, FAQAccordion, NumberedGrid, StickyMobileCTA, TestimonialCard } from "@/components/sections";
+import { testimonials } from "@/lib/company";
+import { DEMO_HREF } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "S/4HANA Data Migration & Master Data Governance (MDG) | SAP Data Migration Services",
+  title: "S/4HANA Data Migration & MDG Services",
   description: "S/4HANA data migration from ECC or legacy systems: assessment, extraction, cleansing, loading and SAP MDG, accelerated by 2Klicks Create. SAP Data Services, SDI and Migration Cockpit.",
   alternates: { canonical: "/sap/data-migration/" },
 };
@@ -45,7 +48,7 @@ export default function DataMigrationPage() {
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "SAP Services", href: "/sap/" }, { label: "S/4HANA Data Migration & MDG", href: "/sap/data-migration/" }]} />
       <section aria-labelledby="hero-h" className="pb-[clamp(3.5rem,7vw,6rem)] pt-[clamp(2.5rem,6vw,5.5rem)]">
         <div className="container-content grid items-end gap-[clamp(2.5rem,5vw,5rem)] lg:grid-cols-2">
-          <div>
+          <div className="hero-enter">
             <Kicker>S/4HANA Data Migration &amp; MDG</Kicker>
             <h1 id="hero-h" className="m-0 -ml-[0.04em] max-w-[15ch] text-display">Move to S/4HANA with data the business signs off.</h1>
             <p className="mt-6 max-w-[52ch] text-lead text-muted">For SAP programme directors and data owners moving from ECC or legacy systems. We plan, extract, cleanse and load your data, then keep it governed with MDG.</p>
@@ -54,7 +57,7 @@ export default function DataMigrationPage() {
               <Button href="/2klicks/create/" variant="secondary">See 2Klicks Create</Button>
             </div>
           </div>
-          <div className="border-t-4 border-ink bg-surface p-8">
+          <div className="hero-enter-late border-t-4 border-ink bg-surface p-8">
             <span className="text-xs font-semibold uppercase tracking-[0.1em] text-muted">The business challenge</span>
             <p className="mb-0 mt-3 text-xl font-semibold leading-[1.45]">Data is the most common reason S/4HANA timelines slip. Programs are built late, mock loads fail on custom fields, and reconciliation drags into cutover.</p>
           </div>
@@ -77,6 +80,7 @@ export default function DataMigrationPage() {
         <Kicker>The Texiri solution</Kicker>
         <H2 id="sol-h" className="max-w-[20ch]">Data-first migration, with our own IP doing the heavy lifting</H2>
         <p className="mb-[clamp(2.5rem,5vw,4rem)] mt-6 max-w-[60ch] text-lg text-muted">2Klicks Create gives your project migration programs on day 1, aware of your custom fields and validations. Our consultants spend their time on data quality and business sign-off instead of writing load programs.</p>
+        <SiteImage {...images.dataMigration} ratio="aspect-[4/3] sm:aspect-video" className="mb-[clamp(2.5rem,5vw,4rem)]" sizes="(min-width: 1280px) 1280px, 100vw" />
         <CheckList items={caps} />
       </Section>
 
@@ -109,7 +113,7 @@ export default function DataMigrationPage() {
           </div>
           <div className="flex flex-wrap gap-3">
             <Button href="/2klicks/create/">See 2Klicks Create</Button>
-            <Button href="/2klicks/demo/" variant="outline-on-navy" data-track="2klicks_demo_click">Request a demo</Button>
+            <Button href={DEMO_HREF} variant="outline-on-navy" data-track="2klicks_demo_click">Request a demo</Button>
           </div>
         </div>
       </Section>
@@ -130,8 +134,8 @@ export default function DataMigrationPage() {
       <Section labelledBy="proof-h">
         <div className="grid gap-[clamp(2.5rem,5vw,5rem)] lg:grid-cols-2">
           <div>
-            <div className="mb-4 flex flex-wrap items-center gap-3"><h2 id="proof-h" className="m-0 text-kicker font-semibold uppercase tracking-[0.1em] text-accent-700">Proof</h2><Placeholder>CLIENT APPROVAL NEEDED</Placeholder></div>
-            <TestimonialCard quote="Texiri had our migration objects ready far earlier than planned. We ran more mock loads and went into cutover with confidence." who="Utility, Australia" />
+            <h2 id="proof-h" className="mb-4 mt-0 text-kicker font-semibold uppercase tracking-[0.1em] text-accent-700">Proof</h2>
+            <TestimonialCard {...testimonials.utility} />
           </div>
           <Link href="/case-studies/utility-australia/" className="flex flex-col gap-3 border-t-4 border-ink bg-surface p-8 no-underline" data-track="case_study_view">
             <span className="text-xs font-semibold uppercase tracking-[0.1em] text-muted">Case study · Utility · Australia</span>
@@ -142,7 +146,7 @@ export default function DataMigrationPage() {
       </Section>
 
       <FAQAccordion id="faq-h" title="Migration questions" faqs={faqs} />
-      <CTABand title="Get a data-readiness view of your S/4HANA migration." note="A senior consultant replies within one business day." primary={{ label: "Talk to a migration architect", href: "/contact/?type=migration" }} secondary={{ label: "Request a 2Klicks demo", href: "/2klicks/demo/" }} />
+      <CTABand title="Get a data-readiness view of your S/4HANA migration." note="A senior consultant replies within one business day." primary={{ label: "Talk to a migration architect", href: "/contact/?type=migration" }} secondary={{ label: "Request a 2Klicks demo", href: DEMO_HREF }} />
       <StickyMobileCTA label="Talk to a migration architect" href="/contact/?type=migration" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
     </>

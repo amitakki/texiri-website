@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Button, H2, ImagePlaceholder, Kicker, Placeholder, Section } from "@/components/ui";
+import { Button, H2, Kicker, Placeholder, Section, SiteImage } from "@/components/ui";
+import { images } from "@/lib/images";
 import { Breadcrumbs, FAQAccordion, NumberedGrid, StickyMobileCTA } from "@/components/sections";
 import { EnquiryForm } from "@/components/EnquiryForm";
 
 export const metadata: Metadata = {
-  title: "2Klicks Create — Template-Based SAP Data Migration Tool for S/4HANA",
+  title: "2Klicks Create — SAP Data Migration Tool",
   description: "2Klicks Create is a template-based SAP data migration tool. It recognises custom fields and validations, removes 8+ programs per object, and makes migration programs available on day 1. RE-FX, MM, PM, FI/CO, SD.",
   alternates: { canonical: "/2klicks/create/" },
 };
@@ -36,7 +37,7 @@ export default function TwoKlicksCreatePage() {
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "2Klicks", href: "/2klicks/" }, { label: "2Klicks Create", href: "/2klicks/create/" }]} />
       <section aria-labelledby="hero-h" className="pt-[clamp(2.5rem,6vw,5rem)]">
         <div className="container-content">
-          <div className="grid items-end gap-x-[clamp(2.5rem,5vw,5rem)] gap-y-6 lg:grid-cols-2">
+          <div className="hero-enter grid items-end gap-x-[clamp(2.5rem,5vw,5rem)] gap-y-6 lg:grid-cols-2">
             <div>
               <div className="mb-6 flex items-center gap-2.5"><span className="bg-navy-900 px-2.5 py-1 text-xs font-extrabold uppercase tracking-[0.08em] text-on-navy">2Klicks by Texiri</span><span className="text-kicker font-semibold uppercase tracking-[0.1em] text-accent-700">Create</span></div>
               <h1 id="hero-h" className="m-0 -ml-[0.04em] max-w-[13ch] text-display">SAP migration programs on day 1.</h1>
@@ -49,9 +50,9 @@ export default function TwoKlicksCreatePage() {
               </div>
             </div>
           </div>
-          <div className="mt-[clamp(2.5rem,5vw,4rem)] border-2 border-b-0 border-ink">
+          <div className="hero-enter-late mt-[clamp(2.5rem,5vw,4rem)] border-2 border-b-0 border-ink">
             <div className="flex items-center gap-3 border-b-2 border-ink bg-navy-900 px-4 py-2.5 text-[13px] font-bold text-on-navy"><span aria-hidden className="size-2.5 bg-accent" />2Klicks Create</div>
-            <ImagePlaceholder label="product UI · template selection → upload → validation log" ratio="aspect-[21/9] min-h-56" />
+            <SiteImage {...images.klicksUi} ratio="aspect-[16/10]" priority sizes="(min-width: 1280px) 1280px, 100vw" />
           </div>
         </div>
       </section>
@@ -59,7 +60,7 @@ export default function TwoKlicksCreatePage() {
       <Section labelledBy="wf-h" tone="navy">
         <Kicker onNavy>How it works</Kicker>
         <H2 id="wf-h" className="text-on-navy">Three steps. No new code.</H2>
-        <NumberedGrid items={[
+        <NumberedGrid onNavy items={[
           { title: "Download template", body: "Pick the object. The template is generated from your system, custom fields included." },
           { title: "Enter or modify data", body: "Business and data teams fill it in Excel, using the format they already know." },
           { title: "Upload", body: "2Klicks applies your validations and loads the data into SAP." },
@@ -118,7 +119,7 @@ export default function TwoKlicksCreatePage() {
       </Section>
 
       <FAQAccordion id="faq-h" title="About 2Klicks Create" faqs={faqs} />
-      <section aria-label="Related" className="bg-navy-900 text-on-navy">
+      <section aria-label="Related" className="surface-dark bg-navy-900 text-on-navy">
         <div className="container-content grid md:grid-cols-2">
           <Link href="/2klicks/update/" className="flex flex-col gap-2 py-8 pr-8 text-on-navy no-underline hover:text-accent"><span className="text-xs font-semibold uppercase tracking-[0.1em] text-on-navy-muted">Same workflow, existing data</span><h2 className="m-0 text-[26px] text-inherit">2Klicks Update →</h2></Link>
           <Link href="/sap/data-migration/" className="flex flex-col gap-2 border-on-navy/20 py-8 text-on-navy no-underline hover:text-accent md:border-l md:pl-8"><span className="text-xs font-semibold uppercase tracking-[0.1em] text-on-navy-muted">The service around it</span><h2 className="m-0 text-[26px] text-inherit">S/4HANA Data Migration &amp; MDG →</h2></Link>

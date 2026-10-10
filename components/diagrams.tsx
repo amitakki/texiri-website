@@ -12,7 +12,7 @@ export function SapLifecycleDiagram() {
   return (
     <figure aria-label="Diagram: Texiri services across the SAP lifecycle — implement, migrate, integrate and run — on an ECC or S/4HANA core" className="m-0 bg-navy-900 p-[clamp(1.25rem,3vw,2.25rem)] text-on-navy">
       <figcaption className="mb-6 text-xs font-semibold uppercase tracking-[0.1em] text-on-navy-muted">One partner across the SAP lifecycle</figcaption>
-      <ol className="m-0 list-none p-0">
+      <ol className="hero-stagger m-0 list-none p-0">
         {stages.map((s) => (
           <li key={s.n} className="grid grid-cols-[40px_1fr] gap-4 border-t-2 border-on-navy/20 py-4">
             <span className="pt-0.5 text-sm font-extrabold text-accent">{s.n}</span>

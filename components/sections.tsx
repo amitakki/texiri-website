@@ -2,20 +2,27 @@ import Link from "next/link";
 import { Check, Plus } from "lucide-react";
 import type { ReactNode } from "react";
 import { Button, H2, Kicker, Placeholder } from "./ui";
+import { credentials } from "@/lib/company";
 import { SITE_URL } from "@/lib/site";
 
-export function Breadcrumbs({ items }: { items: { label: string; href: string }[] }) {
+export const isUnconfirmed = (text: string) => /\[TO (CONFIRM|VERIFY)\]/.test(text);
+
+/** Use tone="navy" when the breadcrumbs sit on a navy background (e.g. the AI Services hero). */
+export function Breadcrumbs({ items, tone = "light" }: { items: { label: string; href: string }[]; tone?: "light" | "navy" }) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: items.map((it, i) => ({ "@type": "ListItem", position: i + 1, name: it.label, item: `${SITE_URL}${it.href}` })),
   };
+  const navy = tone === "navy";
   return (
     <nav aria-label="Breadcrumb" className="container-content pt-4">
-      <ol className="m-0 flex list-none flex-wrap gap-2 p-0 text-[13px] text-muted">
+      <ol className={`m-0 flex list-none flex-wrap gap-2 p-0 text-[13px] ${navy ? "text-on-navy-muted" : "text-muted"}`}>
         {items.map((it, i) => (
           <li key={it.href} className="flex gap-2">
-            {i < items.length - 1 ? <><Link href={it.href}>{it.label}</Link><span aria-hidden>/</span></> : <span aria-current="page" className="font-semibold text-ink">{it.label}</span>}
+            {i < items.length - 1
+              ? <><Link href={it.href} className={navy ? "hover:text-ai" : undefined}>{it.label}</Link><span aria-hidden>/</span></>
+              : <span aria-current="page" className={`font-semibold ${navy ? "text-on-navy" : "text-ink"}`}>{it.label}</span>}
           </li>
         ))}
       </ol>
@@ -29,32 +36,27 @@ export function Hero({ kicker, title, lead, actions, aside, id = "hero-h" }:
   return (
     <section aria-labelledby={id} className="py-[clamp(2.5rem,6vw,5.5rem)]">
       <div className="container-content grid items-end gap-[clamp(2.5rem,5vw,5rem)] lg:grid-cols-2">
-        <div>
+        <div className="hero-enter">
           <Kicker>{kicker}</Kicker>
           <h1 id={id} className="m-0 -ml-[0.04em] max-w-[16ch] text-display">{title}</h1>
           <p className="mt-6 max-w-[52ch] text-lead text-muted">{lead}</p>
           <div className="mt-8 flex flex-wrap gap-3">{actions}</div>
         </div>
-        {aside}
+        {aside && <div className="hero-enter-late">{aside}</div>}
       </div>
     </section>
   );
 }
 
 export function CredibilityStrip() {
-  const items = [
-    ["Founder-led since SAP Labs India", "Our CEO began his career at SAP Labs India."],
-    ["20+ years in SAP", "Consulting and enterprise transformation."],
-    ["Delivery across 5 countries", "India, USA, Germany, Singapore, Australia."],
-    ["Patented SAP migration tools", "2Klicks Create and 2Klicks Update."],
-  ];
   return (
     <section aria-label="Credentials" className="border-y-2 border-rule">
       <div className="container-content grid sm:grid-cols-2 lg:grid-cols-4">
-        {items.map(([t, d]) => (
+        {credentials.map(({ t, d, verify }) => (
           <div key={t} className="border-hairline py-6 pr-6 lg:border-r lg:last:border-r-0">
             <div className="text-lg font-extrabold">{t}</div>
             <div className="mt-1 text-sm text-muted">{d}</div>
+            {verify && <div className="mt-2"><Placeholder>{verify}</Placeholder></div>}
           </div>
         ))}
       </div>
@@ -62,15 +64,16 @@ export function CredibilityStrip() {
   );
 }
 
-export function NumberedGrid({ items, cols = 3 }: { items: { title: string; body: string }[]; cols?: 3 | 4 | 5 }) {
+/** Pass onNavy when the grid sits on a navy section, so numbers and body text keep their contrast. */
+export function NumberedGrid({ items, cols = 3, onNavy }: { items: { title: string; body: string }[]; cols?: 3 | 4 | 5; onNavy?: boolean }) {
   const c = { 3: "md:grid-cols-3", 4: "md:grid-cols-2 lg:grid-cols-4", 5: "md:grid-cols-3 lg:grid-cols-5" }[cols];
   return (
     <ol className={`mt-[clamp(2.5rem,5vw,4rem)] grid list-none gap-8 p-0 ${c}`}>
       {items.map((it, i) => (
         <li key={it.title} className="border-t-2 border-current pt-4">
-          <span className="text-sm font-extrabold text-accent-700">{String(i + 1).padStart(2, "0")}</span>
+          <span className={`text-sm font-extrabold ${onNavy ? "text-accent" : "text-accent-700"}`}>{String(i + 1).padStart(2, "0")}</span>
           <h3 className="mb-2 mt-3 text-[22px]">{it.title}</h3>
-          <p className="m-0 text-base text-muted">{it.body}</p>
+          <p className={`m-0 text-base ${onNavy ? "text-on-navy-muted" : "text-muted"}`}>{it.body}</p>
         </li>
       ))}
     </ol>
@@ -118,7 +121,8 @@ export function CaseStudyCard({ sector, title, metric, metricLabel, href }:
 }
 
 export function FAQAccordion({ id, title, faqs }: { id: string; title: string; faqs: { q: string; a: string }[] }) {
-  const jsonLd = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) };
+  // Answers still awaiting confirmation ("[TO CONFIRM]") are left out of the structured data.
+  const jsonLd = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.filter((f) => !isUnconfirmed(f.a)).map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) };
   return (
     <section aria-labelledby={id} className="py-section">
       <div className="container-content flex flex-wrap gap-8">
@@ -142,7 +146,7 @@ export function FAQAccordion({ id, title, faqs }: { id: string; title: string; f
 export function CTABand({ id = "contact", title, note, primary, secondary, vertical = "sap" }:
   { id?: string; title: ReactNode; note: string; primary: { label: string; href: string }; secondary?: { label: string; href: string }; vertical?: "sap" | "ai" }) {
   return (
-    <section id={id} aria-labelledby={`${id}-h`} className={`${vertical === "ai" ? "bg-ai" : "bg-accent"} py-[clamp(4rem,9vw,7.5rem)] text-navy-900`}>
+    <section id={id} aria-labelledby={`${id}-h`} className={`surface-bright ${vertical === "ai" ? "bg-ai" : "bg-accent"} py-[clamp(4rem,9vw,7.5rem)] text-navy-900`}>
       <div className="container-content">
         <h2 id={`${id}-h`} className="m-0 max-w-[22ch] text-[clamp(2rem,4.6vw,3.75rem)] leading-[1.04] tracking-[-0.025em] text-navy-900">{title}</h2>
         <div className="mt-8 flex flex-wrap gap-3">

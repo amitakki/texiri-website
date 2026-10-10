@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Plus } from "lucide-react";
-import { Placeholder } from "@/components/ui";
-import { Breadcrumbs, StickyMobileCTA } from "@/components/sections";
+import { Placeholder, SiteImage } from "@/components/ui";
+import { images } from "@/lib/images";
+import { Breadcrumbs, StickyMobileCTA, isUnconfirmed } from "@/components/sections";
 
 export const metadata: Metadata = {
-  title: "TEXIRI AI Community — Learn AI, Build with AI, Grow Together | Vijayapura & Online",
+  title: "TEXIRI AI Community: Learn AI Together",
   description: "The TEXIRI AI Community is a learning community for anyone curious about AI: students, professionals, developers, educators and entrepreneurs. Learning paths, workshops, projects and resources. Started in Vijayapura.",
   alternates: { canonical: "/ai-community/" },
 };
 
 // TODO(cms, step 8): LearningPath, CommunityEvent (with Event JSON-LD), CommunityProject, Resource, FAQ.
-const Y = "bg-com-tint", B = "bg-[#e3ecfb]", O = "bg-[#fde3c4]";
+const Y = "bg-com-tint", B = "bg-com-blue-tint", O = "bg-com-orange-tint";
 const who = [["Students", Y], ["Working professionals", B], ["Developers", O], ["Educators", B], ["Entrepreneurs", O], ["The AI-curious", Y]];
 const perks = [
   ["Learning paths", "Beginner to advanced, in a sensible order.", Y], ["Live sessions", "Talks and Q&As you can join in person or online.", B],
@@ -47,7 +48,7 @@ export default function CommunityPage() {
 
       <section aria-labelledby="hero-h" className="pb-[clamp(3.5rem,7vw,6rem)] pt-[clamp(2rem,5vw,4.5rem)]">
         <div className="container-content grid items-center gap-[clamp(2rem,5vw,4.5rem)] lg:grid-cols-2">
-          <div>
+          <div className="hero-enter">
             <span className="rounded-pill mb-6 inline-flex items-center gap-2 bg-com-tint px-3.5 py-1.5 text-[13px] font-bold text-com-ink"><span aria-hidden className="size-2 rounded-full bg-com-orange" />TEXIRI AI Community · started in Vijayapura</span>
             <h1 id="hero-h" className="m-0 text-[clamp(2.625rem,6vw,5.25rem)] leading-none tracking-[-0.03em]">
               <span className="block">Learn AI.</span><span className="block">Build with AI.</span><span className="block text-com-blue">Grow together.</span>
@@ -58,10 +59,10 @@ export default function CommunityPage() {
               <a href="#events" className="rounded-pill inline-flex min-h-13 items-center border-2 border-navy-900 px-6 font-extrabold text-navy-900 no-underline hover:bg-com-tint hover:text-navy-900">See upcoming events</a>
             </div>
           </div>
-          <div className="grid grid-cols-[3fr_2fr] gap-3">
-            <div role="img" aria-label="Placeholder: photo of community members learning together at a workshop" className="rounded-com row-span-2 flex min-h-90 items-end bg-[repeating-linear-gradient(135deg,#fff0c7_0_12px,#ffe6a3_12px_24px)] p-3"><span className="rounded-md bg-com-surface px-2 py-1 font-mono text-[11px] text-muted">photo · workshop in progress</span></div>
-            <div role="img" aria-label="Placeholder: photo of a learner presenting a project" className="rounded-com flex min-h-42 items-end bg-[repeating-linear-gradient(135deg,#e3ecfb_0_12px,#cfdcf5_12px_24px)] p-3"><span className="rounded-md bg-com-surface px-2 py-1 font-mono text-[11px] text-muted">photo · project demo</span></div>
-            <div className="rounded-com flex min-h-42 flex-col justify-end gap-1 bg-com-blue p-4 text-com-surface"><strong className="text-[34px] leading-none">[X]</strong><span className="text-sm">members learning together</span><span className="mt-1 self-start rounded-md bg-com-surface px-2 py-0.5 text-[11px] font-bold tracking-[0.06em] text-navy-900">TO VERIFY</span></div>
+          <div className="hero-enter-late grid grid-cols-[3fr_2fr] gap-3">
+            <SiteImage {...images.communityWorkshop} ratio="" priority sizes="(min-width: 1024px) 30vw, 60vw" className="rounded-com row-span-2 min-h-90" />
+            <SiteImage {...images.communityDemo} ratio="" sizes="(min-width: 1024px) 20vw, 40vw" className="rounded-com min-h-42" />
+            <div className="rounded-com flex min-h-42 flex-col justify-end gap-1 bg-com-blue p-4 text-com-surface"><strong className="text-[34px] leading-none">[X]</strong><span className="text-sm">members learning together</span><span className="mt-1 self-start rounded-chip bg-com-surface px-2 py-0.5 text-[11px] font-bold tracking-[0.06em] text-navy-900">TO VERIFY</span></div>
           </div>
         </div>
       </section>
@@ -83,8 +84,8 @@ export default function CommunityPage() {
           <h2 id="get-h" className={h2}>Six ways to level up</h2>
           <div className="mt-[clamp(2rem,4vw,3.5rem)] grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {perks.map(([t, d, bg], i) => (
-              <div key={t} className="rounded-com flex flex-col gap-2 bg-com-surface p-6 shadow-sm">
-                <span className={`grid size-10 place-items-center rounded-xl font-extrabold ${bg}`}>{i + 1}</span>
+              <div key={t} className="lift rounded-com flex flex-col gap-2 bg-com-surface p-6 shadow-sm hover:shadow-md">
+                <span className={`grid size-10 place-items-center rounded-tile font-extrabold ${bg}`}>{i + 1}</span>
                 <h3 className="m-0 mt-2 text-xl">{t}</h3><p className="m-0 text-[15px] text-muted">{d}</p>
               </div>
             ))}
@@ -116,9 +117,9 @@ export default function CommunityPage() {
           <ul className="m-0 mt-[clamp(2rem,4vw,3.5rem)] flex list-none flex-col gap-3 p-0">
             {events.map((e, i) => (
               <li key={i} className="rounded-com grid grid-cols-[84px_minmax(0,1fr)] items-center gap-4 bg-com-surface p-4 shadow-sm sm:grid-cols-[84px_minmax(0,1fr)_auto]">
-                <div className={`rounded-xl py-2.5 text-center ${e.bg}`}><div className="text-xs font-bold uppercase">Date</div><div className="text-xl font-extrabold leading-tight">TBC</div></div>
+                <div className={`rounded-tile py-2.5 text-center ${e.bg}`}><div className="text-xs font-bold uppercase">Date</div><div className="text-xl font-extrabold leading-tight">TBC</div></div>
                 <div className="min-w-0">
-                  <div className="mb-1 flex flex-wrap gap-1.5"><span className="rounded-pill bg-com-tint px-2.5 py-0.5 text-xs font-bold">{e.type}</span><span className="rounded-pill bg-[#e3ecfb] px-2.5 py-0.5 text-xs font-bold">{e.level}</span></div>
+                  <div className="mb-1 flex flex-wrap gap-1.5"><span className="rounded-pill bg-com-tint px-2.5 py-0.5 text-xs font-bold">{e.type}</span><span className="rounded-pill bg-com-blue-tint px-2.5 py-0.5 text-xs font-bold">{e.level}</span></div>
                   <h3 className="m-0 text-[19px]">[Event title]</h3><div className="text-sm text-muted">[Date and time] · {e.where}</div>
                 </div>
                 <Link href="/ai-community/join/" data-track="community_event_register" className="rounded-pill col-span-2 inline-flex min-h-11 items-center justify-start border-2 border-navy-900 px-4 font-extrabold text-navy-900 no-underline hover:bg-com-tint sm:col-span-1">Register<span className="sr-only"> for this event</span></Link>
@@ -133,9 +134,9 @@ export default function CommunityPage() {
           <span className={kicker}>Projects &amp; showcases</span>
           <h2 id="pr-h" className={h2}>Built by members</h2>
           <div className="mt-[clamp(2rem,4vw,3.5rem)] grid gap-4 md:grid-cols-3">
-            {[["Computer vision", "Intermediate"], ["Chatbot", "Beginner"], ["Forecasting", "Advanced"]].map(([tag, level]) => (
+            {([["Computer vision", "Intermediate", images.projectVision], ["Chatbot", "Beginner", images.projectChatbot], ["Forecasting", "Advanced", images.projectForecast]] as const).map(([tag, level, img]) => (
               <article key={tag} className="rounded-com flex flex-col overflow-hidden bg-com-bg">
-                <div role="img" aria-label="Placeholder: member project screenshot" className="flex aspect-[16/10] items-end bg-[repeating-linear-gradient(135deg,#ffe6a3_0_12px,#fff0c7_12px_24px)] p-2.5"><span className="rounded-md bg-com-surface px-1.5 py-0.5 font-mono text-[11px] text-muted">project screenshot</span></div>
+                <SiteImage {...img} ratio="aspect-[16/10]" sizes="(min-width: 768px) 33vw, 100vw" />
                 <div className="flex flex-col gap-1.5 px-6 pb-6 pt-4"><span className="text-xs font-bold uppercase tracking-[0.06em] text-com-ink">{tag}</span><h3 className="m-0 text-[19px]">[Project title]</h3><span className="text-sm text-muted">by [Member name] · {level}</span></div>
               </article>
             ))}
@@ -166,7 +167,7 @@ export default function CommunityPage() {
             ))}
           </div>
         </div>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) }) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.filter((f) => !isUnconfirmed(f.a)).map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) }) }} />
       </section>
 
       <section id="join" aria-labelledby="join-h" className="px-[var(--spacing-edge)] py-[clamp(3rem,6vw,5rem)]">

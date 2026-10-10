@@ -1,10 +1,19 @@
 // Company, leadership and careers content. Move to the CMS once Sanity/Payload is chosen.
-export const credentials = [
-  ["Founder-led since SAP Labs India", "Our CEO began his career at SAP Labs India."],
-  ["20+ years in SAP", "Consulting and enterprise transformation."],
-  ["Delivery across 5 countries", "India, USA, Germany, Singapore, Australia."],
-  ["Patented SAP migration tools", "2Klicks Create and 2Klicks Update."],
-] as const;
+/** `verify` marks a claim still awaiting confirmation (rendered with a placeholder badge). */
+export const credentials: { t: string; d: string; verify?: string }[] = [
+  { t: "Founder-led since SAP Labs India", d: "Our CEO began his career at SAP Labs India." },
+  { t: "20+ years in SAP", d: "Consulting and enterprise transformation." },
+  { t: "Delivery across 5 countries", d: "India, USA, Germany, Singapore, Australia." },
+  // Content decision C6: the old site says the founder holds patents, not that 2Klicks is patented.
+  { t: "Patented SAP migration tools", d: "2Klicks Create and 2Klicks Update.", verify: "PATENT TO VERIFY" },
+];
+
+/** Verbatim from the old site's homepage (content decision P7: confirm they can still be published). */
+export const testimonials = {
+  utility: { quote: "Texiri has been an invaluable partner, demonstrating exceptional commitment and relentless hard work. Consistently exceeding our expectations, their dedication is evident in every aspect of their work. Texiri is a trusted and indispensable asset to our team, and we're grateful for the positive impact they've had on our success.", who: "Utility client, Australia" },
+  retail: { quote: "We engaged Texiri for their technical expertise, and the results surpassed our expectations. Their remarkable understanding of our industry's challenges translates into tailored, efficient, and forward-thinking solutions – a testament to their profound technical acumen.", who: "Major retail client, USA" },
+  realEstate: { quote: "We're delighted with Texiri's teamwork and empathy. Their personal connection with our team and collaborative spirit have created a positive, inclusive environment. Texiri not only contributes expertise but also fosters unity, making them a joy to work with. We appreciate the positive impact they've had on our collaboration.", who: "Real estate client, USA" },
+};
 
 export const principles = [
   { title: "Senior people on the work", body: "The consultants who scope your project are the ones who deliver it." },
@@ -16,9 +25,15 @@ export const principles = [
 export const founder = {
   name: "Muttu Sarashetti",
   role: "Founder & CEO",
-  bio: "Muttu began his career at SAP Labs India and has spent more than 20 years in SAP consulting and enterprise transformation. He founded Texiri to bring that depth to clients directly, and leads the design of the 2Klicks tools.",
-  facts: [["Started at", "SAP Labs India"], ["Focus", "RE-FX, S/4HANA migration, 2Klicks"]],
-  linkedin: "https://www.linkedin.com/company/texiri", // [TO CONFIRM] personal profile URL
+  // From the old site's Team page.
+  bio: [
+    "Muttu began his career at SAP Labs India and has more than 20 years of global SAP consulting experience across India, the USA, Germany, Singapore and Australia, including years with leading consulting firms.",
+    "He founded Texiri to bring that depth to clients directly, and leads the design of the 2Klicks tools. He is also a co-founder of 10 Gravity Partners, holds multiple patents and copyrights, and is an advocate for sustainable development.",
+  ],
+  /** Content decision P6: permission to name these clients. */
+  clients: "He has led large-scale ERP implementations for Fortune 500 companies including Walmart, CVS, T-Systems, Singtel, Stockland and EQL.",
+  facts: [["Started at", "SAP Labs India"], ["Experience", "20+ years, 5 countries"], ["Focus", "RE-FX, S/4HANA migration, 2Klicks"], ["Also", "Co-founder, 10 Gravity Partners"]],
+  linkedin: "https://www.linkedin.com/company/texiri-solutions/", // [TO CONFIRM] personal profile URL (content decision L2)
 };
 
 export const CAREERS_EMAIL = "careers@texiri.com"; // [TO CONFIRM]
@@ -40,12 +55,12 @@ export const lifeAtTexiri = [
   { t: "Grow into AI", d: "Free access to the TEXIRI AI Community and its learning paths." },
 ];
 
-// [TO CONFIRM] timings
+// The four stages from the old site's careers page.
 export const hiringSteps = [
-  { title: "Apply", body: "CV and a few lines on what you want to work on." },
-  { title: "Conversation", body: "A 30-minute call with the hiring lead." },
-  { title: "Technical session", body: "A practical exercise based on real project work." },
-  { title: "Offer", body: "A decision and written offer, usually within a week." },
+  { title: "Submit your resume", body: "Your CV and a few lines on what you want to work on." },
+  { title: "Technical discussions", body: "Multiple rounds with our consultants, based on real project work." },
+  { title: "HR discussion", body: "Role, expectations, location and joining date." },
+  { title: "Onboarding", body: "A mentor, project context and access to 2Klicks from your first week." },
 ];
 
 export const shambhavi108 = {
@@ -91,5 +106,6 @@ export const S108_STEPS = [
     { id: "acceptJob", label: "If offered the job after training, are you willing to take it up?", kind: "choice", opts: ["Yes", "No"] },
     { id: "describe", label: "Describe yourself in a few words", kind: "text" },
     { id: "pledge", label: "I understand this programme requires consistent effort, and I commit to completing it sincerely.", kind: "check" },
+    { id: "consent", label: "I agree that Texiri Solutions may use the details in this form, including my answers about age, family and my career break, to assess my application, as described in the Privacy Policy.", kind: "check" },
   ] },
 ] as const;

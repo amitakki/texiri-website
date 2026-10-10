@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { Check } from "lucide-react";
-import { Button, ImagePlaceholder, Kicker, Placeholder, H2 } from "@/components/ui";
+import { Button, Kicker, Placeholder, H2, SiteImage } from "@/components/ui";
+import { images } from "@/lib/images";
 import { Breadcrumbs, NumberedGrid } from "@/components/sections";
 import { RoleList } from "@/components/RoleList";
 import { Shambhavi108 } from "@/components/Shambhavi108";
 import { CAREERS_EMAIL, hiringSteps, lifeAtTexiri } from "@/lib/company";
 
 export const metadata: Metadata = {
-  title: "Careers at Texiri Solutions: SAP and AI Jobs in Vijayapura and Navi Mumbai | Shambhavi 108",
+  title: "Careers: SAP & AI Jobs in Vijayapura",
   description: "Work on real SAP and AI projects with a founder-led team. Open roles in SAP consulting, data migration, integration and AI, plus the Shambhavi 108 programme.",
   alternates: { canonical: "/careers/" },
 };
@@ -17,7 +18,7 @@ export default function CareersPage() {
     <>
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Careers", href: "/careers/" }]} />
       <section aria-labelledby="hero-h" className="pb-[clamp(3.5rem,7vw,6rem)] pt-[clamp(2.5rem,6vw,5.5rem)]">
-        <div className="container-content">
+        <div className="hero-enter container-content">
           <Kicker>Careers</Kicker>
           <h1 id="hero-h" className="m-0 -ml-[0.04em] max-w-[15ch] text-display">Do real SAP and AI work from day one.</h1>
           <div className="mt-8 grid items-end gap-x-[clamp(2.5rem,5vw,5rem)] gap-y-6 lg:grid-cols-2">
@@ -41,7 +42,7 @@ export default function CareersPage() {
         <div className="container-content">
           <Kicker>Life at Texiri</Kicker><H2 id="life-h" className="max-w-[18ch]">Why people join, and why they stay</H2>
           <div className="mt-[clamp(2.5rem,5vw,4rem)] grid items-start gap-x-[clamp(2rem,4vw,4rem)] gap-y-8 lg:grid-cols-2">
-            <div className="grayscale"><ImagePlaceholder label="Team photo · Vijayapura office" ratio="aspect-[4/3]" /></div>
+            <SiteImage {...images.teamPhoto} ratio="aspect-[4/3]" />
             <ul className="m-0 grid list-none gap-x-6 p-0 sm:grid-cols-2">
               {lifeAtTexiri.map((l) => (
                 <li key={l.t} className="grid grid-cols-[28px_1fr] gap-3 border-t-2 border-ink py-6">
@@ -54,11 +55,11 @@ export default function CareersPage() {
         </div>
       </section>
 
-      <section aria-labelledby="proc-h" className="bg-navy-900 py-[clamp(3.5rem,7vw,6rem)] text-on-navy">
+      <section aria-labelledby="proc-h" className="surface-dark bg-navy-900 py-[clamp(3.5rem,7vw,6rem)] text-on-navy">
         <div className="container-content">
-          <div className="mb-4 flex flex-wrap items-center gap-3"><Kicker onNavy>How we hire</Kicker><Placeholder>TIMINGS TO CONFIRM</Placeholder></div>
+          <Kicker onNavy>How we hire</Kicker>
           <H2 id="proc-h" className="text-on-navy">Four steps, no surprises</H2>
-          <NumberedGrid items={hiringSteps} cols={4} />
+          <NumberedGrid items={hiringSteps} cols={4} onNavy />
         </div>
       </section>
     </>

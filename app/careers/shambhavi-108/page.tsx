@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Kicker, Placeholder, H2 } from "@/components/ui";
-import { Breadcrumbs, NumberedGrid } from "@/components/sections";
+import { images } from "@/lib/images";
+import { Kicker, Placeholder, H2, SiteImage } from "@/components/ui";
+import { Breadcrumbs } from "@/components/sections";
 import { Shambhavi108 } from "@/components/Shambhavi108";
 import { ShambhaviForm } from "@/components/ShambhaviForm";
 import { contact } from "@/lib/site";
-import { shambhavi108 } from "@/lib/company";
 
 export const metadata: Metadata = {
-  title: "Shambhavi 108: Restart Your Career in Software | Register",
+  title: "Shambhavi 108 Career Restart Programme",
   description: "Shambhavi 108 is a Texiri Solutions training programme for people restarting their career in software after a career break. Register in four short steps.",
   alternates: { canonical: "/careers/shambhavi-108/" },
 };
@@ -17,11 +17,14 @@ export default function Shambhavi108Page() {
     <>
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Careers", href: "/careers/" }, { label: "Shambhavi 108", href: "/careers/shambhavi-108/" }]} />
       <Shambhavi108 asPage />
-      <section aria-labelledby="about-h" className="py-section">
-        <div className="container-content">
-          <H2 id="about-h" className="max-w-[20ch]">A break in your CV is not the end of your career.</H2>
-          <NumberedGrid items={shambhavi108.blocks.map(([title, body]) => ({ title, body }))} cols={3} />
-          <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-muted"><Placeholder>TO CONFIRM</Placeholder>Training duration, format (online or Vijayapura), tracks and fees.</div>
+      <section aria-labelledby="about-h" className="py-[clamp(3rem,6vw,5rem)]">
+        <div className="container-content grid items-center gap-[clamp(2rem,4vw,4rem)] lg:grid-cols-2">
+          <div>
+            <H2 id="about-h" className="max-w-[20ch]">A break in your CV is not the end of your career.</H2>
+            {/* The three "who / what / after" blocks are in the hero above. Content decisions S1–S4. */}
+            <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-muted"><Placeholder>TO CONFIRM</Placeholder>Training duration, format (online or Vijayapura), tracks and fees.</div>
+          </div>
+          <SiteImage {...images.learners} ratio="aspect-[8/5]" />
         </div>
       </section>
       <section id="register" aria-labelledby="reg-h" className="scroll-mt-20 border-t-2 border-ink bg-surface py-section">

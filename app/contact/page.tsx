@@ -1,34 +1,33 @@
 import type { Metadata } from "next";
+import { images } from "@/lib/images";
 import Link from "next/link";
+import { Suspense } from "react";
 import { Mail, Phone } from "lucide-react";
-import { Kicker } from "@/components/ui";
+import { Kicker, SiteImage } from "@/components/ui";
 import { Breadcrumbs, NumberedGrid } from "@/components/sections";
+import { ContactEnquiryForm } from "@/components/ContactEnquiryForm";
 import { EnquiryForm } from "@/components/EnquiryForm";
-import { ENQUIRY_TYPES } from "@/lib/enquiry";
-import { contact } from "@/lib/site";
+import { DEMO_HREF, contact, offices } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Contact Texiri Solutions: Talk to an SAP or AI Expert",
+  title: "Contact: Talk to an SAP or AI Expert",
   description: "Contact Texiri Solutions about SAP consulting, S/4HANA data migration, SAP integration, managed services, 2Klicks demos or AI Services. A senior consultant replies within one business day.",
   alternates: { canonical: "/contact/" },
 };
 
-const TYPE_PARAM: Record<string, (typeof ENQUIRY_TYPES)[number]> = { ai: "AI Services", "2klicks": "2Klicks demo", migration: "S/4HANA data migration", partner: "Partnership" };
-const others = [["Jobs and Shambhavi 108", "/careers/"], ["Join the TEXIRI AI Community", "/ai-community/join/"], ["Book a 2Klicks demo", "/2klicks/create/#demo"]];
+const others = [["Jobs and Shambhavi 108", "/careers/"], ["Join the TEXIRI AI Community", "/ai-community/join/"], ["Book a 2Klicks demo", DEMO_HREF]];
 const next = [
   { title: "A senior reply", body: "Within one business day, the right practice lead reads your note and emails you directly." },
   { title: "A scoping call", body: "30 minutes on your landscape, timeline and constraints. An NDA first if you need one." },
   { title: "A clear proposal", body: "Scope, team and approach in writing, or an honest referral if we're not the fit." },
 ];
 
-export default async function ContactPage({ searchParams }: { searchParams: Promise<{ type?: string }> }) {
-  const { type } = await searchParams;
-  const defaultType = (type && TYPE_PARAM[type]) || "SAP implementation / consulting";
+export default function ContactPage() {
   return (
     <>
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Contact", href: "/contact/" }]} />
       <section aria-labelledby="hero-h" className="pb-[clamp(2.5rem,5vw,4rem)] pt-[clamp(2.5rem,6vw,5rem)]">
-        <div className="container-content">
+        <div className="hero-enter container-content">
           <Kicker>Contact</Kicker>
           <h1 id="hero-h" className="m-0 -ml-[0.04em] max-w-[14ch] text-display">Tell us what you&apos;re working on.</h1>
           <p className="mt-6 max-w-[52ch] text-lead text-muted">A senior consultant reads every enquiry and replies within one business day. No sales sequence, no call centre.</p>
@@ -38,11 +37,11 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
         <div className="container-content grid gap-x-[clamp(2.5rem,5vw,5rem)] lg:grid-cols-2">
           <div className="py-[clamp(2rem,4vw,3.5rem)]">
             <h2 id="form-h" className="mb-6 mt-0 text-[clamp(1.5rem,2.6vw,2rem)]">Send an enquiry</h2>
-            {/* Routing by enquiry type happens in app/actions/enquiry.ts once the CRM is chosen */}
-            <EnquiryForm defaultType={defaultType} headingId="form-h" />
+            {/* ?type= (e.g. /contact/?type=ai) preselects the enquiry type on the client, keeping this page static */}
+            <Suspense fallback={<EnquiryForm headingId="form-h" />}><ContactEnquiryForm headingId="form-h" /></Suspense>
           </div>
           <aside aria-label="Contact details" className="flex flex-col gap-8 py-[clamp(2rem,4vw,3.5rem)]">
-            <div className="flex flex-col gap-3 border-t-4 border-accent bg-navy-900 p-6 text-on-navy">
+            <div className="surface-dark flex flex-col gap-3 border-t-4 border-accent bg-navy-900 p-6 text-on-navy">
               <span className="text-xs font-semibold uppercase tracking-[0.1em] text-accent">Direct</span>
               <a href={`tel:${contact.phone.replace(/\s/g, "")}`} className="flex min-h-11 items-center gap-2.5 text-[22px] font-extrabold text-on-navy no-underline hover:text-accent"><Phone aria-hidden className="size-5" />{contact.phoneDisplay}</a>
               <a href={`mailto:${contact.email}`} className="flex min-h-11 items-center gap-2.5 text-[22px] font-extrabold text-on-navy no-underline hover:text-accent"><Mail aria-hidden className="size-5" />{contact.email}</a>
@@ -50,9 +49,14 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
             </div>
             <div>
               <h2 className="mb-3 mt-0 text-kicker font-semibold uppercase tracking-[0.1em] text-muted">Offices</h2>
+              <SiteImage {...images.office} ratio="aspect-[2/1]" className="mb-4" sizes="(min-width: 1024px) 40vw, 100vw" />
               <div className="grid gap-4 sm:grid-cols-2">
-                <address className="border-t-2 border-ink pt-3 not-italic"><strong className="text-lg">Vijayapura (HQ)</strong><div className="text-[15px] text-muted">Karnataka, India</div><div className="mt-1 text-sm text-muted">[Full postal address]</div></address>
-                <address className="border-t-2 border-ink pt-3 not-italic"><strong className="text-lg">Navi Mumbai</strong><div className="text-[15px] text-muted">Maharashtra, India</div><div className="mt-1 text-sm text-muted">[Full postal address]</div></address>
+                {offices.map((o) => (
+                  <address key={o.name} className="border-t-2 border-ink pt-3 not-italic">
+                    <strong className="text-lg">{o.name}</strong>
+                    <div className="mt-1 text-[15px] text-muted">{o.street.map((line) => <div key={line}>{line}</div>)}{o.locality}, {o.region} {o.postalCode}<div>India</div></div>
+                  </address>
+                ))}
               </div>
             </div>
             <div>
