@@ -23,7 +23,6 @@ const community = { label: "AI Community", href: "/ai-community/" };
 const industries = { label: "Industries", href: "/industries/" };
 const cases = { label: "Case Studies", href: "/case-studies/" };
 const insights = { label: "Insights", href: "/insights/" };
-const legal = { label: "Legal", href: "/legal/privacy/" };
 
 const sapCta = { label: "Talk to an SAP expert", href: "/contact/" };
 const aiCta = { label: "Talk to an AI expert", href: "/contact/?type=ai" };
@@ -77,10 +76,6 @@ function article(slug: string, cat: string, title: string): [string, InterimPage
   const href = `/insights/${slug}/`;
   return [href, { title, kicker: cat, lead: "This article is being written.", vertical: cat === "AI" ? "ai" : "sap", crumbs: [home, insights, { label: title, href }], related: insightRelated.filter((r) => r.href !== href) }];
 }
-function legalPage(slug: string, title: string): [string, InterimPage] {
-  const href = `/legal/${slug}/`;
-  return [href, { title, kicker: "Legal", lead: `Our ${title.toLowerCase()} is being finalised. For any questions in the meantime, email info@texiri.com.`, crumbs: [home, { ...legal, label: title, href }] }];
-}
 
 export const interimPages: Record<string, InterimPage> = Object.fromEntries([
   sapService("consulting", "SAP Consulting", "Implementation, functional and technical consulting for teams that need SAP configured to how the business actually works.", [
@@ -125,8 +120,4 @@ export const interimPages: Record<string, InterimPage> = Object.fromEntries([
   article("ecc-2027-start-with-the-data", "S/4HANA & Migration", "ECC mainstream maintenance ends in 2027. Start with the data."),
   article("re-fx-after-go-live", "SAP", "RE-FX after go-live: keeping lease data clean"),
   article("first-ai-use-case", "AI", "Choosing your first AI use case in one day"),
-
-  legalPage("privacy", "Privacy Policy"),
-  legalPage("cookies", "Cookie Policy"),
-  legalPage("terms", "Terms of Use"),
 ]);
