@@ -9,7 +9,7 @@ import { primaryNav, verticalCta, verticalFor } from "@/lib/site";
 
 const accentBar = { sap: "border-accent", ai: "border-ai", community: "border-com" } as const;
 
-export function SiteHeader() {
+export function SiteHeader({ hidden = [] }: { hidden?: string[] }) {
   const pathname = usePathname();
   const vertical = verticalFor(pathname);
   const cta = verticalCta[vertical];
@@ -52,11 +52,12 @@ export function SiteHeader() {
     return () => { html.style.overflow = prev; };
   }, [drawer]);
 
-  const active = (href: string) =>
-    pathname.startsWith(href) ||
-    (href === "/ai-services/" && pathname.startsWith("/ai-community")) ||
-    (href === "/sap/" && pathname.startsWith("/2klicks"));
-  const bar = (item: (typeof primaryNav)[number]) => (active(item.href) ? accentBar[vertical === "community" && item.vertical === "ai" ? "community" : item.vertical ?? "sap"] : "border-transparent");
+  // Pages that are not ready (see lib/pages.ts) are dropped from the menus.
+  const nav = primaryNav
+    .filter((item) => !hidden.includes(item.href))
+    .map((item) => (item.mega ? { ...item, mega: { ...item.mega, links: item.mega.links.filter((l) => !hidden.includes(l.href)) } } : item));
+  const active = (item: (typeof primaryNav)[number]) => pathname.startsWith(item.match ?? item.href);
+  const bar = (item: (typeof primaryNav)[number]) => (active(item) ? accentBar[item.vertical ?? "sap"] : "border-transparent");
 
   return (
     <header ref={ref} className={`sticky top-0 z-50 border-b-2 border-rule transition-shadow duration-300 ${scrolled ? "shadow-[0_8px_24px_-12px_rgba(15,26,46,0.35)]" : ""} ${vertical === "community" ? "bg-com-bg" : "bg-ground"}`}>
@@ -68,7 +69,7 @@ export function SiteHeader() {
         </Link>
 
         <nav aria-label="Primary" className="ml-auto hidden h-18 items-stretch xl:flex">
-          {primaryNav.map((item) =>
+          {nav.map((item) =>
             item.mega ? (
               <button key={item.label} type="button" aria-expanded={open === item.label} aria-controls={open === item.label ? `mega-${item.vertical}` : undefined}
                 onClick={() => setOpen(open === item.label ? null : item.label)}
@@ -76,7 +77,7 @@ export function SiteHeader() {
                 {item.label}<ChevronDown aria-hidden className={`size-4 transition-transform duration-200 ${open === item.label ? "rotate-180" : ""}`} />
               </button>
             ) : (
-              <Link key={item.label} href={item.href} aria-current={active(item.href) ? "page" : undefined}
+              <Link key={item.label} href={item.href} aria-current={active(item) ? "page" : undefined}
                 className={`-mb-0.5 flex items-center whitespace-nowrap border-b-3 px-2.5 text-sm font-semibold no-underline ${bar(item)}`}>
                 {item.label}
               </Link>
@@ -93,7 +94,7 @@ export function SiteHeader() {
         </button>
       </div>
 
-      {primaryNav.filter((i) => i.mega && open === i.label).map((item) => (
+      {nav.filter((i) => i.mega && open === i.label).map((item) => (
         <div key={item.label} id={`mega-${item.vertical}`} role="region" aria-label={item.label} className="animate-drop absolute inset-x-0 top-full hidden border-b-2 border-rule bg-ground shadow-xl xl:block">
           <div className="container-content pt-6">
             <Link href={item.href} className="inline-flex min-h-11 items-center gap-2 font-extrabold no-underline">
@@ -119,7 +120,7 @@ export function SiteHeader() {
       {drawer && (
         <nav ref={drawerNav} id="mobile-nav" aria-label="Primary" className="animate-drop absolute inset-x-0 top-full max-h-[calc(100dvh-72px)] overflow-auto overscroll-contain border-b-2 border-rule bg-ground shadow-xl xl:hidden">
           <div className="container-content flex flex-col pb-6 pt-2">
-            {primaryNav.map((item) => item.mega ? (
+            {nav.map((item) => item.mega ? (
               <details key={item.label} className="group border-b border-hairline">
                 <summary className="flex min-h-13 items-center justify-between font-bold">{item.label}<ChevronDown aria-hidden className="size-4.5 transition-transform duration-200 group-open:rotate-180" /></summary>
                 <div className="flex flex-col pb-3 pl-4">

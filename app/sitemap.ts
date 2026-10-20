@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
+import { interimPages } from "@/lib/pages";
 import { SITE_URL } from "@/lib/site";
 
-// Dedicated pages only. Interim pages (app/[...slug]) are noindex and join the sitemap once they get real content.
+// Dedicated pages, plus interim pages (app/[...slug]) once they are marked `ready` in lib/pages.ts.
 const routes: { path: string; priority: number }[] = [
   { path: "/", priority: 1 },
   { path: "/sap/", priority: 0.9 },
@@ -21,5 +22,6 @@ const routes: { path: string; priority: number }[] = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return routes.map(({ path, priority }) => ({ url: `${SITE_URL}${path}`, changeFrequency: "monthly", priority }));
+  const ready = Object.entries(interimPages).filter(([, p]) => p.ready === true).map(([path]) => ({ path, priority: 0.5 }));
+  return [...routes, ...ready].map(({ path, priority }) => ({ url: `${SITE_URL}${path}`, changeFrequency: "monthly", priority }));
 }

@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { images } from "@/lib/images";
-import { Check } from "lucide-react";
+import { ClipboardCheck, EyeOff, FlaskConical, Globe, KeyRound, ShieldCheck } from "lucide-react";
 import { H2, Placeholder, Section, SiteImage } from "@/components/ui";
-import { Breadcrumbs, CTABand, FAQAccordion, StickyMobileCTA } from "@/components/sections";
+import { Breadcrumbs, CTABand, FAQAccordion } from "@/components/sections";
 import { AiReferenceArchitecture } from "@/components/diagrams";
+import { Track } from "@/components/visuals";
 
 export const metadata: Metadata = {
   title: "AI Services: Strategy, GenAI, ML & MLOps",
@@ -37,12 +38,12 @@ const uses = [
   { name: "Churn and risk prediction", problem: "Customers leave without warning.", approach: "Classification models with explainability", kpi: "Retention rate" },
 ];
 const controls = [
-  ["Data residency", "Workloads run in the region and tenancy you choose."],
-  ["No training on your data", "Client data is never used to train third-party foundation models."],
-  ["Access control", "Retrieval and outputs respect existing roles and permissions."],
-  ["Evaluation", "Accuracy, bias and drift tests before and after go-live."],
-  ["ISO/IEC 42001 alignment", "AI management practices mapped to the standard."],
-  ["EU AI Act & GDPR alignment", "Risk classification and documentation for each use case."],
+  { icon: Globe, t: "Data residency", d: "Workloads run in the region and tenancy you choose." },
+  { icon: EyeOff, t: "No training on your data", d: "Client data is never used to train third-party foundation models." },
+  { icon: KeyRound, t: "Access control", d: "Retrieval and outputs respect existing roles and permissions." },
+  { icon: FlaskConical, t: "Evaluation", d: "Accuracy, bias and drift tests before and after go-live." },
+  { icon: ClipboardCheck, t: "ISO/IEC 42001 alignment", d: "AI management practices mapped to the standard." },
+  { icon: ShieldCheck, t: "EU AI Act & GDPR alignment", d: "Risk classification and documentation for each use case." },
 ];
 const tech = ["Vertex AI", "Azure ML", "Databricks", "Amazon Bedrock", "GPT", "Llama", "Mistral", "MLflow", "Kubeflow", "TFX", "Airflow", "Spark", "Kafka", "Kubernetes"];
 const faqs = [
@@ -90,14 +91,18 @@ export default function AiServicesPage() {
       <Section id="engagement" labelledBy="eng-h" tone="surface" className="scroll-mt-18">
         <div className="mb-4 flex flex-wrap items-center gap-3"><AiKicker>Engagement model</AiKicker><Placeholder>DURATIONS TO CONFIRM</Placeholder></div>
         <H2 id="eng-h">Five steps from first workshop to production</H2>
-        <ol className="mt-[clamp(2.5rem,5vw,4rem)] grid list-none gap-4 p-0 sm:grid-cols-2 lg:grid-cols-5">
-          {steps.map((s, i) => (
-            <li key={s.name} className="flex flex-col border-t-4 border-ai bg-ground">
-              <div className="px-4 pb-3 pt-4"><span className="text-sm font-extrabold text-ai-ink">0{i + 1}</span><h3 className="my-1 text-[19px]">{s.name}</h3><span className="text-sm font-bold">{s.dur}</span></div>
-              <div className="flex-1 border-t border-hairline p-4"><span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-muted">Deliverables</span><ul className="m-0 mt-1.5 flex flex-col gap-1 pl-4 text-sm">{s.out.map((o) => <li key={o}>{o}</li>)}</ul></div>
-            </li>
-          ))}
-        </ol>
+        <div className="mt-[clamp(2.5rem,5vw,4rem)]">
+          <Track
+            label="AI engagement model: five steps"
+            rowFrom="lg"
+            tone="ai"
+            numbered
+            items={steps.map((s) => ({
+              label: s.name,
+              note: <><span className="block text-sm font-extrabold text-ink">{s.dur}</span><span className="mt-2 block text-[11px] font-semibold uppercase tracking-[0.08em]">Deliverables</span><ul className="m-0 mt-1.5 flex flex-col gap-1 pl-4 text-sm">{s.out.map((o) => <li key={o}>{o}</li>)}</ul></>,
+            }))}
+          />
+        </div>
       </Section>
 
       <Section id="capabilities" labelledBy="cap-h" className="scroll-mt-18">
@@ -142,15 +147,17 @@ export default function AiServicesPage() {
       </section>
 
       <Section id="governance" labelledBy="sec-h" className="scroll-mt-18">
-        <AiKicker>Security &amp; governance</AiKicker>
+        <div className="mb-4 flex flex-wrap items-center gap-3"><AiKicker>Security &amp; governance</AiKicker><Placeholder>CLAIMS TO CONFIRM</Placeholder></div>
         <H2 id="sec-h" className="mb-[clamp(2.5rem,5vw,4rem)]">Controls your risk team will ask for</H2>
         <ul className="m-0 grid list-none gap-x-8 p-0 md:grid-cols-2 lg:grid-cols-3">
-          {controls.map(([t, d]) => (
+          {controls.map(({ icon: Icon, t, d }) => {
+            return (
             <li key={t} className="grid grid-cols-[28px_1fr] gap-3 border-t-2 border-ink py-6">
-              <Check aria-hidden className="mt-0.5 size-5.5 text-ai-ink" />
+              <Icon aria-hidden className="mt-0.5 size-6 text-ai-ink" />
               <div><h3 className="mb-1 text-[19px]">{t}</h3><p className="m-0 text-[15px] text-muted">{d}</p></div>
             </li>
-          ))}
+            );
+          })}
         </ul>
       </Section>
 
@@ -163,7 +170,6 @@ export default function AiServicesPage() {
 
       <FAQAccordion id="faq-h" title="Questions buyers ask us" faqs={faqs} />
       <CTABand vertical="ai" title="One day with your team. A ranked list of AI use cases worth piloting." note="An AI lead replies within one business day." primary={{ label: "Request an AI readiness workshop", href: "/contact/?type=ai" }} />
-      <StickyMobileCTA vertical="ai" label="Request an AI readiness workshop" href="/contact/?type=ai" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
     </>
   );

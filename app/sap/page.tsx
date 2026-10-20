@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { images } from "@/lib/images";
 import Link from "next/link";
-import { Button, Kicker, SiteImage } from "@/components/ui";
-import { Breadcrumbs, CTABand, FAQAccordion, StickyMobileCTA, TestimonialCard } from "@/components/sections";
+import { Button, Kicker } from "@/components/ui";
+import { LifecycleRail } from "@/components/visuals";
+import { Breadcrumbs, CTABand, FAQAccordion, TestimonialCard } from "@/components/sections";
 import { testimonials } from "@/lib/company";
+import { isLive } from "@/lib/pages";
 import { DEMO_HREF } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -41,7 +42,7 @@ export default function SapServicesPage() {
       </section>
 
       <div className="container-content pb-[clamp(2.5rem,5vw,4rem)]">
-        <SiteImage {...images.consultingTeam} ratio="aspect-[4/3] md:aspect-[2/1]" priority sizes="(min-width: 1280px) 1280px, 100vw" />
+        <LifecycleRail wide />
       </div>
 
       <section aria-label="Service index" className="border-t-2 border-ink">
@@ -66,7 +67,7 @@ export default function SapServicesPage() {
                     <p className="m-0 text-on-navy-muted">Real-estate objects, lease contracts and conditions, configured, migrated with 2Klicks and maintained through portfolio changes with 2Klicks Update.</p>
                   </div>
                 )}
-                <Link href={s.href} className="font-extrabold">{s.t} →</Link>
+                {isLive(s.href) && <Link href={s.href} className="font-extrabold">{s.t} →</Link>}
               </div>
             </article>
           ))}
@@ -76,7 +77,7 @@ export default function SapServicesPage() {
       <section aria-labelledby="k-h" className="surface-dark bg-navy-900 text-on-navy">
         <Link href="/2klicks/" className="container-content grid items-end gap-x-8 gap-y-6 py-[clamp(3rem,6vw,5rem)] text-on-navy no-underline hover:text-on-navy md:grid-cols-2">
           <div><Kicker onNavy>Our SAP tools</Kicker><h2 id="k-h" className="m-0 max-w-[20ch] text-[clamp(1.75rem,3.4vw,2.75rem)] leading-[1.08]">2Klicks Create and 2Klicks Update</h2></div>
-          <div><p className="m-0 max-w-[46ch] text-[17px] text-on-navy-muted">Download a template, enter or modify data, upload. Migration programs on day 1, and mass updates without new code.</p><span className="mt-4 inline-block font-extrabold text-accent">Explore 2Klicks →</span></div>
+          <div><p className="m-0 max-w-[46ch] text-[17px] text-on-navy-muted">Template-based tools for SAP data loads and mass updates, without new code.</p><span className="mt-4 inline-block font-extrabold text-accent">Explore 2Klicks →</span></div>
         </Link>
       </section>
 
@@ -89,7 +90,6 @@ export default function SapServicesPage() {
 
       <FAQAccordion id="faq-h" title="Working with Texiri" faqs={faqs} />
       <CTABand title="Tell us where your SAP landscape is today." note="A senior SAP consultant replies within one business day." primary={{ label: "Talk to an SAP expert", href: "/contact/" }} />
-      <StickyMobileCTA label="Talk to an SAP expert" href="/contact/" />
     </>
   );
 }

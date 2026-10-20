@@ -5,6 +5,9 @@ Work through this list before pointing www.texiri.com at the new site. Tick each
 ## 1. Content and legal
 - [ ] Every row in [content-decisions.md](content-decisions.md) is `Done` or `Dropped`.
 - [ ] `npm run placeholders -- --strict` passes (no `TO VERIFY`, `TO CONFIRM`, `[X]` or `<Placeholder>` left in the code).
+- [ ] Production (`NEXT_PUBLIC_SITE_ENV=production`) hides every page not marked `ready` in `lib/pages.ts` from menus, the footer, home-page cards and diagram links. Do not set `NEXT_PUBLIC_SHOW_UNFINISHED=true` on Production. The variable is read at build time, so redeploy after changing it. Mark each page `ready: true` as its real content goes in. Open the site and confirm no menu item leads to a "being written" page.
+- [ ] The CI "Placeholder gate" passes on the `launch` branch (merge the release candidate there first).
+- [ ] The cartoon placeholder illustrations are replaced with real photos or screenshots (see [visual-asset-brief.md](visual-asset-brief.md)).
 - [ ] A lawyer has reviewed the Privacy Policy, Cookie Policy and Terms, and the "Draft" badges are removed.
 - [ ] The grievance officer and retention periods are filled in on the Privacy Policy.
 

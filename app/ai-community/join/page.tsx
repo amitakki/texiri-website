@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function JoinPage() {
   return (
     <div className="bg-com-bg">
-      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "AI Services", href: "/ai-services/" }, { label: "AI Community", href: "/ai-community/" }, { label: "Join", href: "/ai-community/join/" }]} />
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "AI Community", href: "/ai-community/" }, { label: "Join", href: "/ai-community/join/" }]} />
       <section aria-labelledby="hero-h" className="pb-[clamp(4rem,8vw,7rem)] pt-[clamp(2rem,5vw,4rem)]">
         <div className="container-content grid items-start gap-[clamp(2rem,5vw,4.5rem)] lg:grid-cols-[2fr_3fr]">
           <div className="hero-enter flex flex-col gap-6">

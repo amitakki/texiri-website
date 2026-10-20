@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Button, H2, Kicker, Placeholder, Section, SiteImage } from "@/components/ui";
 import { images } from "@/lib/images";
-import { Breadcrumbs, FAQAccordion, NumberedGrid, StickyMobileCTA } from "@/components/sections";
+import { Breadcrumbs, FAQAccordion, NumberedGrid } from "@/components/sections";
 import { EnquiryForm } from "@/components/EnquiryForm";
 
 export const metadata: Metadata = {
@@ -125,7 +125,6 @@ export default function TwoKlicksCreatePage() {
           <Link href="/sap/data-migration/" className="flex flex-col gap-2 border-on-navy/20 py-8 text-on-navy no-underline hover:text-accent md:border-l md:pl-8"><span className="text-xs font-semibold uppercase tracking-[0.1em] text-on-navy-muted">The service around it</span><h2 className="m-0 text-[26px] text-inherit">S/4HANA Data Migration &amp; MDG →</h2></Link>
         </div>
       </section>
-      <StickyMobileCTA label="Request a 2Klicks demo" href="#demo" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
     </>
   );

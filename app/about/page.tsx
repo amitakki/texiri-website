@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { images } from "@/lib/images";
 import Link from "next/link";
 import { Button, Kicker, Placeholder, H2, SiteImage } from "@/components/ui";
+import { ShieldCheck, UserCheck, Wrench, LifeBuoy } from "lucide-react";
 import { Breadcrumbs, CTABand, CredibilityStrip, NumberedGrid } from "@/components/sections";
+import { DeliveryNetwork, FitDiagram } from "@/components/visuals";
 import { LeadershipSection } from "@/components/LeadershipSection";
 import { principles } from "@/lib/company";
 import { offices } from "@/lib/site";
@@ -13,11 +15,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/about/" },
 };
 
-const verticals = [
-  { t: "SAP Services", d: "Consulting, S/4HANA data migration and MDG, integration and managed services.", href: "/sap/", tone: "border-accent" },
-  { t: "2Klicks", d: "Our own tools for SAP data migration and mass updates through Excel.", href: "/2klicks/", tone: "border-accent" },
-  { t: "AI Services & Community", d: "Applied AI for enterprises, and an open community for anyone learning AI.", href: "/ai-services/", tone: "border-ai" },
-];
+const principleIcons = { people: UserCheck, tools: Wrench, verify: ShieldCheck, support: LifeBuoy };
+const deliveryCountries = ["India", "USA", "Germany", "Singapore", "Australia"];
 
 export default function AboutPage() {
   return (
@@ -51,18 +50,12 @@ export default function AboutPage() {
         <div className="container-content">
           <Kicker onNavy>What we do</Kicker>
           <H2 id="what-h" className="text-on-navy">SAP first. Tools and AI where they help.</H2>
-          <div className="mt-[clamp(2.5rem,5vw,4rem)] grid gap-6 md:grid-cols-3">
-            {verticals.map((v) => (
-              <Link key={v.t} href={v.href} className={`flex flex-col gap-2 border-t-4 ${v.tone} pt-4 text-on-navy no-underline hover:text-accent`}>
-                <span className="text-2xl font-extrabold">{v.t}</span><span className="text-on-navy-muted">{v.d}</span>
-              </Link>
-            ))}
-          </div>
+          <div className="mt-[clamp(2.5rem,5vw,4rem)] max-w-3xl"><FitDiagram /></div>
         </div>
       </section>
 
       <section aria-labelledby="how-h" className="py-section">
-        <div className="container-content"><Kicker>How we work</Kicker><H2 id="how-h">Four commitments</H2><NumberedGrid items={principles} cols={4} /></div>
+        <div className="container-content"><Kicker>How we work</Kicker><H2 id="how-h">Four commitments</H2><NumberedGrid items={principles.map((p) => ({ ...p, icon: principleIcons[p.icon] }))} cols={4} /></div>
       </section>
 
       <LeadershipSection />
@@ -70,15 +63,9 @@ export default function AboutPage() {
       <section aria-labelledby="off-h" className="bg-surface py-[clamp(4rem,9vw,7rem)]">
         <div className="container-content">
           <Kicker>Where we are</Kicker><H2 id="off-h">Two offices, five delivery countries</H2>
-          <div className="mt-[clamp(2.5rem,5vw,4rem)] grid gap-6 md:grid-cols-3">
-            {offices.map((o) => (
-              <address key={o.name} className={`border-t-4 pt-4 not-italic ${o.hq ? "border-accent" : "border-ink"}`}>
-                <span className="text-xs font-semibold uppercase tracking-[0.1em] text-muted">{o.label}</span>
-                <div className="mt-1 text-2xl font-extrabold">{o.locality}, {o.region}</div>
-                <div className="mt-2 text-[15px] text-muted">{o.street.map((line) => <div key={line}>{line}</div>)}{o.locality} {o.postalCode}</div>
-              </address>
-            ))}
-            <div className="border-t-4 border-ink pt-4"><span className="text-xs font-semibold uppercase tracking-[0.1em] text-muted">Delivery experience</span><div className="mt-1 text-2xl font-extrabold">India · USA · Germany · Singapore · Australia</div></div>
+          <div className="mt-[clamp(2.5rem,5vw,4rem)]">
+            <DeliveryNetwork offices={offices.map((o) => ({ name: `${o.locality}, ${o.region}`, label: o.label }))} countries={deliveryCountries} />
+            <p className="mb-0 mt-6 text-[15px] text-muted">Full addresses and opening hours are on the <Link href="/contact/" className="font-bold">contact page</Link>.</p>
           </div>
         </div>
       </section>

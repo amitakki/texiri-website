@@ -74,14 +74,14 @@ export function EnquiryForm({ defaultType = "SAP implementation / consulting", h
         <input id="f-email" name="email" type="email" autoComplete="email" className={input} onBlur={(e) => setFreeMailHint(isFreeMail(e.target.value))} {...a("email")} />
       </Field>
       <Field id="f-company" text="Company *" error={errors.company}><input id="f-company" name="company" autoComplete="organization" className={input} {...a("company")} /></Field>
-      <Field id="f-role" text="Role *" error={errors.role}><input id="f-role" name="role" autoComplete="organization-title" className={input} {...a("role")} /></Field>
-      <Field id="f-type" text="Enquiry type"><select id="f-type" name="type" defaultValue={defaultType} key={defaultType} className={input}>{ENQUIRY_TYPES.map((t) => <option key={t}>{t}</option>)}</select></Field>
+      <Field id="f-role" text="Role (optional)" error={errors.role}><input id="f-role" name="role" autoComplete="organization-title" className={input} {...a("role")} /></Field>
+      <div className="sm:col-span-2"><Field id="f-type" text="Enquiry type"><select id="f-type" name="type" defaultValue={defaultType} key={defaultType} className={input}>{ENQUIRY_TYPES.map((t) => <option key={t}>{t}</option>)}</select></Field></div>
       <Field id="f-phone" text="Phone (optional)"><input id="f-phone" name="phone" type="tel" autoComplete="tel" className={input} /></Field>
       <div className="sm:col-span-2"><Field id="f-message" text="Message"><textarea id="f-message" name="message" rows={4} className={`${input} py-2`} /></Field></div>
       <div className="sm:col-span-2">
         <label className="grid cursor-pointer grid-cols-[24px_1fr] items-start gap-2.5 text-sm">
           <input id="f-consent" name="consent" type="checkbox" className="m-0 size-5.5 accent-navy-900" {...a("consent")} />
-          <span>I agree that Texiri Solutions may use these details to respond to my enquiry, as described in the <Link href="/legal/privacy/" className="font-bold underline">Privacy Policy</Link>. *</span>
+          <span>I agree that Texiri Solutions may use these details to respond to my enquiry, as described in the <Link href="/legal/privacy/" className="-my-3 inline-block py-3 font-bold underline">Privacy Policy</Link>. *</span>
         </label>
         <span id="f-consent-error" className={err}>{errors.consent}</span>
       </div>

@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { images } from "@/lib/images";
 import Link from "next/link";
+import { ClipboardCheck, DatabaseZap, PencilRuler, Repeat, Rocket } from "lucide-react";
+import { EccTimeline, Track } from "@/components/visuals";
 import { Button, H2, Kicker, Placeholder, Section, SiteImage } from "@/components/ui";
-import { Breadcrumbs, CheckList, CTABand, FAQAccordion, NumberedGrid, StickyMobileCTA, TestimonialCard } from "@/components/sections";
+import { Breadcrumbs, CheckList, CTABand, FAQAccordion, NumberedGrid, TestimonialCard } from "@/components/sections";
 import { testimonials } from "@/lib/company";
 import { DEMO_HREF } from "@/lib/site";
 
@@ -27,11 +29,11 @@ const caps = [
   { t: "Master Data Governance", d: "SAP MDG workflows and rules so quality holds after go-live." },
 ];
 const phases = [
-  { name: "Assess", out: ["Data audit report", "Object inventory", "Migration strategy"] },
-  { name: "Design", out: ["Mapping specifications", "Cleansing rules", "2Klicks templates configured"] },
-  { name: "Extract & cleanse", out: ["Extraction jobs", "Cleansed data sets", "Data-quality scorecard"] },
-  { name: "Mock loads", out: ["Mock-cycle reports", "Reconciliation sign-off", "Defect log"] },
-  { name: "Cutover & govern", out: ["Cutover runbook", "MDG rules live", "Hypercare"] },
+  { name: "Assess", icon: ClipboardCheck, out: ["Data audit report", "Object inventory", "Migration strategy"] },
+  { name: "Design", icon: PencilRuler, out: ["Mapping specifications", "Cleansing rules", "2Klicks templates configured"] },
+  { name: "Extract & cleanse", icon: DatabaseZap, out: ["Extraction jobs", "Cleansed data sets", "Data-quality scorecard"] },
+  { name: "Mock loads", icon: Repeat, repeats: true, out: ["Mock-cycle reports", "Reconciliation sign-off", "Defect log"] },
+  { name: "Cutover & govern", icon: Rocket, out: ["Cutover runbook", "MDG rules live", "Hypercare"] },
 ];
 const tech = ["2Klicks Create", "SAP Data Services", "Smart Data Integration", "Information Steward", "S/4HANA Migration Cockpit", "SAP MDG", "SQL tooling"];
 const faqs = [
@@ -47,13 +49,13 @@ export default function DataMigrationPage() {
     <>
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "SAP Services", href: "/sap/" }, { label: "S/4HANA Data Migration & MDG", href: "/sap/data-migration/" }]} />
       <section aria-labelledby="hero-h" className="pb-[clamp(3.5rem,7vw,6rem)] pt-[clamp(2.5rem,6vw,5.5rem)]">
-        <div className="container-content grid items-end gap-[clamp(2.5rem,5vw,5rem)] lg:grid-cols-2">
+        <div className="container-content grid items-start gap-[clamp(2.5rem,5vw,5rem)] lg:grid-cols-2">
           <div className="hero-enter">
             <Kicker>S/4HANA Data Migration &amp; MDG</Kicker>
             <h1 id="hero-h" className="m-0 -ml-[0.04em] max-w-[15ch] text-display">Move to S/4HANA with data the business signs off.</h1>
             <p className="mt-6 max-w-[52ch] text-lead text-muted">For SAP programme directors and data owners moving from ECC or legacy systems. We plan, extract, cleanse and load your data, then keep it governed with MDG.</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button href="/contact/?type=migration" arrow>Plan your migration with an architect</Button>
+              <Button href="/contact/?type=migration" arrow>Talk to a migration architect</Button>
               <Button href="/2klicks/create/" variant="secondary">See 2Klicks Create</Button>
             </div>
           </div>
@@ -67,13 +69,7 @@ export default function DataMigrationPage() {
       <Section labelledBy="now-h" tone="navy">
         <Kicker onNavy>Why it matters now</Kicker>
         <H2 id="now-h" className="text-on-navy">The ECC clock is running.</H2>
-        <ol className="mt-[clamp(2.5rem,5vw,4rem)] grid list-none p-0 md:grid-cols-3">
-          {[["Today", "Data assessment and cleansing can start now, on your current ECC system.", "border-accent"],
-            ["End of 2027", "SAP ECC 6.0 mainstream maintenance ends. SAP PI/PO 7.5 mainstream maintenance ends on the same date.", "border-on-navy/40"],
-            ["2030", "Optional extended maintenance for ECC ends, at additional cost.", "border-on-navy/20"]].map(([t, d, b]) => (
-            <li key={t} className={`border-t-4 pr-6 pt-4 ${b}`}><div className="text-[clamp(1.75rem,3vw,2.5rem)] font-extrabold">{t}</div><p className="mb-0 mt-1.5 text-on-navy-muted">{d}</p></li>
-          ))}
-        </ol>
+        <div className="mt-[clamp(2.5rem,5vw,4rem)]"><EccTimeline /></div>
       </Section>
 
       <Section labelledBy="sol-h">
@@ -87,14 +83,19 @@ export default function DataMigrationPage() {
       <Section labelledBy="app-h" tone="surface">
         <Kicker>Approach</Kicker>
         <H2 id="app-h">Five phases, each with something you can sign</H2>
-        <ol className="mt-[clamp(2.5rem,5vw,4rem)] grid list-none gap-4 p-0 sm:grid-cols-2 lg:grid-cols-5">
-          {phases.map((p, i) => (
-            <li key={p.name} className="flex flex-col border-t-4 border-ink bg-ground">
-              <div className="px-4 pb-3 pt-4"><span className="text-sm font-extrabold text-accent-700">{String(i + 1).padStart(2, "0")}</span><h3 className="m-0 mt-1 text-xl">{p.name}</h3></div>
-              <div className="flex-1 border-t border-hairline p-4"><span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-muted">Deliverables</span><ul className="m-0 mt-1.5 flex flex-col gap-1 pl-4 text-sm">{p.out.map((o) => <li key={o}>{o}</li>)}</ul></div>
-            </li>
-          ))}
-        </ol>
+        <div className="mt-[clamp(2.5rem,5vw,4rem)]">
+          <Track
+            label="Migration approach: five phases"
+            rowFrom="lg"
+            numbered
+            items={phases.map((p) => ({
+              label: p.name,
+              icon: p.icon,
+              badge: p.repeats ? "Repeats until reconciled" : undefined,
+              note: <><span className="text-[11px] font-semibold uppercase tracking-[0.08em]">Deliverables</span><ul className="m-0 mt-1.5 flex flex-col gap-1 pl-4 text-sm">{p.out.map((o) => <li key={o}>{o}</li>)}</ul></>,
+            }))}
+          />
+        </div>
       </Section>
 
       <Section labelledBy="tech-h">
@@ -147,7 +148,6 @@ export default function DataMigrationPage() {
 
       <FAQAccordion id="faq-h" title="Migration questions" faqs={faqs} />
       <CTABand title="Get a data-readiness view of your S/4HANA migration." note="A senior consultant replies within one business day." primary={{ label: "Talk to a migration architect", href: "/contact/?type=migration" }} secondary={{ label: "Request a 2Klicks demo", href: DEMO_HREF }} />
-      <StickyMobileCTA label="Talk to a migration architect" href="/contact/?type=migration" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
     </>
   );

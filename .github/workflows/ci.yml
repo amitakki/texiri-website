@@ -22,8 +22,11 @@ jobs:
       - run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
-      - name: Placeholder report (informational until launch; add --strict then)
+      - name: Placeholder report (informational)
         run: npm run placeholders
+      - name: Placeholder gate (launch branch only)
+        if: github.ref == 'refs/heads/launch' || github.base_ref == 'launch'
+        run: npm run placeholders -- --strict
       - uses: actions/upload-artifact@v4
         if: failure()
         with:

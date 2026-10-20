@@ -7,6 +7,7 @@ This file lists every piece of website content that still needs a decision. Each
 2. When a value is agreed, write it in the **Decision** column and set the status to `Agreed`.
 3. A developer updates the code and removes the badge, then sets the status to `Done`.
 4. Before launch, run `npm run placeholders` to list any badges still in the code.
+5. When a stub page gets its real content, mark it `ready: true` in `lib/pages.ts`. On the production deployment only ready pages appear in menus, the footer, home-page cards and diagram links, and only ready pages are indexed and listed in the sitemap.
 
 **Statuses:** `Open` · `Agreed` (value decided, not yet in code) · `Done` · `Dropped` (content removed instead)
 
@@ -18,8 +19,8 @@ This file lists every piece of website content that still needs a decision. Each
 | --- | --- | --- | --- | --- | --- | --- |
 | C1 | Footer (every page), Organization data for search engines | Company Identification Number (CIN) | Not published | Founder / finance | | Open |
 | C2 | About → "Our story" | Year founded | Not published | Founder | | Open |
-| C3 | Footer, Contact, About | Confirm the legal name **Texiri Solutions Private Limited** | Texiri Solutions Private Limited | Founder | | Open |
-| C4 | Contact, About, footer | Confirm both office addresses are still current | Vijayapura: 1st Floor, Toravi building, Anand Nagar, Ashram Road, Opp. BLDE Engineering College, Vijayapura, Karnataka 586103. Navi Mumbai: CG Parivar House, EL-86, T.T.C Industrial Area, MIDC Mahape, Navi Mumbai, Maharashtra 400701 | Founder | | Open |
+| C3 | Footer, Legal pages, Organization data | Confirm the legal name | Texiri Solutions Private Limited | Founder | Texiri Solutions Private Limited | Done |
+| C4 | Contact, footer (About shows only the two towns) | Confirm both office addresses are still current | Vijayapura: 1st Floor, Toravi building, Anand Nagar, Ashram Road, Opp. BLDE Engineering College, Vijayapura, Karnataka 586103. Navi Mumbai: CG Parivar House, EL-86, T.T.C Industrial Area, MIDC Mahape, Navi Mumbai, Maharashtra 400701 | Founder | | Open |
 | C5 | Footer, Contact | Confirm the phone, email and hours | +91 79753 05499 · info@texiri.com · Mon–Fri 9am–7pm IST | Founder | | Open |
 | C6 | Credibility strip (Home, About), About story | Are the 2Klicks tools **patented**? If so, the patent numbers or "patent pending". The old site only says the founder "holds multiple patents and copyrights". | Not stated for 2Klicks | Founder | | Open |
 
@@ -59,10 +60,10 @@ This file lists every piece of website content that still needs a decision. Each
 
 | ID | Where it appears | What's needed | Old-site value | Owner | Decision | Status |
 | --- | --- | --- | --- | --- | --- | --- |
-| M1 | Home → Community band, Community hero | Current member count | None | Community lead | | Open |
+| M1 | Community hero (the Home page no longer shows it) | Current member count | None | Community lead | | Open |
 | M2 | Community FAQ | Is joining free? Any fees for events or workshops? | None | Community lead | | Open |
 | M3 | Community FAQ, events | Where sessions happen (venue in Vijayapura; online platform) | "Vijayapura AI Club" | Community lead | | Open |
-| M4 | Home, Community → events | The next 3 events: title, date and time, format, level | None | Community lead | | Open |
+| M4 | Community → events (the Home page no longer shows an event) | The next 3 events: title, date and time, format, level | None | Community lead | | Open |
 | M5 | Community → learning paths | Confirm the curriculum for the Beginner / Intermediate / Advanced paths | None | Community lead | | Open |
 | M6 | Community → projects | Up to 3 member projects to showcase (title, member name with consent, screenshot) | None | Community lead | | Open |
 | M7 | Community hero | Photos (workshop, project demo) with consent from the people shown | None | Community lead | | Open |
@@ -104,7 +105,7 @@ Every image below is currently an on-brand placeholder illustration with a "PLAC
 
 | ID | Where it appears | Image needed | Current placeholder | Owner | Decision | Status |
 | --- | --- | --- | --- | --- | --- | --- |
-| IMG1 | SAP Services, interim SAP pages | SAP consultants working with a client team | `consulting-team.svg` | Marketing | | Open |
+| IMG1 | Not shown today: the SAP pages use a lifecycle diagram. Kept as a fallback for interim pages | SAP consultants working with a client team (optional) | `consulting-team.svg` | Marketing | | Open |
 | IMG2 | Careers → Life at Texiri | Team photo, Vijayapura office | `team-photo.svg` | HR | | Open |
 | IMG3 | About → Our story, Contact → Offices | Photo of the Vijayapura office | `office.svg` | Founder | | Open |
 | IMG4 | S/4HANA Data Migration, case studies | Migration diagram or project photo | `data-migration.svg` | Delivery lead | | Open |
@@ -114,7 +115,7 @@ Every image below is currently an on-brand placeholder illustration with a "PLAC
 | IMG8 | Community hero, Join page, learning paths | Member presenting a project | `community-demo.svg` | Community lead | | Open |
 | IMG9 | Community → Built by members | Three member project screenshots (same as M6) | `project-vision.svg`, `project-chatbot.svg`, `project-forecast.svg` | Community lead | | Open |
 | IMG10 | Home → Latest thinking, Insights pages | Article cover images (same as I3) | `article-ecc-2027.svg`, `article-refx.svg`, `article-first-ai.svg` | Marketing | | Open |
-| IMG11 | Shambhavi 108 page | Photo of programme learners | `learners.svg` | Programme lead | | Open |
+| IMG11 | Shambhavi 108 page, Community page | Photo of programme learners | `learners.svg` | Programme lead | | Open |
 
 ## 10. Insights and industries
 
@@ -123,3 +124,17 @@ Every image below is currently an on-brand placeholder illustration with a "PLAC
 | I1 | `/insights/*` | The three launch articles (ECC 2027, RE-FX after go-live, first AI use case) | None | Marketing / authors | | Open |
 | I2 | `/industries/*` | Content for the Real Estate, Utilities and Retail pages | Old site mentions "4 major industries" | Marketing | | Open |
 | I3 | Home → insights cards | Article illustrations | None | Marketing | | Open |
+
+## 11. Claims and structure (added after the UX review)
+
+| ID | Where it appears | What's needed | Old-site value | Owner | Decision | Status |
+| --- | --- | --- | --- | --- | --- | --- |
+| X1 | Home 2Klicks band, 2Klicks Create, Data Migration | Evidence for "skips at least eight programs per object" (what the eight are, and whether it holds for every object) | None | 2Klicks product lead | | Open |
+| X2 | Contact, every closing banner | Confirm "a senior consultant replies within one business day" is a commitment the team can keep | None | Founder | | Open |
+| X3 | 2Klicks Create demo form | Confirm the demo is a 45-minute session | None | 2Klicks product lead | | Open |
+| X4 | AI Services → "Controls your risk team will ask for", FAQ | Confirm each governance claim: client data never used to train third-party models; EU AI Act, ISO/IEC 42001 and GDPR alignment; region-pinned deployment | None | AI practice lead / legal | | Open |
+| X5 | Home, SAP, Data Migration → testimonials | Permission to add a name, job title or company logo to each testimonial. The three quotes are now used once each (Home: retail, SAP: real estate, Data Migration: utility) | Published without names | Founder | | Open |
+| X6 | Main menu, footer, About | Confirm 2Klicks gets its own menu item and that the AI Community sits beside, not under, AI Services | Community was a page under AI | Founder / community lead | | Open |
+| X7 | Visual asset brief | Who supplies each photo or screenshot, and by when (see `visual-asset-brief.md`) | None | Marketing | | Open |
+| X8 | `/sap/consulting/`, `/sap/integration/`, `/sap/managed-services/` | Content for the three SAP service pages (now short interim pages) | None | Founder / delivery lead | | Open |
+| X9 | `/2klicks/`, `/ai-community/events/`, `/ai-community/learning-paths/` | Content for the 2Klicks overview, Community events and Community learning-path pages (now short interim pages) | None | 2Klicks product lead / community lead | | Open |

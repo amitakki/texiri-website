@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Check } from "lucide-react";
 import { Button, Kicker, Placeholder, H2, SiteImage } from "@/components/ui";
 import { images } from "@/lib/images";
-import { Breadcrumbs, NumberedGrid } from "@/components/sections";
+import { Breadcrumbs } from "@/components/sections";
+import { Track } from "@/components/visuals";
 import { RoleList } from "@/components/RoleList";
 import { Shambhavi108 } from "@/components/Shambhavi108";
 import { CAREERS_EMAIL, hiringSteps, lifeAtTexiri } from "@/lib/company";
@@ -59,7 +60,7 @@ export default function CareersPage() {
         <div className="container-content">
           <Kicker onNavy>How we hire</Kicker>
           <H2 id="proc-h" className="text-on-navy">Four steps, no surprises</H2>
-          <NumberedGrid items={hiringSteps} cols={4} onNavy />
+          <div className="mt-[clamp(2.5rem,5vw,4rem)]"><Track label="Hiring process: four steps" rowFrom="lg" onNavy numbered items={hiringSteps.map((s) => ({ label: s.title, note: s.body }))} /></div>
         </div>
       </section>
     </>

@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Button, Placeholder, SiteImage } from "@/components/ui";
-import { Breadcrumbs, CheckList, CTABand, Hero, StickyMobileCTA } from "@/components/sections";
+import { Breadcrumbs, CheckList, CTABand, Hero } from "@/components/sections";
+import { LifecycleRail } from "@/components/visuals";
 import { images } from "@/lib/images";
-import { interimPages } from "@/lib/pages";
+import { interimPages, isLive } from "@/lib/pages";
 
 // Only the routes in lib/pages.ts exist; anything else is a real 404.
 export const dynamicParams = false;
@@ -12,6 +13,8 @@ export const dynamicParams = false;
 type Props = { params: Promise<{ slug: string[] }> };
 
 const pathOf = (slug: string[]) => `/${slug.join("/")}/`;
+
+const sapStage: Record<string, 1 | 2 | 3 | 4> = { "/sap/consulting/": 1, "/sap/data-migration/": 2, "/sap/integration/": 3, "/sap/managed-services/": 4 };
 
 /** Stand-in hero image per section until each page gets its own. */
 function heroImage(href: string) {
@@ -34,14 +37,15 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const href = pathOf((await params).slug);
   const page = interimPages[href];
-  // Interim content stays out of search results until each page gets its real content.
-  return page ? { title: page.title, description: page.lead, alternates: { canonical: href }, robots: { index: false, follow: true } } : {};
+  // Interim content stays out of search results until the page is marked `ready` (real content in).
+  return page ? { title: page.title, description: page.lead, alternates: { canonical: href }, robots: { index: page.ready === true, follow: true } } : {};
 }
 
 export default async function InterimPage({ params }: Props) {
   const href = pathOf((await params).slug);
   const page = interimPages[href];
   if (!page) notFound();
+  const related = (page.related ?? []).filter((r) => isLive(r.href));
   const vertical = page.vertical === "ai" ? "ai" : "sap";
 
   return (
@@ -51,7 +55,7 @@ export default async function InterimPage({ params }: Props) {
         kicker={page.kicker}
         title={page.title}
         lead={page.lead}
-        aside={<SiteImage {...heroImage(href)} ratio="aspect-[4/3]" priority className={page.vertical === "community" ? "rounded-com" : ""} />}
+        aside={href.startsWith("/sap/") ? <LifecycleRail active={sapStage[href]} /> : <SiteImage {...heroImage(href)} ratio="aspect-[4/3]" priority className={page.vertical === "community" ? "rounded-com" : ""} />}
         actions={
           <>
             {page.cta && <Button href={page.cta.href} arrow data-track="cta_click" data-vertical={page.vertical ?? "sap"}>{page.cta.label}</Button>}
@@ -66,12 +70,12 @@ export default async function InterimPage({ params }: Props) {
         </section>
       )}
 
-      {page.related && page.related.length > 0 && (
+      {related.length > 0 && (
         <section aria-labelledby="related-h" className="border-t-2 border-ink">
           <div className="container-content py-[clamp(2.5rem,5vw,4rem)]">
             <h2 id="related-h" className="m-0 text-kicker font-semibold uppercase tracking-[0.1em] text-accent-700">Related</h2>
             <ul className="mt-6 grid list-none gap-x-8 p-0 md:grid-cols-2 lg:grid-cols-3">
-              {page.related.map((r) => (
+              {related.map((r) => (
                 <li key={r.href} className="border-t border-hairline py-4"><Link href={r.href} className="font-extrabold">{r.label} →</Link></li>
               ))}
             </ul>
@@ -80,12 +84,8 @@ export default async function InterimPage({ params }: Props) {
       )}
 
       {page.cta && page.vertical !== "community" && (
-        <>
-          <CTABand title="Tell us what you're working on." note="A senior consultant replies within one business day." primary={page.cta} vertical={vertical} />
-          <StickyMobileCTA label={page.cta.label} href={page.cta.href} vertical={vertical} />
-        </>
+        <CTABand title="Tell us what you're working on." note="A senior consultant replies within one business day." primary={page.cta} vertical={vertical} />
       )}
-      {page.cta && page.vertical === "community" && <StickyMobileCTA label={page.cta.label} href={page.cta.href} vertical="community" />}
     </>
   );
 }

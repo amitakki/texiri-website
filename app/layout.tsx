@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { Motion } from "@/components/Motion";
 import { SiteFooter } from "@/components/SiteFooter";
 import { isProd } from "@/lib/env";
+import { hiddenHrefs } from "@/lib/pages";
 import { METADATA_BASE, organizationJsonLd } from "@/lib/site";
 import "./globals.css";
 
@@ -27,7 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-GB" className={archivo.variable}>
       <body>
-        <SiteHeader />
+        <SiteHeader hidden={hiddenHrefs()} />
         <main id="main">{children}</main>
         <SiteFooter />
         <Motion />

@@ -1,9 +1,12 @@
 import Link from "next/link";
-import { Check, Plus } from "lucide-react";
+import { Award, Check, Globe, Plus, Rocket, type LucideIcon } from "lucide-react";
 import type { ReactNode } from "react";
 import { Button, H2, Kicker, Placeholder } from "./ui";
 import { credentials } from "@/lib/company";
 import { SITE_URL } from "@/lib/site";
+import { ResultBars } from "./visuals";
+
+const credentialIcons: Record<(typeof credentials)[number]["icon"], LucideIcon> = { founder: Rocket, experience: Award, countries: Globe, patent: Check };
 
 export const isUnconfirmed = (text: string) => /\[TO (CONFIRM|VERIFY)\]/.test(text);
 
@@ -21,7 +24,7 @@ export function Breadcrumbs({ items, tone = "light" }: { items: { label: string;
         {items.map((it, i) => (
           <li key={it.href} className="flex gap-2">
             {i < items.length - 1
-              ? <><Link href={it.href} className={navy ? "hover:text-ai" : undefined}>{it.label}</Link><span aria-hidden>/</span></>
+              ? <><Link href={it.href} className={`-my-3 py-3 ${navy ? "hover:text-ai" : ""}`}>{it.label}</Link><span aria-hidden>/</span></>
               : <span aria-current="page" className={`font-semibold ${navy ? "text-on-navy" : "text-ink"}`}>{it.label}</span>}
           </li>
         ))}
@@ -51,27 +54,34 @@ export function Hero({ kicker, title, lead, actions, aside, id = "hero-h" }:
 export function CredibilityStrip() {
   return (
     <section aria-label="Credentials" className="border-y-2 border-rule">
-      <div className="container-content grid sm:grid-cols-2 lg:grid-cols-4">
-        {credentials.map(({ t, d, verify }) => (
+      <div className="container-content grid grid-cols-2 lg:grid-cols-4">
+        {credentials.map(({ t, d, icon, verify }) => {
+          const Icon = credentialIcons[icon];
+          return (
           <div key={t} className="border-hairline py-6 pr-6 lg:border-r lg:last:border-r-0">
+            <Icon aria-hidden className="mb-3 size-6 text-accent-700" />
             <div className="text-lg font-extrabold">{t}</div>
             <div className="mt-1 text-sm text-muted">{d}</div>
             {verify && <div className="mt-2"><Placeholder>{verify}</Placeholder></div>}
           </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
 }
 
 /** Pass onNavy when the grid sits on a navy section, so numbers and body text keep their contrast. */
-export function NumberedGrid({ items, cols = 3, onNavy }: { items: { title: string; body: string }[]; cols?: 3 | 4 | 5; onNavy?: boolean }) {
+export function NumberedGrid({ items, cols = 3, onNavy }: { items: { title: string; body: string; icon?: LucideIcon }[]; cols?: 3 | 4 | 5; onNavy?: boolean }) {
   const c = { 3: "md:grid-cols-3", 4: "md:grid-cols-2 lg:grid-cols-4", 5: "md:grid-cols-3 lg:grid-cols-5" }[cols];
   return (
     <ol className={`mt-[clamp(2.5rem,5vw,4rem)] grid list-none gap-8 p-0 ${c}`}>
       {items.map((it, i) => (
         <li key={it.title} className="border-t-2 border-current pt-4">
-          <span className={`text-sm font-extrabold ${onNavy ? "text-accent" : "text-accent-700"}`}>{String(i + 1).padStart(2, "0")}</span>
+          <span className="flex items-center justify-between">
+            <span className={`text-sm font-extrabold ${onNavy ? "text-accent" : "text-accent-700"}`}>{String(i + 1).padStart(2, "0")}</span>
+            {it.icon && <it.icon aria-hidden className={`size-6 ${onNavy ? "text-accent" : "text-accent-700"}`} />}
+          </span>
           <h3 className="mb-2 mt-3 text-[22px]">{it.title}</h3>
           <p className={`m-0 text-base ${onNavy ? "text-on-navy-muted" : "text-muted"}`}>{it.body}</p>
         </li>
@@ -102,8 +112,9 @@ export function TestimonialCard({ quote, who }: { quote: string; who: string }) 
   );
 }
 
-export function CaseStudyCard({ sector, title, metric, metricLabel, href }:
-  { sector: string; title: string; metric: string; metricLabel: string; href: string }) {
+/** `bars` adds a before/after chart once real values exist; leave it out while the metric is a placeholder. */
+export function CaseStudyCard({ sector, title, metric, metricLabel, href, bars }:
+  { sector: string; title: string; metric: string; metricLabel: string; href: string; bars?: { before: number; after: number; unit: string } }) {
   return (
     <article className="flex flex-col gap-3 border-t-2 border-ink pt-4">
       <span className="text-xs font-semibold uppercase tracking-[0.1em] text-muted">{sector}</span>
@@ -112,6 +123,7 @@ export function CaseStudyCard({ sector, title, metric, metricLabel, href }:
         <span className="text-[40px] font-extrabold leading-none">{metric}</span>
         <span className="text-sm text-muted">{metricLabel}</span>
         <Placeholder />
+        {bars && <div className="w-full"><ResultBars {...bars} /></div>}
       </div>
       <Link href={href} className="flex min-h-11 items-center gap-2 font-extrabold no-underline">
         Read the case study<span className="sr-only">: {title}</span>
@@ -148,7 +160,7 @@ export function CTABand({ id = "contact", title, note, primary, secondary, verti
   return (
     <section id={id} aria-labelledby={`${id}-h`} className={`surface-bright ${vertical === "ai" ? "bg-ai" : "bg-accent"} py-[clamp(4rem,9vw,7.5rem)] text-navy-900`}>
       <div className="container-content">
-        <h2 id={`${id}-h`} className="m-0 max-w-[22ch] text-[clamp(2rem,4.6vw,3.75rem)] leading-[1.04] tracking-[-0.025em] text-navy-900">{title}</h2>
+        <h2 id={`${id}-h`} className="m-0 max-w-[22ch] text-[clamp(2rem,4.6vw,3.75rem)] leading-[1.04] tracking-[-0.018em] text-navy-900">{title}</h2>
         <div className="mt-8 flex flex-wrap gap-3">
           <Button href={primary.href} variant="navy" arrow data-track="cta_click">{primary.label}</Button>
           {secondary && <Button href={secondary.href} variant="outline-on-accent" data-track="cta_click">{secondary.label}</Button>}
@@ -159,17 +171,3 @@ export function CTABand({ id = "contact", title, note, primary, secondary, verti
   );
 }
 
-const stickyTone = {
-  sap: "bg-accent hover:bg-accent-600",
-  ai: "bg-ai hover:bg-ai-600",
-  community: "rounded-pill bg-com hover:bg-com-600",
-} as const;
-
-/** Context-specific sticky CTA on mobile only. 48px tall. */
-export function StickyMobileCTA({ label, href, vertical = "sap" }: { label: string; href: string; vertical?: keyof typeof stickyTone }) {
-  return (
-    <div className={`sticky bottom-0 z-40 grid border-t-2 border-rule px-4 py-2.5 md:hidden ${vertical === "community" ? "bg-com-bg" : "bg-ground"}`}>
-      <Link href={href} data-track="cta_click" data-vertical={vertical} className={`flex min-h-12 items-center px-5 font-extrabold text-navy-900 no-underline hover:text-navy-900 ${stickyTone[vertical]}`}>{label}</Link>
-    </div>
-  );
-}

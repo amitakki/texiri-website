@@ -1,18 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Instagram, Linkedin } from "lucide-react";
+import { FooterColumns } from "./FooterColumns";
+import { isLive } from "@/lib/pages";
 import { DEMO_HREF, contact, offices } from "@/lib/site";
 
 const cols: { title: string; links: [string, string][] }[] = [
   { title: "SAP Services", links: [["Overview", "/sap/"], ["SAP Consulting", "/sap/consulting/"], ["S/4HANA Data Migration", "/sap/data-migration/"], ["SAP Integration", "/sap/integration/"], ["Managed Services", "/sap/managed-services/"]] },
   { title: "2Klicks", links: [["2Klicks Create", "/2klicks/create/"], ["2Klicks Update", "/2klicks/update/"], ["Request a demo", DEMO_HREF]] },
   { title: "AI Services", links: [["Overview", "/ai-services/"], ["AI Strategy & Readiness", "/ai-services/strategy-readiness/"], ["Generative AI & RAG", "/ai-services/generative-ai/"], ["MLOps & Governance", "/ai-services/mlops-governance/"]] },
-  { title: "AI Community", links: [["About the community", "/ai-community/"], ["Learning paths", "/ai-community/learning-paths/"], ["Events & workshops", "/ai-community/events/"], ["Join the community", "/ai-community/join/"]] },
-  { title: "Company", links: [["About", "/about/"], ["Leadership", "/about/leadership/"], ["Industries", "/industries/"], ["Case Studies", "/case-studies/"], ["Insights", "/insights/"], ["Contact", "/contact/"]] },
-  { title: "Careers", links: [["Open roles", "/careers/"], ["Life at Texiri", "/careers/#life"], ["Shambhavi 108", "/careers/shambhavi-108/"]] },
+  { title: "Company", links: [["About", "/about/"], ["Leadership", "/about/leadership/"], ["Industries", "/industries/"], ["Case Studies", "/case-studies/"], ["Insights", "/insights/"], ["AI Community", "/ai-community/"], ["Join the community", "/ai-community/join/"], ["Careers", "/careers/"], ["Shambhavi 108", "/careers/shambhavi-108/"], ["Contact", "/contact/"]] },
 ];
 
+
 export function SiteFooter() {
+  const visibleCols = cols.map((c) => ({ ...c, links: c.links.filter(([, href]) => isLive(href.split("#")[0])) as [string, string][] })).filter((c) => c.links.length > 0);
   return (
     <footer className="surface-dark bg-navy-900 text-on-navy">
       <div className="container-content pb-8 pt-16">
@@ -37,14 +39,7 @@ export function SiteFooter() {
             ))}
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-x-6 gap-y-8 py-8 md:grid-cols-3 lg:grid-cols-6">
-          {cols.map((c) => (
-            <nav key={c.title} aria-label={c.title} className="flex flex-col gap-0.5 text-[15px]">
-              <span className="mb-2 text-xs font-semibold uppercase tracking-[0.1em] text-on-navy-muted">{c.title}</span>
-              {c.links.map(([label, href]) => <Link key={href} href={href} className="flex min-h-9 items-center text-on-navy no-underline hover:text-accent">{label}</Link>)}
-            </nav>
-          ))}
-        </div>
+        <FooterColumns cols={visibleCols} />
         <div className="flex flex-wrap items-center gap-x-6 gap-y-4 border-t-2 border-on-navy/20 pt-6 text-[13px] text-on-navy-muted">
           <span>© {new Date().getFullYear()} {contact.legalName}{contact.cin && <> · CIN {contact.cin}</>}</span>
           <nav aria-label="Legal" className="ml-auto flex flex-wrap gap-4">
