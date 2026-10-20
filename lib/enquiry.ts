@@ -21,7 +21,7 @@ export const enquirySchema = z.object({
   name: z.string().trim().min(1, "Enter your full name.").max(120),
   email: z.string().trim().email("Enter a valid email, like name@company.com.").max(200),
   company: z.string().trim().min(1, "Enter your company name.").max(160),
-  role: z.string().trim().min(1, "Enter your role.").max(120),
+  role: z.string().trim().max(120).optional().or(z.literal("")),
   type: z.enum(ENQUIRY_TYPES),
   phone: z.string().trim().max(30).optional().or(z.literal("")),
   message: z.string().trim().max(4000).optional().or(z.literal("")),

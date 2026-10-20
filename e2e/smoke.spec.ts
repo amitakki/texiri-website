@@ -125,3 +125,40 @@ test("enquiry form hints at, but accepts, personal email addresses", async ({ pa
   await page.getByLabel("Company *").focus();
   await expect(page.locator("#f-email-error")).toContainText("any address is fine");
 });
+
+test("unknown URLs get a branded 404 with ways forward", async ({ page }) => {
+  const res = await page.goto("/no-such-page/");
+  expect(res?.status()).toBe(404);
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("isn't here");
+  await expect(page.getByRole("link", { name: "Go to the home page" })).toBeVisible();
+  await expect(page.getByRole("link", { name: /^SAP Services →/ })).toBeVisible();
+});
+
+test("2Klicks and Community are menu items; Community is not inside AI Services", async ({ page, isMobile }) => {
+  test.skip(isMobile, "desktop navigation only");
+  await page.goto("/");
+  const nav = page.getByRole("navigation", { name: "Primary" }).first();
+  await expect(nav.getByRole("link", { name: "2Klicks" })).toBeVisible();
+  await expect(nav.getByRole("link", { name: "Community" })).toBeVisible();
+  await page.getByRole("button", { name: "AI Services" }).click();
+  await expect(page.getByRole("region", { name: "AI Services", exact: true }).getByRole("link", { name: /Community/ })).toHaveCount(0);
+});
+
+test("community breadcrumbs do not route through AI Services", async ({ page }) => {
+  await page.goto("/ai-community/");
+  const crumbs = page.getByRole("navigation", { name: "Breadcrumb" });
+  await expect(crumbs).toContainText("AI Community");
+  await expect(crumbs).not.toContainText("AI Services");
+});
+
+test("there is no sticky bottom CTA bar", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator("div.sticky.bottom-0")).toHaveCount(0);
+});
+
+test("enquiry form does not require a role", async ({ page }) => {
+  await page.goto("/contact/");
+  await page.getByRole("button", { name: "Send enquiry" }).click();
+  await expect(page.locator("#f-role-error")).toHaveText("");
+});
+

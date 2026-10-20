@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Plus } from "lucide-react";
+import { ArrowRight, Code2, Plus, Rocket, Sprout } from "lucide-react";
 import { Placeholder, SiteImage } from "@/components/ui";
 import { images } from "@/lib/images";
-import { Breadcrumbs, StickyMobileCTA, isUnconfirmed } from "@/components/sections";
+import { Breadcrumbs, isUnconfirmed } from "@/components/sections";
 
 export const metadata: Metadata = {
   title: "TEXIRI AI Community: Learn AI Together",
@@ -20,9 +20,9 @@ const perks = [
   ["Mentorship", "Learn from Texiri practitioners who build AI for a living.", B], ["Resource library", "Notes, notebooks and recordings, all in one place.", O],
 ];
 const paths = [ // [TO CONFIRM] curriculum
-  { level: "Beginner", t: "AI from zero", d: "No code needed to start.", topics: ["What AI is (and isn't)", "Prompting well", "Your first no-code project"], bg: Y },
-  { level: "Intermediate", t: "Build with Python", d: "Comfortable with basics? Start building.", topics: ["Python for data", "Machine learning foundations", "Working with LLM APIs"], bg: O },
-  { level: "Advanced", t: "Ship it", d: "For people already building models.", topics: ["RAG and fine-tuning", "MLOps and deployment", "Evaluation and responsible AI"], bg: B },
+  { level: "Beginner", t: "AI from zero", d: "No code needed to start.", topics: ["What AI is (and isn't)", "Prompting well", "Your first no-code project"], bg: Y, icon: Sprout, rise: "md:pt-0" },
+  { level: "Intermediate", t: "Build with Python", d: "Comfortable with basics? Start building.", topics: ["Python for data", "Machine learning foundations", "Working with LLM APIs"], bg: O, icon: Code2, rise: "md:pt-14" },
+  { level: "Advanced", t: "Ship it", d: "For people already building models.", topics: ["RAG and fine-tuning", "MLOps and deployment", "Evaluation and responsible AI"], bg: B, icon: Rocket, rise: "md:pt-28" },
 ];
 const events = [ // placeholders until CMS events exist
   { type: "Workshop", level: "Beginner", where: "Vijayapura + online", bg: Y },
@@ -44,7 +44,7 @@ const joinBtn = "rounded-pill inline-flex min-h-13 items-center gap-2.5 bg-com p
 export default function CommunityPage() {
   return (
     <div className="bg-com-bg">
-      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "AI Services", href: "/ai-services/" }, { label: "AI Community", href: "/ai-community/" }]} />
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "AI Community", href: "/ai-community/" }]} />
 
       <section aria-labelledby="hero-h" className="pb-[clamp(3.5rem,7vw,6rem)] pt-[clamp(2rem,5vw,4.5rem)]">
         <div className="container-content grid items-center gap-[clamp(2rem,5vw,4.5rem)] lg:grid-cols-2">
@@ -97,10 +97,10 @@ export default function CommunityPage() {
         <div className="container-content">
           <div className="mb-3 flex flex-wrap items-center gap-3"><span className={`${kicker} mb-0`}>Learning paths</span><Placeholder>CURRICULUM TO CONFIRM</Placeholder></div>
           <h2 id="paths-h" className={h2}>Start where you are</h2>
-          <div className="mt-[clamp(2rem,4vw,3.5rem)] grid gap-4 md:grid-cols-3">
+          <div className="mt-[clamp(2rem,4vw,3.5rem)] grid gap-4 md:grid-cols-3 md:items-end">
             {paths.map((p) => (
-              <article key={p.level} className={`rounded-com flex flex-col gap-3 px-6 py-8 ${p.bg}`}>
-                <span className="rounded-pill self-start bg-com-surface px-3 py-1 text-[13px] font-bold">{p.level}</span>
+              <article key={p.level} className={`rounded-com flex flex-col gap-3 px-6 pb-8 pt-8 ${p.rise} ${p.bg}`}>
+                <div className="flex items-center justify-between"><span className="rounded-pill bg-com-surface px-3 py-1 text-[13px] font-bold">{p.level}</span><p.icon aria-hidden className="size-7" /></div>
                 <h3 className="m-0 text-2xl">{p.t}</h3><p className="m-0 text-[15px]">{p.d}</p>
                 <ul className="m-0 mt-2 flex flex-1 list-none flex-col gap-1.5 p-0 text-[15px]">{p.topics.map((t) => <li key={t} className="flex gap-2"><span aria-hidden>→</span>{t}</li>)}</ul>
                 <Link href="/ai-community/join/" className="mt-3 flex min-h-11 items-center font-extrabold no-underline">Start this path →<span className="sr-only"> ({p.level})</span></Link>
@@ -179,7 +179,6 @@ export default function CommunityPage() {
           </div>
         </div>
       </section>
-      <StickyMobileCTA vertical="community" label="Join the community" href="/ai-community/join/" />
     </div>
   );
 }

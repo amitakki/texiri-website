@@ -1,3 +1,4 @@
+import { isProd } from "./env";
 import { DEMO_HREF, type Vertical } from "./site";
 
 /**
@@ -13,6 +14,8 @@ export type InterimPage = {
   points?: { t: string; d: string }[];
   cta?: { label: string; href: string };
   related?: { label: string; href: string }[];
+  /** Set true once the page has real content. Until then it is hidden from menus and cards when SHOW_UNFINISHED is off. */
+  ready?: boolean;
 };
 
 const home = { label: "Home", href: "/" };
@@ -121,3 +124,23 @@ export const interimPages: Record<string, InterimPage> = Object.fromEntries([
   article("re-fx-after-go-live", "SAP", "RE-FX after go-live: keeping lease data clean"),
   article("first-ai-use-case", "AI", "Choosing your first AI use case in one day"),
 ]);
+
+/**
+ * Pages that still hold placeholder content are shown while the site is being reviewed (local and preview builds),
+ * and hidden on the production deployment (NEXT_PUBLIC_SITE_ENV=production). Set NEXT_PUBLIC_SHOW_UNFINISHED to
+ * "true" or "false" to override either default. It is read at build time, so changing it needs a new build.
+ * Menus, the footer, cards and diagram links drop every page that is not `ready` while this is false.
+ */
+const flag = process.env.NEXT_PUBLIC_SHOW_UNFINISHED?.trim().toLowerCase();
+export const SHOW_UNFINISHED = flag === "true" ? true : flag === "false" ? false : !isProd;
+
+/** True for dedicated pages, and for interim pages only while unfinished pages are shown or the page is ready. */
+export function isLive(href: string): boolean {
+  const page = interimPages[href];
+  return !page || page.ready === true || SHOW_UNFINISHED;
+}
+
+/** Interim pages to hide right now. Passed from the server layout to the client header. */
+export function hiddenHrefs(): string[] {
+  return Object.keys(interimPages).filter((h) => !isLive(h));
+}

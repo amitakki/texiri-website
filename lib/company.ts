@@ -1,11 +1,12 @@
 // Company, leadership and careers content. Move to the CMS once Sanity/Payload is chosen.
 /** `verify` marks a claim still awaiting confirmation (rendered with a placeholder badge). */
-export const credentials: { t: string; d: string; verify?: string }[] = [
-  { t: "Founder-led since SAP Labs India", d: "Our CEO began his career at SAP Labs India." },
-  { t: "20+ years in SAP", d: "Consulting and enterprise transformation." },
-  { t: "Delivery across 5 countries", d: "India, USA, Germany, Singapore, Australia." },
+/** `icon` is a key into the icon map in components/sections.tsx. */
+export const credentials: { t: string; d: string; icon: "founder" | "experience" | "countries" | "patent"; verify?: string }[] = [
+  { t: "Founder-led since SAP Labs India", d: "Our CEO began his career at SAP Labs India.", icon: "founder" },
+  { t: "20+ years in SAP", d: "Consulting and enterprise transformation.", icon: "experience" },
+  { t: "Delivery across 5 countries", d: "India, USA, Germany, Singapore, Australia.", icon: "countries" },
   // Content decision C6: the old site says the founder holds patents, not that 2Klicks is patented.
-  { t: "Patented SAP migration tools", d: "2Klicks Create and 2Klicks Update.", verify: "PATENT TO VERIFY" },
+  { t: "Patented SAP migration tools", d: "2Klicks Create and 2Klicks Update.", icon: "patent", verify: "PATENT TO VERIFY" },
 ];
 
 /** Verbatim from the old site's homepage (content decision P7: confirm they can still be published). */
@@ -15,17 +16,17 @@ export const testimonials = {
   realEstate: { quote: "We're delighted with Texiri's teamwork and empathy. Their personal connection with our team and collaborative spirit have created a positive, inclusive environment. Texiri not only contributes expertise but also fosters unity, making them a joy to work with. We appreciate the positive impact they've had on our collaboration.", who: "Real estate client, USA" },
 };
 
-export const principles = [
-  { title: "Senior people on the work", body: "The consultants who scope your project are the ones who deliver it." },
-  { title: "Tools over manual effort", body: "Where a task repeats, we automate it, which is how 2Klicks began." },
-  { title: "Data you can verify", body: "Every load and change leaves validation logs your auditors can read." },
-  { title: "We stay after go-live", body: "Managed services from the team that knows how your system was built." },
+/** `icon` is a key into the icon map in app/about/page.tsx. */
+export const principles: { title: string; body: string; icon: "people" | "tools" | "verify" | "support" }[] = [
+  { title: "Senior people on the work", body: "The consultants who scope your project are the ones who deliver it.", icon: "people" },
+  { title: "Tools over manual effort", body: "Where a task repeats, we automate it, which is how 2Klicks began.", icon: "tools" },
+  { title: "Data you can verify", body: "Every load and change leaves validation logs your auditors can read.", icon: "verify" },
+  { title: "We stay after go-live", body: "Managed services from the team that knows how your system was built.", icon: "support" },
 ];
 
 export const founder = {
   name: "Muttu Sarashetti",
   role: "Founder & CEO",
-  // From the old site's Team page.
   bio: [
     "Muttu began his career at SAP Labs India and has more than 20 years of global SAP consulting experience across India, the USA, Germany, Singapore and Australia, including years with leading consulting firms.",
     "He founded Texiri to bring that depth to clients directly, and leads the design of the 2Klicks tools. He is also a co-founder of 10 Gravity Partners, holds multiple patents and copyrights, and is an advocate for sustainable development.",
@@ -33,7 +34,7 @@ export const founder = {
   /** Content decision P6: permission to name these clients. */
   clients: "He has led large-scale ERP implementations for Fortune 500 companies including Walmart, CVS, T-Systems, Singtel, Stockland and EQL.",
   facts: [["Started at", "SAP Labs India"], ["Experience", "20+ years, 5 countries"], ["Focus", "RE-FX, S/4HANA migration, 2Klicks"], ["Also", "Co-founder, 10 Gravity Partners"]],
-  linkedin: "https://www.linkedin.com/company/texiri-solutions/", // [TO CONFIRM] personal profile URL (content decision L2)
+  linkedin: "https://www.linkedin.com/in/muttannasarashetti/",
 };
 
 export const CAREERS_EMAIL = "careers@texiri.com"; // [TO CONFIRM]

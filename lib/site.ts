@@ -31,7 +31,8 @@ export const offices: Office[] = [
 
 export type Vertical = "sap" | "ai" | "community";
 export type NavLink = { label: string; href: string; description?: string };
-export type NavItem = NavLink & { vertical?: Vertical; mega?: { links: NavLink[]; feature: NavLink & { kicker: string } } };
+/** `match` is the path prefix that marks the item as current, when it differs from `href`. */
+export type NavItem = NavLink & { vertical?: Vertical; match?: string; mega?: { links: NavLink[]; feature: NavLink & { kicker: string } } };
 
 export const primaryNav: NavItem[] = [
   {
@@ -43,7 +44,7 @@ export const primaryNav: NavItem[] = [
         { label: "SAP Integration", href: "/sap/integration/", description: "SAP CPI and PI/PO." },
         { label: "SAP Managed Services", href: "/sap/managed-services/", description: "Post-go-live support and continuous optimisation." },
       ],
-      feature: { kicker: "Our SAP tools", label: "2Klicks Create & Update", href: "/2klicks/", description: "Migration programs on day 1, not day 120." },
+      feature: { kicker: "Our SAP tools", label: "2Klicks Create & Update", href: "/2klicks/", description: "Template-based data loads and mass updates." },
     },
   },
   {
@@ -54,16 +55,17 @@ export const primaryNav: NavItem[] = [
         { label: "Generative AI & RAG", href: "/ai-services/generative-ai/", description: "Knowledge systems, assistants and document intelligence." },
         { label: "Machine Learning & Forecasting", href: "/ai-services/machine-learning/", description: "Predictive analytics, forecasting and optimisation." },
         { label: "MLOps & AI Governance", href: "/ai-services/mlops-governance/", description: "Pipelines, drift monitoring, EU AI Act and ISO/IEC 42001." },
-        { label: "TEXIRI AI Community", href: "/ai-community/", description: "Learning paths, workshops and projects for anyone curious about AI." },
       ],
       feature: { kicker: "Start here", label: "Request an AI readiness workshop", href: "/contact/?type=ai", description: "One day. A ranked list of use cases at the end." },
     },
   },
+  { label: "2Klicks", href: "/2klicks/create/", match: "/2klicks", vertical: "sap" },
   { label: "Industries", href: "/industries/" },
   { label: "Case Studies", href: "/case-studies/" },
   { label: "Insights", href: "/insights/" },
   { label: "About", href: "/about/" },
   { label: "Careers", href: "/careers/" },
+  { label: "Community", href: "/ai-community/", vertical: "community" },
 ];
 
 export const verticalCta: Record<Vertical, { label: string; short: string; href: string; className: string }> = {

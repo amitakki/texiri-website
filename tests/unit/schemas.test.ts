@@ -18,6 +18,12 @@ describe("enquirySchema", () => {
     expect(r.success).toBe(false);
     if (!r.success) expect(Object.keys(collectErrors(r.error.issues)).sort()).toEqual(["company", "consent", "name"]);
   });
+  it("does not require a role", () => {
+    const { role, ...withoutRole } = enquiry;
+    expect(role).toBe("CIO");
+    expect(enquirySchema.safeParse(withoutRole).success).toBe(true);
+    expect(enquirySchema.safeParse({ ...enquiry, role: "" }).success).toBe(true);
+  });
   it("rejects unknown enquiry types", () => {
     expect(enquirySchema.safeParse({ ...enquiry, type: "Spam" }).success).toBe(false);
   });

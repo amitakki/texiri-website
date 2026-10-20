@@ -60,10 +60,10 @@
 
   --text-display: clamp(2.5rem, 5.8vw, 5rem);
   --text-display--line-height: 1.02;
-  --text-display--letter-spacing: -0.03em;
+  --text-display--letter-spacing: -0.02em;
   --text-h2: clamp(1.875rem, 4vw, 3.25rem);
   --text-h2--line-height: 1.05;
-  --text-h2--letter-spacing: -0.02em;
+  --text-h2--letter-spacing: -0.012em;
   --text-h3: 1.5rem;
   --text-h3--line-height: 1.15;
   --text-lead: clamp(1.0625rem, 1.6vw, 1.25rem);
@@ -79,7 +79,7 @@
 @layer base {
   html { scroll-behavior: smooth; }
   body { @apply bg-ground text-ink font-sans antialiased; text-wrap: pretty; }
-  h1, h2, h3, h4 { @apply font-extrabold; }
+  h1, h2, h3, h4 { @apply font-extrabold; word-spacing: 0.06em; }
   a { color: inherit; }
   a:hover { color: var(--color-accent-700); }
   /* --focus-ring is overridden by surface-dark / surface-bright so the ring keeps ≥3:1 contrast on every background */
