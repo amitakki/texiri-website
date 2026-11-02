@@ -2,8 +2,9 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
 const routes = [
-  "/", "/sap/", "/sap/data-migration/", "/sap/consulting/", "/2klicks/create/", "/ai-services/", "/ai-community/", "/ai-community/join/",
-  "/about/", "/about/leadership/", "/careers/", "/careers/shambhavi-108/", "/contact/", "/legal/privacy/", "/legal/cookies/", "/legal/terms/",
+  "/", "/sap/", "/sap/data-migration/", "/sap/consulting/", "/sap/btp/", "/sap/managed-services/", "/industries/", "/case-studies/",
+  "/case-studies/utility-australia/", "/2klicks/", "/ai-services/", "/ai-community/", "/ai-community/join/",
+  "/about/", "/about/leadership/", "/about/csr/", "/careers/", "/careers/shambhavi-108/", "/contact/", "/legal/privacy/", "/legal/cookies/", "/legal/terms/",
 ];
 
 for (const path of routes) {
@@ -76,7 +77,7 @@ test("security headers are set", async ({ request }) => {
 });
 
 test("old WordPress URLs redirect", async ({ request }) => {
-  for (const [from, to] of [["/services/", "/sap/"], ["/about/team/", "/about/leadership/"], ["/2klicks-create/", "/2klicks/create/"]]) {
+  for (const [from, to] of [["/services/", "/sap/"], ["/about/team/", "/about/leadership/"], ["/2klicks-create/", "/2klicks/"], ["/2klicks/create/", "/2klicks/"], ["/2klicks/update/", "/2klicks/"], ["/sap/integration/", "/sap/btp/"]]) {
     const res = await request.get(from, { maxRedirects: 0 });
     expect(res.status(), from).toBe(308);
     expect(res.headers().location).toBe(to);
@@ -162,3 +163,17 @@ test("enquiry form does not require a role", async ({ page }) => {
   await expect(page.locator("#f-role-error")).toHaveText("");
 });
 
+test("home page is not described as founder-led or patented, and names SAP BTP", async ({ page }) => {
+  await page.goto("/");
+  const main = page.locator("main");
+  await expect(main).not.toContainText(/founder-led/i);
+  await expect(main).not.toContainText(/patent/i);
+  await expect(main).not.toContainText("SAP Integration");
+  await expect(main.getByRole("link", { name: /SAP BTP & Development/ }).first()).toBeVisible();
+});
+
+test("leadership page lists the founder and the CRO", async ({ page }) => {
+  await page.goto("/about/leadership/");
+  await expect(page.getByRole("heading", { level: 3, name: "Muttu Sarashetti" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 3, name: "Santosh S Angadi" })).toBeVisible();
+});

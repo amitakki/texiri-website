@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "Page not found", robots: { index: fa
 
 const links = [
   { label: "SAP Services", href: "/sap/", d: "Consulting, S/4HANA migration, integration, managed services" },
-  { label: "2Klicks", href: "/2klicks/", d: "Our SAP data migration and mass-update tools" },
+  { label: "2Klicks", href: "/2klicks/", d: "Mass data management for SAP RE-FX" },
   { label: "AI Services", href: "/ai-services/", d: "Strategy, generative AI, ML and MLOps" },
   { label: "Contact", href: "/contact/", d: "Tell us what you are working on" },
 ];

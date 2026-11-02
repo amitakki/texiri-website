@@ -7,7 +7,7 @@ import { chromium } from "@playwright/test";
 
 const logo = `data:image/png;base64,${readFileSync("public/texiri-logo.png").toString("base64")}`;
 // Mirrors the @theme tokens in app/globals.css.
-const C = { navy: "#0f1a2e", navy7: "#243553", onNavy: "#f5f4f1", onNavyMuted: "#aeb8c8", accent: "#f7941d", ai: "#2bb5e8" };
+const C = { navy: "#0f1a2e", navy7: "#243553", onNavy: "#f5f4f1", onNavyMuted: "#aeb8c8", accent: "#fc9a3a", ai: "#2bb5e8" };
 const head = `<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&display=block" rel="stylesheet">
 <style>*{margin:0;box-sizing:border-box}body{font-family:Archivo,sans-serif;background:${C.navy};color:${C.onNavy}}</style>`;
 

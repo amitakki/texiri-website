@@ -9,8 +9,8 @@ import { testimonials } from "@/lib/company";
 import { DEMO_HREF } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "S/4HANA Data Migration & MDG Services",
-  description: "S/4HANA data migration from ECC or legacy systems: assessment, extraction, cleansing, loading and SAP MDG, accelerated by 2Klicks Create. SAP Data Services, SDI and Migration Cockpit.",
+  title: "S/4HANA, Data Migration & MDG Services",
+  description: "S/4HANA data migration from ECC or legacy systems, greenfield, brownfield or bluefield: extraction, cleansing, mapping, loading and SAP MDG with SAP BODS, Syniti ADM and 2Klicks.",
   alternates: { canonical: "/sap/data-migration/" },
 };
 
@@ -18,14 +18,15 @@ const serviceJsonLd = {
   "@context": "https://schema.org", "@type": "Service",
   name: "S/4HANA Data Migration & Master Data Governance",
   provider: { "@type": "Organization", name: "Texiri Solutions" },
-  serviceType: "SAP data migration", areaServed: ["IN", "US", "DE", "SG", "AU"],
+  serviceType: "SAP data migration", areaServed: ["US", "EU", "AE", "AU", "IN"],
 };
 
 const caps = [
   { t: "Planning and assessment", d: "Data audit, object scope, migration strategy and a realistic timeline." },
-  { t: "Extraction", d: "Repeatable extracts from ECC and non-SAP legacy sources." },
-  { t: "Cleansing", d: "Profiling, de-duplication and enrichment, with rules agreed with data owners." },
-  { t: "Loading", d: "2Klicks Create and S/4HANA Migration Cockpit, with reconciliation after every cycle." },
+  { t: "Extraction and mapping", d: "Repeatable extracts from ECC and non-SAP legacy sources, mapped with the business teams, using SAP BODS / Data Services and Syniti ADM." },
+  { t: "Cleansing and validation", d: "Profiling, de-duplication and enrichment, with rules agreed with data owners." },
+  { t: "Loading", d: "2Klicks, Syniti ADM and S/4HANA Migration Cockpit, with reconciliation after every cycle." },
+  { t: "Cutover", d: "Cutover planning and execution with full reconciliation, so operations keep running." },
   { t: "Master Data Governance", d: "SAP MDG workflows and rules so quality holds after go-live." },
 ];
 const phases = [
@@ -35,28 +36,33 @@ const phases = [
   { name: "Mock loads", icon: Repeat, repeats: true, out: ["Mock-cycle reports", "Reconciliation sign-off", "Defect log"] },
   { name: "Cutover & govern", icon: Rocket, out: ["Cutover runbook", "MDG rules live", "Hypercare"] },
 ];
-const tech = ["2Klicks Create", "SAP Data Services", "Smart Data Integration", "Information Steward", "S/4HANA Migration Cockpit", "SAP MDG", "SQL tooling"];
+const tech = ["2Klicks", "SAP BODS / Data Services", "Syniti ADM", "S/4HANA Migration Cockpit", "Smart Data Integration", "Information Steward", "SAP MDG", "SQL tooling"];
+const stats = [
+  ["Zero", "data loss at cutover on an ECC to S/4HANA conversion"],
+  ["75%", "lower cost for RE-FX data operations with 2Klicks"],
+  ["22%", "of our consultants specialise in data migration"],
+];
 const faqs = [
   { q: "Do you work alongside our systems integrator?", a: "Yes. We often own the data workstream within a larger programme, with clear hand-offs to the SI for build, test and cutover." },
   { q: "How does 2Klicks handle our custom fields?", a: "Templates recognise custom fields and validations in your system, so the load respects your configuration without new code." },
-  { q: "Do you use SAP Migration Cockpit?", a: "Yes, where it fits. We combine it with 2Klicks Create, SAP Data Services and SDI depending on objects, volumes and sources." },
-  { q: "Can we start before we pick a migration approach?", a: "Yes. A data assessment on ECC today informs the greenfield, brownfield or selective decision and shortens the programme later." },
+  { q: "Which migration tools do you use?", a: "SAP BODS / Data Services, Syniti ADM, S/4HANA Migration Cockpit and our own 2Klicks, chosen by object, volume and source." },
+  { q: "Can we start before we pick a migration approach?", a: "Yes. A data assessment on ECC today informs the greenfield, brownfield or bluefield decision and shortens the programme later." },
   { q: "How long does a migration take?", a: "It depends on objects, volumes and data quality. We give you an evidence-based timeline at the end of the assessment phase." },
 ];
 
 export default function DataMigrationPage() {
   return (
     <>
-      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "SAP Services", href: "/sap/" }, { label: "S/4HANA Data Migration & MDG", href: "/sap/data-migration/" }]} />
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "SAP Services", href: "/sap/" }, { label: "S/4HANA, Data Migration & MDG", href: "/sap/data-migration/" }]} />
       <section aria-labelledby="hero-h" className="pb-[clamp(3.5rem,7vw,6rem)] pt-[clamp(2.5rem,6vw,5.5rem)]">
         <div className="container-content grid items-start gap-[clamp(2.5rem,5vw,5rem)] lg:grid-cols-2">
           <div className="hero-enter">
-            <Kicker>S/4HANA Data Migration &amp; MDG</Kicker>
-            <h1 id="hero-h" className="m-0 -ml-[0.04em] max-w-[15ch] text-display">Move to S/4HANA with data the business signs off.</h1>
+            <Kicker>S/4HANA, Data Migration &amp; MDG</Kicker>
+            <h1 id="hero-h" className="m-0 -ml-[0.04em] max-w-[22ch] text-display">Move to S/4HANA with data the business signs off.</h1>
             <p className="mt-6 max-w-[52ch] text-lead text-muted">For SAP programme directors and data owners moving from ECC or legacy systems. We plan, extract, cleanse and load your data, then keep it governed with MDG.</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button href="/contact/?type=migration" arrow>Talk to a migration architect</Button>
-              <Button href="/2klicks/create/" variant="secondary">See 2Klicks Create</Button>
+              <Button href="/2klicks/" variant="secondary">Explore 2Klicks</Button>
             </div>
           </div>
           <div className="hero-enter-late border-t-4 border-ink bg-surface p-8">
@@ -75,7 +81,11 @@ export default function DataMigrationPage() {
       <Section labelledBy="sol-h">
         <Kicker>The Texiri solution</Kicker>
         <H2 id="sol-h" className="max-w-[20ch]">Data-first migration, with our own IP doing the heavy lifting</H2>
-        <p className="mb-[clamp(2.5rem,5vw,4rem)] mt-6 max-w-[60ch] text-lg text-muted">2Klicks Create gives your project migration programs on day 1, aware of your custom fields and validations. Our consultants spend their time on data quality and business sign-off instead of writing load programs.</p>
+        <p className="mt-6 max-w-[60ch] text-lg text-muted">End-to-end S/4HANA migration on greenfield, brownfield and bluefield programmes. 2Klicks is ready on day 1 for RE-FX, FI/CO and PS, with no programs to develop and your custom fields handled, so our consultants spend their time on data quality and business sign-off instead of writing load programs.</p>
+        <dl className="mb-0 mt-[clamp(2rem,4vw,3rem)] grid gap-3 sm:grid-cols-3">
+          {stats.map(([n, l]) => <div key={n} className="border-t-4 border-accent bg-surface p-5"><dt className="sr-only">{l}</dt><dd className="m-0"><span className="block text-[clamp(2rem,4vw,2.75rem)] font-extrabold leading-none">{n}</span><span className="mt-2 block text-[15px] text-muted">{l}</span></dd></div>)}
+        </dl>
+        <p className="mb-[clamp(2.5rem,5vw,4rem)] mt-3"><Placeholder>STATS TO VERIFY · X10</Placeholder></p>
         <SiteImage {...images.dataMigration} ratio="aspect-[4/3] sm:aspect-video" className="mb-[clamp(2.5rem,5vw,4rem)]" sizes="(min-width: 1280px) 1280px, 100vw" />
         <CheckList items={caps} />
       </Section>
@@ -109,11 +119,11 @@ export default function DataMigrationPage() {
         <div className="grid items-center gap-x-8 gap-y-6 md:grid-cols-2">
           <div>
             <Kicker onNavy>Related 2Klicks product</Kicker>
-            <H2 id="kp-h" className="max-w-[18ch] text-on-navy">2Klicks Create: migration programs on day 1.</H2>
-            <p className="mt-4 max-w-[46ch] text-[17px] text-on-navy-muted">Template-based loads for RE-FX, MM, PM, FI/CO and SD that recognise your custom fields and validations.</p>
+            <H2 id="kp-h" className="max-w-[18ch] text-on-navy">2Klicks: RE-FX loads ready on day 1.</H2>
+            <p className="mt-4 max-w-[46ch] text-[17px] text-on-navy-muted">Download, update and upload data for RE-FX, FI/CO and PS on ECC or S/4HANA: 10× faster, at 75% lower cost.</p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <Button href="/2klicks/create/">See 2Klicks Create</Button>
+            <Button href="/2klicks/">Explore 2Klicks</Button>
             <Button href={DEMO_HREF} variant="outline-on-navy" data-track="2klicks_demo_click">Request a demo</Button>
           </div>
         </div>
@@ -123,14 +133,12 @@ export default function DataMigrationPage() {
         <Kicker>Scenarios</Kicker>
         <H2 id="sc-h">Whatever route you take to S/4HANA</H2>
         <NumberedGrid cols={4} items={[
-          { title: "Legacy or ECC to S/4HANA", body: "Cloud or on-premise, from SAP and non-SAP sources." },
-          { title: "New implementation", body: "Greenfield builds that need clean opening data." },
-          { title: "System conversion", body: "Brownfield moves where data still needs cleansing first." },
+          { title: "Greenfield", body: "New S/4HANA implementations that need clean opening data from SAP and non-SAP sources." },
+          { title: "Brownfield", body: "ECC to S/4HANA system conversions where data still needs cleansing first." },
+          { title: "Bluefield", body: "Selective data transition: move the history and organisations you need, and leave the rest." },
           { title: "Landscape transformation", body: "Mergers, carve-outs and consolidation of SAP systems." },
         ]} />
       </Section>
-
-      
 
       <Section labelledBy="proof-h">
         <div className="grid gap-[clamp(2.5rem,5vw,5rem)] lg:grid-cols-2">
@@ -139,9 +147,10 @@ export default function DataMigrationPage() {
             <TestimonialCard {...testimonials.utility} />
           </div>
           <Link href="/case-studies/utility-australia/" className="flex flex-col gap-3 border-t-4 border-ink bg-surface p-8 no-underline" data-track="case_study_view">
-            <span className="text-xs font-semibold uppercase tracking-[0.1em] text-muted">Case study · Utility · Australia</span>
-            <h3 className="m-0 text-2xl">S/4HANA data migration for an asset-intensive utility</h3>
-            <Placeholder>PLACEHOLDER — CONTENT TO VERIFY</Placeholder>
+            <span className="text-xs font-semibold uppercase tracking-[0.1em] text-muted">Case study · Utilities · Australia</span>
+            <h3 className="m-0 text-2xl">Legacy to SAP S/4HANA for one of Australia&apos;s top utility companies</h3>
+            <p className="m-0 text-muted">PM, Project Systems, Supply Chain and Finance migrated with SAP BODS and Syniti ADM, with a smooth cutover and operations running throughout.</p>
+            <span className="font-extrabold">Read the case study →</span>
           </Link>
         </div>
       </Section>

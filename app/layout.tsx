@@ -14,7 +14,7 @@ const archivo = Archivo({ subsets: ["latin"], weight: ["400", "600", "800"], var
 export const metadata: Metadata = {
   metadataBase: new URL(METADATA_BASE),
   title: { default: "Texiri Solutions — SAP Consulting & S/4HANA Migration", template: "%s | Texiri Solutions" },
-  description: "Founder-led SAP consultancy: SAP implementation, S/4HANA data migration, integration and managed services, with 2Klicks migration tools.",
+  description: "SAP consultancy: SAP implementation, S/4HANA data migration, SAP BTP and managed services, with proprietary 2Klicks migration tools.",
   // Share images and icons are static files in app/ (opengraph-image.png, twitter-image.png, icon.png, apple-icon.png),
   // rendered by scripts/generate-brand-images.mjs.
   openGraph: { siteName: "Texiri Solutions", type: "website", locale: "en_GB" },

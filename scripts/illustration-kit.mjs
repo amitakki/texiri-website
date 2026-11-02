@@ -4,7 +4,7 @@
 export const C = {
   ground: "#f5f4f1", surface: "#ebe9e4", strong: "#d7d3d3", line: "#e2dfda", ink: "#0f1a2e", muted: "#4a5670", soft: "#8993a8",
   navy: "#0f1a2e", navy8: "#18263f", navy7: "#243553", navy6: "#34476b", onNavy: "#f5f4f1", onNavyMuted: "#aeb8c8",
-  accent: "#f7941d", accent6: "#e07f0a", accent7: "#9a4f00", accent4: "#f9aa4c", accent3: "#fbc27d", accent2: "#fddcb3", accent1: "#fef1e0",
+  accent: "#fc9a3a", accent6: "#e07f0a", accent7: "#9a4f00", accent4: "#f9aa4c", accent3: "#fbc27d", accent2: "#fddcb3", accent1: "#fef1e0",
   ai: "#2bb5e8", ai6: "#1e9ccb", aiInk: "#1546a0", aiTint: "#e3f4fb", green: "#2f9e6b", greenTint: "#dff3e8", red: "#d6453d", redTint: "#fbe3e0",
   com: "#ffc20e", comTint: "#fff0c7", comTint2: "#ffe6a3", comBlue: "#1546a0", comBlueTint: "#e3ecfb", comBlue2: "#cfdcf5", comOrangeTint: "#fde3c4", white: "#ffffff",
 };

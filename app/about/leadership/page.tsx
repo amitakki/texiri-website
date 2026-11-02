@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import { Breadcrumbs, CTABand } from "@/components/sections";
 import { LeadershipSection } from "@/components/LeadershipSection";
-import { founder } from "@/lib/company";
+import { founder, leaders } from "@/lib/company";
 import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Leadership",
-  description: `Meet the leadership of Texiri Solutions, led by founder and CEO ${founder.name}, who began his career at SAP Labs India.`,
+  description: `Meet the leadership of Texiri Solutions: founder and CEO ${founder.name}, who began his career at SAP Labs India, and CRO Santosh S Angadi.`,
   alternates: { canonical: "/about/leadership/" },
 };
 
-const personLd = { "@context": "https://schema.org", "@type": "Person", name: founder.name, jobTitle: founder.role, worksFor: { "@type": "Organization", name: "Texiri Solutions", url: SITE_URL } };
+const personLd = leaders.map((l) => ({ "@context": "https://schema.org", "@type": "Person", name: l.name, jobTitle: l.role, worksFor: { "@type": "Organization", name: "Texiri Solutions", url: SITE_URL } }));
 
 export default function LeadershipPage() {
   return (

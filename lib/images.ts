@@ -10,12 +10,14 @@ const ph = (name: string) => `/images/placeholders/${name}.svg`;
 export const images = {
   // From the old site's Team page (343×444). Content decision L1: ask for a high-resolution original.
   founder: { src: "/images/team/muttu-sarashetti.jpg", alt: "Muttu Sarashetti, Founder and CEO of Texiri Solutions" },
+  // Content decision L5: his photo is in the Texiri Profile 2026 deck; ask for the original file.
+  santosh: { src: ph("portrait"), alt: "Santosh S Angadi, Chief Revenue Officer of Texiri Solutions", placeholder: true },
 
   consultingTeam: { src: ph("consulting-team"), alt: "Texiri SAP consultants reviewing an S/4HANA migration plan with a client team", placeholder: true },
   teamPhoto: { src: ph("team-photo"), alt: "The Texiri team at the Vijayapura office", placeholder: true },
   office: { src: ph("office"), alt: "The Texiri Solutions office building in Vijayapura", placeholder: true },
   dataMigration: { src: ph("data-migration"), alt: "Data from ECC, legacy systems and Excel being cleansed and validated before loading into S/4HANA", placeholder: true },
-  klicksUi: { src: ph("2klicks-ui"), alt: "2Klicks Create screen: a lease-contract template with a custom field, and a validation log ready to load", placeholder: true },
+  klicksUi: { src: ph("2klicks-ui"), alt: "2Klicks screen: an RE-FX contract template with a custom field, ready to upload", placeholder: true },
   aiWorkshop: { src: ph("ai-workshop"), alt: "A client team in an AI readiness workshop, looking at a ranked map of use cases", placeholder: true },
   communityWorkshop: { src: ph("community-workshop"), alt: "TEXIRI AI Community members at a hands-on prompting workshop", placeholder: true },
   communityDemo: { src: ph("community-demo"), alt: "A community member presenting their first chatbot project", placeholder: true },

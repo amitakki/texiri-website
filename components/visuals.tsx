@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { CSSProperties, ReactNode } from "react";
 import { isLive } from "@/lib/pages";
-import { ArrowRight, DatabaseZap, FileDown, Globe, Layers, LifeBuoy, MapPin, Network, PencilLine, Repeat, Sparkles, Upload, Wrench, type LucideIcon } from "lucide-react";
+import { ArrowRight, Boxes, DatabaseZap, Download, FileSpreadsheet, Globe, Layers, LifeBuoy, MapPin, Repeat, Upload, type LucideIcon } from "lucide-react";
 
 /* ── Process visuals ─────────────────────────────────────────────────────────────────────
    Built from HTML and CSS (not images) so text stays selectable, translatable and responsive.
@@ -77,13 +77,35 @@ export function EccTimeline() {
   );
 }
 
-/** The 2Klicks template workflow as three icon steps. */
+/** The 2Klicks workflow as three icon steps (wording from the 2Klicks presentation). */
+export const klicksSteps: { icon: LucideIcon; t: string; d: string }[] = [
+  { icon: Download, t: "Download", d: "Pull the ready-made template for your objects straight from SAP. No setup, no coding." },
+  { icon: FileSpreadsheet, t: "Update", d: "Make the changes in Excel, custom fields included. Validate, clean and prepare the data." },
+  { icon: Upload, t: "Upload", d: "Load the file back and 2Klicks creates or updates the records in SAP, with no programming." },
+];
+
+/** Time to value: the stages of a traditional load program against 2Klicks (from the 2Klicks presentation). */
+export function KlicksTimeline() {
+  const traditional = [["Mapping", "Day 1"], ["Functional specs", "Day 5"], ["Technical specs", "Day 10"], ["Develop", "Day 20"], ["Testing", "Day 60"], ["Transport", "Day 80"], ["Go-live", "Day 100+"]];
+  const klicks = [["Purchase", "Day 1"], ["Install", "Day 1"], ["Use", "Day 1"]];
+  // Row titles sit above each track so seven stages get the full width; the 2Klicks track spans 3/7 to line up.
+  const title = (t: string, d: string) => <p className="m-0 mb-6 text-[15px] text-muted"><strong className="mr-2 text-lg text-ink">{t}</strong>{d}</p>;
+  return (
+    <div className="mt-[clamp(2.5rem,5vw,4rem)] grid gap-10">
+      <div className="border-t-2 border-ink pt-6">
+        {title("Traditional programs", "Seven stages, many hand-offs")}
+        <Track label="Traditional load program: seven stages over 100+ days" rowFrom="lg" items={traditional.map(([label, note]) => ({ label, note, node: "hollow" }))} />
+      </div>
+      <div className="border-t-2 border-ink pt-6">
+        {title("2Klicks", "No hand-offs, live on day 1")}
+        <div className="lg:max-w-[calc(3/7*100%)]"><Track label="2Klicks: purchase, install and use on day 1" rowFrom="lg" items={klicks.map(([label, note]) => ({ label, note }))} /></div>
+      </div>
+    </div>
+  );
+}
+
 export function KlicksFlow({ onNavy }: { onNavy?: boolean }) {
-  const steps: { icon: LucideIcon; t: string; d: string }[] = [
-    { icon: FileDown, t: "Download template", d: "Built for your SAP object, including your custom fields." },
-    { icon: PencilLine, t: "Enter or modify data", d: "Add new records or change ones already in SAP." },
-    { icon: Upload, t: "Upload", d: "A validation log shows what is ready to load." },
-  ];
+  const steps = klicksSteps;
   return (
     <ol aria-label="How 2Klicks works" className="m-0 grid list-none gap-3 p-0 sm:grid-cols-3">
       {steps.map((s, i) => (
@@ -103,15 +125,15 @@ export function KlicksFlow({ onNavy }: { onNavy?: boolean }) {
 
 const lifecycle = [
   { n: "01", t: "Implement", s: "SAP Consulting", href: "/sap/consulting/", icon: Layers },
-  { n: "02", t: "Migrate", s: "Data Migration & MDG", href: "/sap/data-migration/", icon: DatabaseZap },
-  { n: "03", t: "Integrate", s: "SAP Integration", href: "/sap/integration/", icon: Network },
+  { n: "02", t: "Migrate", s: "S/4HANA, DM & MDG", href: "/sap/data-migration/", icon: DatabaseZap },
+  { n: "03", t: "Extend", s: "SAP BTP & Development", href: "/sap/btp/", icon: Boxes },
   { n: "04", t: "Run", s: "Managed Services", href: "/sap/managed-services/", icon: LifeBuoy },
 ];
 
 /** The four SAP services as linked stages over the SAP core. `active` highlights one (1–4). */
 export function LifecycleRail({ active, wide }: { active?: 1 | 2 | 3 | 4; wide?: boolean }) {
   return (
-    <figure aria-label="Texiri SAP services across the lifecycle: implement, migrate, integrate and run" className="m-0 bg-navy-900 p-[clamp(1rem,2.5vw,1.75rem)] text-on-navy">
+    <figure aria-label="Texiri SAP services across the lifecycle: implement, migrate, extend and run" className="m-0 bg-navy-900 p-[clamp(1rem,2.5vw,1.75rem)] text-on-navy">
       <figcaption className="mb-4 text-xs font-semibold uppercase tracking-[0.1em] text-on-navy-muted">One partner across the SAP lifecycle</figcaption>
       <ol className={`m-0 grid list-none grid-cols-2 gap-2 p-0 ${wide ? "md:grid-cols-4" : ""}`}>
         {lifecycle.map((l, i) => {
@@ -130,7 +152,40 @@ export function LifecycleRail({ active, wide }: { active?: 1 | 2 | 3 | 4; wide?:
       </ol>
       <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 border-2 border-on-navy p-3.5">
         <strong className="text-[15px]">Your SAP core · ECC → S/4HANA</strong>
-        <span className="text-[13px] text-on-navy-muted">RE-FX · FI/CO · PM · MM · SD</span>
+        <span className="text-[13px] text-on-navy-muted">RE-FX · FI/CO · PS · PM · MM · SD</span>
+      </div>
+    </figure>
+  );
+}
+
+/**
+ * A case study as a flow: where the client started, four numbered steps, and the SAP target with its modules.
+ * Vertical on phones, a row from `lg`.
+ */
+export function CaseFlow({ from, steps, note, target }:
+  { from: { name: string; note: string }; steps: readonly string[]; note: string; target: { name: string; modules: string[] } }) {
+  return (
+    <figure aria-label={`${from.name}, then ${steps.join(", ")}, into ${target.name}`} className="m-0 grid items-stretch gap-3 bg-surface p-[clamp(1rem,2.5vw,1.75rem)] lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)_minmax(0,1.2fr)]">
+      <div className="flex flex-col justify-center border-t-4 border-ink bg-ground p-5">
+        <strong className="text-lg">{from.name}</strong>
+        <span className="text-sm text-muted">{from.note}</span>
+      </div>
+      <div className="flex flex-col justify-center gap-3 px-1 py-2">
+        <ol className="m-0 grid list-none grid-cols-2 gap-2 p-0 sm:grid-cols-4">
+          {steps.map((s, i) => (
+            <li key={s} className="flex flex-col items-start gap-1 border-t-2 border-accent pt-2">
+              <span className="text-sm font-extrabold text-accent-700">{String(i + 1).padStart(2, "0")}</span>
+              <strong className="text-[17px]">{s}</strong>
+            </li>
+          ))}
+        </ol>
+        <span className="text-sm text-muted">{note}</span>
+      </div>
+      <div className="flex flex-col gap-3 bg-navy-900 p-5 text-on-navy">
+        <strong className="flex items-center gap-2 text-lg"><ArrowRight aria-hidden className="size-4.5 text-accent" />{target.name}</strong>
+        <ul className="m-0 flex list-none flex-wrap gap-1.5 p-0 text-[13px]">
+          {target.modules.map((m) => <li key={m} className="border border-on-navy/35 px-2.5 py-1">{m}</li>)}
+        </ul>
       </div>
     </figure>
   );
@@ -150,30 +205,11 @@ export function DeliveryNetwork({ offices, countries }: { offices: { name: strin
       </ul>
       <div aria-hidden className="hidden items-center justify-center md:flex"><span className="h-0.5 flex-1 bg-ink/50" /><ArrowRight className="size-5" /></div>
       <div>
-        <span className="text-xs font-semibold uppercase tracking-[0.1em] text-muted">Delivery experience</span>
+        <span className="text-xs font-semibold uppercase tracking-[0.1em] text-muted">Clients in</span>
         <ul className="m-0 mt-3 flex list-none flex-wrap gap-2 p-0">
           {countries.map((c) => <li key={c} className="flex items-center gap-2 border-2 border-ink bg-ground px-3.5 py-2 text-[15px] font-bold"><Globe aria-hidden className="size-4 text-accent-700" />{c}</li>)}
         </ul>
       </div>
-    </figure>
-  );
-}
-
-/** How the business lines stack: AI and 2Klicks tools above the SAP services, over the client's SAP landscape. */
-export function FitDiagram() {
-  const rows = [
-    { t: "AI Services & Community", d: "Applied AI, and an open community for learners.", href: "/ai-services/", tone: "bg-ai text-navy-900 hover:text-navy-900", icon: Sparkles },
-    { t: "2Klicks tools", d: "Our own SAP data migration and mass-update tools.", href: "/2klicks/", tone: "bg-accent text-navy-900 hover:text-navy-900", icon: Wrench },
-    { t: "SAP services", d: "Consulting, S/4HANA migration, integration, managed services.", href: "/sap/", tone: "border-2 border-on-navy/50 bg-navy-700 text-on-navy hover:text-on-navy", icon: Layers },
-  ];
-  return (
-    <figure aria-label="How Texiri's business lines fit together: SAP services as the base, 2Klicks tools and AI above" className="m-0 flex flex-col gap-2">
-      {rows.map((r) => {
-        const cls = `flex items-center gap-4 p-4 no-underline sm:p-5 ${r.tone}`;
-        const inner = <><r.icon aria-hidden className="size-7 flex-none" /><span><strong className="block text-xl">{r.t}</strong><span className="text-[15px]">{r.d}</span></span></>;
-        return isLive(r.href) ? <Link key={r.t} href={r.href} className={cls}>{inner}</Link> : <div key={r.t} className={cls}>{inner}</div>;
-      })}
-      <div className="border-2 border-dashed border-on-navy/50 p-3.5 text-center text-sm font-bold text-on-navy-muted">Your SAP landscape · ECC or S/4HANA</div>
     </figure>
   );
 }

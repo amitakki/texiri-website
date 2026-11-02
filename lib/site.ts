@@ -6,8 +6,8 @@ const vercelHost = process.env.VERCEL_ENV === "production" ? process.env.VERCEL_
 /** Origin for metadata URLs (og:image, canonical). SITE_URL once NEXT_PUBLIC_SITE_ENV=production. */
 export const METADATA_BASE = process.env.NEXT_PUBLIC_SITE_ENV === "production" || !vercelHost ? SITE_URL : `https://${vercelHost}`;
 
-/** Demo requests live in the form on the 2Klicks Create page. Link here directly, not via the /2klicks/demo/ redirect. */
-export const DEMO_HREF = "/2klicks/create/#demo";
+/** Demo requests live in the form on the 2Klicks page. Link here directly, not via the /2klicks/demo/ redirect. */
+export const DEMO_HREF = "/2klicks/#demo";
 
 export const contact = {
   phone: "+91 7975305499",
@@ -39,12 +39,12 @@ export const primaryNav: NavItem[] = [
     label: "SAP Services", href: "/sap/", vertical: "sap",
     mega: {
       links: [
-        { label: "SAP Consulting", href: "/sap/consulting/", description: "Implementation, functional and technical consulting. RE-FX, FI/CO, PM, MM, SD." },
-        { label: "S/4HANA Data Migration & MDG", href: "/sap/data-migration/", description: "Assess, extract, cleanse and load — then keep master data governed." },
-        { label: "SAP Integration", href: "/sap/integration/", description: "SAP CPI and PI/PO." },
-        { label: "SAP Managed Services", href: "/sap/managed-services/", description: "Post-go-live support and continuous optimisation." },
+        { label: "SAP Consulting", href: "/sap/consulting/", description: "Implementation and consulting. RE-FX & lease accounting, FI/CO, PS, PM, MM, SD." },
+        { label: "S/4HANA, Data Migration & MDG", href: "/sap/data-migration/", description: "Greenfield, brownfield or bluefield, with BODS, Syniti ADM and 2Klicks." },
+        { label: "SAP BTP & Development", href: "/sap/btp/", description: "ABAP, Fiori/UI5, RAP, BTP extensions and integration." },
+        { label: "SAP Managed Services", href: "/sap/managed-services/", description: "Basis to functional support, plus consultants on demand." },
       ],
-      feature: { kicker: "Our SAP tools", label: "2Klicks Create & Update", href: "/2klicks/", description: "Template-based data loads and mass updates." },
+      feature: { kicker: "Our SAP tools", label: "2Klicks", href: "/2klicks/", description: "SAP RE-FX mass data: 10× faster, 75% lower cost." },
     },
   },
   {
@@ -59,7 +59,7 @@ export const primaryNav: NavItem[] = [
       feature: { kicker: "Start here", label: "Request an AI readiness workshop", href: "/contact/?type=ai", description: "One day. A ranked list of use cases at the end." },
     },
   },
-  { label: "2Klicks", href: "/2klicks/create/", match: "/2klicks", vertical: "sap" },
+  { label: "2Klicks", href: "/2klicks/", match: "/2klicks", vertical: "sap" },
   { label: "Industries", href: "/industries/" },
   { label: "Case Studies", href: "/case-studies/" },
   { label: "Insights", href: "/insights/" },
@@ -90,6 +90,7 @@ export const organizationJsonLd = {
   logo: `${SITE_URL}/texiri-logo.png`,
   email: contact.email,
   telephone: contact.phone,
+  foundingDate: "2021",
   founder: { "@type": "Person", name: "Muttu Sarashetti", jobTitle: "Founder & CEO" },
   address: offices.map((o) => ({
     "@type": "PostalAddress",

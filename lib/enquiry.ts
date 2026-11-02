@@ -3,7 +3,7 @@ import { z } from "zod";
 export const ENQUIRY_TYPES = [
   "SAP implementation / consulting",
   "S/4HANA data migration",
-  "SAP integration",
+  "SAP BTP & development",
   "SAP managed services",
   "2Klicks demo",
   "AI Services",

@@ -1,12 +1,14 @@
 // Company, leadership and careers content. Move to the CMS once Sanity/Payload is chosen.
+import { contact } from "./site";
+
 /** `verify` marks a claim still awaiting confirmation (rendered with a placeholder badge). */
-/** `icon` is a key into the icon map in components/sections.tsx. */
-export const credentials: { t: string; d: string; icon: "founder" | "experience" | "countries" | "patent"; verify?: string }[] = [
-  { t: "Founder-led since SAP Labs India", d: "Our CEO began his career at SAP Labs India.", icon: "founder" },
-  { t: "20+ years in SAP", d: "Consulting and enterprise transformation.", icon: "experience" },
-  { t: "Delivery across 5 countries", d: "India, USA, Germany, Singapore, Australia.", icon: "countries" },
-  // Content decision C6: the old site says the founder holds patents, not that 2Klicks is patented.
-  { t: "Patented SAP migration tools", d: "2Klicks Create and 2Klicks Update.", icon: "patent", verify: "PATENT TO VERIFY" },
+/** `icon` is a key into the icon map in components/sections.tsx. Facts from the Texiri Profile 2026. */
+export const credentials: { t: string; d: string; icon: "experience" | "countries" | "clients" | "tools"; verify?: string }[] = [
+  { t: "20+ years in SAP", d: "SAP transformation programmes and data migration.", icon: "experience" },
+  { t: "Clients on 5 continents", d: "USA, Europe, Middle East, Australia, India.", icon: "countries" },
+  { t: "Fortune 500 clients", d: "And high-growth enterprises, since 2021.", icon: "clients", verify: "TO VERIFY" },
+  // Content decision C6: proprietary, not patented.
+  { t: "Proprietary SAP migration tools", d: "2Klicks: SAP RE-FX mass data, 10× faster at 75% lower cost.", icon: "tools", verify: "BENCHMARK TO VERIFY" },
 ];
 
 /** Verbatim from the old site's homepage (content decision P7: confirm they can still be published). */
@@ -24,36 +26,60 @@ export const principles: { title: string; body: string; icon: "people" | "tools"
   { title: "We stay after go-live", body: "Managed services from the team that knows how your system was built.", icon: "support" },
 ];
 
-export const founder = {
-  name: "Muttu Sarashetti",
-  role: "Founder & CEO",
-  bio: [
-    "Muttu began his career at SAP Labs India and has more than 20 years of global SAP consulting experience across India, the USA, Germany, Singapore and Australia, including years with leading consulting firms.",
-    "He founded Texiri to bring that depth to clients directly, and leads the design of the 2Klicks tools. He is also a co-founder of 10 Gravity Partners, holds multiple patents and copyrights, and is an advocate for sustainable development.",
-  ],
-  /** Content decision P6: permission to name these clients. */
-  clients: "He has led large-scale ERP implementations for Fortune 500 companies including Walmart, CVS, T-Systems, Singtel, Stockland and EQL.",
-  facts: [["Started at", "SAP Labs India"], ["Experience", "20+ years, 5 countries"], ["Focus", "RE-FX, S/4HANA migration, 2Klicks"], ["Also", "Co-founder, 10 Gravity Partners"]],
-  linkedin: "https://www.linkedin.com/in/muttannasarashetti/",
+export type Leader = {
+  name: string;
+  role: string;
+  /** Key into `images` in lib/images.ts. */
+  image: "founder" | "santosh";
+  bio: string[];
+  facts: [string, string][];
+  linkedin?: string;
 };
 
-export const CAREERS_EMAIL = "careers@texiri.com"; // [TO CONFIRM]
+// The profile calls Muttu "Founder & MD" on his bio slide and "CEO" on the contact slide (content decision L4).
+export const leaders: Leader[] = [
+  {
+    name: "Muttu Sarashetti",
+    role: "Founder & CEO",
+    image: "founder",
+    bio: [
+      "Muttu began his career at SAP Labs India and has more than 20 years of global SAP consulting and digital transformation experience across India, the USA, Europe, Australia and Singapore.",
+      "He has led global SAP transformation programmes and architected enterprise-scale RE-FX solutions managing more than 17,000 lease contracts. His expertise spans SAP RE-FX, IFRS 16, S/4HANA, lease accounting, ERP integration, custom SAP development, data migration and enterprise solution architecture.",
+      "He founded Texiri in 2021 and leads the design of the 2Klicks tools. He is also a co-founder of 10 Gravity Partners and an advocate for sustainable development.",
+    ],
+    facts: [["Started at", "SAP Labs India"], ["Experience", "20+ years in SAP"], ["Focus", "RE-FX, IFRS 16, S/4HANA migration, 2Klicks"], ["Also", "Co-founder, 10 Gravity Partners"]],
+    linkedin: "https://www.linkedin.com/in/muttannasarashetti/",
+  },
+  {
+    name: "Santosh S Angadi",
+    role: "Chief Revenue Officer",
+    image: "santosh",
+    bio: [
+      "Santosh has more than 20 years in programme and project management across ERP, CRM, digital transformation and enterprise automation, with expertise in SAP/ERP functional analysis, CRM implementations, data migration and process automation.",
+      "He has led more than 48 enterprise projects for power utilities and global clients using Agile and SDLC methods, and has managed and mentored cross-functional teams of 200 to 440 people. His automation, CRM integration and process work has delivered operational efficiency gains of more than 50%.",
+    ],
+    facts: [["Experience", "20+ years, ERP and CRM programmes"], ["Delivery", "48+ enterprise projects"], ["Teams", "200–440 professionals"], ["Previously", "L&T Technology Services, Easun Reyrolle, Aditi Technologies, CG Parivar IT Solutions"]],
+  },
+];
+
+export const founder = leaders[0];
+
+/** Applications go to the general inbox until a careers@ address exists (content decision H2). */
+export const CAREERS_EMAIL = contact.email;
 
 export type RoleTeam = "SAP" | "AI" | "Early career";
-// [TO CONFIRM] sample roles until Texiri supplies live openings
-export const roles: { team: RoleTeam; title: string; where: string; exp: string; skills: string; body: string }[] = [
-  { team: "SAP", title: "SAP RE-FX Functional Consultant", where: "Vijayapura / Navi Mumbai", exp: "4+ years", skills: "RE-FX, FI/CO integration, lease accounting", body: "Configure and migrate real-estate objects, contracts and conditions for clients in the USA and India." },
-  { team: "SAP", title: "S/4HANA Data Migration Consultant", where: "Navi Mumbai / Hybrid", exp: "3+ years", skills: "Migration Cockpit, Data Services, 2Klicks, MDG", body: "Plan, cleanse and load master and transactional data for S/4HANA programmes." },
-  { team: "SAP", title: "SAP CPI Integration Developer", where: "Vijayapura / Remote (India)", exp: "2+ years", skills: "SAP CPI, PI/PO, Groovy, APIs", body: "Build integration flows and help clients move from PI/PO to Integration Suite." },
-  { team: "AI", title: "AI / ML Engineer", where: "Vijayapura / Hybrid", exp: "2+ years", skills: "Python, RAG, LLM evaluation, MLOps", body: "Ship generative AI and forecasting systems for enterprise clients, with governance built in." },
-  { team: "Early career", title: "Associate SAP Consultant", where: "Vijayapura", exp: "Graduate", skills: "Any engineering or commerce degree, curiosity", body: "Join a mentored track covering SAP fundamentals, 2Klicks and live project work." },
-];
+export type Role = { team: RoleTeam; title: string; where: string; exp: string; skills: string; body: string };
+/**
+ * Live openings only (content decision H1). The careers page shows a "no roles listed" message while this is empty.
+ * The five sample roles that were here are in git history (commit 352654d, lib/company.ts).
+ */
+export const roles: Role[] = [];
 
 export const lifeAtTexiri = [
   { t: "Client work from the start", d: "You join live projects, not a bench." },
   { t: "Learn from SAP veterans", d: "Pair with consultants who have 20+ years in SAP." },
   { t: "Build the tools", d: "Contribute to 2Klicks and internal accelerators." },
-  { t: "Grow into AI", d: "Free access to the TEXIRI AI Community and its learning paths." },
+  { t: "Grow into AI", d: "Learn and build alongside the TEXIRI AI Community, our platform for AI collaboration." },
 ];
 
 // The four stages from the old site's careers page.

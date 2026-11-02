@@ -3,7 +3,7 @@ import { C, SKIN, HAIR, arm, arrow, circ, cylinder, darr, g, grad, laptopBack, l
 
 const out = {};
 
-// ── 2Klicks Create: template → enter data → upload, with a validation log ──────────────────────────
+// ── 2Klicks: download template → update data → upload, with a validation log ───────────────────
 {
   const cols = [["Contract", 120], ["Company code", 150], ["Start date", 140], ["Monthly rent", 150], ["Currency", 110], ["ZZ_REGION ★", 190]];
   const rows = [
@@ -18,11 +18,11 @@ const out = {};
   const tx = 350, ty = 300, rh = 60;
   let cx = tx;
   const colX = cols.map(([, w]) => { const x = cx; cx += w; return x; });
-  const objects = ["Lease contracts", "Rental objects", "Business partners", "Conditions", "Material master", "Equipment"];
+  const objects = ["Lease contracts", "Rental objects", "Buildings", "Business entities", "Business partners", "Conditions"];
   out["2klicks-ui"] = svg(1600, 1000, grad([[0, "#e6eaf1"], [1, C.ground]], "d"), g(
     shadow(rr(30, 30, 1540, 940, 16, C.white)),
     `<path d="M30,102 V46 a16,16 0 0 1 16,-16 h1508 a16,16 0 0 1 16,16 V102 Z" fill="${C.navy}"/>`,
-    rr(58, 54, 26, 26, 4, C.accent), text(98, 78, "2Klicks Create", C.onNavy, 28, 800),
+    rr(58, 54, 26, 26, 4, C.accent), text(98, 78, "2Klicks", C.onNavy, 28, 800),
     rr(1090, 52, 250, 32, 16, C.navy7), text(1215, 75, "SAP DEV-100 · RE-FX", C.onNavyMuted, 18, 700, 'text-anchor="middle"'),
     circ(1480, 68, 20, C.accent3), text(1480, 75, "AK", C.navy, 17, 800, 'text-anchor="middle"'), text(1425, 75, "", C.white, 1),
     // sidebar
@@ -46,9 +46,9 @@ const out = {};
     rr(tx, ty - 4, 860, 48 + rows.length * rh + 8, 8, C.white, `stroke="${C.line}" stroke-width="2"`),
     rect(tx, ty, 860, 48, C.accent2),
     ...cols.map(([t], i) => text(colX[i] + 16, ty + 31, t, C.ink, 18, 800)),
-    rect(colX[5], ty, 190, 48 + rows.length * rh, "rgba(247,148,29,0.12)"),
+    rect(colX[5], ty, 190, 48 + rows.length * rh, "rgba(252,154,58,0.12)"),
     ...rows.map((r, ri) => g(
-      ri === 2 ? rect(tx, ty + 48 + ri * rh, 860, rh, "rgba(247,148,29,0.18)") : "",
+      ri === 2 ? rect(tx, ty + 48 + ri * rh, 860, rh, "rgba(252,154,58,0.18)") : "",
       line(tx, ty + 48 + (ri + 1) * rh, tx + 860, ty + 48 + (ri + 1) * rh, C.line, 2),
       ...r.map((v, ci) => text(colX[ci] + 16, ty + 48 + ri * rh + 37, v, ci === 5 ? C.accent7 : ci === 1 && ri === 2 ? C.accent7 : C.ink, 19, ci === 5 || (ci === 1 && ri === 2) ? 800 : 600)),
       ri === 2 ? warn(colX[1] + 104, ty + 48 + ri * rh + 30, 12) : "")),
@@ -215,7 +215,7 @@ const out = {};
   const off = 3; // 1 Dec 2027 is a Wednesday
   const cx = 1130, cy = 440, R = 270;
   const tickM = Array.from({ length: 60 }, (_, i) => { const a = (i * 6 - 90) * Math.PI / 180, big = i % 5 === 0; return line(cx + Math.cos(a) * (R - 22), cy + Math.sin(a) * (R - 22), cx + Math.cos(a) * (R - (big ? 48 : 34)), cy + Math.sin(a) * (R - (big ? 48 : 34)), big ? C.navy : C.soft, big ? 6 : 3, 'stroke-linecap="round"'); }).join("");
-  const sector = (() => { const a0 = -90 * Math.PI / 180, a1 = (-90 + 355) * Math.PI / 180; const r = R - 20; return path(`M${cx},${cy} L${cx + Math.cos(a0 + (300 * Math.PI) / 180) * r},${cy + Math.sin(a0 + (300 * Math.PI) / 180) * r} A${r},${r} 0 0 1 ${cx + Math.cos(a1) * r},${cy + Math.sin(a1) * r} Z`, "rgba(247,148,29,0.35)"); })();
+  const sector = (() => { const a0 = -90 * Math.PI / 180, a1 = (-90 + 355) * Math.PI / 180; const r = R - 20; return path(`M${cx},${cy} L${cx + Math.cos(a0 + (300 * Math.PI) / 180) * r},${cy + Math.sin(a0 + (300 * Math.PI) / 180) * r} A${r},${r} 0 0 1 ${cx + Math.cos(a1) * r},${cy + Math.sin(a1) * r} Z`, "rgba(252,154,58,0.35)"); })();
   out["article-ecc-2027"] = svg(1600, 900, grad([[0, "#eceae4"], [1, "#dfe3ea"]], "d"), g(
     // calendar
     shadow(rr(150, 110, 600, 680, 18, C.white)),
@@ -241,7 +241,7 @@ const out = {};
 {
   const bld = [[110, 330, 190, 400], [320, 200, 210, 530], [550, 390, 170, 340], [740, 260, 200, 470]];
   out["article-refx"] = svg(1600, 900, grad([[0, "#fde7c8"], [1, C.accent1]], "v"), g(
-    circ(1250, 160, 120, "rgba(247,148,29,0.18)"), circ(1250, 160, 70, C.accent3),
+    circ(1250, 160, 120, "rgba(252,154,58,0.18)"), circ(1250, 160, 70, C.accent3),
     rect(0, 730, 1600, 170, grad([[0, C.accent2], [1, C.accent3]], "v")),
     ...bld.map(([x, y, w, h], i) => g(
       shadow(rect(x, y, w, h, grad([[0, i % 2 ? C.navy7 : C.navy8], [1, C.navy]], "v"))),
@@ -257,5 +257,11 @@ const out = {};
     ${path("M1000,700 q30,-50 60,-8 t60,-6 t60,10 t60,-22", "none", `stroke="${C.navy}" stroke-width="5" stroke-linecap="round"`)}${circ(1370, 690, 48, C.accent)}${`<polyline points="1348,690 1364,708 1396,668" fill="none" stroke="${C.navy}" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>`}</g>`,
   ));
 }
+
+// ── Leadership portrait stand-in (4:5), until the real photo arrives ───────────────────────────────
+out["portrait"] = svg(800, 1000, grad([[0, "#e6eaf1"], [1, C.surface]], "v"), g(
+  circ(400, 470, 330, "rgba(252,154,58,0.10)"),
+  person(400, 420, 4.2, { len: 260, shirt: C.navy7, skin: SKIN[1], hair: HAIR[0], glasses: true }),
+));
 
 export default out;

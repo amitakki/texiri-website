@@ -22,11 +22,12 @@
   --color-accent-200: #fddcb3;
   --color-accent-300: #fbc27d;
   --color-accent-400: #f9aa4c;
-  --color-accent: #f7941d;
+  --color-accent: #fc9a3a;
   --color-accent-600: #e07f0a;
   --color-accent-700: #9a4f00;
   --color-accent-800: #7a3e00;
   --color-accent-900: #4a2600;
+  --color-accent-gold: #fdc013; /* right-hand end of the logo's orange-to-gold fade */
   --color-data: #2bb5e8;
 
   /* AI Services vertical */
@@ -40,7 +41,7 @@
   --color-com-surface: #ffffff;
   --color-com: #ffc20e;
   --color-com-600: #f2ae00;
-  --color-com-orange: #f7941d;
+  --color-com-orange: #fc9a3a;
   --color-com-ink: #8a5a00;
   --color-com-blue: #1546a0;
   --color-com-tint: #fff0c7;
@@ -58,7 +59,8 @@
   --radius-chip: 6px;
   --radius-pill: 999px;
 
-  --text-display: clamp(2.5rem, 5.8vw, 5rem);
+  /* Max was 5rem in the design system; cut to 4rem (Nov 2026) so hero headlines fit 2–3 lines. Content decision X11. */
+  --text-display: clamp(2.25rem, 5vw, 4rem);
   --text-display--line-height: 1.02;
   --text-display--letter-spacing: -0.02em;
   --text-h2: clamp(1.875rem, 4vw, 3.25rem);
@@ -104,6 +106,8 @@
 /* Focus ring colour for focusable content on navy (orange ring) and on orange/blue fills (navy ring) */
 @utility surface-dark { --focus-ring: var(--color-accent); }
 @utility surface-bright { --focus-ring: var(--color-navy-900); }
+/* Large orange blocks use the logo's fade, left to right. Small fills (buttons, bars) stay solid accent. */
+@utility bg-logo-fade { background-color: var(--color-accent); background-image: linear-gradient(90deg, var(--color-accent), var(--color-accent-gold)); }
 @utility ai-grid {
   background-image: radial-gradient(color-mix(in srgb, var(--color-ai) 28%, transparent) 1px, transparent 1.5px);
   background-size: 22px 22px;

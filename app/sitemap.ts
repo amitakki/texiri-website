@@ -1,18 +1,26 @@
 import type { MetadataRoute } from "next";
-import { interimPages } from "@/lib/pages";
+import { caseHref, caseStudies } from "@/lib/case-studies";
+import { interimPages, isReady } from "@/lib/pages";
 import { SITE_URL } from "@/lib/site";
 
-// Dedicated pages, plus interim pages (app/[...slug]) once they are marked `ready` in lib/pages.ts.
+// Dedicated pages once they are ready (see isReady), plus interim pages (app/[...slug]) once marked `ready` in lib/pages.ts.
 const routes: { path: string; priority: number }[] = [
   { path: "/", priority: 1 },
   { path: "/sap/", priority: 0.9 },
+  { path: "/sap/consulting/", priority: 0.9 },
   { path: "/sap/data-migration/", priority: 0.9 },
-  { path: "/2klicks/create/", priority: 0.8 },
+  { path: "/sap/btp/", priority: 0.8 },
+  { path: "/sap/managed-services/", priority: 0.8 },
+  { path: "/industries/", priority: 0.7 },
+  { path: "/case-studies/", priority: 0.7 },
+  ...caseStudies.map((c) => ({ path: caseHref(c), priority: 0.6 })),
+  { path: "/2klicks/", priority: 0.8 },
   { path: "/ai-services/", priority: 0.8 },
   { path: "/ai-community/", priority: 0.6 },
   { path: "/ai-community/join/", priority: 0.5 },
   { path: "/about/", priority: 0.6 },
   { path: "/about/leadership/", priority: 0.5 },
+  { path: "/about/csr/", priority: 0.4 },
   { path: "/careers/", priority: 0.6 },
   { path: "/careers/shambhavi-108/", priority: 0.6 },
   { path: "/contact/", priority: 0.7 },
@@ -23,5 +31,5 @@ const routes: { path: string; priority: number }[] = [
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const ready = Object.entries(interimPages).filter(([, p]) => p.ready === true).map(([path]) => ({ path, priority: 0.5 }));
-  return [...routes, ...ready].map(({ path, priority }) => ({ url: `${SITE_URL}${path}`, changeFrequency: "monthly", priority }));
+  return [...routes.filter((r) => isReady(r.path)), ...ready].map(({ path, priority }) => ({ url: `${SITE_URL}${path}`, changeFrequency: "monthly", priority }));
 }

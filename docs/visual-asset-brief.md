@@ -16,15 +16,17 @@ The site uses on-brand placeholder illustrations (marked "PLACEHOLDER IMAGE") wh
 | IMG2 | The Texiri team at the Vijayapura office | 4:3 · 1600×1200 | Careers → Life at Texiri | HR | Everyone shown |
 | IMG3 | The Vijayapura office building or entrance, daylight | 4:3 · 1600×1200 | About → Our story | Founder | None |
 | IMG4 | A real migration diagram (redacted) or project photo | 16:9 · 1920×1080 | Data Migration, case studies | Delivery lead | Client approval |
-| IMG5 | **Real 2Klicks Create screenshots**: template screen, upload, validation log. Light theme, browser chrome removed, sample data only. | 16:10 · 2400×1500 | Home 2Klicks band, 2Klicks Create hero | 2Klicks product lead | No real client data |
+| IMG5 | **Real 2Klicks screenshots**: template screen, upload, validation log. Light theme, browser chrome removed, sample data only. | 16:10 · 2400×1500 | Home 2Klicks band, 2Klicks hero | 2Klicks product lead | No real client data |
 | IMG6 | An AI readiness workshop in progress | 4:3 · 1600×1200 | AI Services, AI sub-pages | AI practice lead | Everyone shown |
 | IMG7 | A TEXIRI AI Community workshop, wide shot | 4:3 · 1600×1200 | Community hero, events | Community lead | Everyone shown |
 | IMG8 | A community member presenting their project | 4:3 · 1600×1200 | Community hero, Join, learning paths | Community lead | The presenter and anyone in frame |
 | IMG9 | Three member project screenshots (one per project) | 16:10 · 1600×1000 each | Community → Built by members | Community lead | Member name and consent per project |
 | IMG10 | Article cover images for the three launch articles (illustration or photo, no text in the image) | 16:9 · 1600×900 | Home, Insights | Marketing | None |
 | IMG11 | Shambhavi 108 learners at work | 4:3 · 1600×1200 | Shambhavi 108 | Programme lead | Everyone shown |
+| IMG12 | **Life at Texiri**, five photos: festival celebrations, birthdays and work anniversaries, team outings, learning sessions, the Navi Mumbai office. Natural, candid moments over posed shots. | 4:3 · 1600×1200 each | Careers → Life at Texiri gallery | HR | Everyone shown |
+| IMG13 | **CSR events**: 2–6 photos per event (the activity, volunteers with the partner organisation, the result), with a caption for each | 4:3 · 1600×1200 each | `/about/csr/`, About → CSR band | HR / founder | Everyone shown; for children, written consent from a parent or the school |
 
-**About the current placeholders.** Each illustration is drawn to explain its topic (for example the roadmap workshop, the data-cleansing flow, the 2Klicks screen), so reviewers can see what the real image should convey. They are regenerated from `scripts/generate-placeholder-images.mjs` (helpers in `scripts/illustration-kit.mjs`). Every one keeps its "PLACEHOLDER IMAGE" badge until `placeholder: true` is removed in `lib/images.ts`.
+**About the current placeholders.** Each illustration is drawn to explain its topic (for example the roadmap workshop, the data-cleansing flow, the 2Klicks screen), so reviewers can see what the real image should convey. They are regenerated from `scripts/generate-placeholder-images.mjs` (helpers in `scripts/illustration-kit.mjs`). Every one keeps its "PLACEHOLDER IMAGE" badge until `placeholder: true` is removed in `lib/images.ts` (or `lib/gallery.ts` for the Life at Texiri and CSR galleries).
 
 **How to swap one in** (developer): put the file under `public/images/`, change its `src` in `lib/images.ts`, and delete `placeholder: true`. The badge disappears with it.
 

@@ -3,13 +3,12 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { ComponentProps, ReactNode } from "react";
 
-type Variant = "primary" | "secondary" | "navy" | "outline-on-navy" | "outline-on-accent";
+type Variant = "primary" | "secondary" | "navy" | "outline-on-navy";
 const variants: Record<Variant, string> = {
   primary: "bg-accent text-ink hover:bg-accent-600 active:bg-accent-700 active:text-on-navy",
   secondary: "border-2 border-ink text-ink hover:bg-ink/5",
   navy: "bg-navy-900 text-on-navy hover:bg-navy-700 hover:text-on-navy",
   "outline-on-navy": "border-2 border-on-navy text-on-navy hover:bg-navy-700 hover:text-on-navy",
-  "outline-on-accent": "border-2 border-navy-900 text-navy-900 hover:bg-accent-600",
 };
 
 /** Labels are flush left (Modernist). Min height 52px desktop / 48px mobile → ≥44px targets. */
@@ -42,7 +41,7 @@ export function PilotLabel() {
 
 export function Section({ id, labelledBy, tone = "ground", ruled, className = "", children }:
   { id?: string; labelledBy?: string; tone?: "ground" | "surface" | "navy" | "accent"; ruled?: boolean; className?: string; children: ReactNode }) {
-  const tones = { ground: "", surface: "bg-surface", navy: "surface-dark bg-navy-900 text-on-navy", accent: "surface-bright bg-accent text-navy-900" };
+  const tones = { ground: "", surface: "bg-surface", navy: "surface-dark bg-navy-900 text-on-navy", accent: "surface-bright bg-logo-fade text-navy-900" };
   return (
     <section id={id} aria-labelledby={labelledBy} className={`py-section ${tones[tone]} ${ruled ? "rule-section" : ""} ${className}`}>
       <div className="container-content">{children}</div>

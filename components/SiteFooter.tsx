@@ -6,10 +6,10 @@ import { isLive } from "@/lib/pages";
 import { DEMO_HREF, contact, offices } from "@/lib/site";
 
 const cols: { title: string; links: [string, string][] }[] = [
-  { title: "SAP Services", links: [["Overview", "/sap/"], ["SAP Consulting", "/sap/consulting/"], ["S/4HANA Data Migration", "/sap/data-migration/"], ["SAP Integration", "/sap/integration/"], ["Managed Services", "/sap/managed-services/"]] },
-  { title: "2Klicks", links: [["2Klicks Create", "/2klicks/create/"], ["2Klicks Update", "/2klicks/update/"], ["Request a demo", DEMO_HREF]] },
+  { title: "SAP Services", links: [["Overview", "/sap/"], ["SAP Consulting", "/sap/consulting/"], ["S/4HANA, Data Migration & MDG", "/sap/data-migration/"], ["SAP BTP & Development", "/sap/btp/"], ["Managed Services", "/sap/managed-services/"]] },
+  { title: "2Klicks", links: [["Overview", "/2klicks/"], ["Request a demo", DEMO_HREF]] },
   { title: "AI Services", links: [["Overview", "/ai-services/"], ["AI Strategy & Readiness", "/ai-services/strategy-readiness/"], ["Generative AI & RAG", "/ai-services/generative-ai/"], ["MLOps & Governance", "/ai-services/mlops-governance/"]] },
-  { title: "Company", links: [["About", "/about/"], ["Leadership", "/about/leadership/"], ["Industries", "/industries/"], ["Case Studies", "/case-studies/"], ["Insights", "/insights/"], ["AI Community", "/ai-community/"], ["Join the community", "/ai-community/join/"], ["Careers", "/careers/"], ["Shambhavi 108", "/careers/shambhavi-108/"], ["Contact", "/contact/"]] },
+  { title: "Company", links: [["About", "/about/"], ["Leadership", "/about/leadership/"], ["CSR", "/about/csr/"], ["Industries", "/industries/"], ["Case Studies", "/case-studies/"], ["Insights", "/insights/"], ["AI Community", "/ai-community/"], ["Join the community", "/ai-community/join/"], ["Careers", "/careers/"], ["Shambhavi 108", "/careers/shambhavi-108/"], ["Contact", "/contact/"]] },
 ];
 
 
@@ -21,7 +21,7 @@ export function SiteFooter() {
         <div className="grid gap-8 border-b-2 border-on-navy/20 pb-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
           <div className="flex flex-col gap-4">
             <Image src="/texiri-logo.png" alt="Texiri Solutions" width={128} height={47} />
-            <p className="m-0 max-w-[34ch] text-[15px] text-on-navy-muted">A founder-led SAP consultancy: implementation, S/4HANA migration, integration and support, with our own 2Klicks migration tools.</p>
+            <p className="m-0 max-w-[34ch] text-[15px] text-on-navy-muted">An SAP consultancy: implementation, S/4HANA migration, SAP BTP and managed services, with our own proprietary 2Klicks migration tools.</p>
           </div>
           <div className="grid gap-6 text-[15px] sm:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)_minmax(0,1fr)]">
             <address className="flex flex-col gap-1.5 not-italic">
