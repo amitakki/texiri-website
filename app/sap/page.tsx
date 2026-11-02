@@ -2,28 +2,34 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Button, Kicker } from "@/components/ui";
 import { LifecycleRail } from "@/components/visuals";
-import { Breadcrumbs, CTABand, FAQAccordion, TestimonialCard } from "@/components/sections";
+import { Breadcrumbs, CTABand, FAQAccordion, NumberedGrid, TestimonialCard } from "@/components/sections";
 import { testimonials } from "@/lib/company";
 import { isLive } from "@/lib/pages";
 import { DEMO_HREF } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "SAP Consulting & Managed Services",
-  description: "SAP services across the lifecycle: SAP implementation and functional consulting (RE-FX, FI/CO, PM, MM, SD), S/4HANA data migration and MDG, SAP CPI and PI/PO integration, and managed services.",
+  description: "SAP services across the lifecycle: SAP implementation and consulting (RE-FX and lease accounting, FICO, PS, PM, MM), S/4HANA data migration and MDG, SAP BTP and ABAP development, and managed services.",
   alternates: { canonical: "/sap/" },
 };
 
 const services = [
-  { id: "consulting", t: "SAP Consulting", d: "Implementation, functional and technical consulting for teams that need SAP configured to how the business actually works.", points: [["Implementation", "Blueprint, build, test, go-live"], ["Functional", "RE-FX, FI/CO, PM, MM, SD"], ["Technical", "Development, enhancements, performance"]], href: "/sap/consulting/", highlight: true },
-  { id: "migration", t: "S/4HANA Data Migration & MDG", d: "Planning, extraction, cleansing and loading, then Master Data Governance so the data stays right.", points: [["Scenarios", "Legacy/ECC to S/4HANA, new implementation, conversion, landscape transformation"], ["Tools", "2Klicks Create, Data Services, SDI, Information Steward, Migration Cockpit"]], href: "/sap/data-migration/" },
-  { id: "integration", t: "SAP Integration", d: "Interfaces between SAP and the rest of your landscape, built on SAP CPI and PI/PO.", points: [["SAP CPI", "Cloud integration flows and APIs"], ["PI/PO", "Support today, and a plan before mainstream maintenance ends in 2027"]], href: "/sap/integration/" },
-  { id: "managed", t: "SAP Managed Services", d: "Post-go-live support and optimisation from the people who know how your system was built.", points: [["Support", "Incidents, changes and small enhancements"], ["Optimisation", "Process and performance improvements"], ["Mass changes", "Reorganisations handled with 2Klicks Update"]], href: "/sap/managed-services/" },
+  { id: "consulting", t: "SAP Consulting", d: "SAP implementation configured to how the business actually works, from blueprint to go-live.", points: [["RE-FX & Lease Accounting", "RE-FX, C4RE, IFRS 16 and ASC 842"], ["Enterprise Asset Management", "PM, APM and SSAM"], ["Finance", "FICO, asset accounting, lease accounting"], ["Project Systems", "Capital projects, shutdowns and turnarounds"]], href: "/sap/consulting/", highlight: true },
+  { id: "migration", t: "S/4HANA, Data Migration & MDG", d: "Data migration to S/4HANA on every type of implementation, then Master Data Governance so the data stays right.", points: [["Scenarios", "Greenfield, brownfield and bluefield"], ["Tools", "SAP BODS / Data Services, Syniti ADM, Migration Cockpit, 2Klicks"]], href: "/sap/data-migration/" },
+  { id: "btp", t: "SAP BTP & Development", d: "Tailored SAP development, from ABAP to Fiori apps and BTP extensions that keep the S/4HANA core clean.", points: [["ABAP & RAP", "Enhancements, reports, interfaces and RAP services"], ["Fiori/UI5", "Mobile-ready apps that speed up adoption"], ["SAP BTP", "Clean-core extensions, workflows and integration"]], href: "/sap/btp/" },
+  { id: "managed", t: "SAP Managed Services", d: "From Basis to functional support: complete SAP management under one roof.", points: [["Support", "Incidents, changes and small enhancements"], ["Basis", "Technical operations and system health"], ["Mass changes", "Reorganisations handled with 2Klicks"]], href: "/sap/managed-services/" },
+];
+const engage = [
+  { title: "Implementation projects", body: "A full SAP implementation or a single workstream, such as data migration or RE-FX, inside a larger programme." },
+  { title: "Managed services", body: "Ongoing Basis and functional support from the team that knows how your system was built." },
+  { title: "Staff augmentation", body: "Experienced consultants in ABAP, Fiori, BTP, MDG, FICO, RE-FX, PS, S/4HANA, Group Reporting, FSCM, PM and EWM." },
+  { title: "Onsite, offshore or hybrid", body: "A delivery model that balances cost with round-the-clock support." },
 ];
 const faqs = [
   { q: "Do you work alongside our systems integrator?", a: "Yes. We can lead a workstream such as data migration or RE-FX inside a larger programme, with clear hand-offs to your SI." },
-  { q: "Which SAP modules do you cover?", a: "Functional consulting across RE-FX, FI/CO, PM, MM and SD, plus technical consulting, integration on CPI and PI/PO, and managed services." },
-  { q: "Can you support us after go-live?", a: "Yes. SAP Managed Services covers post-go-live support and optimisation, and 2Klicks Update handles mass changes after reorganisations." },
-  { q: "Where do you deliver from?", a: "Our teams are based in India, with delivery experience across India, the USA, Germany, Singapore and Australia." },
+  { q: "Which SAP modules do you cover?", a: "RE-FX and C4RE, FI/CO, Project Systems, Plant Maintenance and asset management (APM, SSAM), MM, PP and SD, plus ABAP, Fiori/UI5, RAP and SAP BTP development, data migration and MDG, and Basis." },
+  { q: "Can you support us after go-live?", a: "Yes. SAP Managed Services covers post-go-live support and optimisation, and 2Klicks handles RE-FX mass changes after reorganisations." },
+  { q: "Where do you deliver from?", a: "Our delivery centres are in Vijayapura and Navi Mumbai. We work onsite, offshore or hybrid, for clients on five continents: the USA, Europe, the Middle East, Australia and India." },
 ];
 
 export default function SapServicesPage() {
@@ -63,8 +69,8 @@ export default function SapServicesPage() {
                 {s.highlight && (
                   <div className="border-t-4 border-accent bg-navy-900 p-6 text-on-navy">
                     <span className="text-xs font-semibold uppercase tracking-[0.1em] text-accent">RE-FX highlight</span>
-                    <h3 className="mb-2 mt-1.5 text-[22px] text-on-navy">SAP Flexible Real Estate Management</h3>
-                    <p className="m-0 text-on-navy-muted">Real-estate objects, lease contracts and conditions, configured, migrated with 2Klicks and maintained through portfolio changes with 2Klicks Update.</p>
+                    <h3 className="mb-2 mt-1.5 text-[22px] text-on-navy">SAP RE-FX &amp; Lease Accounting</h3>
+                    <p className="m-0 text-on-navy-muted">Land, buildings, rental objects and space; lessee and lessor contracts for property and equipment; lease accounting compliant with IFRS 16 and ASC 842. Migrated with 2Klicks and kept current through portfolio changes with the same tool.</p>
                   </div>
                 )}
                 {isLive(s.href) && <Link href={s.href} className="font-extrabold">{s.t} →</Link>}
@@ -74,10 +80,18 @@ export default function SapServicesPage() {
         </div>
       </section>
 
+      <section aria-labelledby="eng-h" className="border-t-2 border-ink py-section">
+        <div className="container-content">
+          <Kicker>Ways to engage</Kicker>
+          <h2 id="eng-h" className="m-0 max-w-[22ch] text-h2">Project, service or people. Whatever fits your programme.</h2>
+          <NumberedGrid items={engage} cols={4} />
+        </div>
+      </section>
+
       <section aria-labelledby="k-h" className="surface-dark bg-navy-900 text-on-navy">
         <Link href="/2klicks/" className="container-content grid items-end gap-x-8 gap-y-6 py-[clamp(3rem,6vw,5rem)] text-on-navy no-underline hover:text-on-navy md:grid-cols-2">
-          <div><Kicker onNavy>Our SAP tools</Kicker><h2 id="k-h" className="m-0 max-w-[20ch] text-[clamp(1.75rem,3.4vw,2.75rem)] leading-[1.08]">2Klicks Create and 2Klicks Update</h2></div>
-          <div><p className="m-0 max-w-[46ch] text-[17px] text-on-navy-muted">Template-based tools for SAP data loads and mass updates, without new code.</p><span className="mt-4 inline-block font-extrabold text-accent">Explore 2Klicks →</span></div>
+          <div><Kicker onNavy>Our SAP tools</Kicker><h2 id="k-h" className="m-0 max-w-[20ch] text-[clamp(1.75rem,3.4vw,2.75rem)] leading-[1.08]">2Klicks: SAP RE-FX mass data, in two clicks</h2></div>
+          <div><p className="m-0 max-w-[46ch] text-[17px] text-on-navy-muted">Our proprietary tools create, update and migrate RE-FX data from one template: 10× faster, 75% lower cost, no programs to develop.</p><span className="mt-4 inline-block font-extrabold text-accent">Explore 2Klicks →</span></div>
         </Link>
       </section>
 

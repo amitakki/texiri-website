@@ -50,7 +50,7 @@ export default function CommunityPage() {
         <div className="container-content grid items-center gap-[clamp(2rem,5vw,4.5rem)] lg:grid-cols-2">
           <div className="hero-enter">
             <span className="rounded-pill mb-6 inline-flex items-center gap-2 bg-com-tint px-3.5 py-1.5 text-[13px] font-bold text-com-ink"><span aria-hidden className="size-2 rounded-full bg-com-orange" />TEXIRI AI Community · started in Vijayapura</span>
-            <h1 id="hero-h" className="m-0 text-[clamp(2.625rem,6vw,5.25rem)] leading-none tracking-[-0.03em]">
+            <h1 id="hero-h" className="m-0 text-[clamp(2.25rem,5vw,4rem)] leading-none tracking-[-0.03em]">
               <span className="block">Learn AI.</span><span className="block">Build with AI.</span><span className="block text-com-blue">Grow together.</span>
             </h1>
             <p className="mt-6 max-w-[48ch] text-lead text-muted">A community for anyone curious about AI, whether you&apos;re opening your first notebook or shipping models at work. It began as the Vijayapura AI Club and is open to learners everywhere.</p>

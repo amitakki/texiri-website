@@ -48,8 +48,11 @@ const config: NextConfig = {
       ["/services/data-migration/", "/sap/data-migration/"],
       ["/mobility-solutions/", "/sap/"],
       ["/sap/mobility/", "/sap/"],
-      ["/2klicks-create/", "/2klicks/create/"],
-      ["/about/2klicks-update/", "/2klicks/update/"],
+      ["/2klicks-create/", "/2klicks/"],
+      ["/about/2klicks-update/", "/2klicks/"],
+      // 2Klicks Create and Update merged into one page (Nov 2026).
+      ["/2klicks/create/", "/2klicks/"],
+      ["/2klicks/update/", "/2klicks/"],
       ["/texiri-ai-community/", "/ai-community/"],
       ["/shambhavi-108/", "/careers/shambhavi-108/"],
       ["/services/careers/", "/careers/"],
@@ -57,9 +60,11 @@ const config: NextConfig = {
       ["/about/contact/", "/contact/"],
       ["/services/", "/sap/"],
       ["/home/footer/", "/"],
+      // SAP Integration became SAP BTP & Development (review, Oct 2026).
+      ["/sap/integration/", "/sap/btp/"],
     ].map(([source, destination]) => ({ source, destination, permanent: true }))
-      // Demo requests live in the form on the 2Klicks Create page.
-      .concat({ source: "/2klicks/demo/", destination: "/2klicks/create/#demo", permanent: false });
+      // Demo requests live in the form on the 2Klicks page.
+      .concat({ source: "/2klicks/demo/", destination: "/2klicks/#demo", permanent: false });
   },
 };
 

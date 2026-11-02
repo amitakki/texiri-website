@@ -3,7 +3,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Button, Placeholder, SiteImage } from "@/components/ui";
 import { Breadcrumbs, CheckList, CTABand, Hero } from "@/components/sections";
-import { LifecycleRail } from "@/components/visuals";
 import { images } from "@/lib/images";
 import { interimPages, isLive } from "@/lib/pages";
 
@@ -14,17 +13,12 @@ type Props = { params: Promise<{ slug: string[] }> };
 
 const pathOf = (slug: string[]) => `/${slug.join("/")}/`;
 
-const sapStage: Record<string, 1 | 2 | 3 | 4> = { "/sap/consulting/": 1, "/sap/data-migration/": 2, "/sap/integration/": 3, "/sap/managed-services/": 4 };
-
 /** Stand-in hero image per section until each page gets its own. */
 function heroImage(href: string) {
-  if (href.startsWith("/2klicks")) return images.klicksUi;
   if (href.startsWith("/ai-services")) return images.aiWorkshop;
   if (href.startsWith("/ai-community/events")) return images.communityWorkshop;
   if (href.startsWith("/ai-community")) return images.communityDemo;
-  if (href.startsWith("/case-studies")) return images.dataMigration;
-  if (href.startsWith("/industries/real-estate") || href.includes("re-fx")) return images.articleRefx;
-  if (href.startsWith("/industries")) return images.office;
+  if (href.includes("re-fx")) return images.articleRefx;
   if (href.includes("first-ai")) return images.articleAi;
   if (href.startsWith("/insights")) return images.articleEcc;
   return images.consultingTeam;
@@ -55,7 +49,7 @@ export default async function InterimPage({ params }: Props) {
         kicker={page.kicker}
         title={page.title}
         lead={page.lead}
-        aside={href.startsWith("/sap/") ? <LifecycleRail active={sapStage[href]} /> : <SiteImage {...heroImage(href)} ratio="aspect-[4/3]" priority className={page.vertical === "community" ? "rounded-com" : ""} />}
+        aside={<SiteImage {...heroImage(href)} ratio="aspect-[4/3]" priority className={page.vertical === "community" ? "rounded-com" : ""} />}
         actions={
           <>
             {page.cta && <Button href={page.cta.href} arrow data-track="cta_click" data-vertical={page.vertical ?? "sap"}>{page.cta.label}</Button>}

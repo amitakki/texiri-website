@@ -45,7 +45,7 @@ Set these in **Project → Settings → Environment Variables**. "Prod only" mea
 | `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` | Upstash credentials (optional) | All |
 
 ## 6. Test on the preview deployment
-- [ ] Submit each form (enquiry on `/contact/`, demo on `/2klicks/create/`, community join, Shambhavi 108). For each one, check that:
+- [ ] Submit each form (enquiry on `/contact/`, demo on `/2klicks/`, community join, Shambhavi 108). For each one, check that:
   - the notification email arrives in the right inbox;
   - the acknowledgement email reaches the person who submitted;
   - a row appears in the right tab of the Google Sheet.
@@ -57,7 +57,7 @@ Set these in **Project → Settings → Environment Variables**. "Prod only" mea
 - [ ] Lower the DNS TTL a day ahead, then switch the DNS records to Vercel.
 - [ ] Check that HTTPS works on both hostnames.
 - [ ] Test every old URL redirects to its new page:
-  `/services/`, `/services/single-service/`, `/services/managed-services/`, `/services/data-migration/`, `/mobility-solutions/`, `/2klicks-create/`, `/about/2klicks-update/`, `/texiri-ai-community/`, `/shambhavi-108/`, `/services/careers/`, `/about/team/`, `/about/contact/`, `/home/footer/`.
+  `/services/`, `/services/single-service/`, `/services/managed-services/`, `/services/data-migration/`, `/mobility-solutions/`, `/2klicks-create/`, `/about/2klicks-update/`, `/2klicks/create/`, `/2klicks/update/`, `/texiri-ai-community/`, `/shambhavi-108/`, `/services/careers/`, `/about/team/`, `/about/contact/`, `/home/footer/`.
 - [ ] Check that `/robots.txt` on production allows crawling and lists the sitemap.
 - [ ] Share `https://www.texiri.com/` in WhatsApp or LinkedIn (or use the LinkedIn Post Inspector / opengraph.xyz) and check the preview shows the logo image. Link previews are cached, so use the inspector's re-scrape button if an old preview appears.
 

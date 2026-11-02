@@ -1,38 +1,31 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, DatabaseZap, Layers, LifeBuoy, Network, Sparkles, Users, type LucideIcon } from "lucide-react";
-import { Button, H2, Kicker, Section, SiteImage } from "@/components/ui";
+import { ArrowRight, Boxes, DatabaseZap, Layers, LifeBuoy, Sparkles, Users, type LucideIcon } from "lucide-react";
+import { Button, H2, Kicker, Placeholder, Section, SiteImage } from "@/components/ui";
 import { CaseStudyCard, CredibilityStrip, CTABand, TestimonialCard } from "@/components/sections";
-import { SapLifecycleDiagram } from "@/components/diagrams";
+import { SapServicesPanel } from "@/components/diagrams";
 import { KlicksFlow } from "@/components/visuals";
+import { caseHref, caseStudies } from "@/lib/case-studies";
 import { testimonials } from "@/lib/company";
+import { industries } from "@/lib/industries";
 import { images } from "@/lib/images";
 import { isLive } from "@/lib/pages";
 import { DEMO_HREF } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: { absolute: "Texiri Solutions — SAP Consulting & S/4HANA Migration" },
-  description: "Founder-led SAP consultancy: SAP implementation and consulting, S/4HANA data migration and MDG, SAP integration and managed services, with 2Klicks migration tools that have programs ready on day 1.",
+  description: "SAP consultancy: SAP implementation and consulting (RE-FX, FICO, PS, PM), S/4HANA data migration and MDG, SAP BTP and managed services, with proprietary 2Klicks tools for SAP RE-FX mass data, from one Excel template with no programs to develop.",
   alternates: { canonical: "/" },
 };
 
 // TODO(cms, step 8): Service, CaseStudy, Testimonial, Article from Sanity.
 const services: { t: string; d: string; href: string; icon: LucideIcon; featured?: boolean }[] = [
-  { t: "SAP Consulting", d: "Implementation, functional and technical consulting across RE-FX, FI/CO, PM, MM and SD.", href: "/sap/consulting/", icon: Layers },
-  { t: "S/4HANA Data Migration & MDG", d: "Assessment to cutover, accelerated by 2Klicks, with MDG to keep data clean.", href: "/sap/data-migration/", icon: DatabaseZap, featured: true },
-  { t: "SAP Integration", d: "SAP CPI and PI/PO interfaces, built and maintained.", href: "/sap/integration/", icon: Network },
-  { t: "SAP Managed Services", d: "Post-go-live support and continuous optimisation.", href: "/sap/managed-services/", icon: LifeBuoy },
+  { t: "SAP Consulting", d: "RE-FX & lease accounting, FICO, Project Systems (PS), Plant Maintenance and MM.", href: "/sap/consulting/", icon: Layers },
+  { t: "S/4HANA, Data Migration & MDG", d: "Greenfield, brownfield and bluefield migrations with BODS, Syniti ADM and 2Klicks.", href: "/sap/data-migration/", icon: DatabaseZap, featured: true },
+  { t: "SAP BTP & Development", d: "Clean-core extensions, Fiori apps, ABAP and integration.", href: "/sap/btp/", icon: Boxes },
+  { t: "SAP Managed Services", d: "Basis to functional support under one roof, plus experienced consultants on demand.", href: "/sap/managed-services/", icon: LifeBuoy },
 ];
-const cases = [
-  { sector: "Utility · Australia", title: "S/4HANA data migration for an asset-intensive utility", metric: "[X]%", metricLabel: "fewer load defects across mock cycles", href: "/case-studies/utility-australia/" },
-  { sector: "Retail · USA", title: "Mass master-data update after a business reorganisation", metric: "[X]k", metricLabel: "records updated with 2Klicks Update", href: "/case-studies/retail-usa/" },
-  { sector: "Real estate · USA", title: "RE-FX lease portfolio migrated with validations intact", metric: "[X]", metricLabel: "weeks from template to first load", href: "/case-studies/real-estate-usa/" },
-].filter((c) => isLive(c.href));
-const industries = [
-  { t: "Real Estate", href: "/industries/real-estate/" },
-  { t: "Utilities", href: "/industries/utilities/" },
-  { t: "Retail", href: "/industries/retail/" },
-].filter((i) => isLive(i.href));
+const cases = caseStudies.map((c) => ({ sector: c.sector, title: c.title, metric: c.metric, metricLabel: c.metricLabel, href: caseHref(c) }));
 const insights = [
   { cat: "S/4HANA & Migration", title: "ECC mainstream maintenance ends in 2027. Start with the data.", href: "/insights/ecc-2027-start-with-the-data/", img: images.articleEcc },
   { cat: "SAP", title: "RE-FX after go-live: keeping lease data clean", href: "/insights/re-fx-after-go-live/", img: images.articleRefx },
@@ -43,19 +36,19 @@ export default function HomePage() {
   return (
     <>
       <section aria-labelledby="hero-h" className="py-[clamp(3rem,7vw,6.5rem)]">
-        <div className="container-content grid items-center gap-[clamp(2.5rem,5vw,5rem)] lg:grid-cols-2">
+        <div className="container-content grid items-center gap-[clamp(2.5rem,5vw,5rem)] lg:grid-cols-[1.4fr_1fr]">
           <div className="hero-enter">
-            <Kicker>SAP consulting, founder-led</Kicker>
+            <Kicker>SAP consulting · S/4HANA · BTP</Kicker>
             <h1 id="hero-h" className="m-0 -ml-[0.04em] text-display">
               <span className="block">Implement SAP.</span><span className="block">Migrate to S/4HANA.</span><span className="block">Run it well.</span>
             </h1>
-            <p className="mt-6 max-w-[52ch] text-lead text-muted">One senior team for SAP implementation, S/4HANA data migration, integration and managed services, backed by our own 2Klicks tools.</p>
+            <p className="mt-6 max-w-[52ch] text-lead text-muted">One senior team for SAP implementation, S/4HANA data migration, SAP BTP and managed services, backed by our own proprietary 2Klicks tools.</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button href="/contact/" arrow data-track="cta_click" data-vertical="sap">Talk to an SAP expert</Button>
               <Button href={DEMO_HREF} variant="secondary" data-track="2klicks_demo_click">Request a 2Klicks demo</Button>
             </div>
           </div>
-          <div className="hero-enter-late"><SapLifecycleDiagram /></div>
+          <div className="hero-enter-late"><SapServicesPanel /></div>
         </div>
       </section>
 
@@ -76,23 +69,22 @@ export default function HomePage() {
             </Link>
           ))}
         </div>
-        {industries.length > 0 && (
-          <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-1 text-[15px]">
-            <span className="text-[13px] font-semibold uppercase tracking-[0.1em] text-muted">Sectors we know best</span>
-            {industries.map((i) => <Link key={i.href} href={i.href} className="flex min-h-11 items-center font-extrabold no-underline">{i.t} →</Link>)}
-          </div>
-        )}
+        <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-1 text-[15px]">
+          <span className="text-[13px] font-semibold uppercase tracking-[0.1em] text-muted">Industries</span>
+          {industries.map((i) => <Link key={i.id} href={`/industries/#${i.id}`} className="flex min-h-11 items-center font-extrabold no-underline">{i.short} →</Link>)}
+        </div>
       </Section>
 
       <Section labelledBy="klicks-h" tone="navy">
         <div className="grid items-center gap-[clamp(2.5rem,5vw,5rem)] lg:grid-cols-2">
           <div>
             <Kicker onNavy>2Klicks by Texiri</Kicker>
-            <H2 id="klicks-h" className="max-w-[16ch] text-on-navy">Migration programs on day 1, not day 120.</H2>
-            <p className="mt-6 max-w-[48ch] text-lg text-on-navy-muted">Our own SAP tools recognise your custom fields and validations, so your team skips building at least eight programs per object.</p>
+            <H2 id="klicks-h" className="max-w-[16ch] text-on-navy">SAP RE-FX mass data, 10× faster.</H2>
+            <p className="mt-6 max-w-[48ch] text-lg text-on-navy-muted">Create, update and migrate RE-FX data from one Excel template, at 75% lower cost and with no programs to develop. Our proprietary tools run inside ECC and S/4HANA and handle your custom fields.</p>
+            <p className="mb-0 mt-3"><Placeholder>BENCHMARK TO VERIFY · X10</Placeholder></p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button href={DEMO_HREF} arrow data-track="2klicks_demo_click">Request a 2Klicks demo</Button>
-              <Button href="/2klicks/create/" variant="outline-on-navy">See 2Klicks Create</Button>
+              <Button href="/2klicks/" variant="outline-on-navy">Explore 2Klicks</Button>
             </div>
           </div>
           <SiteImage {...images.klicksUi} ratio="aspect-[16/10]" />
@@ -104,16 +96,14 @@ export default function HomePage() {
         </p>
       </Section>
 
-      {cases.length > 0 && (
-        <Section id="outcomes" labelledBy="outcomes-h">
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <div><Kicker>Outcomes</Kicker><H2 id="outcomes-h">Results from SAP programmes</H2></div>
-            {isLive("/case-studies/") && <Link href="/case-studies/" className="flex min-h-11 items-center gap-2 font-extrabold no-underline">All case studies<ArrowRight aria-hidden className="size-4.5" /></Link>}
-          </div>
-          <div className="mt-[clamp(2.5rem,5vw,4rem)] grid gap-6 lg:grid-cols-3">{cases.map((c) => <CaseStudyCard key={c.title} {...c} />)}</div>
-          {isLive("/case-studies/retail-usa/") && <div className="mt-[clamp(2.5rem,5vw,4rem)] max-w-3xl"><TestimonialCard {...testimonials.retail} /></div>}
-        </Section>
-      )}
+      <Section id="outcomes" labelledBy="outcomes-h">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <div><Kicker>Outcomes</Kicker><H2 id="outcomes-h">Results from SAP programmes</H2></div>
+          <Link href="/case-studies/" className="flex min-h-11 items-center gap-2 font-extrabold no-underline">All case studies<ArrowRight aria-hidden className="size-4.5" /></Link>
+        </div>
+        <div className="mt-[clamp(2.5rem,5vw,4rem)] grid gap-6 lg:grid-cols-3">{cases.map((c) => <CaseStudyCard key={c.title} {...c} />)}</div>
+        <div className="mt-[clamp(2.5rem,5vw,4rem)] max-w-3xl"><TestimonialCard {...testimonials.retail} /></div>
+      </Section>
 
       <Section labelledBy="also-h" tone="surface">
         <Kicker>Also from Texiri</Kicker>

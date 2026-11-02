@@ -1,34 +1,46 @@
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { isLive } from "@/lib/pages";
 
 /** Diagrams are semantic HTML (text stays selectable and translatable) — never raster. */
-const stages = [
-  { n: "01", stage: "Implement", service: "SAP Consulting", klicks: null, chips: ["Functional", "Technical", "RE-FX highlight"] },
-  { n: "02", stage: "Migrate", service: "S/4HANA Data Migration & MDG", klicks: "2Klicks Create", chips: ["Migration Cockpit", "Data Services", "MDG"] },
-  { n: "03", stage: "Integrate", service: "SAP Integration", klicks: null, chips: ["CPI", "PI/PO"] },
-  { n: "04", stage: "Run", service: "SAP Managed Services", klicks: "2Klicks Update", chips: ["Support", "Optimisation"] },
+const sapServices = [
+  { t: "RE-FX & Lease Accounting", modules: ["RE-FX", "C4RE", "IFRS 16 / ASC 842"], href: "/sap/consulting/#re-fx" },
+  { t: "S/4HANA, Data Migration & MDG", modules: ["BODS", "Syniti ADM", "2Klicks"], href: "/sap/data-migration/" },
+  { t: "Enterprise Asset Management", modules: ["PM", "APM", "SSAM", "PS"], href: "/sap/consulting/#eam" },
+  { t: "SAP BTP & Development", modules: ["ABAP", "Fiori/UI5", "RAP", "Integration"], href: "/sap/btp/" },
+  { t: "SAP Managed Services", modules: ["Basis to functional support"], href: "/sap/managed-services/" },
 ];
 
-export function SapLifecycleDiagram() {
+/** Home hero: the specific SAP services, each linking to where it is described. */
+export function SapServicesPanel() {
   return (
-    <figure aria-label="Diagram: Texiri services across the SAP lifecycle — implement, migrate, integrate and run — on an ECC or S/4HANA core" className="m-0 bg-navy-900 p-[clamp(1.25rem,3vw,2.25rem)] text-on-navy">
-      <figcaption className="mb-6 text-xs font-semibold uppercase tracking-[0.1em] text-on-navy-muted">One partner across the SAP lifecycle</figcaption>
-      <ol className="hero-stagger m-0 list-none p-0">
-        {stages.map((s) => (
-          <li key={s.n} className="grid grid-cols-[40px_1fr] gap-4 border-t-2 border-on-navy/20 py-4">
-            <span className="pt-0.5 text-sm font-extrabold text-accent">{s.n}</span>
-            <div>
-              <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1"><strong className="text-lg">{s.stage}</strong><span className="text-sm text-on-navy-muted">{s.service}</span></div>
-              <div className="mt-3 flex flex-wrap gap-1.5 text-[13px]">
-                {s.klicks && <span className="bg-accent px-2.5 py-1 font-extrabold text-navy-900">{s.klicks}</span>}
-                {s.chips.map((c) => <span key={c} className="border border-on-navy/35 px-2.5 py-1">{c}</span>)}
-              </div>
-            </div>
-          </li>
-        ))}
-      </ol>
+    <figure aria-labelledby="sap-panel-cap" className="m-0 bg-navy-900 p-[clamp(1.25rem,3vw,2.25rem)] text-on-navy">
+      <figcaption id="sap-panel-cap" className="mb-4 text-xs font-semibold uppercase tracking-[0.1em] text-on-navy-muted">Our SAP services</figcaption>
+      <ul className="hero-stagger m-0 list-none p-0">
+        {sapServices.map((s) => {
+          const inner = (
+            <>
+              <span className="min-w-0">
+                <strong className="block text-lg leading-snug">{s.t}</strong>
+                <span className="mt-2 flex flex-wrap gap-1.5 text-[13px]">
+                  {s.modules.map((m) => <span key={m} className={m === "2Klicks" ? "bg-accent px-2.5 py-1 font-extrabold text-navy-900" : "border border-on-navy/35 px-2.5 py-1"}>{m}</span>)}
+                </span>
+              </span>
+              <ArrowRight aria-hidden className="size-5 flex-none text-accent" />
+            </>
+          );
+          const cls = "flex items-center justify-between gap-4 border-t-2 border-on-navy/20 py-4 text-on-navy no-underline";
+          return (
+            <li key={s.t}>
+              {/* A page that is not ready yet is shown as plain text, not a link. */}
+              {isLive(s.href.split("#")[0]) ? <Link href={s.href} className={`${cls} hover:text-accent`}>{inner}</Link> : <div className={cls}>{inner}</div>}
+            </li>
+          );
+        })}
+      </ul>
       <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-2 border-2 border-on-navy p-4">
         <strong className="text-[15px]">Your SAP core · ECC → S/4HANA</strong>
-        <span className="text-[13px] text-on-navy-muted">RE-FX · FI/CO · PM · MM · SD</span>
+        <span className="text-[13px] text-on-navy-muted">RE-FX · FI/CO · PS · PM · MM · SD</span>
       </div>
     </figure>
   );

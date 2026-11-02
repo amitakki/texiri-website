@@ -16,7 +16,7 @@ const out = {};
     text(sx + 40, sy + 62, "Use-case ranking", C.onNavy, 32, 800), text(sx + 40, sy + 92, "Value vs feasibility · 6 ideas from the workshop", C.onNavyMuted, 18, 600),
     // matrix
     rect(mx, my, mw, mh, C.navy7, 'opacity="0.55"'),
-    rect(mx + mw / 2, my, mw / 2, mh / 2, "rgba(247,148,29,0.22)"),
+    rect(mx + mw / 2, my, mw / 2, mh / 2, "rgba(252,154,58,0.22)"),
     line(mx + mw / 2, my, mx + mw / 2, my + mh, C.navy6, 2), line(mx, my + mh / 2, mx + mw, my + mh / 2, C.navy6, 2),
     line(mx, my, mx, my + mh, C.onNavyMuted, 3), line(mx, my + mh, mx + mw, my + mh, C.onNavyMuted, 3),
     text(mx + mw / 2, my + mh + 36, "Feasibility  →", C.onNavyMuted, 18, 700, 'text-anchor="middle"'),
@@ -25,7 +25,7 @@ const out = {};
     ...bubbles.map(([fx, fy, r, col, n]) => circ(mx + fx * mw, my + (1 - fy) * mh, r, col, 'opacity="0.95"') + text(mx + fx * mw, my + (1 - fy) * mh + r * 0.35, n, col === C.navy6 ? C.onNavy : C.navy, r * 0.9, 800, 'text-anchor="middle"')),
     // ranking list
     ...rank.map(([t, v, e, top], i) => g(
-      rr(sx + 700, sy + 130 + i * 98, 450, 82, 8, top ? "rgba(247,148,29,0.18)" : C.navy7, top ? `stroke="${C.accent}" stroke-width="2"` : ""),
+      rr(sx + 700, sy + 130 + i * 98, 450, 82, 8, top ? "rgba(252,154,58,0.18)" : C.navy7, top ? `stroke="${C.accent}" stroke-width="2"` : ""),
       circ(sx + 738, sy + 171 + i * 98, 20, top ? C.accent : C.navy6), text(sx + 738, sy + 179 + i * 98, String(i + 1), top ? C.navy : C.onNavy, 22, 800, 'text-anchor="middle"'),
       text(sx + 774, sy + 166 + i * 98, t, C.onNavy, 22, 700),
       text(sx + 774, sy + 196 + i * 98, "Value", C.onNavyMuted, 14, 700), rr(sx + 826, sy + 184 + i * 98, 120, 10, 5, C.navy6), rr(sx + 826, sy + 184 + i * 98, 120 * v, 10, 5, C.ai),
@@ -61,7 +61,7 @@ const out = {};
       i === 0 ? rr(790, 276, 150, 44, 22, C.accent) + text(865, 306, "Start here", C.navy, 22, 800, 'text-anchor="middle"') : "")),
     // funnel
     poly([[1090, 250], [1500, 250], [1410, 470], [1180, 470]], "rgba(43,181,232,0.22)", `stroke="${C.ai}" stroke-width="3"`),
-    poly([[1180, 470], [1410, 470], [1350, 640], [1240, 640]], "rgba(247,148,29,0.3)", `stroke="${C.accent}" stroke-width="3"`),
+    poly([[1180, 470], [1410, 470], [1350, 640], [1240, 640]], "rgba(252,154,58,0.3)", `stroke="${C.accent}" stroke-width="3"`),
     rr(1262, 640, 66, 90, 8, C.accent), text(1295, 700, "1", C.navy, 56, 800, 'text-anchor="middle"'),
     text(1295, 335, "12 ideas", C.onNavy, 32, 800, 'text-anchor="middle"'), text(1295, 540, "3 shortlisted", C.onNavy, 24, 800, 'text-anchor="middle"'),
     text(1380, 700, "first pilot", C.accent3, 24, 800),
@@ -209,7 +209,7 @@ const out = {};
 // ── Shambhavi 108: learners restarting their careers ──────────────────────────────────────────────
 {
   out["learners"] = svg(1600, 1000, grad([[0, C.accent1], [1, "#fde3c4"]], "v"), g(
-    circ(1420, 180, 180, "rgba(247,148,29,0.18)"),
+    circ(1420, 180, 180, "rgba(252,154,58,0.18)"),
     rect(0, 720, 1600, 280, grad([[0, "#e7d4b5"], [1, "#d6bf9a"]], "v")),
     // board
     shadow(rr(130, 90, 760, 440, 12, C.navy)),

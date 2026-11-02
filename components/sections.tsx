@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { Award, Check, Globe, Plus, Rocket, type LucideIcon } from "lucide-react";
+import { Award, Building2, Check, Globe, Plus, Wrench, type LucideIcon } from "lucide-react";
 import type { ReactNode } from "react";
 import { Button, H2, Kicker, Placeholder } from "./ui";
 import { credentials } from "@/lib/company";
 import { SITE_URL } from "@/lib/site";
 import { ResultBars } from "./visuals";
 
-const credentialIcons: Record<(typeof credentials)[number]["icon"], LucideIcon> = { founder: Rocket, experience: Award, countries: Globe, patent: Check };
+const credentialIcons: Record<(typeof credentials)[number]["icon"], LucideIcon> = { experience: Award, countries: Globe, clients: Building2, tools: Wrench };
 
 export const isUnconfirmed = (text: string) => /\[TO (CONFIRM|VERIFY)\]/.test(text);
 
@@ -38,10 +38,10 @@ export function Hero({ kicker, title, lead, actions, aside, id = "hero-h" }:
   { kicker: string; title: ReactNode; lead: string; actions: ReactNode; aside?: ReactNode; id?: string }) {
   return (
     <section aria-labelledby={id} className="py-[clamp(2.5rem,6vw,5.5rem)]">
-      <div className="container-content grid items-end gap-[clamp(2.5rem,5vw,5rem)] lg:grid-cols-2">
+      <div className={`container-content grid items-end gap-[clamp(2.5rem,5vw,5rem)] ${aside ? "lg:grid-cols-2" : ""}`}>
         <div className="hero-enter">
           <Kicker>{kicker}</Kicker>
-          <h1 id={id} className="m-0 -ml-[0.04em] max-w-[16ch] text-display">{title}</h1>
+          <h1 id={id} className={`m-0 -ml-[0.04em] text-display ${aside ? "max-w-[16ch]" : "max-w-[22ch]"}`}>{title}</h1>
           <p className="mt-6 max-w-[52ch] text-lead text-muted">{lead}</p>
           <div className="mt-8 flex flex-wrap gap-3">{actions}</div>
         </div>
@@ -112,9 +112,9 @@ export function TestimonialCard({ quote, who }: { quote: string; who: string }) 
   );
 }
 
-/** `bars` adds a before/after chart once real values exist; leave it out while the metric is a placeholder. */
-export function CaseStudyCard({ sector, title, metric, metricLabel, href, bars }:
-  { sector: string; title: string; metric: string; metricLabel: string; href: string; bars?: { before: number; after: number; unit: string } }) {
+/** `verify` shows a placeholder badge while the metric is unconfirmed. `bars` adds a before/after chart once real values exist. */
+export function CaseStudyCard({ sector, title, metric, metricLabel, href, verify, bars }:
+  { sector: string; title: string; metric: string; metricLabel: string; href: string; verify?: boolean; bars?: { before: number; after: number; unit: string } }) {
   return (
     <article className="flex flex-col gap-3 border-t-2 border-ink pt-4">
       <span className="text-xs font-semibold uppercase tracking-[0.1em] text-muted">{sector}</span>
@@ -122,7 +122,7 @@ export function CaseStudyCard({ sector, title, metric, metricLabel, href, bars }
       <div className="flex flex-wrap items-baseline gap-2 bg-surface p-4">
         <span className="text-[40px] font-extrabold leading-none">{metric}</span>
         <span className="text-sm text-muted">{metricLabel}</span>
-        <Placeholder />
+        {verify && <Placeholder />}
         {bars && <div className="w-full"><ResultBars {...bars} /></div>}
       </div>
       <Link href={href} className="flex min-h-11 items-center gap-2 font-extrabold no-underline">
@@ -158,14 +158,14 @@ export function FAQAccordion({ id, title, faqs }: { id: string; title: string; f
 export function CTABand({ id = "contact", title, note, primary, secondary, vertical = "sap" }:
   { id?: string; title: ReactNode; note: string; primary: { label: string; href: string }; secondary?: { label: string; href: string }; vertical?: "sap" | "ai" }) {
   return (
-    <section id={id} aria-labelledby={`${id}-h`} className={`surface-bright ${vertical === "ai" ? "bg-ai" : "bg-accent"} py-[clamp(4rem,9vw,7.5rem)] text-navy-900`}>
+    <section id={id} aria-labelledby={`${id}-h`} className={`border-t-4 bg-surface py-[clamp(3.5rem,7vw,5.5rem)] ${vertical === "ai" ? "border-ai" : "border-accent"}`}>
       <div className="container-content">
-        <h2 id={`${id}-h`} className="m-0 max-w-[22ch] text-[clamp(2rem,4.6vw,3.75rem)] leading-[1.04] tracking-[-0.018em] text-navy-900">{title}</h2>
+        <h2 id={`${id}-h`} className="m-0 max-w-[32ch] text-[clamp(1.75rem,3.4vw,2.75rem)] leading-[1.1] tracking-[-0.012em]">{title}</h2>
         <div className="mt-8 flex flex-wrap gap-3">
           <Button href={primary.href} variant="navy" arrow data-track="cta_click">{primary.label}</Button>
-          {secondary && <Button href={secondary.href} variant="outline-on-accent" data-track="cta_click">{secondary.label}</Button>}
+          {secondary && <Button href={secondary.href} variant="secondary" data-track="cta_click">{secondary.label}</Button>}
         </div>
-        <p className="mb-0 mt-6 text-base font-semibold">{note}</p>
+        <p className="mb-0 mt-6 text-base text-muted">{note}</p>
       </div>
     </section>
   );

@@ -11,7 +11,7 @@ import { DEMO_HREF, contact, offices } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact: Talk to an SAP or AI Expert",
-  description: "Contact Texiri Solutions about SAP consulting, S/4HANA data migration, SAP integration, managed services, 2Klicks demos or AI Services. A senior consultant replies within one business day.",
+  description: "Contact Texiri Solutions about SAP consulting, S/4HANA data migration, SAP BTP, managed services, 2Klicks demos or AI Services. A senior consultant replies within one business day.",
   alternates: { canonical: "/contact/" },
 };
 
@@ -29,7 +29,7 @@ export default function ContactPage() {
       <section aria-labelledby="hero-h" className="pb-[clamp(2.5rem,5vw,4rem)] pt-[clamp(2.5rem,6vw,5rem)]">
         <div className="hero-enter container-content">
           <Kicker>Contact</Kicker>
-          <h1 id="hero-h" className="m-0 -ml-[0.04em] max-w-[14ch] text-display">Tell us what you&apos;re working on.</h1>
+          <h1 id="hero-h" className="m-0 -ml-[0.04em] max-w-[22ch] text-display">Tell us what you&apos;re working on.</h1>
           <p className="mt-6 max-w-[52ch] text-lead text-muted">A senior consultant reads every enquiry and replies within one business day. No sales sequence, no call centre.</p>
         </div>
       </section>
