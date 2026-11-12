@@ -47,7 +47,7 @@ export async function joinCommunity(_: JoinState, form: FormData): Promise<JoinS
     },
     ack: {
       subject: "Welcome to the TEXIRI AI Community",
-      text: `Hi ${name},\n\nWelcome to the TEXIRI AI Community! Here's what happens next:\n\n1. We suggest a learning path based on your experience.\n2. You'll hear about upcoming sessions in person and online.\n3. Bring a project to a showcase whenever you're ready.\n\nIn the meantime, browse the learning paths: https://www.texiri.com/ai-community/learning-paths/\n\nWe'll only email you about community sessions and resources, never sales. To stop these emails at any time, reply with "unsubscribe".${signOff}`,
+      text: `Hi ${name},\n\nWelcome to the TEXIRI AI Community! Here's what happens next:\n\n1. We suggest a learning path based on your experience.\n2. You'll hear about upcoming online sessions first.\n3. Bring a project to a showcase whenever you're ready.\n\nIn the meantime, browse the learning paths: https://www.texiri.com/ai-community/#paths\n\nWe'll only email you about community sessions, never sales. To stop these emails at any time, reply with "unsubscribe".${signOff}`,
     },
   });
 

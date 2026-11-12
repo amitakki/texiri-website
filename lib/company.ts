@@ -1,5 +1,4 @@
 // Company, leadership and careers content. Move to the CMS once Sanity/Payload is chosen.
-import { contact } from "./site";
 
 /** `verify` marks a claim still awaiting confirmation (rendered with a placeholder badge). */
 /** `icon` is a key into the icon map in components/sections.tsx. Facts from the Texiri Profile 2026. */
@@ -11,7 +10,7 @@ export const credentials: { t: string; d: string; icon: "experience" | "countrie
   { t: "Proprietary SAP migration tools", d: "2Klicks: SAP RE-FX mass data, 10× faster at 75% lower cost.", icon: "tools", verify: "BENCHMARK TO VERIFY" },
 ];
 
-/** Verbatim from the old site's homepage (content decision P7: confirm they can still be published). */
+/** Verbatim from the old site's homepage (content decision P7: approved for publishing, Nov 2026). */
 export const testimonials = {
   utility: { quote: "Texiri has been an invaluable partner, demonstrating exceptional commitment and relentless hard work. Consistently exceeding our expectations, their dedication is evident in every aspect of their work. Texiri is a trusted and indispensable asset to our team, and we're grateful for the positive impact they've had on our success.", who: "Utility client, Australia" },
   retail: { quote: "We engaged Texiri for their technical expertise, and the results surpassed our expectations. Their remarkable understanding of our industry's challenges translates into tailored, efficient, and forward-thinking solutions – a testament to their profound technical acumen.", who: "Major retail client, USA" },
@@ -22,7 +21,7 @@ export const testimonials = {
 export const principles: { title: string; body: string; icon: "people" | "tools" | "verify" | "support" }[] = [
   { title: "Senior people on the work", body: "The consultants who scope your project are the ones who deliver it.", icon: "people" },
   { title: "Tools over manual effort", body: "Where a task repeats, we automate it, which is how 2Klicks began.", icon: "tools" },
-  { title: "Data you can verify", body: "Every load and change leaves validation logs your auditors can read.", icon: "verify" },
+  { title: "Data you can verify", body: "Every load and change is recorded in SAP change documents your auditors can read.", icon: "verify" },
   { title: "We stay after go-live", body: "Managed services from the team that knows how your system was built.", icon: "support" },
 ];
 
@@ -36,7 +35,7 @@ export type Leader = {
   linkedin?: string;
 };
 
-// The profile calls Muttu "Founder & MD" on his bio slide and "CEO" on the contact slide (content decision L4).
+// Muttu's title is "Founder & CEO" (content decision L4). Patents are not mentioned in his bio (L6).
 export const leaders: Leader[] = [
   {
     name: "Muttu Sarashetti",
@@ -59,13 +58,14 @@ export const leaders: Leader[] = [
       "He has led more than 48 enterprise projects for power utilities and global clients using Agile and SDLC methods, and has managed and mentored cross-functional teams of 200 to 440 people. His automation, CRM integration and process work has delivered operational efficiency gains of more than 50%.",
     ],
     facts: [["Experience", "20+ years, ERP and CRM programmes"], ["Delivery", "48+ enterprise projects"], ["Teams", "200–440 professionals"], ["Previously", "L&T Technology Services, Easun Reyrolle, Aditi Technologies, CG Parivar IT Solutions"]],
+    linkedin: "https://www.linkedin.com/in/santosh-s-angadi/",
   },
 ];
 
 export const founder = leaders[0];
 
-/** Applications go to the general inbox until a careers@ address exists (content decision H2). */
-export const CAREERS_EMAIL = contact.email;
+/** Content decision H2. The mailbox must exist before launch, or CVs bounce. */
+export const CAREERS_EMAIL = "careers@texiri.com";
 
 export type RoleTeam = "SAP" | "AI" | "Early career";
 export type Role = { team: RoleTeam; title: string; where: string; exp: string; skills: string; body: string };
@@ -91,13 +91,14 @@ export const hiringSteps = [
 ];
 
 export const shambhavi108 = {
-  summary: "Took a career break? Restart in software with structured training from Texiri, and a path to a job when you finish.",
+  summary: "Took a career break? Restart in software with structured SAP training from Texiri, and a path to a job when you finish.",
+  // Content decisions S1–S4: an SAP track, hybrid. Duration and fees are not stated until they are fixed.
+  format: "The training is in SAP, mostly online, with some sessions at our Vijayapura office.",
   blocks: [
     ["Who it's for", "Graduates who stepped away from work, for family or any other reason, and want to restart in the software field."],
     ["What it asks of you", "Consistent effort, a set number of hours each week, and a laptop. We ask you to commit to finishing the training."],
     ["What happens after", "Candidates who complete the training may be offered a role, working on real projects with the Texiri team."],
   ],
-  // [TO CONFIRM] training duration, format (online or Vijayapura), tracks and fees
 };
 
 export const S108_STEPS = [
@@ -105,11 +106,11 @@ export const S108_STEPS = [
     { id: "reference", label: "Reference (who referred you, or where you heard about us)", kind: "text" },
     { id: "name", label: "Name", kind: "text", auto: "name" },
     { id: "location", label: "Current location", kind: "text", auto: "address-level2" },
-    { id: "age", label: "Age", kind: "number" },
+    { id: "age", label: "Age", kind: "number", optional: true },
     { id: "qualification", label: "Highest qualification", kind: "text" },
     { id: "gradYear", label: "Graduation year", kind: "number" },
-    { id: "married", label: "Married?", kind: "choice", opts: ["Yes", "No"] },
-    { id: "children", label: "Children? If yes, how many", kind: "text" },
+    { id: "married", label: "Married?", kind: "choice", opts: ["Yes", "No"], optional: true },
+    { id: "children", label: "Children? If yes, how many", kind: "text", optional: true },
     { id: "mobile", label: "Mobile number", kind: "tel", auto: "tel" },
     { id: "email", label: "Email ID", kind: "email", auto: "email" },
   ] },
@@ -133,6 +134,6 @@ export const S108_STEPS = [
     { id: "acceptJob", label: "If offered the job after training, are you willing to take it up?", kind: "choice", opts: ["Yes", "No"] },
     { id: "describe", label: "Describe yourself in a few words", kind: "text" },
     { id: "pledge", label: "I understand this programme requires consistent effort, and I commit to completing it sincerely.", kind: "check" },
-    { id: "consent", label: "I agree that Texiri Solutions may use the details in this form, including my answers about age, family and my career break, to assess my application, as described in the Privacy Policy.", kind: "check" },
+    { id: "consent", label: "I agree that Texiri Solutions may use the details in this form, including any answers I give about age, family and my career break, to assess my application, as described in the Privacy Policy.", kind: "check" },
   ] },
 ] as const;

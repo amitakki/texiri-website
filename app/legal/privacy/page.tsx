@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/legal/privacy/" },
 };
 
-// DRAFT for lawyer review (content decisions G1–G3). Keep in step with lib/leads.ts and the three forms.
+// DRAFT for lawyer review (content decision G1). G2 and G3 values agreed Nov 2026. Keep in step with lib/leads.ts and the three forms.
 const hq = offices.find((o) => o.hq)!;
 const tbc = <Placeholder>TO CONFIRM</Placeholder>;
 const mail = <a href={`mailto:${contact.email}`}>{contact.email}</a>;
@@ -42,13 +42,13 @@ const sections: LegalSection[] = [
           head={["Form", "Personal data", "Why we use it", "Legal basis"]}
           rows={[
             ["Business enquiry and 2Klicks demo", "Name, email, company, role, enquiry type, phone (optional), your message, the page you sent it from, the time you gave consent.", "To reply, arrange a scoping call or demo, and prepare a proposal. We note whether the email is a personal address so we can route it.", "Your consent (DPDP Act s.6). Under the GDPR, also our legitimate interest in answering business enquiries and steps you ask us to take before a contract."],
-            ["TEXIRI AI Community", "Name, email, city, role, AI experience, why you're joining (optional), phone (optional), the time you gave consent.", "To send community updates, plan in-person sessions near you, and suggest a learning path. Never used for sales.", "Your consent."],
-            ["Shambhavi 108", "Reference, name, location, age, highest qualification, graduation year, marital status, number of children, mobile, email, occupation, laptop availability, a self-rating of English, and your written answers about your education, career break, motivation, family, strengths and commitment.", "To assess your application for the programme, contact you about it, and plan training.", "Your consent, given with the checkbox on the form."],
+            ["TEXIRI AI Community", "Name, email, city, role, AI experience, why you're joining (optional), phone (optional), the time you gave consent.", "To send community updates, plan sessions, and suggest a learning path. Never used for sales.", "Your consent."],
+            ["Shambhavi 108", "Reference, name, location, age (optional), highest qualification, graduation year, marital status and number of children (both optional), mobile, email, occupation, laptop availability, a self-rating of English, and your written answers about your education, career break, motivation, family, strengths and commitment.", "To assess your application for the programme, contact you about it, and plan training.", "Your consent, given with the checkbox on the form."],
             ["Every visitor", "IP address and technical data from your browser.", "To protect the forms from spam and abuse (Cloudflare Turnstile) and to run the website securely (hosting logs).", "Our legitimate interest in keeping the site secure (GDPR); reasonable purposes for security (DPDP Act)."],
           ]}
         />
         <h3>Why the Shambhavi 108 form asks about age and family</h3>
-        <p>Shambhavi 108 is a career-restart programme for people returning to work after a break. We ask about age, marital status and children to understand each applicant&apos;s situation and plan training that fits around it. {tbc} These answers are used only to assess your application and are never shared outside the people who review applications.</p>
+        <p>Shambhavi 108 is a career-restart programme for people returning to work after a break. We ask about age, marital status and children to understand each applicant&apos;s situation and plan training that fits around it. These questions are optional: leaving them blank does not affect your application. These answers are used only to assess your application and are never shared outside the people who review applications.</p>
         <p>We do not use your data for automated decisions, and we do not sell it.</p>
       </>
     ),
@@ -84,9 +84,9 @@ const sections: LegalSection[] = [
       <LegalTable
         head={["Data", "Kept for"]}
         rows={[
-          ["Business enquiries", <>[X] months after our last contact with you, or longer if you become a client. {tbc}</>],
-          ["Community members", <>Until you leave the community, then [X] months. {tbc}</>],
-          ["Shambhavi 108 applications", <>[X] months after the selection decision, unless you join the programme. {tbc}</>],
+          ["Business enquiries", "24 months after our last contact with you, or longer if you become a client."],
+          ["Community members", "Until you leave the community. We delete your details within 30 days of you leaving."],
+          ["Shambhavi 108 applications", "12 months after the selection decision, unless you join the programme."],
           ["Rate-limit counters", "10 minutes."],
         ]}
       />
@@ -98,7 +98,7 @@ const sections: LegalSection[] = [
       <>
         <p>Under the DPDP Act you can ask us for a summary of the personal data we hold about you and how we use it, ask us to correct, complete, update or erase it, withdraw your consent at any time, nominate someone to exercise your rights if you die or become unable to, and raise a grievance with us.</p>
         <p>If the GDPR applies to you, you also have the right to restrict or object to our use of your data, to receive it in a portable format, and to complain to your local data protection authority.</p>
-        <p>To use any of these rights, email {mail}. We reply within [30] days. {tbc} Withdrawing consent doesn&apos;t affect what we did before you withdrew it. Community members can also stop updates by replying &ldquo;unsubscribe&rdquo; to any of our emails.</p>
+        <p>To use any of these rights, email {mail}. We reply within 30 days. Withdrawing consent doesn&apos;t affect what we did before you withdrew it. Community members can also stop updates by replying &ldquo;unsubscribe&rdquo; to any of our emails.</p>
       </>
     ),
   },
@@ -107,14 +107,14 @@ const sections: LegalSection[] = [
     body: (
       <>
         <p>If you have a concern about how we handle your data, contact our grievance officer:</p>
-        <LegalList items={[<>Name: [Grievance officer] {tbc}</>, <>Email: {mail}</>, <>Post: {contact.legalName}, {hq.street.join(", ")}, {hq.locality}, {hq.region} {hq.postalCode}, India</>]} />
+        <LegalList items={[<>Name: Santosh S Angadi, Chief Revenue Officer</>, <>Email: {mail}</>, <>Post: {contact.legalName}, {hq.street.join(", ")}, {hq.locality}, {hq.region} {hq.postalCode}, India</>]} />
         <p>If you&apos;re not satisfied with our response, you can complain to the Data Protection Board of India.</p>
       </>
     ),
   },
   {
     id: "children", title: "Children",
-    body: <p>Our forms are meant for people aged 18 or over. Shambhavi 108 applicants must be at least 18. If you are under 18 and want to join the TEXIRI AI Community, please ask a parent or guardian to contact us first at {mail}. {tbc}</p>,
+    body: <p>Our forms are meant for people aged 18 or over. Shambhavi 108 applicants must be at least 18. If you are under 18 and want to join the TEXIRI AI Community, please ask a parent or guardian to contact us first at {mail}.</p>,
   },
   {
     id: "device", title: "Saved answers on your device",
@@ -135,7 +135,7 @@ export default function PrivacyPage() {
     <LegalPage
       title="Privacy Policy"
       href="/legal/privacy/"
-      updated="10 October 2026"
+      updated="12 November 2026"
       intro={<p className="m-0">How we collect, use and protect personal data when you contact us, join the TEXIRI AI Community or apply to Shambhavi 108.</p>}
       sections={sections}
     />

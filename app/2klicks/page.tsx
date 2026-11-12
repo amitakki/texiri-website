@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Check, Minus } from "lucide-react";
-import { Button, H2, Kicker, Placeholder, Section, SiteImage } from "@/components/ui";
-import { images } from "@/lib/images";
+import { Button, H2, Kicker, Placeholder, Section } from "@/components/ui";
 import { Breadcrumbs, FAQAccordion, NumberedGrid } from "@/components/sections";
 import { KlicksTimeline, klicksSteps } from "@/components/visuals";
 import { EnquiryForm } from "@/components/EnquiryForm";
@@ -45,18 +44,16 @@ const comparison: [string, string, string, boolean][] = [
   ["Templates", "Static, fixed layout", "Dynamic, adapting to the objects and fields you pick", true],
 ];
 const industries = ["Property management", "Retail", "Public sector", "Life sciences", "Manufacturing", "Wineries"];
-const technical: [string, string | null][] = [
-  ["Compatible with", "SAP ECC and SAP S/4HANA"],
-  ["Deployment", "Add-on that runs inside your SAP system"],
-  ["Supported releases", null],
-  ["Authorisations", null],
-  ["Data handling", null],
-  ["Audit trail", null],
-]; // null = [TO CONFIRM]
+// Content decisions K1–K5. Deployment and authorisations are deliberately not described.
+const technical: [string, string][] = [
+  ["Supported releases", "SAP ECC 6.0 and every SAP S/4HANA edition: on-premise, private cloud and public cloud"],
+  ["Data handling", "Data stays in your SAP system and the Excel files your users download. Nothing is sent to Texiri or any third party."],
+  ["Audit trail", "Changes are recorded in standard SAP change documents."],
+];
 const faqs = [
   { q: "Which objects does 2Klicks support?", a: "In RE-FX: business entities, buildings, properties, contracts, contract offers and rental objects, plus business partners and their roles. It also covers FI/CO and PS. We share the full object list during the demo." },
   { q: "Can it change data that is already in SAP?", a: "Yes. The same download, update and upload workflow handles new records, mass changes after reorganisations and data corrections." },
-  { q: "Do we need ABAP development or transports?", a: "No development, functional or technical specs, and no transports to use it. 2Klicks is installed once in your SAP system, and from then on business and data teams work from templates." },
+  { q: "Do we need ABAP development?", a: "No. There are no functional or technical specs and no development. Business and data teams work from templates." },
   { q: "Does it replace S/4HANA Migration Cockpit?", a: "No. It works alongside it. Many projects use Migration Cockpit for some objects and 2Klicks for RE-FX, where custom fields and validations matter most." },
   { q: "Who fills in the templates?", a: "Usually business and data teams, in Excel. No ABAP knowledge is needed to enter or change data." },
 ];
@@ -65,7 +62,7 @@ export default function TwoKlicksPage() {
   return (
     <>
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "2Klicks", href: "/2klicks/" }]} />
-      <section aria-labelledby="hero-h" className="pt-[clamp(2.5rem,6vw,5rem)]">
+      <section aria-labelledby="hero-h" className="pb-[clamp(3rem,6vw,5rem)] pt-[clamp(2.5rem,6vw,5rem)]">
         <div className="container-content">
           <div className="hero-enter grid items-end gap-x-[clamp(2.5rem,5vw,5rem)] gap-y-6 lg:grid-cols-2">
             <div>
@@ -86,10 +83,6 @@ export default function TwoKlicksPage() {
             ))}
           </dl>
           <p className="hero-enter-late m-0 mt-2"><Placeholder>BENCHMARK TO VERIFY · X10</Placeholder></p>
-          <div className="hero-enter-late mt-[clamp(2rem,4vw,3rem)] border-2 border-b-0 border-ink">
-            <div className="flex items-center gap-3 border-b-2 border-ink bg-navy-900 px-4 py-2.5 text-[13px] font-bold text-on-navy"><span aria-hidden className="size-2.5 bg-accent" />2Klicks</div>
-            <SiteImage {...images.klicksUi} ratio="aspect-[16/10]" priority sizes="(min-width: 1280px) 1280px, 100vw" />
-          </div>
         </div>
       </section>
 
@@ -176,11 +169,11 @@ export default function TwoKlicksPage() {
         <div className="grid gap-[clamp(2.5rem,5vw,5rem)] lg:grid-cols-[2fr_3fr]">
           <div>
             <Kicker>Technical</Kicker>
-            <h2 id="tech-h" className="m-0 text-[clamp(1.625rem,3vw,2.25rem)]">Supported releases &amp; security model</h2>
-            <p className="mt-4 max-w-[42ch] text-[17px] text-muted">2Klicks runs inside your existing SAP landscape. There is nothing to build or maintain on your side.</p>
+            <h2 id="tech-h" className="m-0 text-[clamp(1.625rem,3vw,2.25rem)]">Supported releases &amp; data handling</h2>
+            <p className="mt-4 max-w-[42ch] text-[17px] text-muted">Which SAP systems 2Klicks works with, and what happens to your data.</p>
           </div>
           <table className="w-full border-collapse self-start text-[15px]"><tbody>
-            {technical.map(([k, v]) => <tr key={k} className="border-b border-rule"><th scope="row" className="w-[42%] py-3 pr-2 text-left text-xs uppercase tracking-[0.08em] text-muted">{k}</th><td className="py-3 font-bold">{v ?? <Placeholder>TO CONFIRM</Placeholder>}</td></tr>)}
+            {technical.map(([k, v]) => <tr key={k} className="border-b border-rule"><th scope="row" className="w-[42%] py-3 pr-2 text-left text-xs uppercase tracking-[0.08em] text-muted">{k}</th><td className="py-3 font-bold">{v}</td></tr>)}
           </tbody></table>
         </div>
       </Section>

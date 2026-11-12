@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LegalList, LegalPage, type LegalSection } from "@/components/LegalPage";
-import { Placeholder } from "@/components/ui";
 import { contact } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -65,7 +64,7 @@ const sections: LegalSection[] = [
   },
   {
     id: "law", title: "Governing law",
-    body: <p>These terms are governed by the laws of India. The courts at Vijayapura, Karnataka have exclusive jurisdiction over any dispute about them. <Placeholder>JURISDICTION TO CONFIRM</Placeholder></p>,
+    body: <p>These terms are governed by the laws of India. The courts at Vijayapura, Karnataka have exclusive jurisdiction over any dispute about them.</p>, // Vijayapura, where the registered office is (content decision G5).
   },
   {
     id: "contact", title: "Contact",

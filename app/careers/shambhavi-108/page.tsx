@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { images } from "@/lib/images";
-import { Kicker, Placeholder, H2, SiteImage } from "@/components/ui";
+import { Kicker, H2, SiteImage } from "@/components/ui";
+import { shambhavi108 } from "@/lib/company";
 import { Breadcrumbs } from "@/components/sections";
 import { Shambhavi108 } from "@/components/Shambhavi108";
 import { ShambhaviForm } from "@/components/ShambhaviForm";
@@ -21,8 +22,8 @@ export default function Shambhavi108Page() {
         <div className="container-content grid items-center gap-[clamp(2rem,4vw,4rem)] lg:grid-cols-2">
           <div>
             <H2 id="about-h" className="max-w-[20ch]">A break in your CV is not the end of your career.</H2>
-            {/* The three "who / what / after" blocks are in the hero above. Content decisions S1–S4. */}
-            <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-muted"><Placeholder>TO CONFIRM</Placeholder>Training duration, format (online or Vijayapura), tracks and fees.</div>
+            {/* The three "who / what / after" blocks are in the hero above. */}
+            <p className="mb-0 mt-6 max-w-[48ch] text-lg text-muted">{shambhavi108.format}</p>
           </div>
           <SiteImage {...images.learners} ratio="aspect-[8/5]" />
         </div>

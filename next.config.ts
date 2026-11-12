@@ -62,6 +62,11 @@ const config: NextConfig = {
       ["/home/footer/", "/"],
       // SAP Integration became SAP BTP & Development (review, Oct 2026).
       ["/sap/integration/", "/sap/btp/"],
+      // The AI sub-pages merged into one AI Services page (Nov 2026).
+      ["/ai-services/strategy-readiness/", "/ai-services/#engagement"],
+      ["/ai-services/generative-ai/", "/ai-services/#generative-ai"],
+      ["/ai-services/machine-learning/", "/ai-services/#machine-learning"],
+      ["/ai-services/mlops-governance/", "/ai-services/#mlops"],
     ].map(([source, destination]) => ({ source, destination, permanent: true }))
       // Demo requests live in the form on the 2Klicks page.
       .concat({ source: "/2klicks/demo/", destination: "/2klicks/#demo", permanent: false });

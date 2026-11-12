@@ -8,7 +8,7 @@ import { DEMO_HREF, contact, offices } from "@/lib/site";
 const cols: { title: string; links: [string, string][] }[] = [
   { title: "SAP Services", links: [["Overview", "/sap/"], ["SAP Consulting", "/sap/consulting/"], ["S/4HANA, Data Migration & MDG", "/sap/data-migration/"], ["SAP BTP & Development", "/sap/btp/"], ["Managed Services", "/sap/managed-services/"]] },
   { title: "2Klicks", links: [["Overview", "/2klicks/"], ["Request a demo", DEMO_HREF]] },
-  { title: "AI Services", links: [["Overview", "/ai-services/"], ["AI Strategy & Readiness", "/ai-services/strategy-readiness/"], ["Generative AI & RAG", "/ai-services/generative-ai/"], ["MLOps & Governance", "/ai-services/mlops-governance/"]] },
+  { title: "AI Services", links: [["Overview", "/ai-services/"], ["AI Strategy & Readiness", "/ai-services/#engagement"], ["Generative AI & RAG", "/ai-services/#generative-ai"], ["MLOps & Governance", "/ai-services/#governance"]] },
   { title: "Company", links: [["About", "/about/"], ["Leadership", "/about/leadership/"], ["CSR", "/about/csr/"], ["Industries", "/industries/"], ["Case Studies", "/case-studies/"], ["Insights", "/insights/"], ["AI Community", "/ai-community/"], ["Join the community", "/ai-community/join/"], ["Careers", "/careers/"], ["Shambhavi 108", "/careers/shambhavi-108/"], ["Contact", "/contact/"]] },
 ];
 

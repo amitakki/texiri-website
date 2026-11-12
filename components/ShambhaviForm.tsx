@@ -15,6 +15,9 @@ const DRAFT_TTL_MS = 30 * 24 * 60 * 60 * 1000; // drafts on shared devices shoul
 const LAST = S108_STEPS.length - 1;
 const input = "min-h-12 w-full border border-rule bg-surface px-3 text-base text-ink hover:border-ink/45 focus-visible:border-accent-700 aria-[invalid=true]:border-accent-700";
 const err = "mt-1 block min-h-[18px] text-[13px] font-semibold text-accent-800";
+
+/** Required fields get an asterisk; optional ones say so (content decision S5). */
+const Mark = ({ optional }: { optional: boolean }) => optional ? <span className="font-normal text-muted"> (optional)</span> : <> *</>;
 type Vals = Record<string, string | boolean>;
 
 export function ShambhaviForm() {
@@ -110,10 +113,10 @@ export function ShambhaviForm() {
             return (
               <div key={f.id} className={wide ? "sm:col-span-2" : ""}>
                 {f.kind === "area" ? (
-                  <><label htmlFor={id} className="mb-1.5 block text-sm font-semibold">{f.label} *</label><textarea id={id} name={f.id} rows={3} value={String(v[f.id] ?? "")} onChange={(x) => set(f.id, x.target.value)} className={`${input} py-2`} {...aria} /></>
+                  <><label htmlFor={id} className="mb-1.5 block text-sm font-semibold">{f.label}<Mark optional={"optional" in f} /></label><textarea id={id} name={f.id} rows={3} value={String(v[f.id] ?? "")} onChange={(x) => set(f.id, x.target.value)} className={`${input} py-2`} {...aria} /></>
                 ) : f.kind === "choice" ? (
                   <fieldset role="radiogroup" className="m-0 border-0 p-0" aria-invalid={invalid} aria-describedby={`${id}-err`}>
-                    <legend className="mb-1.5 p-0 text-sm font-semibold">{f.label} *</legend>
+                    <legend className="mb-1.5 p-0 text-sm font-semibold">{f.label}<Mark optional={"optional" in f} /></legend>
                     <div className="flex flex-wrap">
                       {f.opts.map((o, i) => (
                         <label key={o} className={`-ml-0.5 flex min-h-12 min-w-14 cursor-pointer items-center border-2 border-ink px-4 font-bold has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-accent-700 ${v[f.id] === o ? "bg-ink text-ground" : "bg-ground"}`}>
@@ -124,10 +127,10 @@ export function ShambhaviForm() {
                   </fieldset>
                 ) : f.kind === "check" ? (
                   <label className="grid cursor-pointer grid-cols-[24px_1fr] items-start gap-2.5 text-[15px]">
-                    <input id={id} name={f.id} type="checkbox" checked={!!v[f.id]} onChange={(x) => set(f.id, x.target.checked)} className="m-0 size-5.5 accent-navy-900" {...aria} /><span>{f.label} *</span>
+                    <input id={id} name={f.id} type="checkbox" checked={!!v[f.id]} onChange={(x) => set(f.id, x.target.checked)} className="m-0 size-5.5 accent-navy-900" {...aria} /><span>{f.label}<Mark optional={"optional" in f} /></span>
                   </label>
                 ) : (
-                  <><label htmlFor={id} className="mb-1.5 block text-sm font-semibold">{f.label} *</label>
+                  <><label htmlFor={id} className="mb-1.5 block text-sm font-semibold">{f.label}<Mark optional={"optional" in f} /></label>
                   <input id={id} name={f.id} type={f.kind === "number" ? "text" : f.kind} inputMode={f.kind === "number" ? "numeric" : undefined} autoComplete={"auto" in f ? f.auto : "off"} value={String(v[f.id] ?? "")} onChange={(x) => set(f.id, x.target.value)} className={input} {...aria} /></>
                 )}
                 <span id={`${id}-err`} className={err}>{e}</span>
