@@ -13,11 +13,9 @@ type Props = { params: Promise<{ slug: string[] }> };
 
 const pathOf = (slug: string[]) => `/${slug.join("/")}/`;
 
-/** Stand-in hero image per section until each page gets its own. */
+/** Stand-in hero image per section until each page gets its own. Community pages have none (content decision M7). */
 function heroImage(href: string) {
-  if (href.startsWith("/ai-services")) return images.aiWorkshop;
-  if (href.startsWith("/ai-community/events")) return images.communityWorkshop;
-  if (href.startsWith("/ai-community")) return images.communityDemo;
+  if (href.startsWith("/ai-community")) return undefined;
   if (href.includes("re-fx")) return images.articleRefx;
   if (href.includes("first-ai")) return images.articleAi;
   if (href.startsWith("/insights")) return images.articleEcc;
@@ -41,6 +39,7 @@ export default async function InterimPage({ params }: Props) {
   if (!page) notFound();
   const related = (page.related ?? []).filter((r) => isLive(r.href));
   const vertical = page.vertical === "ai" ? "ai" : "sap";
+  const image = heroImage(href);
 
   return (
     <>
@@ -49,7 +48,7 @@ export default async function InterimPage({ params }: Props) {
         kicker={page.kicker}
         title={page.title}
         lead={page.lead}
-        aside={<SiteImage {...heroImage(href)} ratio="aspect-[4/3]" priority className={page.vertical === "community" ? "rounded-com" : ""} />}
+        aside={image && <SiteImage {...image} ratio="aspect-[4/3]" priority />}
         actions={
           <>
             {page.cta && <Button href={page.cta.href} arrow data-track="cta_click" data-vertical={page.vertical ?? "sap"}>{page.cta.label}</Button>}

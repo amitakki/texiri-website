@@ -7,7 +7,7 @@ import { Breadcrumbs, CTABand, CredibilityStrip, NumberedGrid } from "@/componen
 import { DeliveryNetwork } from "@/components/visuals";
 import { LeadershipSection } from "@/components/LeadershipSection";
 import { principles } from "@/lib/company";
-import { offices } from "@/lib/site";
+import { contact, offices } from "@/lib/site";
 import { csrEvents } from "@/lib/gallery";
 import { isLive } from "@/lib/pages";
 
@@ -44,7 +44,7 @@ export default function AboutPage() {
             <p className="m-0">Texiri started with one observation from years of SAP projects: the hardest weeks are rarely the configuration. They&apos;re the data. Every migration object needed its own programs before a single record could load.</p>
             <p className="m-0">So we built 2Klicks, our own proprietary tools that turn Excel templates into SAP loads and mass updates. Around them we grew a consulting practice covering the full lifecycle, from blueprint to managed services.</p>
             <p className="m-0">Today we deliver from Vijayapura, Karnataka and Navi Mumbai to clients on five continents: the USA, Europe, the Middle East, Australia and India, including Fortune 500 companies. We also run the TEXIRI AI Community, a platform for AI learning and collaboration that began in Vijayapura.</p>
-            <div className="text-sm text-muted">Founded <strong className="text-ink">2021</strong></div>
+            <div className="text-sm text-muted">Founded <strong className="text-ink">2021</strong> as Texiri Solutions LLP · Converted to {contact.legalName} in <strong className="text-ink">August 2026</strong></div>
           </div>
         </div>
       </section>

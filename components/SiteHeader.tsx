@@ -23,6 +23,8 @@ export function SiteHeader({ hidden = [] }: { hidden?: string[] }) {
   drawerOpen.current = drawer;
 
   useEffect(() => { setOpen(null); setDrawer(false); }, [pathname]);
+  // Links to a section of the current page don't change the pathname, so menu links close the menus themselves.
+  const close = () => { setOpen(null); setDrawer(false); };
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key !== "Escape") return;
@@ -97,18 +99,18 @@ export function SiteHeader({ hidden = [] }: { hidden?: string[] }) {
       {nav.filter((i) => i.mega && open === i.label).map((item) => (
         <div key={item.label} id={`mega-${item.vertical}`} role="region" aria-label={item.label} className="animate-drop absolute inset-x-0 top-full hidden border-b-2 border-rule bg-ground shadow-xl xl:block">
           <div className="container-content pt-6">
-            <Link href={item.href} className="inline-flex min-h-11 items-center gap-2 font-extrabold no-underline">
+            <Link href={item.href} onClick={close} className="inline-flex min-h-11 items-center gap-2 font-extrabold no-underline">
               {item.label} overview<ArrowRight aria-hidden className="size-4.5" />
             </Link>
           </div>
           <div className="container-content grid grid-cols-[repeat(3,minmax(0,1fr))_minmax(0,1.2fr)] gap-6 pb-8 pt-4">
             {item.mega!.links.map((l) => (
-              <Link key={l.href} href={l.href} className={`flex flex-col gap-1.5 border-t-2 pt-4 no-underline ${item.vertical === "ai" ? "border-ai" : "border-ink"}`}>
+              <Link key={l.href} href={l.href} onClick={close} className={`flex flex-col gap-1.5 border-t-2 pt-4 no-underline ${item.vertical === "ai" ? "border-ai" : "border-ink"}`}>
                 <span className="text-base font-extrabold">{l.label}</span>
                 <span className="text-sm text-muted">{l.description}</span>
               </Link>
             ))}
-            <Link href={item.mega!.feature.href} className="row-span-2 flex flex-col gap-2 bg-navy-900 p-4 text-on-navy no-underline hover:bg-navy-800 hover:text-on-navy">
+            <Link href={item.mega!.feature.href} onClick={close} className="row-span-2 flex flex-col gap-2 bg-navy-900 p-4 text-on-navy no-underline hover:bg-navy-800 hover:text-on-navy">
               <span className={`text-xs font-semibold uppercase tracking-[0.1em] ${item.vertical === "ai" ? "text-ai" : "text-accent"}`}>{item.mega!.feature.kicker}</span>
               <span className="text-lg font-extrabold">{item.mega!.feature.label}</span>
               <span className="text-sm text-on-navy-muted">{item.mega!.feature.description}</span>
@@ -124,13 +126,13 @@ export function SiteHeader({ hidden = [] }: { hidden?: string[] }) {
               <details key={item.label} className="group border-b border-hairline">
                 <summary className="flex min-h-13 items-center justify-between font-bold">{item.label}<ChevronDown aria-hidden className="size-4.5 transition-transform duration-200 group-open:rotate-180" /></summary>
                 <div className="flex flex-col pb-3 pl-4">
-                  <Link href={item.href} className="flex min-h-11 items-center font-bold no-underline">Overview</Link>
-                  {item.mega.links.map((l) => <Link key={l.href} href={l.href} className="flex min-h-11 items-center no-underline">{l.label}</Link>)}
-                  <Link href={item.mega.feature.href} className="flex min-h-11 items-center font-bold no-underline">{item.mega.feature.label}</Link>
+                  <Link href={item.href} onClick={close} className="flex min-h-11 items-center font-bold no-underline">Overview</Link>
+                  {item.mega.links.map((l) => <Link key={l.href} href={l.href} onClick={close} className="flex min-h-11 items-center no-underline">{l.label}</Link>)}
+                  <Link href={item.mega.feature.href} onClick={close} className="flex min-h-11 items-center font-bold no-underline">{item.mega.feature.label}</Link>
                 </div>
               </details>
             ) : (
-              <Link key={item.label} href={item.href} className="flex min-h-13 items-center border-b border-hairline font-bold no-underline">{item.label}</Link>
+              <Link key={item.label} href={item.href} onClick={close} className="flex min-h-13 items-center border-b border-hairline font-bold no-underline">{item.label}</Link>
             ))}
           </div>
         </nav>

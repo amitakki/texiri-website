@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LegalPage, LegalTable, type LegalSection } from "@/components/LegalPage";
-import { Placeholder } from "@/components/ui";
 import { contact } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -34,7 +33,7 @@ const sections: LegalSection[] = [
   },
   {
     id: "future", title: "Analytics in the future",
-    body: <p>We may add website analytics to understand which pages are useful. If we do, we will ask for your consent with a cookie banner before setting any analytics cookies, and list them here. <Placeholder>UPDATE WHEN ANALYTICS IS ADDED</Placeholder></p>,
+    body: <p>We may add website analytics to understand which pages are useful. If we do, we will ask for your consent with a cookie banner before setting any analytics cookies, and list them here.</p>, // Update this section when analytics is added (content decision G4).
   },
   {
     id: "control", title: "How to control cookies",

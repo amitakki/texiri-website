@@ -14,10 +14,10 @@ export const contact = {
   phoneDisplay: "+91 79753 05499",
   email: "info@texiri.com",
   hours: "Mon–Fri, 9am–7pm IST",
-  // From the old site (www.texiri.com); confirm with the founder (docs/content-decisions.md C3–C5).
+  // Confirmed by the founder (docs/content-decisions.md C1, C3–C5).
   legalName: "Texiri Solutions Private Limited",
-  /** [TO CONFIRM] Company Identification Number (content decision C1). Hidden on the site while null. */
-  cin: null as string | null,
+  /** Company Identification Number (content decision C1). Hidden on the site while null. */
+  cin: "U62099KA2026PTC222039" as string | null,
   linkedin: "https://www.linkedin.com/company/texiri-solutions/",
   instagram: "https://www.instagram.com/texirisolutions/",
 };
@@ -49,12 +49,13 @@ export const primaryNav: NavItem[] = [
   },
   {
     label: "AI Services", href: "/ai-services/", vertical: "ai",
+    // Sections of the one AI Services page (content decision A2).
     mega: {
       links: [
-        { label: "AI Strategy & Readiness", href: "/ai-services/strategy-readiness/", description: "Workshop, data readiness and a prioritised use-case roadmap." },
-        { label: "Generative AI & RAG", href: "/ai-services/generative-ai/", description: "Knowledge systems, assistants and document intelligence." },
-        { label: "Machine Learning & Forecasting", href: "/ai-services/machine-learning/", description: "Predictive analytics, forecasting and optimisation." },
-        { label: "MLOps & AI Governance", href: "/ai-services/mlops-governance/", description: "Pipelines, drift monitoring, EU AI Act and ISO/IEC 42001." },
+        { label: "AI Strategy & Readiness", href: "/ai-services/#engagement", description: "Workshop, data readiness and a prioritised use-case roadmap." },
+        { label: "Generative AI & RAG", href: "/ai-services/#generative-ai", description: "Knowledge systems, assistants and document intelligence." },
+        { label: "Machine Learning & Forecasting", href: "/ai-services/#machine-learning", description: "Predictive analytics, forecasting and optimisation." },
+        { label: "MLOps & AI Governance", href: "/ai-services/#mlops", description: "Pipelines, drift monitoring, EU AI Act and ISO/IEC 42001." },
       ],
       feature: { kicker: "Start here", label: "Request an AI readiness workshop", href: "/contact/?type=ai", description: "One day. A ranked list of use cases at the end." },
     },

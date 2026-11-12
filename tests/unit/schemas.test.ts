@@ -59,4 +59,10 @@ describe("s108Schema", () => {
     if (!r.success) expect(collectErrors(r.error.issues)).toHaveProperty("consent");
   });
   it("rejects a short mobile number", () => expect(s108Schema.safeParse({ ...app, mobile: "12345" }).success).toBe(false));
+  it("accepts a blank age, marital status and children (content decision S5)", () => {
+    const r = s108Schema.safeParse({ ...app, age: "", married: undefined, children: "" });
+    expect(r.success).toBe(true);
+    if (r.success) expect(r.data.age).toBeUndefined();
+  });
+  it("still checks an age that is given", () => expect(s108Schema.safeParse({ ...app, age: "12" }).success).toBe(false));
 });

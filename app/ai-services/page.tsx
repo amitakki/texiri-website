@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { images } from "@/lib/images";
 import { ClipboardCheck, EyeOff, FlaskConical, Globe, KeyRound, ShieldCheck } from "lucide-react";
-import { H2, Placeholder, Section, SiteImage } from "@/components/ui";
+import { H2, Section, SiteImage } from "@/components/ui";
 import { Breadcrumbs, CTABand, FAQAccordion } from "@/components/sections";
 import { AiReferenceArchitecture } from "@/components/diagrams";
 import { Track } from "@/components/visuals";
@@ -16,18 +16,20 @@ const serviceJsonLd = { "@context": "https://schema.org", "@type": "Service", na
 
 const AiKicker = ({ children }: { children: React.ReactNode }) => <span className="mb-4 block text-kicker font-semibold uppercase tracking-[0.1em] text-ai-ink">{children}</span>;
 
-const steps = [ // [TO CONFIRM] durations
-  { name: "AI readiness workshop", dur: "1 day", out: ["Goals and constraints", "Long list of use cases"] },
-  { name: "Data readiness analysis", dur: "2–3 weeks", out: ["Data inventory", "Quality and access report"] },
-  { name: "Prioritise and set pilot KPIs", dur: "1 week", out: ["Ranked shortlist", "Baseline and target KPIs"] },
-  { name: "POC / prototype", dur: "6–8 weeks", out: ["Working pilot", "Evaluation against KPIs"] },
-  { name: "Scale", dur: "Ongoing", out: ["Production deployment", "MLOps, monitoring, training"] },
+// Content decision A1: no duration per step; each engagement is scoped with the client.
+const steps = [
+  { name: "AI readiness workshop", out: ["Goals and constraints", "Long list of use cases"] },
+  { name: "Data readiness analysis", out: ["Data inventory", "Quality and access report"] },
+  { name: "Prioritise and set pilot KPIs", out: ["Ranked shortlist", "Baseline and target KPIs"] },
+  { name: "POC / prototype", out: ["Working pilot", "Evaluation against KPIs"] },
+  { name: "Scale", out: ["Production deployment", "MLOps, monitoring, training"] },
 ];
+// `id` is the anchor the AI Services menu and footer link to (content decision A2: no sub-pages).
 const caps = [
-  { name: "Machine learning", desc: "Models that predict and optimise, with reasons people can read.", items: ["Predictive analytics", "Time-series forecasting", "Optimisation", "Explainable AI"] },
-  { name: "Generative AI", desc: "Language models grounded in your own knowledge.", items: ["LLM fine-tuning (GPT, Llama, Mistral)", "RAG knowledge systems", "Conversational AI", "Document intelligence"] },
-  { name: "MLOps & DataOps", desc: "Pipelines that retrain, monitor and redeploy reliably.", items: ["MLflow, Kubeflow, TFX", "Airflow, Spark, Kafka", "Kubernetes", "Drift monitoring"] },
-  { name: "Governance & adoption", desc: "Policies, evaluation and people-readiness from the first sprint.", items: ["EU AI Act alignment", "ISO/IEC 42001 alignment", "GDPR alignment", "Adoption training"] },
+  { id: "machine-learning", name: "Machine learning", desc: "Models that predict and optimise, with reasons people can read.", items: ["Predictive analytics", "Time-series forecasting", "Optimisation", "Explainable AI"] },
+  { id: "generative-ai", name: "Generative AI", desc: "Language models grounded in your own knowledge.", items: ["LLM fine-tuning (GPT, Llama, Mistral)", "RAG knowledge systems", "Conversational AI", "Document intelligence"] },
+  { id: "mlops", name: "MLOps & DataOps", desc: "Pipelines that retrain, monitor and redeploy reliably.", items: ["MLflow, Kubeflow, TFX", "Airflow, Spark, Kafka", "Kubernetes", "Drift monitoring"] },
+  { id: "adoption", name: "Governance & adoption", desc: "Policies, evaluation and people-readiness from the first sprint.", items: ["EU AI Act alignment", "ISO/IEC 42001 alignment", "GDPR alignment", "Adoption training"] },
 ];
 const uses = [
   { name: "Demand forecasting", problem: "Planners rely on spreadsheets and gut feel.", approach: "Time-series models with explainable drivers", kpi: "Forecast accuracy (MAPE)" },
@@ -89,7 +91,7 @@ export default function AiServicesPage() {
       </Section>
 
       <Section id="engagement" labelledBy="eng-h" tone="surface" className="scroll-mt-18">
-        <div className="mb-4 flex flex-wrap items-center gap-3"><AiKicker>Engagement model</AiKicker><Placeholder>DURATIONS TO CONFIRM</Placeholder></div>
+        <AiKicker>Engagement model</AiKicker>
         <H2 id="eng-h">Five steps from first workshop to production</H2>
         <div className="mt-[clamp(2.5rem,5vw,4rem)]">
           <Track
@@ -99,7 +101,7 @@ export default function AiServicesPage() {
             numbered
             items={steps.map((s) => ({
               label: s.name,
-              note: <><span className="block text-sm font-extrabold text-ink">{s.dur}</span><span className="mt-2 block text-[11px] font-semibold uppercase tracking-[0.08em]">Deliverables</span><ul className="m-0 mt-1.5 flex flex-col gap-1 pl-4 text-sm">{s.out.map((o) => <li key={o}>{o}</li>)}</ul></>,
+              note: <><span className="block text-[11px] font-semibold uppercase tracking-[0.08em]">Deliverables</span><ul className="m-0 mt-1.5 flex flex-col gap-1 pl-4 text-sm">{s.out.map((o) => <li key={o}>{o}</li>)}</ul></>,
             }))}
           />
         </div>
@@ -110,7 +112,7 @@ export default function AiServicesPage() {
         <H2 id="cap-h">What we build</H2>
         <div className="mt-[clamp(2.5rem,5vw,4rem)] grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {caps.map((g) => (
-            <div key={g.name} className="flex flex-col gap-3 border-t-2 border-ink pt-4">
+            <div key={g.name} id={g.id} className="flex scroll-mt-18 flex-col gap-3 border-t-2 border-ink pt-4">
               <h3 className="m-0 text-[22px]">{g.name}</h3><p className="m-0 text-[15px] text-muted">{g.desc}</p>
               <ul className="m-0 list-none p-0">{g.items.map((it) => <li key={it} className="border-t border-hairline py-2 text-[15px]">{it}</li>)}</ul>
             </div>
@@ -147,7 +149,8 @@ export default function AiServicesPage() {
       </section>
 
       <Section id="governance" labelledBy="sec-h" className="scroll-mt-18">
-        <div className="mb-4 flex flex-wrap items-center gap-3"><AiKicker>Security &amp; governance</AiKicker><Placeholder>CLAIMS TO CONFIRM</Placeholder></div>
+        {/* Content decision X4: every control below confirmed by the AI practice lead (Nov 2026). */}
+        <AiKicker>Security &amp; governance</AiKicker>
         <H2 id="sec-h" className="mb-[clamp(2.5rem,5vw,4rem)]">Controls your risk team will ask for</H2>
         <ul className="m-0 grid list-none gap-x-8 p-0 md:grid-cols-2 lg:grid-cols-3">
           {controls.map(({ icon: Icon, t, d }) => {

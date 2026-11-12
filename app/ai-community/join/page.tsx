@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
-import { images } from "@/lib/images";
-import { SiteImage } from "@/components/ui";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/sections";
 import { CommunityJoinForm } from "@/components/CommunityJoinForm";
 
 export const metadata: Metadata = {
   title: "Join the TEXIRI AI Community",
-  description: "Join the TEXIRI AI Community: learning paths, live sessions, workshops and projects for students, professionals, developers, educators and entrepreneurs. No experience needed.",
+  description: "Join the TEXIRI AI Community: learning paths, online sessions, workshops and projects for students, professionals, developers, educators and entrepreneurs. No experience needed.",
   alternates: { canonical: "/ai-community/join/" },
 };
 
@@ -20,13 +18,12 @@ export default function JoinPage() {
           <div className="hero-enter flex flex-col gap-6">
             <span className="rounded-pill self-start bg-com-tint px-3.5 py-1.5 text-[13px] font-bold text-com-ink">TEXIRI AI Community</span>
             <h1 id="hero-h" className="m-0 max-w-[12ch] text-[clamp(2.5rem,5.4vw,4.5rem)] leading-none tracking-[-0.03em]">Pull up a chair. Let&apos;s learn AI.</h1>
-            <p className="m-0 max-w-[44ch] text-lg text-muted">Join to hear about sessions, workshops and new learning resources, and to share your projects with other members.</p>
+            <p className="m-0 max-w-[44ch] text-lg text-muted">Join to hear about online sessions and workshops, and to share your projects with other members.</p>
             <div className="rounded-com flex flex-col gap-2 bg-com-surface p-6">
               <strong>Why we ask for this</strong>
               <p className="m-0 text-[15px] text-muted">Your city helps us plan in-person sessions. Your role and experience help us suggest the right learning path. That&apos;s all we use them for.</p>
               <p className="m-0 text-[15px] text-muted">Your details are kept separate from Texiri&apos;s business enquiries and are never used for sales. Read the <Link href="/legal/privacy/" className="font-bold underline">Privacy Policy</Link>.</p>
             </div>
-            <SiteImage {...images.communityDemo} ratio="aspect-[9/7]" className="rounded-com max-lg:hidden" sizes="30vw" />
           </div>
           <div className="hero-enter-late rounded-[24px] bg-com-surface p-[clamp(1.25rem,3vw,2.5rem)] shadow-md"><CommunityJoinForm /></div>
         </div>

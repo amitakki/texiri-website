@@ -76,18 +76,19 @@ export default function HomePage() {
       </Section>
 
       <Section labelledBy="klicks-h" tone="navy">
-        <div className="grid items-center gap-[clamp(2.5rem,5vw,5rem)] lg:grid-cols-2">
+        <div className="grid items-end gap-x-[clamp(2.5rem,5vw,5rem)] gap-y-6 lg:grid-cols-2">
           <div>
             <Kicker onNavy>2Klicks by Texiri</Kicker>
             <H2 id="klicks-h" className="max-w-[16ch] text-on-navy">SAP RE-FX mass data, 10× faster.</H2>
-            <p className="mt-6 max-w-[48ch] text-lg text-on-navy-muted">Create, update and migrate RE-FX data from one Excel template, at 75% lower cost and with no programs to develop. Our proprietary tools run inside ECC and S/4HANA and handle your custom fields.</p>
+          </div>
+          <div>
+            <p className="m-0 max-w-[48ch] text-lg text-on-navy-muted">Create, update and migrate RE-FX data from one Excel template, at 75% lower cost and with no programs to develop. Our proprietary tools run inside ECC and S/4HANA and handle your custom fields.</p>
             <p className="mb-0 mt-3"><Placeholder>BENCHMARK TO VERIFY · X10</Placeholder></p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button href={DEMO_HREF} arrow data-track="2klicks_demo_click">Request a 2Klicks demo</Button>
               <Button href="/2klicks/" variant="outline-on-navy">Explore 2Klicks</Button>
             </div>
           </div>
-          <SiteImage {...images.klicksUi} ratio="aspect-[16/10]" />
         </div>
         <div className="mt-[clamp(2.5rem,5vw,4rem)]"><KlicksFlow onNavy /></div>
         <p className="mb-0 mt-8 border-t border-on-navy/20 pt-5 text-[15px] text-on-navy-muted">
