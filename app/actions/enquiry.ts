@@ -50,7 +50,7 @@ export async function submitEnquiry(_: EnquiryState, form: FormData): Promise<En
     },
     ack: {
       subject: "We've received your enquiry — Texiri Solutions",
-      text: `Hi ${name},\n\nThanks for contacting Texiri Solutions. A senior consultant will read your enquiry and reply within one business day.\n\nWhat happens next:\n1. A senior consultant reviews your enquiry.\n2. We email you to book a short scoping call.\n3. We come prepared with relevant examples.\n\nIf anything is urgent, call us on ${contact.phoneDisplay} (${contact.hours}).${signOff}`,
+      text: `Hi ${name},\n\nThanks for contacting Texiri Solutions. A senior consultant will read your enquiry and reply personally.\n\nWhat happens next:\n1. A senior consultant reviews your enquiry.\n2. We email you to book a short scoping call.\n3. We come prepared with relevant examples.\n\nIf anything is urgent, call us on ${contact.phoneDisplay} (${contact.hours}).${signOff}`,
     },
   });
 

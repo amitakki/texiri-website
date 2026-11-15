@@ -3,7 +3,7 @@ import { images } from "@/lib/images";
 import Link from "next/link";
 import { ClipboardCheck, DatabaseZap, PencilRuler, Repeat, Rocket } from "lucide-react";
 import { EccTimeline, Track } from "@/components/visuals";
-import { Button, H2, Kicker, Placeholder, Section, SiteImage } from "@/components/ui";
+import { Button, H2, Kicker, Section, SiteImage } from "@/components/ui";
 import { Breadcrumbs, CheckList, CTABand, FAQAccordion, NumberedGrid, TestimonialCard } from "@/components/sections";
 import { testimonials } from "@/lib/company";
 import { DEMO_HREF } from "@/lib/site";
@@ -39,7 +39,7 @@ const phases = [
 const tech = ["2Klicks", "SAP BODS / Data Services", "Syniti ADM", "S/4HANA Migration Cockpit", "Smart Data Integration", "Information Steward", "SAP MDG", "SQL tooling"];
 const stats = [
   ["Zero", "data loss at cutover on an ECC to S/4HANA conversion"],
-  ["75%", "lower cost for RE-FX data operations with 2Klicks"],
+  ["Up to 75%", "lower cost for RE-FX data operations with 2Klicks"],
   ["22%", "of our consultants specialise in data migration"],
 ];
 const faqs = [
@@ -85,7 +85,6 @@ export default function DataMigrationPage() {
         <dl className="mb-0 mt-[clamp(2rem,4vw,3rem)] grid gap-3 sm:grid-cols-3">
           {stats.map(([n, l]) => <div key={n} className="border-t-4 border-accent bg-surface p-5"><dt className="sr-only">{l}</dt><dd className="m-0"><span className="block text-[clamp(2rem,4vw,2.75rem)] font-extrabold leading-none">{n}</span><span className="mt-2 block text-[15px] text-muted">{l}</span></dd></div>)}
         </dl>
-        <p className="mb-[clamp(2.5rem,5vw,4rem)] mt-3"><Placeholder>STATS TO VERIFY · X10</Placeholder></p>
         <SiteImage {...images.dataMigration} ratio="aspect-[4/3] sm:aspect-video" className="mb-[clamp(2.5rem,5vw,4rem)]" sizes="(min-width: 1280px) 1280px, 100vw" />
         <CheckList items={caps} />
       </Section>
@@ -120,7 +119,7 @@ export default function DataMigrationPage() {
           <div>
             <Kicker onNavy>Related 2Klicks product</Kicker>
             <H2 id="kp-h" className="max-w-[18ch] text-on-navy">2Klicks: RE-FX loads ready on day 1.</H2>
-            <p className="mt-4 max-w-[46ch] text-[17px] text-on-navy-muted">Download, update and upload data for RE-FX, FI/CO and PS on ECC or S/4HANA: 10× faster, at 75% lower cost.</p>
+            <p className="mt-4 max-w-[46ch] text-[17px] text-on-navy-muted">Download, update and upload data for RE-FX, FI/CO and PS on ECC or S/4HANA: up to 10× faster, at up to 75% lower cost.</p>
           </div>
           <div className="flex flex-wrap gap-3">
             <Button href="/2klicks/">Explore 2Klicks</Button>
@@ -156,7 +155,7 @@ export default function DataMigrationPage() {
       </Section>
 
       <FAQAccordion id="faq-h" title="Migration questions" faqs={faqs} />
-      <CTABand title="Get a data-readiness view of your S/4HANA migration." note="A senior consultant replies within one business day." primary={{ label: "Talk to a migration architect", href: "/contact/?type=migration" }} secondary={{ label: "Request a 2Klicks demo", href: DEMO_HREF }} />
+      <CTABand title="Get a data-readiness view of your S/4HANA migration." note="A senior consultant reads every enquiry and replies personally." primary={{ label: "Talk to a migration architect", href: "/contact/?type=migration" }} secondary={{ label: "Request a 2Klicks demo", href: DEMO_HREF }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
     </>
   );

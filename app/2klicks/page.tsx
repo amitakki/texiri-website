@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Check, Minus } from "lucide-react";
-import { Button, H2, Kicker, Placeholder, Section } from "@/components/ui";
+import { Button, H2, Kicker, Section } from "@/components/ui";
 import { Breadcrumbs, FAQAccordion, NumberedGrid } from "@/components/sections";
 import { KlicksTimeline, klicksSteps } from "@/components/visuals";
 import { EnquiryForm } from "@/components/EnquiryForm";
@@ -19,7 +19,8 @@ const productJsonLd = {
   publisher: { "@type": "Organization", name: "Texiri Solutions" },
 };
 
-const stats = [["10×", "Faster"], ["75%", "Lower cost"], ["0", "Programs to develop"]];
+// Content decision X10: speed and cost are "up to" figures.
+const stats: [string, string, boolean?][] = [["10×", "Faster", true], ["75%", "Lower cost", true], ["0", "Programs to develop"]];
 const uses = ["Data migration", "Mass creation", "Mass updates & corrections"];
 const objects = ["Business Entity", "Building", "Property", "Contract", "Contract Offer", "Rental Object"];
 const features = [
@@ -78,11 +79,10 @@ export default function TwoKlicksPage() {
             </div>
           </div>
           <dl className="hero-enter-late m-0 mt-[clamp(2rem,4vw,3rem)] grid grid-cols-3 border-t-2 border-ink">
-            {stats.map(([v, k]) => (
-              <div key={k} className="flex flex-col-reverse py-4 pr-4"><dt className="mt-2 text-sm font-semibold text-muted">{k}</dt><dd className="m-0 text-[clamp(2rem,5vw,3.5rem)] font-extrabold leading-none">{v}</dd></div>
+            {stats.map(([v, k, upTo]) => (
+              <div key={k} className="flex flex-col-reverse justify-end py-4 pr-4"><dt className="mt-2 text-sm font-semibold text-muted">{k}</dt><dd className="m-0 text-[clamp(2rem,5vw,3.5rem)] font-extrabold leading-none"><span className={`mb-1 block text-sm font-semibold text-muted ${upTo ? "" : "invisible"}`}>Up to</span>{v}</dd></div>
             ))}
           </dl>
-          <p className="hero-enter-late m-0 mt-2"><Placeholder>BENCHMARK TO VERIFY · X10</Placeholder></p>
         </div>
       </section>
 
@@ -183,7 +183,7 @@ export default function TwoKlicksPage() {
           <div>
             <Kicker>Request a demo</Kicker>
             <H2 id="demo-h" className="max-w-[14ch]">See 2Klicks on your own objects</H2>
-            <p className="mt-6 max-w-[42ch] text-[17px] text-muted">A 45-minute session with a 2Klicks specialist. Bring your object list and we&apos;ll walk through a load end to end.</p>
+            <p className="mt-6 max-w-[42ch] text-[17px] text-muted">A live session with a 2Klicks specialist. Bring your object list and we&apos;ll walk through a load end to end.</p>
           </div>
           <div className="border-t-4 border-accent bg-ground p-[clamp(1.25rem,3vw,2.5rem)]"><EnquiryForm defaultType="2Klicks demo" headingId="demo-h" /></div>
         </div>

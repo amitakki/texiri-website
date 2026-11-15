@@ -29,7 +29,7 @@ export default function CaseStudiesPage() {
           ))}
         </div>
       </section>
-      <CTABand title="Planning something similar? Talk to the team that delivered it." note="A senior SAP consultant replies within one business day." primary={{ label: "Talk to an SAP expert", href: "/contact/" }} />
+      <CTABand title="Planning something similar? Talk to the team that delivered it." note="A senior SAP consultant reads every enquiry and replies personally." primary={{ label: "Talk to an SAP expert", href: "/contact/" }} />
     </>
   );
 }

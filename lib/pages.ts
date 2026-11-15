@@ -20,12 +20,10 @@ export type InterimPage = {
 };
 
 const home = { label: "Home", href: "/" };
-const community = { label: "AI Community", href: "/ai-community/" };
 const insights = { label: "Insights", href: "/insights/" };
 
-const joinCta = { label: "Join the community", href: "/ai-community/join/" };
-
-// The four AI sub-pages were merged into /ai-services/ (content decision A2); their URLs redirect in next.config.ts.
+// The four AI sub-pages were merged into /ai-services/ (content decision A2), and the Community events and
+// learning-path stubs into /ai-community/ (X9); their URLs redirect in next.config.ts.
 const insightRelated = [
   { label: "ECC mainstream maintenance ends in 2027. Start with the data.", href: "/insights/ecc-2027-start-with-the-data/" },
   { label: "RE-FX after go-live: keeping lease data clean", href: "/insights/re-fx-after-go-live/" },
@@ -38,8 +36,6 @@ function article(slug: string, cat: string, title: string): [string, InterimPage
 }
 
 export const interimPages: Record<string, InterimPage> = Object.fromEntries([
-  ["/ai-community/events/", { title: "Community events", kicker: "TEXIRI AI Community", lead: "Online sessions and hands-on workshops, with in-person sessions in Vijayapura to follow. The event calendar is on its way. Join the community to hear about the next one first.", vertical: "community", crumbs: [home, community, { label: "Events", href: "/ai-community/events/" }], cta: joinCta }],
-  ["/ai-community/learning-paths/", { title: "Learning paths", kicker: "TEXIRI AI Community", lead: "Structured paths from first steps to building real projects. No experience needed. Join the community to get started.", vertical: "community", crumbs: [home, community, { label: "Learning paths", href: "/ai-community/learning-paths/" }], cta: joinCta }],
 
   ["/insights/", { title: "Latest thinking", kicker: "Insights", lead: "Notes on SAP, S/4HANA migration and practical AI from the Texiri team.", crumbs: [home, insights], related: insightRelated }],
   article("ecc-2027-start-with-the-data", "S/4HANA & Migration", "ECC mainstream maintenance ends in 2027. Start with the data."),

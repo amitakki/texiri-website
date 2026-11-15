@@ -7,7 +7,7 @@ export const credentials: { t: string; d: string; icon: "experience" | "countrie
   { t: "Clients on 5 continents", d: "USA, Europe, Middle East, Australia, India.", icon: "countries" },
   { t: "Fortune 500 clients", d: "And high-growth enterprises, since 2021.", icon: "clients", verify: "TO VERIFY" },
   // Content decision C6: proprietary, not patented.
-  { t: "Proprietary SAP migration tools", d: "2Klicks: SAP RE-FX mass data, 10× faster at 75% lower cost.", icon: "tools", verify: "BENCHMARK TO VERIFY" },
+  { t: "Proprietary SAP migration tools", d: "2Klicks: SAP RE-FX mass data, up to 10× faster at up to 75% lower cost.", icon: "tools" },
 ];
 
 /** Verbatim from the old site's homepage (content decision P7: approved for publishing, Nov 2026). */

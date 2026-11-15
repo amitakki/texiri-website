@@ -34,7 +34,7 @@ export function EnquiryForm({ defaultType = "SAP implementation / consulting", h
     return (
       <div role="status" className="flex flex-col gap-4">
         <Check aria-hidden className="size-10 text-accent-700" />
-        <h3 className="m-0 text-[28px]">Thanks, {state.firstName}. We reply within one business day.</h3>
+        <h3 className="m-0 text-[28px]">Thanks, {state.firstName}. A senior consultant will reply personally.</h3>
         {state.ackSent && <p className="m-0 text-muted">We&apos;ve emailed you a confirmation.</p>}
         <ol className="m-0 flex flex-col gap-1.5 pl-5"><li>A senior consultant reviews your enquiry.</li><li>We email you to book a short scoping call.</li><li>We come prepared with relevant examples.</li></ol>
       </div>

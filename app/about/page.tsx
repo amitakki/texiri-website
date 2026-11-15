@@ -79,7 +79,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <CTABand title="Talk to the people who will do the work." note="A senior consultant replies within one business day." primary={{ label: "Contact us", href: "/contact/" }} secondary={{ label: "See open roles", href: "/careers/" }} />
+      <CTABand title="Talk to the people who will do the work." note="A senior consultant reads every enquiry and replies personally." primary={{ label: "Contact us", href: "/contact/" }} secondary={{ label: "See open roles", href: "/careers/" }} />
     </>
   );
 }

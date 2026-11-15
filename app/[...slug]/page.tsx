@@ -77,7 +77,7 @@ export default async function InterimPage({ params }: Props) {
       )}
 
       {page.cta && page.vertical !== "community" && (
-        <CTABand title="Tell us what you're working on." note="A senior consultant replies within one business day." primary={page.cta} vertical={vertical} />
+        <CTABand title="Tell us what you're working on." note="A senior consultant reads every enquiry and replies personally." primary={page.cta} vertical={vertical} />
       )}
     </>
   );
