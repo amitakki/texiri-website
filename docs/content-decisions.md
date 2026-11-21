@@ -36,6 +36,7 @@ This file lists every piece of website content that still needs a decision. Each
 | P6 | Leadership bio | Permission to name past clients | Named on the old Team page | Founder | Client names stay off the site (Nov 2026). The removed sentence, for reference: "He has worked with SAP Labs and global enterprises including Walmart, CVS, Nike, T-Systems, Singtel, Stockland, EQL and Victoria's Secret." | Dropped |
 | P8 | `/case-studies/*`, Industries | Confirm the profile's case-study wording (prepared for an SAP partner meeting) can be published on the public site as written | Not published | Founder | Publish as written, clients unnamed (Nov 2026) | Done |
 | P7 | Home, SAP, Data Migration → testimonials | Confirm the three original testimonials can still be published (now used word for word) | Published on the old homepage | Founder | All three approved, unnamed as now (Nov 2026) | Done |
+| P9 | Credibility strip (Home, About) | Confirm the "Fortune 500 clients" claim ("And high-growth enterprises, since 2021") | Not stated | Founder | Confirmed; the "TO VERIFY" badge is removed (Nov 2026) | Done |
 
 ## 3. 2Klicks
 
@@ -86,7 +87,7 @@ This file lists every piece of website content that still needs a decision. Each
 | S2 | Shambhavi 108 page | Format (online, Vijayapura, hybrid) | None | Programme lead | Hybrid: "mostly online, with some sessions at our Vijayapura office" (Nov 2026) | Done |
 | S3 | Shambhavi 108 page | Tracks offered | None | Programme lead | SAP only. The summary now says "structured SAP training" and the page says "The training is in SAP" (Nov 2026) | Done |
 | S4 | Shambhavi 108 page | Fees (or "free") | None | Programme lead | Not decided; fees are not mentioned (Nov 2026) | Dropped |
-| S5 | Shambhavi 108 form | Legal sign-off on asking age, marital status and number of children as **required** questions | Asked on the old form | Legal counsel | Age, marital status and children are now **optional** (marked "(optional)" on the form, blank answers accepted). The consent text and the Privacy Policy say so. Legal counsel should still review asking them at all (Nov 2026) | Done |
+| S5 | Shambhavi 108 form | Legal sign-off on asking age, marital status and number of children as **required** questions | Asked on the old form | Legal counsel | Age, marital status and children are no longer asked. They were removed from the form, the schema, the consent text and the Privacy Policy (Nov 2026) | Dropped |
 
 ## 6b. CSR
 
@@ -113,11 +114,11 @@ This file lists every piece of website content that still needs a decision. Each
 
 | ID | Where it appears | What's needed | Old-site value | Owner | Decision | Status |
 | --- | --- | --- | --- | --- | --- | --- |
-| G1 | `/legal/privacy/` | Lawyer review of the draft Privacy Policy | No policy published | Legal counsel | Values filled in and badges removed (Nov 2026). Still needs a lawyer's review before launch | Open |
+| G1 | `/legal/privacy/` | Lawyer review of the draft Privacy Policy | No policy published | Legal counsel | Values filled in and badges removed. Reviewed by legal counsel; the "Draft" badge is removed (Nov 2026) | Done |
 | G2 | `/legal/privacy/` | Grievance officer's name and contact (required under India's DPDP Act) | None | Founder / legal | Santosh S Angadi, Chief Revenue Officer, at the main contact email (Nov 2026) | Done |
 | G3 | `/legal/privacy/` | Retention periods for enquiries, community members and Shambhavi applications | None | Founder / legal | Enquiries: 24 months after last contact (longer for clients). Community: deleted within 30 days of leaving. Shambhavi: 12 months after the selection decision. Privacy requests answered within 30 days (Nov 2026) | Done |
-| G4 | `/legal/cookies/` | Lawyer review of the draft Cookie Policy (update when analytics is added) | No policy published | Legal counsel | Badge removed (Nov 2026). Still needs a lawyer's review; update the policy when analytics is added | Open |
-| G5 | `/legal/terms/` | Lawyer review of the draft Terms; confirm the courts of jurisdiction | None | Legal counsel | Courts at Vijayapura, Karnataka (registered office). Badge removed (Nov 2026). Still needs a lawyer's review | Open |
+| G4 | `/legal/cookies/` | Lawyer review of the draft Cookie Policy (update when analytics is added) | No policy published | Legal counsel | Reviewed by legal counsel; the "Draft" badge is removed (Nov 2026). Update the policy, and have it reviewed again, when analytics is added | Done |
+| G5 | `/legal/terms/` | Lawyer review of the draft Terms; confirm the courts of jurisdiction | None | Legal counsel | Courts at Vijayapura, Karnataka (registered office). Reviewed by legal counsel; the "Draft" badge is removed (Nov 2026) | Done |
 
 ## 9. Photos and screenshots
 
@@ -134,7 +135,7 @@ Every image below is currently an on-brand placeholder illustration with a "PLAC
 | IMG7 | Community hero, events page | Community workshop photo (same as M7) | `community-workshop.svg` | Community lead | Not needed: no photos on community pages (M7) | Dropped |
 | IMG8 | Community hero, Join page, learning paths | Member presenting a project | `community-demo.svg` | Community lead | Not needed: no photos on community pages (M7) | Dropped |
 | IMG9 | Community → Built by members | Three member project screenshots (same as M6) | `project-vision.svg`, `project-chatbot.svg`, `project-forecast.svg` | Community lead | Not needed: the project showcase was removed (M6) | Dropped |
-| IMG10 | Home → Latest thinking, Insights pages | Article cover images (same as I3) | `article-ecc-2027.svg`, `article-refx.svg`, `article-first-ai.svg` | Marketing | | Open |
+| IMG10 | Home → Latest thinking, Insights pages | Article cover images (same as I3) | `article-ecc-2027.svg`, `article-refx.svg`, `article-first-ai.svg` | Marketing | Keep the current illustrations as the final covers; placeholder badges removed (Nov 2026) | Done |
 | IMG11 | Shambhavi 108 page, Community page | Photo of programme learners | `learners.svg` | Programme lead | | Open |
 | IMG12 | Careers → Life at Texiri gallery | Photos of office life (same as H4) | `life-at-texiri.svg` | HR | | Open |
 | IMG13 | `/about/csr/`, About → CSR band | Photos from each CSR event (same as CSR1) | `csr-event.svg` | HR / founder | | Open |
@@ -146,7 +147,7 @@ Every image below is currently an on-brand placeholder illustration with a "PLAC
 | I1 | `/insights/*` | The three launch articles (ECC 2027, RE-FX after go-live, first AI use case) | None | Marketing / authors | Launch without Insights: the section stays hidden on production until articles are written, then each is marked ready in lib/pages.ts (Nov 2026) | Open |
 | I2 | `/industries/` | Content for the industries | Old site mentions "4 major industries" | Marketing | One page with 7 industries from the Texiri Profile 2026 (`lib/industries.ts`) | Done |
 | I4 | `/industries/` | Confirm the 7 industries. The profile's two pharma cards are merged into "Healthcare & Pharmaceuticals", and Oil & Gas is added from its case study | "Supporting 7 Industries" | Founder | All 7 confirmed as listed in lib/industries.ts (Nov 2026) | Done |
-| I3 | Home → insights cards | Article illustrations | None | Marketing | Choose an image when each article is written; placeholders stay until then (Nov 2026) | Open |
+| I3 | Home → insights cards | Article illustrations | None | Marketing | Keep the current illustrations as the final covers; placeholder badges removed (Nov 2026) | Done |
 
 ## 11. Claims and structure (added after the UX review)
 

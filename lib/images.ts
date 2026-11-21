@@ -18,8 +18,9 @@ export const images = {
   office: { src: ph("office"), alt: "The Texiri Solutions office building in Vijayapura", placeholder: true },
   dataMigration: { src: ph("data-migration"), alt: "Data from ECC, legacy systems and Excel being cleansed and validated before loading into S/4HANA", placeholder: true },
   aiWorkshop: { src: ph("ai-workshop"), alt: "A client team in an AI readiness workshop, looking at a ranked map of use cases", placeholder: true },
-  articleEcc: { src: ph("article-ecc-2027"), alt: "Illustration: a calendar showing December 2027 next to a clock", placeholder: true },
-  articleRefx: { src: ph("article-refx"), alt: "Illustration: office buildings and a lease document", placeholder: true },
-  articleAi: { src: ph("article-first-ai"), alt: "Illustration: three AI use cases ranked one to three", placeholder: true },
+  // Content decisions I3 / IMG10: the generated illustrations are the final article covers.
+  articleEcc: { src: ph("article-ecc-2027"), alt: "Illustration: a calendar showing December 2027 next to a clock" },
+  articleRefx: { src: ph("article-refx"), alt: "Illustration: office buildings and a lease document" },
+  articleAi: { src: ph("article-first-ai"), alt: "Illustration: three AI use cases ranked one to three" },
   learners: { src: ph("learners"), alt: "Shambhavi 108 learners restarting their careers, coding on laptops", placeholder: true },
 } satisfies Record<string, SiteImageData>;

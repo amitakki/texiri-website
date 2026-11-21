@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/legal/terms/" },
 };
 
-// DRAFT for lawyer review (content decision G5).
+// Reviewed by legal counsel (content decision G5). Changes to the text need their review again.
 const sections: LegalSection[] = [
   {
     id: "about", title: "About these terms",

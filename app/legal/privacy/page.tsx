@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LegalList, LegalPage, LegalTable, type LegalSection } from "@/components/LegalPage";
-import { Placeholder } from "@/components/ui";
 import { contact, offices } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -10,9 +9,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/legal/privacy/" },
 };
 
-// DRAFT for lawyer review (content decision G1). G2 and G3 values agreed Nov 2026. Keep in step with lib/leads.ts and the three forms.
+// Reviewed by legal counsel (content decision G1). G2 and G3 values agreed Nov 2026. Keep in step with lib/leads.ts and the three forms; changes to the text need their review again.
 const hq = offices.find((o) => o.hq)!;
-const tbc = <Placeholder>TO CONFIRM</Placeholder>;
 const mail = <a href={`mailto:${contact.email}`}>{contact.email}</a>;
 
 const sections: LegalSection[] = [
@@ -20,7 +18,7 @@ const sections: LegalSection[] = [
     id: "who", title: "Who we are",
     body: (
       <>
-        <p>This website is run by <strong>{contact.legalName}</strong> (&ldquo;Texiri&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;), a company registered in India {contact.cin ? <>(CIN {contact.cin})</> : tbc}, with its registered office at {hq.street.join(", ")}, {hq.locality}, {hq.region} {hq.postalCode}, India.</p>
+        <p>This website is run by <strong>{contact.legalName}</strong> (&ldquo;Texiri&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;), a company registered in India{contact.cin && <> (CIN {contact.cin})</>}, with its registered office at {hq.street.join(", ")}, {hq.locality}, {hq.region} {hq.postalCode}, India.</p>
         <p>For the personal data described here, we are the <strong>data fiduciary</strong> under India&apos;s Digital Personal Data Protection Act, 2023 (DPDP Act) and the <strong>controller</strong> under the EU and UK General Data Protection Regulation (GDPR). You can contact us about privacy at {mail}.</p>
       </>
     ),
@@ -43,12 +41,10 @@ const sections: LegalSection[] = [
           rows={[
             ["Business enquiry and 2Klicks demo", "Name, email, company, role, enquiry type, phone (optional), your message, the page you sent it from, the time you gave consent.", "To reply, arrange a scoping call or demo, and prepare a proposal. We note whether the email is a personal address so we can route it.", "Your consent (DPDP Act s.6). Under the GDPR, also our legitimate interest in answering business enquiries and steps you ask us to take before a contract."],
             ["TEXIRI AI Community", "Name, email, city, role, AI experience, why you're joining (optional), phone (optional), the time you gave consent.", "To send community updates, plan sessions, and suggest a learning path. Never used for sales.", "Your consent."],
-            ["Shambhavi 108", "Reference, name, location, age (optional), highest qualification, graduation year, marital status and number of children (both optional), mobile, email, occupation, laptop availability, a self-rating of English, and your written answers about your education, career break, motivation, family, strengths and commitment.", "To assess your application for the programme, contact you about it, and plan training.", "Your consent, given with the checkbox on the form."],
+            ["Shambhavi 108", "Reference, name, location, highest qualification, graduation year, mobile, email, occupation, laptop availability, a self-rating of English, and your written answers about your education, career break, motivation, family, strengths and commitment.", "To assess your application for the programme, contact you about it, and plan training.", "Your consent, given with the checkbox on the form."],
             ["Every visitor", "IP address and technical data from your browser.", "To protect the forms from spam and abuse (Cloudflare Turnstile) and to run the website securely (hosting logs).", "Our legitimate interest in keeping the site secure (GDPR); reasonable purposes for security (DPDP Act)."],
           ]}
         />
-        <h3>Why the Shambhavi 108 form asks about age and family</h3>
-        <p>Shambhavi 108 is a career-restart programme for people returning to work after a break. We ask about age, marital status and children to understand each applicant&apos;s situation and plan training that fits around it. These questions are optional: leaving them blank does not affect your application. These answers are used only to assess your application and are never shared outside the people who review applications.</p>
         <p>We do not use your data for automated decisions, and we do not sell it.</p>
       </>
     ),
@@ -135,7 +131,7 @@ export default function PrivacyPage() {
     <LegalPage
       title="Privacy Policy"
       href="/legal/privacy/"
-      updated="12 November 2026"
+      updated="21 November 2026"
       intro={<p className="m-0">How we collect, use and protect personal data when you contact us, join the TEXIRI AI Community or apply to Shambhavi 108.</p>}
       sections={sections}
     />

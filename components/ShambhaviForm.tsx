@@ -16,7 +16,7 @@ const LAST = S108_STEPS.length - 1;
 const input = "min-h-12 w-full border border-rule bg-surface px-3 text-base text-ink hover:border-ink/45 focus-visible:border-accent-700 aria-[invalid=true]:border-accent-700";
 const err = "mt-1 block min-h-[18px] text-[13px] font-semibold text-accent-800";
 
-/** Required fields get an asterisk; optional ones say so (content decision S5). */
+/** Required fields get an asterisk; optional ones say so. */
 const Mark = ({ optional }: { optional: boolean }) => optional ? <span className="font-normal text-muted"> (optional)</span> : <> *</>;
 type Vals = Record<string, string | boolean>;
 

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/legal/cookies/" },
 };
 
-// DRAFT for lawyer review (content decision G4). Update when analytics and the consent banner arrive (README step 10).
+// Reviewed by legal counsel (content decision G4). Update, and have it reviewed again, when analytics and the consent banner arrive (README step 10).
 const sections: LegalSection[] = [
   {
     id: "what", title: "What cookies are",

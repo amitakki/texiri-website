@@ -43,7 +43,7 @@ describe("communityJoinSchema", () => {
 describe("s108Schema", () => {
   const text = "Some answer";
   const app = {
-    reference: text, name: "Meera K", location: "Vijayapura", age: "34", qualification: "B.E.", gradYear: "2012", married: "Yes", children: "2",
+    reference: text, name: "Meera K", location: "Vijayapura", qualification: "B.E.", gradYear: "2012",
     mobile: "+91 98765 43210", email: "meera@example.com", occupation: text, laptop: "Yes", english: "4", intro: text, education: text,
     breakReason: text, breakUse: text, whyRestart: text, impact: text, strengths: text, commitment: text, hours: "15", acceptJob: "Yes",
     describe: text, pledge: true, consent: true,
@@ -51,7 +51,7 @@ describe("s108Schema", () => {
   it("accepts a complete application and coerces numbers", () => {
     const r = s108Schema.safeParse(app);
     expect(r.success).toBe(true);
-    if (r.success) expect(r.data.age).toBe(34);
+    if (r.success) expect(r.data.gradYear).toBe(2012);
   });
   it("requires the consent checkbox", () => {
     const r = s108Schema.safeParse({ ...app, consent: false });
@@ -59,10 +59,9 @@ describe("s108Schema", () => {
     if (!r.success) expect(collectErrors(r.error.issues)).toHaveProperty("consent");
   });
   it("rejects a short mobile number", () => expect(s108Schema.safeParse({ ...app, mobile: "12345" }).success).toBe(false));
-  it("accepts a blank age, marital status and children (content decision S5)", () => {
-    const r = s108Schema.safeParse({ ...app, age: "", married: undefined, children: "" });
+  it("drops age, marital status and children if they are sent anyway (content decision S5)", () => {
+    const r = s108Schema.safeParse({ ...app, age: "34", married: "Yes", children: "2" });
     expect(r.success).toBe(true);
-    if (r.success) expect(r.data.age).toBeUndefined();
+    if (r.success) expect(r.data).not.toHaveProperty("age");
   });
-  it("still checks an age that is given", () => expect(s108Schema.safeParse({ ...app, age: "12" }).success).toBe(false));
 });
