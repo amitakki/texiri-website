@@ -102,7 +102,7 @@ export default function SapBtpPage() {
       </Section>
 
       <FAQAccordion id="faq-h" title="BTP and development questions" faqs={faqs} />
-      <CTABand title="Tell us what you need to build or extend." note="A senior SAP consultant replies within one business day." primary={{ label: "Talk to an SAP expert", href: "/contact/" }} />
+      <CTABand title="Tell us what you need to build or extend." note="A senior SAP consultant reads every enquiry and replies personally." primary={{ label: "Talk to an SAP expert", href: "/contact/" }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
     </>
   );

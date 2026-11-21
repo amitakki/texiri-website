@@ -17,7 +17,7 @@ export default function LeadershipPage() {
     <>
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "About", href: "/about/" }, { label: "Leadership", href: "/about/leadership/" }]} />
       <LeadershipSection asPage />
-      <CTABand title="Talk to the people who will do the work." note="A senior consultant replies within one business day." primary={{ label: "Contact us", href: "/contact/" }} />
+      <CTABand title="Talk to the people who will do the work." note="A senior consultant reads every enquiry and replies personally." primary={{ label: "Contact us", href: "/contact/" }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }} />
     </>
   );

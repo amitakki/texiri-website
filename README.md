@@ -2,7 +2,7 @@
 
 The new www.texiri.com, replacing the WordPress site. It covers SAP Services, 2Klicks, AI Services, the TEXIRI AI Community, careers and Shambhavi 108.
 
-**Status:** steps 1–6 of 10 are built, and the review fixes are in: the forms deliver submissions, draft legal pages exist, there are SEO and security headers, and tests and CI are set up. Next come steps 7–10: CRM, CMS, consent banner and analytics, and launch. Before launch, work through [docs/launch-checklist.md](docs/launch-checklist.md). Open content questions are in [docs/content-decisions.md](docs/content-decisions.md).
+**Status:** steps 1–6 of 10 are built, and the review fixes are in: the forms deliver submissions, the legal pages are reviewed by legal counsel, there are SEO and security headers, and tests and CI are set up. Next come steps 7–10: CRM, CMS, consent banner and analytics, and launch. Before launch, work through [docs/launch-checklist.md](docs/launch-checklist.md). Open content questions are in [docs/content-decisions.md](docs/content-decisions.md).
 
 ## Stack
 Next.js 15 (App Router, React Server Components, static pages) · TypeScript strict · Tailwind CSS v4 (tokens in `app/globals.css` `@theme`) · lucide-react · next/font (Archivo) · Zod · Cloudflare Turnstile · Resend (email) · Google Sheets (via Apps Script) · Vitest · Playwright + axe.
@@ -40,7 +40,7 @@ app/
   sap/, sap/consulting|data-migration|btp|managed-services/, 2klicks/, ai-services/, ai-community/, ai-community/join/
   industries/, case-studies/, case-studies/[slug]/   content from lib/industries.ts and lib/case-studies.ts
   about/, about/leadership/, about/csr/, careers/, careers/shambhavi-108/, contact/
-  legal/privacy|cookies|terms/   draft legal pages (pending lawyer review)
+  legal/privacy|cookies|terms/   legal pages (reviewed by legal counsel)
   [...slug]/page.tsx      interim pages for routes in lib/pages.ts (always noindex)
   actions/                server actions: enquiry, community, shambhavi
   robots.ts, sitemap.ts

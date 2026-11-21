@@ -67,6 +67,9 @@ const config: NextConfig = {
       ["/ai-services/generative-ai/", "/ai-services/#generative-ai"],
       ["/ai-services/machine-learning/", "/ai-services/#machine-learning"],
       ["/ai-services/mlops-governance/", "/ai-services/#mlops"],
+      // The Community events and learning-path stubs became sections of the Community page (Nov 2026).
+      ["/ai-community/events/", "/ai-community/#events"],
+      ["/ai-community/learning-paths/", "/ai-community/#paths"],
     ].map(([source, destination]) => ({ source, destination, permanent: true }))
       // Demo requests live in the form on the 2Klicks page.
       .concat({ source: "/2klicks/demo/", destination: "/2klicks/#demo", permanent: false });

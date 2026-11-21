@@ -5,9 +5,10 @@
 export const credentials: { t: string; d: string; icon: "experience" | "countries" | "clients" | "tools"; verify?: string }[] = [
   { t: "20+ years in SAP", d: "SAP transformation programmes and data migration.", icon: "experience" },
   { t: "Clients on 5 continents", d: "USA, Europe, Middle East, Australia, India.", icon: "countries" },
-  { t: "Fortune 500 clients", d: "And high-growth enterprises, since 2021.", icon: "clients", verify: "TO VERIFY" },
+  // Content decision P9: confirmed.
+  { t: "Fortune 500 clients", d: "And high-growth enterprises, since 2021.", icon: "clients" },
   // Content decision C6: proprietary, not patented.
-  { t: "Proprietary SAP migration tools", d: "2Klicks: SAP RE-FX mass data, 10× faster at 75% lower cost.", icon: "tools", verify: "BENCHMARK TO VERIFY" },
+  { t: "Proprietary SAP migration tools", d: "2Klicks: SAP RE-FX mass data, up to 10× faster at up to 75% lower cost.", icon: "tools" },
 ];
 
 /** Verbatim from the old site's homepage (content decision P7: approved for publishing, Nov 2026). */
@@ -106,11 +107,8 @@ export const S108_STEPS = [
     { id: "reference", label: "Reference (who referred you, or where you heard about us)", kind: "text" },
     { id: "name", label: "Name", kind: "text", auto: "name" },
     { id: "location", label: "Current location", kind: "text", auto: "address-level2" },
-    { id: "age", label: "Age", kind: "number", optional: true },
     { id: "qualification", label: "Highest qualification", kind: "text" },
     { id: "gradYear", label: "Graduation year", kind: "number" },
-    { id: "married", label: "Married?", kind: "choice", opts: ["Yes", "No"], optional: true },
-    { id: "children", label: "Children? If yes, how many", kind: "text", optional: true },
     { id: "mobile", label: "Mobile number", kind: "tel", auto: "tel" },
     { id: "email", label: "Email ID", kind: "email", auto: "email" },
   ] },
@@ -134,6 +132,6 @@ export const S108_STEPS = [
     { id: "acceptJob", label: "If offered the job after training, are you willing to take it up?", kind: "choice", opts: ["Yes", "No"] },
     { id: "describe", label: "Describe yourself in a few words", kind: "text" },
     { id: "pledge", label: "I understand this programme requires consistent effort, and I commit to completing it sincerely.", kind: "check" },
-    { id: "consent", label: "I agree that Texiri Solutions may use the details in this form, including any answers I give about age, family and my career break, to assess my application, as described in the Privacy Policy.", kind: "check" },
+    { id: "consent", label: "I agree that Texiri Solutions may use the details in this form, including my answers about my career break and family, to assess my application, as described in the Privacy Policy.", kind: "check" },
   ] },
 ] as const;

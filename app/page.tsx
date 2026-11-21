@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Boxes, DatabaseZap, Layers, LifeBuoy, Sparkles, Users, type LucideIcon } from "lucide-react";
-import { Button, H2, Kicker, Placeholder, Section, SiteImage } from "@/components/ui";
+import { Button, H2, Kicker, Section, SiteImage } from "@/components/ui";
 import { CaseStudyCard, CredibilityStrip, CTABand, TestimonialCard } from "@/components/sections";
 import { SapServicesPanel } from "@/components/diagrams";
 import { KlicksFlow } from "@/components/visuals";
@@ -79,11 +79,10 @@ export default function HomePage() {
         <div className="grid items-end gap-x-[clamp(2.5rem,5vw,5rem)] gap-y-6 lg:grid-cols-2">
           <div>
             <Kicker onNavy>2Klicks by Texiri</Kicker>
-            <H2 id="klicks-h" className="max-w-[16ch] text-on-navy">SAP RE-FX mass data, 10× faster.</H2>
+            <H2 id="klicks-h" className="max-w-[16ch] text-on-navy">SAP RE-FX mass data, up to 10× faster.</H2>
           </div>
           <div>
-            <p className="m-0 max-w-[48ch] text-lg text-on-navy-muted">Create, update and migrate RE-FX data from one Excel template, at 75% lower cost and with no programs to develop. Our proprietary tools run inside ECC and S/4HANA and handle your custom fields.</p>
-            <p className="mb-0 mt-3"><Placeholder>BENCHMARK TO VERIFY · X10</Placeholder></p>
+            <p className="m-0 max-w-[48ch] text-lg text-on-navy-muted">Create, update and migrate RE-FX data from one Excel template, at up to 75% lower cost and with no programs to develop. Our proprietary tools run inside ECC and S/4HANA and handle your custom fields.</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button href={DEMO_HREF} arrow data-track="2klicks_demo_click">Request a 2Klicks demo</Button>
               <Button href="/2klicks/" variant="outline-on-navy">Explore 2Klicks</Button>
@@ -145,7 +144,7 @@ export default function HomePage() {
 
       <CTABand
         title={<><span className="block">Planning an SAP implementation or S/4HANA migration?</span><span className="block">Talk to a senior SAP consultant.</span></>}
-        note="A senior SAP consultant replies within one business day."
+        note="A senior SAP consultant reads every enquiry and replies personally."
         primary={{ label: "Talk to an SAP expert", href: "/contact/" }}
         secondary={{ label: "Request a 2Klicks demo", href: DEMO_HREF }}
       />

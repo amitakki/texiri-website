@@ -172,7 +172,7 @@ export default function AiServicesPage() {
       </section>
 
       <FAQAccordion id="faq-h" title="Questions buyers ask us" faqs={faqs} />
-      <CTABand vertical="ai" title="One day with your team. A ranked list of AI use cases worth piloting." note="An AI lead replies within one business day." primary={{ label: "Request an AI readiness workshop", href: "/contact/?type=ai" }} />
+      <CTABand vertical="ai" title="One day with your team. A ranked list of AI use cases worth piloting." note="An AI lead reads every enquiry and replies personally." primary={{ label: "Request an AI readiness workshop", href: "/contact/?type=ai" }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
     </>
   );

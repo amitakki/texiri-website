@@ -26,7 +26,7 @@ export function CommunityJoinForm() {
         <h2 className="m-0 text-3xl">Welcome aboard, {state.firstName}!</h2>
         <p className="m-0 text-muted">{state.ackSent ? <>Check {state.email} for a welcome email. </> : null}Here&apos;s what happens next:</p>
         <ol className="m-0 flex flex-col gap-1.5 pl-5"><li>We suggest a learning path based on your experience.</li><li>You&apos;ll hear about the next sessions{state.city ? <> near {state.city}</> : null} and online.</li><li>Bring a project to a showcase whenever you&apos;re ready.</li></ol>
-        <Link href="/ai-community/learning-paths/" className="rounded-pill inline-flex min-h-12 items-center self-start bg-com px-5 font-extrabold text-navy-900 no-underline">Browse learning paths</Link>
+        <Link href="/ai-community/#paths" className="rounded-pill inline-flex min-h-12 items-center self-start bg-com px-5 font-extrabold text-navy-900 no-underline">Browse learning paths</Link>
       </div>
     );
   }

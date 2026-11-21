@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Breadcrumbs } from "./sections";
-import { Kicker, Placeholder } from "./ui";
+import { Kicker } from "./ui";
 
 export type LegalSection = { id: string; title: string; body: ReactNode };
 
@@ -15,8 +15,6 @@ export function LegalPage({ title, href, updated, intro, sections }: { title: st
           <h1 id="hero-h" className="m-0 -ml-[0.04em] text-h2">{title}</h1>
           <div className="mt-4 flex flex-wrap items-center gap-3 text-sm text-muted">
             <span>Last updated {updated}</span>
-            {/* Content decisions G1, G4, G5: remove once a lawyer has approved the text */}
-            <Placeholder>DRAFT · PENDING LEGAL REVIEW</Placeholder>
           </div>
           <div className="mt-6 max-w-[64ch] text-lead text-muted">{intro}</div>
         </div>

@@ -11,13 +11,13 @@ import { DEMO_HREF, contact, offices } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact: Talk to an SAP or AI Expert",
-  description: "Contact Texiri Solutions about SAP consulting, S/4HANA data migration, SAP BTP, managed services, 2Klicks demos or AI Services. A senior consultant replies within one business day.",
+  description: "Contact Texiri Solutions about SAP consulting, S/4HANA data migration, SAP BTP, managed services, 2Klicks demos or AI Services. A senior consultant reads every enquiry and replies personally.",
   alternates: { canonical: "/contact/" },
 };
 
 const others = [["Jobs and Shambhavi 108", "/careers/"], ["Join the TEXIRI AI Community", "/ai-community/join/"], ["Book a 2Klicks demo", DEMO_HREF]];
 const next = [
-  { title: "A senior reply", body: "Within one business day, the right practice lead reads your note and emails you directly." },
+  { title: "A senior reply", body: "The right practice lead reads your note and emails you directly." },
   { title: "A scoping call", body: "30 minutes on your landscape, timeline and constraints. An NDA first if you need one." },
   { title: "A clear proposal", body: "Scope, team and approach in writing, or an honest referral if we're not the fit." },
 ];
@@ -30,7 +30,7 @@ export default function ContactPage() {
         <div className="hero-enter container-content">
           <Kicker>Contact</Kicker>
           <h1 id="hero-h" className="m-0 -ml-[0.04em] max-w-[22ch] text-display">Tell us what you&apos;re working on.</h1>
-          <p className="mt-6 max-w-[52ch] text-lead text-muted">A senior consultant reads every enquiry and replies within one business day. No sales sequence, no call centre.</p>
+          <p className="mt-6 max-w-[52ch] text-lead text-muted">A senior consultant reads every enquiry and replies personally. No sales sequence, no call centre.</p>
         </div>
       </section>
       <section aria-label="Enquiry form and contact details" className="border-t-2 border-ink">

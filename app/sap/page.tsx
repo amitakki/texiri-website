@@ -91,7 +91,7 @@ export default function SapServicesPage() {
       <section aria-labelledby="k-h" className="surface-dark bg-navy-900 text-on-navy">
         <Link href="/2klicks/" className="container-content grid items-end gap-x-8 gap-y-6 py-[clamp(3rem,6vw,5rem)] text-on-navy no-underline hover:text-on-navy md:grid-cols-2">
           <div><Kicker onNavy>Our SAP tools</Kicker><h2 id="k-h" className="m-0 max-w-[20ch] text-[clamp(1.75rem,3.4vw,2.75rem)] leading-[1.08]">2Klicks: SAP RE-FX mass data, in two clicks</h2></div>
-          <div><p className="m-0 max-w-[46ch] text-[17px] text-on-navy-muted">Our proprietary tools create, update and migrate RE-FX data from one template: 10× faster, 75% lower cost, no programs to develop.</p><span className="mt-4 inline-block font-extrabold text-accent">Explore 2Klicks →</span></div>
+          <div><p className="m-0 max-w-[46ch] text-[17px] text-on-navy-muted">Our proprietary tools create, update and migrate RE-FX data from one template: up to 10× faster, at up to 75% lower cost, with no programs to develop.</p><span className="mt-4 inline-block font-extrabold text-accent">Explore 2Klicks →</span></div>
         </Link>
       </section>
 
@@ -103,7 +103,7 @@ export default function SapServicesPage() {
       </section>
 
       <FAQAccordion id="faq-h" title="Working with Texiri" faqs={faqs} />
-      <CTABand title="Tell us where your SAP landscape is today." note="A senior SAP consultant replies within one business day." primary={{ label: "Talk to an SAP expert", href: "/contact/" }} />
+      <CTABand title="Tell us where your SAP landscape is today." note="A senior SAP consultant reads every enquiry and replies personally." primary={{ label: "Talk to an SAP expert", href: "/contact/" }} />
     </>
   );
 }

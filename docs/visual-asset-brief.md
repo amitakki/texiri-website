@@ -21,7 +21,7 @@ The site uses on-brand placeholder illustrations (marked "PLACEHOLDER IMAGE") wh
 | IMG7 | A TEXIRI AI Community workshop, wide shot | 4:3 · 1600×1200 | Community hero, events | Community lead | Everyone shown |
 | IMG8 | A community member presenting their project | 4:3 · 1600×1200 | Community hero, Join, learning paths | Community lead | The presenter and anyone in frame |
 | IMG9 | Three member project screenshots (one per project) | 16:10 · 1600×1000 each | Community → Built by members | Community lead | Member name and consent per project |
-| IMG10 | Article cover images for the three launch articles (illustration or photo, no text in the image) | 16:9 · 1600×900 | Home, Insights | Marketing | None |
+| IMG10 | Article cover images for the three launch articles. **Not needed:** the current illustrations are the final covers (Nov 2026) | 16:9 · 1600×900 | Home, Insights | Marketing | None |
 | IMG11 | Shambhavi 108 learners at work | 4:3 · 1600×1200 | Shambhavi 108 | Programme lead | Everyone shown |
 | IMG12 | **Life at Texiri**, five photos: festival celebrations, birthdays and work anniversaries, team outings, learning sessions, the Navi Mumbai office. Natural, candid moments over posed shots. | 4:3 · 1600×1200 each | Careers → Life at Texiri gallery | HR | Everyone shown |
 | IMG13 | **CSR events**: 2–6 photos per event (the activity, volunteers with the partner organisation, the result), with a caption for each | 4:3 · 1600×1200 each | `/about/csr/`, About → CSR band | HR / founder | Everyone shown; for children, written consent from a parent or the school |

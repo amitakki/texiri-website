@@ -72,7 +72,7 @@ export default function ManagedServicesPage() {
       </Section>
 
       <FAQAccordion id="faq-h" title="Managed services questions" faqs={faqs} />
-      <CTABand title="Tell us how your SAP system is supported today." note="A senior SAP consultant replies within one business day." primary={{ label: "Talk to an SAP expert", href: "/contact/" }} />
+      <CTABand title="Tell us how your SAP system is supported today." note="A senior SAP consultant reads every enquiry and replies personally." primary={{ label: "Talk to an SAP expert", href: "/contact/" }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
     </>
   );

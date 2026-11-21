@@ -135,12 +135,15 @@ test("unknown URLs get a branded 404 with ways forward", async ({ page }) => {
   await expect(page.getByRole("link", { name: /^SAP Services →/ })).toBeVisible();
 });
 
-test("2Klicks and Community are menu items; Community is not inside AI Services", async ({ page, isMobile }) => {
+test("2Klicks sits under SAP Services; Community is a menu item, not inside AI Services", async ({ page, isMobile }) => {
   test.skip(isMobile, "desktop navigation only");
   await page.goto("/");
   const nav = page.getByRole("navigation", { name: "Primary" }).first();
-  await expect(nav.getByRole("link", { name: "2Klicks" })).toBeVisible();
+  await expect(nav.getByRole("link", { name: "2Klicks", exact: true })).toHaveCount(0);
   await expect(nav.getByRole("link", { name: "Community" })).toBeVisible();
+  await page.getByRole("button", { name: "SAP Services" }).click();
+  await expect(page.getByRole("region", { name: "SAP Services", exact: true }).getByRole("link", { name: /2Klicks/ }).first()).toBeVisible();
+  await page.keyboard.press("Escape");
   await page.getByRole("button", { name: "AI Services" }).click();
   await expect(page.getByRole("region", { name: "AI Services", exact: true }).getByRole("link", { name: /Community/ })).toHaveCount(0);
 });

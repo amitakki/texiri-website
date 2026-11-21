@@ -44,7 +44,7 @@ export const primaryNav: NavItem[] = [
         { label: "SAP BTP & Development", href: "/sap/btp/", description: "ABAP, Fiori/UI5, RAP, BTP extensions and integration." },
         { label: "SAP Managed Services", href: "/sap/managed-services/", description: "Basis to functional support, plus consultants on demand." },
       ],
-      feature: { kicker: "Our SAP tools", label: "2Klicks", href: "/2klicks/", description: "SAP RE-FX mass data: 10× faster, 75% lower cost." },
+      feature: { kicker: "Our SAP tools", label: "2Klicks", href: "/2klicks/", description: "SAP RE-FX mass data: up to 10× faster, up to 75% lower cost." },
     },
   },
   {
@@ -60,7 +60,6 @@ export const primaryNav: NavItem[] = [
       feature: { kicker: "Start here", label: "Request an AI readiness workshop", href: "/contact/?type=ai", description: "One day. A ranked list of use cases at the end." },
     },
   },
-  { label: "2Klicks", href: "/2klicks/", match: "/2klicks", vertical: "sap" },
   { label: "Industries", href: "/industries/" },
   { label: "Case Studies", href: "/case-studies/" },
   { label: "Insights", href: "/insights/" },

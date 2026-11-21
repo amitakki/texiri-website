@@ -36,6 +36,7 @@ This file lists every piece of website content that still needs a decision. Each
 | P6 | Leadership bio | Permission to name past clients | Named on the old Team page | Founder | Client names stay off the site (Nov 2026). The removed sentence, for reference: "He has worked with SAP Labs and global enterprises including Walmart, CVS, Nike, T-Systems, Singtel, Stockland, EQL and Victoria's Secret." | Dropped |
 | P8 | `/case-studies/*`, Industries | Confirm the profile's case-study wording (prepared for an SAP partner meeting) can be published on the public site as written | Not published | Founder | Publish as written, clients unnamed (Nov 2026) | Done |
 | P7 | Home, SAP, Data Migration → testimonials | Confirm the three original testimonials can still be published (now used word for word) | Published on the old homepage | Founder | All three approved, unnamed as now (Nov 2026) | Done |
+| P9 | Credibility strip (Home, About) | Confirm the "Fortune 500 clients" claim ("And high-growth enterprises, since 2021") | Not stated | Founder | Confirmed; the "TO VERIFY" badge is removed (Nov 2026) | Done |
 
 ## 3. 2Klicks
 
@@ -86,7 +87,7 @@ This file lists every piece of website content that still needs a decision. Each
 | S2 | Shambhavi 108 page | Format (online, Vijayapura, hybrid) | None | Programme lead | Hybrid: "mostly online, with some sessions at our Vijayapura office" (Nov 2026) | Done |
 | S3 | Shambhavi 108 page | Tracks offered | None | Programme lead | SAP only. The summary now says "structured SAP training" and the page says "The training is in SAP" (Nov 2026) | Done |
 | S4 | Shambhavi 108 page | Fees (or "free") | None | Programme lead | Not decided; fees are not mentioned (Nov 2026) | Dropped |
-| S5 | Shambhavi 108 form | Legal sign-off on asking age, marital status and number of children as **required** questions | Asked on the old form | Legal counsel | Age, marital status and children are now **optional** (marked "(optional)" on the form, blank answers accepted). The consent text and the Privacy Policy say so. Legal counsel should still review asking them at all (Nov 2026) | Done |
+| S5 | Shambhavi 108 form | Legal sign-off on asking age, marital status and number of children as **required** questions | Asked on the old form | Legal counsel | Age, marital status and children are no longer asked. They were removed from the form, the schema, the consent text and the Privacy Policy (Nov 2026) | Dropped |
 
 ## 6b. CSR
 
@@ -113,11 +114,11 @@ This file lists every piece of website content that still needs a decision. Each
 
 | ID | Where it appears | What's needed | Old-site value | Owner | Decision | Status |
 | --- | --- | --- | --- | --- | --- | --- |
-| G1 | `/legal/privacy/` | Lawyer review of the draft Privacy Policy | No policy published | Legal counsel | Values filled in and badges removed (Nov 2026). Still needs a lawyer's review before launch | Open |
+| G1 | `/legal/privacy/` | Lawyer review of the draft Privacy Policy | No policy published | Legal counsel | Values filled in and badges removed. Reviewed by legal counsel; the "Draft" badge is removed (Nov 2026) | Done |
 | G2 | `/legal/privacy/` | Grievance officer's name and contact (required under India's DPDP Act) | None | Founder / legal | Santosh S Angadi, Chief Revenue Officer, at the main contact email (Nov 2026) | Done |
 | G3 | `/legal/privacy/` | Retention periods for enquiries, community members and Shambhavi applications | None | Founder / legal | Enquiries: 24 months after last contact (longer for clients). Community: deleted within 30 days of leaving. Shambhavi: 12 months after the selection decision. Privacy requests answered within 30 days (Nov 2026) | Done |
-| G4 | `/legal/cookies/` | Lawyer review of the draft Cookie Policy (update when analytics is added) | No policy published | Legal counsel | Badge removed (Nov 2026). Still needs a lawyer's review; update the policy when analytics is added | Open |
-| G5 | `/legal/terms/` | Lawyer review of the draft Terms; confirm the courts of jurisdiction | None | Legal counsel | Courts at Vijayapura, Karnataka (registered office). Badge removed (Nov 2026). Still needs a lawyer's review | Open |
+| G4 | `/legal/cookies/` | Lawyer review of the draft Cookie Policy (update when analytics is added) | No policy published | Legal counsel | Reviewed by legal counsel; the "Draft" badge is removed (Nov 2026). Update the policy, and have it reviewed again, when analytics is added | Done |
+| G5 | `/legal/terms/` | Lawyer review of the draft Terms; confirm the courts of jurisdiction | None | Legal counsel | Courts at Vijayapura, Karnataka (registered office). Reviewed by legal counsel; the "Draft" badge is removed (Nov 2026) | Done |
 
 ## 9. Photos and screenshots
 
@@ -134,7 +135,7 @@ Every image below is currently an on-brand placeholder illustration with a "PLAC
 | IMG7 | Community hero, events page | Community workshop photo (same as M7) | `community-workshop.svg` | Community lead | Not needed: no photos on community pages (M7) | Dropped |
 | IMG8 | Community hero, Join page, learning paths | Member presenting a project | `community-demo.svg` | Community lead | Not needed: no photos on community pages (M7) | Dropped |
 | IMG9 | Community → Built by members | Three member project screenshots (same as M6) | `project-vision.svg`, `project-chatbot.svg`, `project-forecast.svg` | Community lead | Not needed: the project showcase was removed (M6) | Dropped |
-| IMG10 | Home → Latest thinking, Insights pages | Article cover images (same as I3) | `article-ecc-2027.svg`, `article-refx.svg`, `article-first-ai.svg` | Marketing | | Open |
+| IMG10 | Home → Latest thinking, Insights pages | Article cover images (same as I3) | `article-ecc-2027.svg`, `article-refx.svg`, `article-first-ai.svg` | Marketing | Keep the current illustrations as the final covers; placeholder badges removed (Nov 2026) | Done |
 | IMG11 | Shambhavi 108 page, Community page | Photo of programme learners | `learners.svg` | Programme lead | | Open |
 | IMG12 | Careers → Life at Texiri gallery | Photos of office life (same as H4) | `life-at-texiri.svg` | HR | | Open |
 | IMG13 | `/about/csr/`, About → CSR band | Photos from each CSR event (same as CSR1) | `csr-event.svg` | HR / founder | | Open |
@@ -143,23 +144,23 @@ Every image below is currently an on-brand placeholder illustration with a "PLAC
 
 | ID | Where it appears | What's needed | Old-site value | Owner | Decision | Status |
 | --- | --- | --- | --- | --- | --- | --- |
-| I1 | `/insights/*` | The three launch articles (ECC 2027, RE-FX after go-live, first AI use case) | None | Marketing / authors | | Open |
+| I1 | `/insights/*` | The three launch articles (ECC 2027, RE-FX after go-live, first AI use case) | None | Marketing / authors | Launch without Insights: the section stays hidden on production until articles are written, then each is marked ready in lib/pages.ts (Nov 2026) | Open |
 | I2 | `/industries/` | Content for the industries | Old site mentions "4 major industries" | Marketing | One page with 7 industries from the Texiri Profile 2026 (`lib/industries.ts`) | Done |
-| I4 | `/industries/` | Confirm the 7 industries. The profile's two pharma cards are merged into "Healthcare & Pharmaceuticals", and Oil & Gas is added from its case study | "Supporting 7 Industries" | Founder | | Open |
-| I3 | Home → insights cards | Article illustrations | None | Marketing | | Open |
+| I4 | `/industries/` | Confirm the 7 industries. The profile's two pharma cards are merged into "Healthcare & Pharmaceuticals", and Oil & Gas is added from its case study | "Supporting 7 Industries" | Founder | All 7 confirmed as listed in lib/industries.ts (Nov 2026) | Done |
+| I3 | Home → insights cards | Article illustrations | None | Marketing | Keep the current illustrations as the final covers; placeholder badges removed (Nov 2026) | Done |
 
 ## 11. Claims and structure (added after the UX review)
 
 | ID | Where it appears | What's needed | Old-site value | Owner | Decision | Status |
 | --- | --- | --- | --- | --- | --- | --- |
 | X1 | Home 2Klicks band, 2Klicks Create, Data Migration | Evidence for "skips at least eight programs per object" (what the eight are, and whether it holds for every object) | None | 2Klicks product lead | Replaced by "0 programs to develop" from the 2Klicks presentation (evidence tracked in X10) | Dropped |
-| X2 | Contact, every closing banner | Confirm "a senior consultant replies within one business day" is a commitment the team can keep | None | Founder | | Open |
-| X3 | 2Klicks demo form | Confirm the demo is a 45-minute session | None | 2Klicks product lead | | Open |
+| X2 | Contact, every closing banner | Confirm "a senior consultant replies within one business day" is a commitment the team can keep | None | Founder | No reply time promised. Every banner, the Contact page, the thank-you message and the confirmation email now say a senior consultant "reads every enquiry and replies personally" (Nov 2026) | Done |
+| X3 | 2Klicks demo form | Confirm the demo is a 45-minute session | None | 2Klicks product lead | No duration: "A live session with a 2Klicks specialist" (Nov 2026) | Done |
 | X4 | AI Services → "Controls your risk team will ask for", FAQ | Confirm each governance claim: client data never used to train third-party models; EU AI Act, ISO/IEC 42001 and GDPR alignment; region-pinned deployment | None | AI practice lead / legal | All six controls confirmed, including the FAQ answer on training data (Nov 2026) | Done |
-| X5 | Home, SAP, Data Migration → testimonials | Permission to add a name, job title or company logo to each testimonial. The three quotes are now used once each (Home: retail, SAP: real estate, Data Migration: utility) | Published without names | Founder | | Open |
-| X6 | Main menu, footer, About | Confirm 2Klicks gets its own menu item and that the AI Community sits beside, not under, AI Services | Community was a page under AI | Founder / community lead | | Open |
-| X7 | Visual asset brief | Who supplies each photo or screenshot, and by when (see `visual-asset-brief.md`) | None | Marketing | | Open |
+| X5 | Home, SAP, Data Migration → testimonials | Permission to add a name, job title or company logo to each testimonial. The three quotes are now used once each (Home: retail, SAP: real estate, Data Migration: utility) | Published without names | Founder | Keep them anonymous (sector and country only). Add a name only if a client agrees later (Nov 2026) | Done |
+| X6 | Main menu, footer, About | Confirm 2Klicks gets its own menu item and that the AI Community sits beside, not under, AI Services | Community was a page under AI | Founder / community lead | 2Klicks is not a top-level menu item; it stays as the featured tool in the SAP Services menu (and in the footer). Community stays its own item, not under AI Services (Nov 2026) | Done |
+| X7 | Visual asset brief | Who supplies each photo or screenshot, and by when (see `visual-asset-brief.md`) | None | Marketing | Covered with section 9 (Photos and screenshots) | Open |
 | X8 | `/sap/consulting/`, `/sap/btp/` (was `/sap/integration/`), `/sap/managed-services/` | Content for the three SAP service pages | None | Founder / delivery lead | Written from the Texiri Profile 2026; SAP Integration became SAP BTP & Development | Done |
-| X9 | `/2klicks/`, `/ai-community/events/`, `/ai-community/learning-paths/` | Content for the 2Klicks overview, Community events and Community learning-path pages (now short interim pages) | None | 2Klicks product lead / community lead | 2Klicks: full page written from the 2Klicks presentation. Community pages still interim | Open |
-| X11 | Every page's main heading (`--text-display` in `app/globals.css`), Community hero heading | Confirm the smaller headline size: max cut from 5rem to 4rem (Community hero from 5.25rem) so desktop headlines fit 2–3 lines instead of 4–5. If agreed, update `Design-System.dc.html` and `assets/texiri-theme.css`, which the tokens mirror (not in this repo) | None | Founder / design owner | | Open |
-| X10 | Home, 2Klicks, SAP, Data Migration, Managed Services, mega-menu, credentials strip | Evidence for "10× faster", "75% lower cost" and "0 programs to develop" (2Klicks presentation; replaced "up to 80% less effort"), "zero data loss at cutover" and "22% of consultants specialise in data migration" (profile) | None | 2Klicks product lead | | Open |
+| X9 | `/2klicks/`, `/ai-community/events/`, `/ai-community/learning-paths/` | Content for the 2Klicks overview, Community events and Community learning-path pages (now short interim pages) | None | 2Klicks product lead / community lead | 2Klicks: full page written from the 2Klicks presentation. Community events and learning-path stubs removed; their URLs redirect to /ai-community/#events and #paths (Nov 2026) | Done |
+| X11 | Every page's main heading (`--text-display` in `app/globals.css`), Community hero heading | Confirm the smaller headline size: max cut from 5rem to 4rem (Community hero from 5.25rem) so desktop headlines fit 2–3 lines instead of 4–5. If agreed, update `Design-System.dc.html` and `assets/texiri-theme.css`, which the tokens mirror (not in this repo) | None | Founder / design owner | Keep the smaller headline size. The design owner updates Design-System.dc.html and texiri-theme.css (outside this repo) to match (Nov 2026) | Done |
+| X10 | Home, 2Klicks, SAP, Data Migration, Managed Services, mega-menu, credentials strip | Evidence for "10× faster", "75% lower cost" and "0 programs to develop" (2Klicks presentation; replaced "up to 80% less effort"), "zero data loss at cutover" and "22% of consultants specialise in data migration" (profile) | None | 2Klicks product lead | Speed and cost read "up to 10× faster" and "up to 75% lower cost" everywhere; "0 programs to develop", "zero data loss at cutover" and "22%" unchanged. Verify badges removed. The product lead keeps the evidence on file (Nov 2026) | Done |

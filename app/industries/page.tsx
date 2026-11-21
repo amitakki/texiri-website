@@ -80,7 +80,7 @@ export default function IndustriesPage() {
         </div>
       </Section>
 
-      <CTABand title="Tell us about your industry and your SAP landscape." note="A senior SAP consultant replies within one business day." primary={{ label: "Talk to an SAP expert", href: "/contact/" }} />
+      <CTABand title="Tell us about your industry and your SAP landscape." note="A senior SAP consultant reads every enquiry and replies personally." primary={{ label: "Talk to an SAP expert", href: "/contact/" }} />
     </>
   );
 }
