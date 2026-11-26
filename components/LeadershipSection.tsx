@@ -1,3 +1,4 @@
+import { Linkedin } from "lucide-react";
 import { Kicker, SiteImage } from "./ui";
 import { images } from "@/lib/images";
 import { leaders } from "@/lib/company";
@@ -19,7 +20,7 @@ export function LeadershipSection({ asPage }: { asPage?: boolean }) {
               <ul className="m-0 grid list-none gap-x-6 p-0 sm:grid-cols-2">
                 {l.facts.map(([k, v]) => <li key={k} className="border-t border-hairline py-3"><strong>{k}</strong><div className="text-[15px] text-muted">{v}</div></li>)}
               </ul>
-              {l.linkedin && <a href={l.linkedin} target="_blank" rel="noopener" className="flex min-h-11 items-center font-extrabold no-underline">LinkedIn<span className="sr-only">: {l.name}</span> →<span className="sr-only"> (opens in a new tab)</span></a>}
+              {l.linkedin && <a href={l.linkedin} target="_blank" rel="noopener" data-track="outbound_linkedin_leader" className="flex min-h-11 items-center gap-2 self-start font-extrabold no-underline"><Linkedin aria-hidden className="size-4.5" />LinkedIn<span className="sr-only">: {l.name}</span> →<span className="sr-only"> (opens in a new tab)</span></a>}
             </div>
           </article>
         ))}

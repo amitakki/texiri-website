@@ -10,7 +10,7 @@ const HREF = "/about/csr/";
 
 export const metadata: Metadata = {
   title: "CSR: Corporate Social Responsibility",
-  description: "Corporate social responsibility at Texiri Solutions: our CSR activities and events in Vijayapura and Navi Mumbai, with photos from each one.",
+  description: "Corporate social responsibility at Texiri Solutions: our CSR activities and events in Vijayapura, with photos from each one.",
   alternates: { canonical: HREF },
   // Stays out of search results until at least one real event is in (lib/gallery.ts).
   robots: { index: isReady(HREF), follow: true },

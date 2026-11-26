@@ -5,6 +5,7 @@ import { ClipboardCheck, DatabaseZap, PencilRuler, Repeat, Rocket } from "lucide
 import { EccTimeline, Track } from "@/components/visuals";
 import { Button, H2, Kicker, Section, SiteImage } from "@/components/ui";
 import { Breadcrumbs, CheckList, CTABand, FAQAccordion, NumberedGrid, TestimonialCard } from "@/components/sections";
+import { ProofStats } from "@/components/article";
 import { testimonials } from "@/lib/company";
 import { DEMO_HREF } from "@/lib/site";
 
@@ -37,7 +38,7 @@ const phases = [
   { name: "Cutover & govern", icon: Rocket, out: ["Cutover runbook", "MDG rules live", "Hypercare"] },
 ];
 const tech = ["2Klicks", "SAP BODS / Data Services", "Syniti ADM", "S/4HANA Migration Cockpit", "Smart Data Integration", "Information Steward", "SAP MDG", "SQL tooling"];
-const stats = [
+const stats: [string, string][] = [
   ["Zero", "data loss at cutover on an ECC to S/4HANA conversion"],
   ["Up to 75%", "lower cost for RE-FX data operations with 2Klicks"],
   ["22%", "of our consultants specialise in data migration"],
@@ -82,10 +83,8 @@ export default function DataMigrationPage() {
         <Kicker>The Texiri solution</Kicker>
         <H2 id="sol-h" className="max-w-[20ch]">Data-first migration, with our own IP doing the heavy lifting</H2>
         <p className="mt-6 max-w-[60ch] text-lg text-muted">End-to-end S/4HANA migration on greenfield, brownfield and bluefield programmes. 2Klicks is ready on day 1 for RE-FX, FI/CO and PS, with no programs to develop and your custom fields handled, so our consultants spend their time on data quality and business sign-off instead of writing load programs.</p>
-        <dl className="mb-0 mt-[clamp(2rem,4vw,3rem)] grid gap-3 sm:grid-cols-3">
-          {stats.map(([n, l]) => <div key={n} className="border-t-4 border-accent bg-surface p-5"><dt className="sr-only">{l}</dt><dd className="m-0"><span className="block text-[clamp(2rem,4vw,2.75rem)] font-extrabold leading-none">{n}</span><span className="mt-2 block text-[15px] text-muted">{l}</span></dd></div>)}
-        </dl>
-        <SiteImage {...images.dataMigration} ratio="aspect-[4/3] sm:aspect-video" className="mb-[clamp(2.5rem,5vw,4rem)]" sizes="(min-width: 1280px) 1280px, 100vw" />
+        <ProofStats items={stats} />
+        <SiteImage {...images.dataMigration} ratio="aspect-[1672/941]" className="mb-[clamp(2.5rem,5vw,4rem)]" sizes="(min-width: 1280px) 1280px, 100vw" />
         <CheckList items={caps} />
       </Section>
 

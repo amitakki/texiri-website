@@ -38,7 +38,7 @@ const sections: LegalSection[] = [
     body: (
       <>
         <p>The site&apos;s content, design and the Texiri and 2Klicks names and logos belong to Texiri or our licensors. You may view and print pages for your own reference, but not reuse them commercially without our written permission.</p>
-        <p>SAP, S/4HANA and other SAP products mentioned are trademarks or registered trademarks of SAP SE in Germany and other countries. Other product and company names belong to their owners. We are not affiliated with or endorsed by SAP SE unless we say so.</p>
+        <p>SAP, S/4HANA and other SAP products mentioned are trademarks or registered trademarks of SAP SE in Germany and other countries. Other product and company names and logos belong to their owners; showing them does not imply partnership or endorsement. We are not affiliated with or endorsed by SAP SE unless we say so.</p>
       </>
     ),
   },

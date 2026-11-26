@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/about/leadership/" },
 };
 
-const personLd = leaders.map((l) => ({ "@context": "https://schema.org", "@type": "Person", name: l.name, jobTitle: l.role, worksFor: { "@type": "Organization", name: "Texiri Solutions", url: SITE_URL } }));
+const personLd = leaders.map((l) => ({ "@context": "https://schema.org", "@type": "Person", name: l.name, jobTitle: l.role, ...(l.linkedin && { sameAs: [l.linkedin] }), worksFor: { "@type": "Organization", name: "Texiri Solutions", url: SITE_URL } }));
 
 export default function LeadershipPage() {
   return (

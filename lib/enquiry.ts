@@ -7,6 +7,7 @@ export const ENQUIRY_TYPES = [
   "SAP managed services",
   "2Klicks demo",
   "AI Services",
+  "AI production-readiness review",
   "Partnership",
   "Other",
 ] as const;

@@ -10,7 +10,7 @@ import { images, type SiteImageData } from "./images";
 export type Photo = SiteImageData & { caption: string };
 
 const lifeSlot = (caption: string, alt: string): Photo => ({ src: "/images/placeholders/life-at-texiri.svg", alt, caption, placeholder: true });
-const csrSlot = (caption: string, alt: string): Photo => ({ src: "/images/placeholders/csr-event.svg", alt, caption, placeholder: true });
+const csrSlot = (caption: string, alt: string, drawing = "csr-event"): Photo => ({ src: `/images/placeholders/${drawing}.svg`, alt, caption, placeholder: true });
 
 /** Careers → Life at Texiri. The first photo is shown large. Six works well; any number from 3 up lays out. */
 export const lifePhotos: Photo[] = [
@@ -43,9 +43,13 @@ export const csrEvents: CsrEvent[] = [
     photos: [csrSlot("Volunteers on the day", "Texiri volunteers at a CSR event"), csrSlot("With the partner organisation", "Texiri volunteers with the partner organisation"), csrSlot("The result", "The result of the CSR activity")],
   },
   {
-    id: "event-2", title: "[Event title]", date: "[Date]", place: "Navi Mumbai", placeholder: true,
-    summary: "A second event, in the same format. Add as many events as you like; the newest goes at the top.",
-    photos: [csrSlot("Volunteers on the day", "Texiri volunteers at a CSR event"), csrSlot("The team", "The Texiri CSR team")],
+    id: "event-2", title: "[Event title]", date: "[Date]", place: "Vijayapura", placeholder: true,
+    summary: "A second event, in the same format. For example: a school visit where volunteers handed out school kits and ran a computer class. Add as many events as you like; the newest goes at the top.",
+    photos: [
+      csrSlot("Handing out school kits", "Texiri volunteers handing school bags to pupils in a classroom", "csr-school-kits"),
+      csrSlot("A computer class", "A Texiri volunteer helping pupils at their laptops", "csr-computer-class"),
+      csrSlot("With the pupils", "Texiri volunteers and pupils outside the school", "csr-group-photo"),
+    ],
   },
 ];
 

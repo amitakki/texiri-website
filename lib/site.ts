@@ -22,11 +22,12 @@ export const contact = {
   instagram: "https://www.instagram.com/texirisolutions/",
 };
 
-export type Office = { name: string; label: string; street: string[]; locality: string; region: string; postalCode: string; hq?: boolean };
+/** `mapUrl` is the office's Google Maps share link ("Get directions"). It opens the Maps app on phones. */
+export type Office = { name: string; label: string; street: string[]; locality: string; region: string; postalCode: string; mapUrl: string; hq?: boolean };
 
 export const offices: Office[] = [
-  { name: "Vijayapura (HQ)", label: "Headquarters", street: ["1st Floor, Toravi building, Anand Nagar", "Ashram Road, Opp. BLDE Engineering College"], locality: "Vijayapura", region: "Karnataka", postalCode: "586103", hq: true },
-  { name: "Navi Mumbai", label: "Office", street: ["CG Parivar House, EL-86, T.T.C Industrial Area", "MIDC Mahape"], locality: "Navi Mumbai", region: "Maharashtra", postalCode: "400701" },
+  { name: "Vijayapura (HQ)", label: "Headquarters", street: ["1st Floor, Toravi building, Anand Nagar", "Ashram Road, Opp. BLDE Engineering College"], locality: "Vijayapura", region: "Karnataka", postalCode: "586103", mapUrl: "https://maps.app.goo.gl/WXfn24zBGUPnfs969", hq: true },
+  { name: "Navi Mumbai", label: "Office", street: ["CG Parivar House, EL-86, T.T.C Industrial Area", "MIDC Mahape"], locality: "Navi Mumbai", region: "Maharashtra", postalCode: "400701", mapUrl: "https://maps.app.goo.gl/DHUqUtoN45C6rndA8" },
 ];
 
 export type Vertical = "sap" | "ai" | "community";
@@ -55,7 +56,7 @@ export const primaryNav: NavItem[] = [
         { label: "AI Strategy & Readiness", href: "/ai-services/#engagement", description: "Workshop, data readiness and a prioritised use-case roadmap." },
         { label: "Generative AI & RAG", href: "/ai-services/#generative-ai", description: "Knowledge systems, assistants and document intelligence." },
         { label: "Machine Learning & Forecasting", href: "/ai-services/#machine-learning", description: "Predictive analytics, forecasting and optimisation." },
-        { label: "MLOps & AI Governance", href: "/ai-services/#mlops", description: "Pipelines, drift monitoring, EU AI Act and ISO/IEC 42001." },
+        { label: "MLOps & AI Governance", href: "/ai-services/#governance", description: "Pipelines, drift monitoring, EU AI Act and ISO/IEC 42001." },
       ],
       feature: { kicker: "Start here", label: "Request an AI readiness workshop", href: "/contact/?type=ai", description: "One day. A ranked list of use cases at the end." },
     },

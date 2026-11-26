@@ -1,20 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Instagram, Linkedin } from "lucide-react";
+import { Instagram, Linkedin, MapPin } from "lucide-react";
 import { FooterColumns } from "./FooterColumns";
 import { isLive } from "@/lib/pages";
-import { DEMO_HREF, contact, offices } from "@/lib/site";
+import { contact, offices } from "@/lib/site";
 
 const cols: { title: string; links: [string, string][] }[] = [
-  { title: "SAP Services", links: [["Overview", "/sap/"], ["SAP Consulting", "/sap/consulting/"], ["S/4HANA, Data Migration & MDG", "/sap/data-migration/"], ["SAP BTP & Development", "/sap/btp/"], ["Managed Services", "/sap/managed-services/"]] },
-  { title: "2Klicks", links: [["Overview", "/2klicks/"], ["Request a demo", DEMO_HREF]] },
+  { title: "SAP Services", links: [["Overview", "/sap/"], ["SAP Consulting", "/sap/consulting/"], ["S/4HANA, Data Migration & MDG", "/sap/data-migration/"], ["SAP BTP & Development", "/sap/btp/"], ["Managed Services", "/sap/managed-services/"], ["2Klicks migration tools", "/2klicks/"]] },
   { title: "AI Services", links: [["Overview", "/ai-services/"], ["AI Strategy & Readiness", "/ai-services/#engagement"], ["Generative AI & RAG", "/ai-services/#generative-ai"], ["MLOps & Governance", "/ai-services/#governance"]] },
-  { title: "Company", links: [["About", "/about/"], ["Leadership", "/about/leadership/"], ["CSR", "/about/csr/"], ["Industries", "/industries/"], ["Case Studies", "/case-studies/"], ["Insights", "/insights/"], ["AI Community", "/ai-community/"], ["Join the community", "/ai-community/join/"], ["Careers", "/careers/"], ["Shambhavi 108", "/careers/shambhavi-108/"], ["Contact", "/contact/"]] },
+  { title: "Explore", links: [["Industries", "/industries/"], ["Case Studies", "/case-studies/"], ["Insights", "/insights/"], ["AI Community", "/ai-community/"], ["Join the community", "/ai-community/join/"]] },
+  { title: "Company", links: [["About", "/about/"], ["Leadership", "/about/leadership/"], ["CSR", "/about/csr/"], ["Careers", "/careers/"], ["Shambhavi 108", "/careers/shambhavi-108/"], ["Contact", "/contact/"]] },
 ];
 
 
 export function SiteFooter() {
-  const visibleCols = cols.map((c) => ({ ...c, links: c.links.filter(([, href]) => isLive(href.split("#")[0])) as [string, string][] })).filter((c) => c.links.length > 0);
+  const visibleCols = cols.map((c) => ({ ...c, links: c.links.filter(([, href]) => isLive(href)) as [string, string][] })).filter((c) => c.links.length > 0);
   return (
     <footer className="surface-dark bg-navy-900 text-on-navy">
       <div className="container-content pb-8 pt-16">
@@ -35,6 +35,9 @@ export function SiteFooter() {
                 <span className="mb-0.5 text-xs font-semibold uppercase tracking-[0.1em] text-accent">{o.name}</span>
                 {o.street.map((line) => <span key={line}>{line}</span>)}
                 <span>{o.locality}, {o.region} {o.postalCode}</span>
+                <a href={o.mapUrl} target="_blank" rel="noopener" data-track="outbound_maps"
+                  aria-label={`Get directions to the ${o.locality} office (opens Google Maps in a new tab)`}
+                  className="flex min-h-8 items-center gap-1.5 self-start text-on-navy no-underline hover:text-accent"><MapPin aria-hidden className="size-4" />Get directions</a>
               </address>
             ))}
           </div>

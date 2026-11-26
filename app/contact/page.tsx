@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { images } from "@/lib/images";
 import Link from "next/link";
 import { Suspense } from "react";
-import { Mail, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import { Kicker, SiteImage } from "@/components/ui";
 import { Breadcrumbs, NumberedGrid } from "@/components/sections";
 import { ContactEnquiryForm } from "@/components/ContactEnquiryForm";
@@ -55,6 +55,9 @@ export default function ContactPage() {
                   <address key={o.name} className="border-t-2 border-ink pt-3 not-italic">
                     <strong className="text-lg">{o.name}</strong>
                     <div className="mt-1 text-[15px] text-muted">{o.street.map((line) => <div key={line}>{line}</div>)}{o.locality}, {o.region} {o.postalCode}<div>India</div></div>
+                    <a href={o.mapUrl} target="_blank" rel="noopener" data-track="outbound_maps"
+                      aria-label={`Get directions to the ${o.locality} office (opens Google Maps in a new tab)`}
+                      className="mt-2 inline-flex min-h-11 items-center gap-1.5 font-bold"><MapPin aria-hidden className="size-4" />Get directions</a>
                   </address>
                 ))}
               </div>
