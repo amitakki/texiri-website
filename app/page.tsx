@@ -8,7 +8,7 @@ import { KlicksFlow } from "@/components/visuals";
 import { caseHref, caseStudies } from "@/lib/case-studies";
 import { testimonials } from "@/lib/company";
 import { industries } from "@/lib/industries";
-import { images } from "@/lib/images";
+import { articles } from "@/lib/insights";
 import { isLive } from "@/lib/pages";
 import { DEMO_HREF } from "@/lib/site";
 
@@ -26,11 +26,7 @@ const services: { t: string; d: string; href: string; icon: LucideIcon; featured
   { t: "SAP Managed Services", d: "Basis to functional support under one roof, plus experienced consultants on demand.", href: "/sap/managed-services/", icon: LifeBuoy },
 ];
 const cases = caseStudies.map((c) => ({ sector: c.sector, title: c.title, metric: c.metric, metricLabel: c.metricLabel, href: caseHref(c) }));
-const insights = [
-  { cat: "S/4HANA & Migration", title: "ECC mainstream maintenance ends in 2027. Start with the data.", href: "/insights/ecc-2027-start-with-the-data/", img: images.articleEcc },
-  { cat: "SAP", title: "RE-FX after go-live: keeping lease data clean", href: "/insights/re-fx-after-go-live/", img: images.articleRefx },
-  { cat: "AI", title: "Choosing your first AI use case in one day", href: "/insights/first-ai-use-case/", img: images.articleAi },
-].filter((a) => isLive(a.href));
+const insights = articles.filter((a) => isLive(a.href));
 
 export default function HomePage() {
   return (
@@ -133,8 +129,8 @@ export default function HomePage() {
           <div className="mt-[clamp(2.5rem,5vw,4rem)] grid gap-6 md:grid-cols-3">
             {insights.map((a) => (
               <Link key={a.href} href={a.href} className="flex flex-col gap-3 no-underline">
-                <SiteImage {...a.img} alt="" sizes="(min-width: 768px) 33vw, 100vw" />
-                <span className="text-xs font-semibold uppercase tracking-[0.1em] text-accent-700">{a.cat}</span>
+                <SiteImage {...a.image} alt="" sizes="(min-width: 768px) 33vw, 100vw" />
+                <span className="text-xs font-semibold uppercase tracking-[0.1em] text-accent-700">{a.category}</span>
                 <h3 className="m-0 text-xl leading-tight">{a.title}</h3>
               </Link>
             ))}

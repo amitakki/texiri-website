@@ -6,6 +6,8 @@
 export type SiteImageData = { src: string; alt: string; placeholder?: true };
 
 const ph = (name: string) => `/images/placeholders/${name}.svg`;
+// Generated illustrations accepted as final (no badge); scripts/generate-placeholder-images.mjs writes them here.
+const art = (name: string) => `/images/illustrations/${name}.svg`;
 
 export const images = {
   // From the old site's Team page (343×444). Content decision L1: ask for a high-resolution original.
@@ -16,11 +18,37 @@ export const images = {
   consultingTeam: { src: ph("consulting-team"), alt: "Texiri SAP consultants reviewing an S/4HANA migration plan with a client team", placeholder: true },
   teamPhoto: { src: ph("team-photo"), alt: "The Texiri team at the Vijayapura office", placeholder: true },
   office: { src: ph("office"), alt: "The Texiri Solutions office building in Vijayapura", placeholder: true },
-  dataMigration: { src: ph("data-migration"), alt: "Data from ECC, legacy systems and Excel being cleansed and validated before loading into S/4HANA", placeholder: true },
-  aiWorkshop: { src: ph("ai-workshop"), alt: "A client team in an AI readiness workshop, looking at a ranked map of use cases", placeholder: true },
+  // Content decision IMG4: supplied workflow diagram (1672×941, sample data only).
+  dataMigration: { src: "/images/sap/data-migration-workflow.webp", alt: "Diagram: data from SAP ECC 6.0, legacy systems and Excel or CSV files is extracted, cleansed and validated against rules agreed with data owners (a duplicate partner removed, a missing city filled in), then loaded into S/4HANA as business partners, materials, lease contracts, equipment and open items. Mock-load cycles repeat until the data reconciles." },
+  // Content decision IMG6: the generated illustration is final.
+  aiPilots: { src: art("ai-pilots-stall"), alt: "Illustration: AI pilots across real estate, retail, utilities, oil and gas, pharma, manufacturing and financial services. Most stall at the use-case, data or governance checkpoint; only predictive maintenance reaches production, where it is monitored." },
   // Content decisions I3 / IMG10: the generated illustrations are the final article covers.
-  articleEcc: { src: ph("article-ecc-2027"), alt: "Illustration: a calendar showing December 2027 next to a clock" },
-  articleRefx: { src: ph("article-refx"), alt: "Illustration: office buildings and a lease document" },
-  articleAi: { src: ph("article-first-ai"), alt: "Illustration: three AI use cases ranked one to three" },
+  articleEcc: { src: art("article-ecc-2027"), alt: "Illustration: a calendar showing December 2027 next to a clock" },
+  articleRefx: { src: art("article-refx"), alt: "Illustration: office buildings and a lease document" },
+  articleAi: { src: art("article-first-ai"), alt: "Illustration: three AI use cases ranked one to three" },
+  // Illustrations inside the ECC 2027 article (scripts/illustrations-ecc-article.mjs). Numbers in them are sample data.
+  eccHero: { src: art("ecc-article-hero"), alt: "Illustration: business partner records from SAP ECC 6.0 checked against rules agreed with data owners. A duplicate and a record with no city are flagged before clean data moves into S/4HANA, with 31 December 2027 marked on a calendar." },
+  eccSupport: { src: art("ecc-article-support"), alt: "Illustration: SAP support for ECC steps down. Mainstream maintenance to 31 December 2027, optional extended maintenance from 2028 to 2030 at two percentage points more, then customer-specific maintenance with no new legal changes." },
+  eccQueue: { src: art("ecc-article-queue"), alt: "Illustration: six ECC systems queue towards an S/4HANA doorway staffed by two people, between markers for the end of 2027 and the end of 2030." },
+  eccMockLoad: { src: art("ecc-article-mock-load"), alt: "Illustration with sample data: mock load 2 extracts 10,000 records, loads 9,412 and rejects 588: 312 for an unmapped custom field, 204 for a duplicate business partner and 72 for open items that do not reconcile." },
+  eccFixAtSource: { src: art("ecc-article-fix-at-source"), alt: "Illustration: fixing a duplicate partner in each load file repeats the same fix every mock cycle; fixing it once in ECC means every extract starts clean." },
+  eccMockCycles: { src: art("ecc-article-mock-cycles"), alt: "Illustration with sample data: the extract, cleanse, load and reconcile cycle repeats, and rejected records fall from 2,140 in mock 1 to 588, then 41, then none at the dress rehearsal." },
+  eccKlicks: { src: art("ecc-article-2klicks"), alt: "Illustration: a 2Klicks Excel template is downloaded from SAP ECC, updated, validated and uploaded to correct data in bulk now, and the same templates load the data into S/4HANA later." },
+  // Illustrations inside the RE-FX after go-live article (scripts/illustrations-refx-article.mjs). Numbers in them are sample data.
+  refxHero: { src: art("refx-article-hero"), alt: "Illustration with sample data: after go-live, a renewal, a late CPI publication, a store closure and a move to a new company change an SAP RE-FX lease contract. Its lease term is not reassessed, the index is missing, the cost centre is locked and the company code is wrong, so the period-end IFRS 16 valuation shows warnings and three posting errors." },
+  refxDrift: { src: art("refx-article-drift"), alt: "Illustrative chart, not measured data: after go-live, the share of contracts with complete, current data falls step by step at renewals, CPI updates, a reorganisation, year-end and store closures when there is no routine, and stays close to 100% with a monthly routine." },
+  refxDriftPoints: { src: art("refx-article-drift-points"), alt: "Illustration: six places lease data drifts on a lease contract: term and options, index and rent, modifications posted as new contracts, valuation setup, reorganisations, and business partners and custom fields." },
+  refxPeriodEnd: { src: art("refx-article-period-end"), alt: "Illustration with sample data: an October 2026 valuation run selects 1,240 contracts, posts 1,198 and fails on 42: 18 for a locked cost centre, 11 for missing index points, 9 for a condition with no valuation rule and 4 for a posting into a closed period." },
+  refxRoutine: { src: art("refx-article-routine"), alt: "Illustration: a monthly cycle around the close: exception checks in week 3, fixes at the source by data owners in week 4, posting and valuation at the close, and reconciliation by finance three days after." },
+  refxReorg: { src: art("refx-article-reorg"), alt: "Illustration: contracts, rental objects and buildings move from company code 1000 to company code 2000 through one 2Klicks template, validated before posting, with every change recorded in standard SAP change documents." },
+  refxKlicks: { src: art("refx-article-2klicks"), alt: "Illustration with sample data: RE-FX business entities, buildings, properties, rental objects, contracts and contract offers are downloaded to a 2Klicks template, updated and validated (1,180 rows valid, 12 flagged for a missing index), then uploaded and posted in SAP with change documents." },
+  // Illustrations inside the first AI use case article (scripts/illustrations-ai-article.mjs). Names, scores and counts in them are sample data.
+  aiHero: { src: art("ai-article-hero"), alt: "Illustration with sample data: a long list of twelve problems is scored on value, data readiness, feasibility and risk, then ranked: invoice extraction first (data ready), demand forecast second (needs data work), policy assistant third. Invoice extraction is the proposed first pilot, measured by days to post an invoice. A timeline marks problems in the morning, scoring at midday and ranking in the afternoon." },
+  aiProblem: { src: art("ai-article-problem"), alt: "Illustration with sample values: starting from a technology (“Let’s build a chatbot”) leaves the users, data and measure open, and the demo stalls with no owner, data or KPI. Starting from a problem (“Invoices take 6 days to post”) gives an owner, data in the ERP and a KPI of 6 days down to 2, so the pilot has a target." },
+  aiPrep: { src: art("ai-article-prep"), alt: "Illustration: around the workshop table sit a business sponsor, two process owners, a data owner, IT and security, risk and compliance, and Texiri facilitators. A pre-read sent a week before asks for this year’s goals, three to five problems per team, their volume, time and cost, the systems and data held, and region and risk limits." },
+  aiAgenda: { src: art("ai-article-agenda"), alt: "Illustration with sample counts: a workshop day from 09:00 goals and limits, 10:00 problems from each team (23), 11:30 shaping use cases (12), 13:30 scoring, 15:00 ranking with data and risk as gates (3 shortlisted), to 16:30 next steps with one proposed pilot." },
+  aiMatrix: { src: art("ai-article-matrix"), alt: "Illustrative chart with sample scores: twelve use cases plotted by value against readiness (data and feasibility), coloured by risk. Invoice extraction sits in the high-value, high-readiness “Start here” corner; credit scoring has high value but high risk; asset failure risk has high value but needs the data fixed first; meeting notes are ready but low value." },
+  aiCard: { src: art("ai-article-card"), alt: "Illustration with sample data: a one-page use-case card for supplier invoice extraction, ranked first. Problem: invoices take 6 days to post. Owner: accounts payable lead. Users: 12 clerks at 3 sites. Data: invoice PDFs and purchase orders ready, vendor master has duplicates. KPI: 6 days to 2. A clerk approves every invoice before posting. Risk: not high-risk. Pilot scope: one business unit." },
+  aiNext: { src: art("ai-article-next"), alt: "Illustration: five rising steps after the workshop, each with something you keep: AI readiness workshop (ranked list, proposed pilot), data readiness analysis (quality and access report), prioritise and set KPIs (shortlist and target KPIs), pilot (working pilot, evaluated) and scale (in production, monitored)." },
   learners: { src: ph("learners"), alt: "Shambhavi 108 learners restarting their careers, coding on laptops", placeholder: true },
 } satisfies Record<string, SiteImageData>;

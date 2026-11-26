@@ -66,7 +66,7 @@ const config: NextConfig = {
       ["/ai-services/strategy-readiness/", "/ai-services/#engagement"],
       ["/ai-services/generative-ai/", "/ai-services/#generative-ai"],
       ["/ai-services/machine-learning/", "/ai-services/#machine-learning"],
-      ["/ai-services/mlops-governance/", "/ai-services/#mlops"],
+      ["/ai-services/mlops-governance/", "/ai-services/#governance"],
       // The Community events and learning-path stubs became sections of the Community page (Nov 2026).
       ["/ai-community/events/", "/ai-community/#events"],
       ["/ai-community/learning-paths/", "/ai-community/#paths"],

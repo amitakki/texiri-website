@@ -3,12 +3,13 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { ComponentProps, ReactNode } from "react";
 
-type Variant = "primary" | "secondary" | "navy" | "outline-on-navy";
+type Variant = "primary" | "secondary" | "navy" | "outline-on-navy" | "ai";
 const variants: Record<Variant, string> = {
   primary: "bg-accent text-ink hover:bg-accent-600 active:bg-accent-700 active:text-on-navy",
   secondary: "border-2 border-ink text-ink hover:bg-ink/5",
   navy: "bg-navy-900 text-on-navy hover:bg-navy-700 hover:text-on-navy",
   "outline-on-navy": "border-2 border-on-navy text-on-navy hover:bg-navy-700 hover:text-on-navy",
+  ai: "bg-ai text-navy-900 hover:bg-ai-600 hover:text-navy-900",
 };
 
 /** Labels are flush left (Modernist). Min height 52px desktop / 48px mobile → ≥44px targets. */
@@ -22,8 +23,10 @@ export function Button({ variant = "primary", arrow, className = "", children, .
   );
 }
 
-export function Kicker({ children, onNavy }: { children: ReactNode; onNavy?: boolean }) {
-  return <span className={`mb-4 block text-kicker font-semibold uppercase tracking-[0.1em] ${onNavy ? "text-accent" : "text-accent-700"}`}>{children}</span>;
+/** Orange on SAP pages, AI blue on AI pages; each steps down to its darker ink on light backgrounds to keep contrast. */
+export function Kicker({ children, onNavy, vertical = "sap" }: { children: ReactNode; onNavy?: boolean; vertical?: "sap" | "ai" }) {
+  const color = vertical === "ai" ? (onNavy ? "text-ai" : "text-ai-ink") : onNavy ? "text-accent" : "text-accent-700";
+  return <span className={`mb-4 block text-kicker font-semibold uppercase tracking-[0.1em] ${color}`}>{children}</span>;
 }
 
 /** Proof placeholder — every unverified claim carries one until Texiri confirms it. */

@@ -1,5 +1,6 @@
 import { isProd } from "./env";
 import { csrReady } from "./gallery";
+import { articles } from "./insights";
 import type { Vertical } from "./site";
 
 /**
@@ -19,29 +20,10 @@ export type InterimPage = {
   ready?: boolean;
 };
 
-const home = { label: "Home", href: "/" };
-const insights = { label: "Insights", href: "/insights/" };
-
-// The four AI sub-pages were merged into /ai-services/ (content decision A2), and the Community events and
-// learning-path stubs into /ai-community/ (X9); their URLs redirect in next.config.ts.
-const insightRelated = [
-  { label: "ECC mainstream maintenance ends in 2027. Start with the data.", href: "/insights/ecc-2027-start-with-the-data/" },
-  { label: "RE-FX after go-live: keeping lease data clean", href: "/insights/re-fx-after-go-live/" },
-  { label: "Choosing your first AI use case in one day", href: "/insights/first-ai-use-case/" },
-];
-
-function article(slug: string, cat: string, title: string): [string, InterimPage] {
-  const href = `/insights/${slug}/`;
-  return [href, { title, kicker: cat, lead: "This article is being written.", vertical: cat === "AI" ? "ai" : "sap", crumbs: [home, insights, { label: title, href }], related: insightRelated.filter((r) => r.href !== href) }];
-}
-
-export const interimPages: Record<string, InterimPage> = Object.fromEntries([
-
-  ["/insights/", { title: "Latest thinking", kicker: "Insights", lead: "Notes on SAP, S/4HANA migration and practical AI from the Texiri team.", crumbs: [home, insights], related: insightRelated }],
-  article("ecc-2027-start-with-the-data", "S/4HANA & Migration", "ECC mainstream maintenance ends in 2027. Start with the data."),
-  article("re-fx-after-go-live", "SAP", "RE-FX after go-live: keeping lease data clean"),
-  article("first-ai-use-case", "AI", "Choosing your first AI use case in one day"),
-]);
+// None left: the four AI sub-pages were merged into /ai-services/ (content decision A2), the Community events and
+// learning-path stubs into /ai-community/ (X9), and /insights/ became a dedicated page (Nov 2026). Merged URLs
+// redirect in next.config.ts.
+export const interimPages: Record<string, InterimPage> = {};
 
 /**
  * Pages that still hold placeholder content are shown while the site is being reviewed (local and preview builds),
@@ -55,12 +37,19 @@ export const SHOW_UNFINISHED = flag === "true" ? true : flag === "false" ? false
 /** Dedicated pages whose content is still placeholder. They follow the same rule as interim pages until ready. */
 const dedicatedReady: Record<string, boolean> = {
   "/about/csr/": csrReady,
+  // Articles go live once signed off (`ready` in lib/insights.ts), and the index with its first article.
+  ...Object.fromEntries(articles.map((a) => [a.href, a.ready])),
+  "/insights/": articles.some((a) => a.ready),
 };
 
-/** True once a page has real content: every dedicated page except those in `dedicatedReady`, and interim pages marked `ready`. */
+/**
+ * True once a page has real content: every dedicated page except those in `dedicatedReady`, and interim pages marked
+ * `ready`. Any `#section` or `?query` is ignored, so a link to part of a page follows the page.
+ */
 export function isReady(href: string): boolean {
-  if (href in dedicatedReady) return dedicatedReady[href];
-  const page = interimPages[href];
+  const path = href.split(/[?#]/)[0];
+  if (path in dedicatedReady) return dedicatedReady[path];
+  const page = interimPages[path];
   return !page || page.ready === true;
 }
 

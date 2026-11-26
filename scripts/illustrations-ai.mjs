@@ -1,37 +1,66 @@
-// AI and community placeholder illustrations: workshop, use-case article, community, member projects, learners.
-import { C, SKIN, HAIR, arm, circ, dotPattern, g, grad, laptopBack, line, path, person, poly, radial, rect, rr, shadow, sticky, svg, text, tick, windowChrome } from "./illustration-kit.mjs";
+// AI and community illustrations: stalled pilots, use-case article, community, member projects, learners.
+import { C, SKIN, HAIR, arm, arrow, circ, dotPattern, g, grad, laptopBack, line, path, person, poly, radial, rect, rr, shadow, sticky, svg, text, tick, warn, windowChrome } from "./illustration-kit.mjs";
 
 const out = {};
 
-// ── AI readiness workshop: ranking use cases by value and feasibility ─────────────────────────────
+// ── AI Services "The problem": pilots stall at the use-case, data and governance checkpoints ──────
+// Shown at 2:1 from desktop width only (below that its labels are too small to read), so no text is smaller than 14.
+// Content decision IMG6: final illustration, no figures (nothing to source).
 {
-  const sx = 200, sy = 60, sw = 1200, sh = 560;
-  const mx = sx + 60, my = sy + 110, mw = 560, mh = 400;
-  const bubbles = [[0.82, 0.8, 46, C.accent, "1"], [0.64, 0.66, 36, C.ai, "2"], [0.38, 0.76, 32, C.ai, "3"], [0.76, 0.38, 28, C.navy6, "4"], [0.22, 0.34, 24, C.navy6, "5"], [0.5, 0.22, 22, C.navy6, "6"]];
-  const rank = [["Demand forecasting", 0.92, 0.5, true], ["Invoice extraction", 0.78, 0.3, false], ["Policy assistant", 0.7, 0.45, false], ["Churn prediction", 0.5, 0.65, false]];
-  out["ai-workshop"] = svg(1600, 900, grad([[0, C.navy8], [1, C.navy]], "v"), g(
-    rect(0, 0, 1600, 900, dotPattern("rgba(43,181,232,0.26)", 26)),
-    circ(800, 330, 520, radial([[0, "rgba(43,181,232,0.22)"], [1, "rgba(43,181,232,0)"]])),
-    shadow(rr(sx, sy, sw, sh, 12, C.navy8, `stroke="${C.ai}" stroke-width="3"`)),
-    text(sx + 40, sy + 62, "Use-case ranking", C.onNavy, 32, 800), text(sx + 40, sy + 92, "Value vs feasibility · 6 ideas from the workshop", C.onNavyMuted, 18, 600),
-    // matrix
-    rect(mx, my, mw, mh, C.navy7, 'opacity="0.55"'),
-    rect(mx + mw / 2, my, mw / 2, mh / 2, "rgba(252,154,58,0.22)"),
-    line(mx + mw / 2, my, mx + mw / 2, my + mh, C.navy6, 2), line(mx, my + mh / 2, mx + mw, my + mh / 2, C.navy6, 2),
-    line(mx, my, mx, my + mh, C.onNavyMuted, 3), line(mx, my + mh, mx + mw, my + mh, C.onNavyMuted, 3),
-    text(mx + mw / 2, my + mh + 36, "Feasibility  →", C.onNavyMuted, 18, 700, 'text-anchor="middle"'),
-    `<text transform="translate(${mx - 26} ${my + mh / 2}) rotate(-90)" text-anchor="middle" fill="${C.onNavyMuted}" font-size="18" font-weight="700" font-family="Archivo, 'Segoe UI', system-ui, sans-serif">Business value  →</text>`,
-    text(mx + mw - 14, my + 30, "Pilot first", C.accent3, 20, 800, 'text-anchor="end"'),
-    ...bubbles.map(([fx, fy, r, col, n]) => circ(mx + fx * mw, my + (1 - fy) * mh, r, col, 'opacity="0.95"') + text(mx + fx * mw, my + (1 - fy) * mh + r * 0.35, n, col === C.navy6 ? C.onNavy : C.navy, r * 0.9, 800, 'text-anchor="middle"')),
-    // ranking list
-    ...rank.map(([t, v, e, top], i) => g(
-      rr(sx + 700, sy + 130 + i * 98, 450, 82, 8, top ? "rgba(252,154,58,0.18)" : C.navy7, top ? `stroke="${C.accent}" stroke-width="2"` : ""),
-      circ(sx + 738, sy + 171 + i * 98, 20, top ? C.accent : C.navy6), text(sx + 738, sy + 179 + i * 98, String(i + 1), top ? C.navy : C.onNavy, 22, 800, 'text-anchor="middle"'),
-      text(sx + 774, sy + 166 + i * 98, t, C.onNavy, 22, 700),
-      text(sx + 774, sy + 196 + i * 98, "Value", C.onNavyMuted, 14, 700), rr(sx + 826, sy + 184 + i * 98, 120, 10, 5, C.navy6), rr(sx + 826, sy + 184 + i * 98, 120 * v, 10, 5, C.ai),
-      text(sx + 966, sy + 196 + i * 98, "Effort", C.onNavyMuted, 14, 700), rr(sx + 1018, sy + 184 + i * 98, 100, 10, 5, C.navy6), rr(sx + 1018, sy + 184 + i * 98, 100 * e, 10, 5, C.accent))),
-    // team from behind
-    ...[[420, 0, SKIN[0], "short", C.navy7], [800, 1, SKIN[2], "long", C.aiInk], [1190, 2, SKIN[3], "curly", C.navy6]].map(([x, i, , style, shirt]) => person(x, 720 - (i === 1 ? 20 : 0), 1.3, { view: "back", shirt, hair: HAIR[i], style })),
+  const lanes = [230, 312, 394, 476, 558, 640, 722];
+  const LIVE = 3, gap = 30, TOP = 196, BOTTOM = 762;
+  const gates = [[640, "01", "Use case"], [800, "02", "Data"], [960, "03", "Governance"]];
+  // One pilot per industry in lib/industries.ts: [industry, application, gate it stalls at (null = live), why]
+  const pilots = [
+    ["Real estate", "Lease abstraction", 0, "No owner or target KPI"],
+    ["Retail", "Markdown optimisation", 0, "No agreed margin KPI"],
+    ["Utilities", "Grid load forecasting", 1, "Meter data in silos"],
+    ["Oil & gas", "Predictive maintenance", null, "In production"],
+    ["Pharma", "Batch deviation triage", 2, "No GxP validation plan"],
+    ["Manufacturing", "Defect detection", 1, "Too few labelled defects"],
+    ["Financial services", "Credit-risk scoring", 2, "No model-risk sign-off"],
+  ];
+  const CX = 290, CW = 260, PX = 1050, PW = 270, PY = 296, PH = 340;
+  const risk = [0.2, 0.24, 0.22, 0.3, 0.28, 0.36, 0.42, 0.5, 0.62, 0.86];
+  const ry = (v) => 488 - v * 90;
+  out["ai-pilots-stall"] = svg(1600, 800, grad([[0, C.navy8], [1, C.navy]], "v"), g(
+    rect(0, 0, 1600, 800, dotPattern("rgba(43,181,232,0.24)", 28)),
+    circ(PX + PW / 2, 470, 420, radial([[0, "rgba(47,158,107,0.2)"], [1, "rgba(47,158,107,0)"]])),
+    circ(620, 470, 540, radial([[0, "rgba(43,181,232,0.16)"], [1, "rgba(43,181,232,0)"]])),
+    // the backlog of ideas behind the pilots
+    ...lanes.map((y) => line(0, y, CX, y, C.navy6, 3, 'stroke-dasharray="4 14" stroke-linecap="round"') + rr(120, y - 16, 120, 32, 8, C.navy8, `stroke="${C.navy6}" stroke-width="2" opacity="0.55"`) + rr(136, y - 3, 70, 6, 3, C.navy6, 'opacity="0.7"')),
+    // column headers
+    text(CX, 160, "Pilots", C.onNavy, 24, 800),
+    ...gates.map(([x, n, t]) => text(x, 128, n, C.accent3, 18, 800, 'text-anchor="middle" letter-spacing="2"') + text(x, 160, t, C.onNavy, 22, 800, 'text-anchor="middle"')),
+    text(PX + PW / 2, 160, "Production", C.onNavy, 24, 800, 'text-anchor="middle"'),
+    // the path every pilot was meant to take, faint, and how far each actually got
+    ...lanes.map((y, i) => pilots[i][2] === null ? "" : line(CX + CW, y, PX - 10, y, C.navy6, 3, 'stroke-dasharray="10 12" opacity="0.7"')),
+    ...lanes.map((y, i) => pilots[i][2] === null ? "" : line(CX + CW, y, gates[pilots[i][2]][0] - 22, y, C.onNavyMuted, 5, 'stroke-linecap="round"')),
+    arrow(CX + CW, lanes[LIVE], PX - 2, C.ai, 7, 18),
+    // checkpoints, open only on the lane that gets through
+    ...gates.map(([x]) => g(
+      rr(x - 12, TOP, 24, lanes[LIVE] - gap - TOP, 8, C.navy7, `stroke="${C.navy6}" stroke-width="2"`),
+      rr(x - 12, lanes[LIVE] + gap, 24, BOTTOM - lanes[LIVE] - gap, 8, C.navy7, `stroke="${C.navy6}" stroke-width="2"`),
+      tick(x, lanes[LIVE], 16, C.green))),
+    // checkpoints each stalled pilot did pass, then the one that stopped it
+    ...lanes.map((y, i) => pilots[i][2] === null ? "" : g(gates.slice(0, pilots[i][2]).map(([x]) => tick(x, y, 10, C.green)), warn(gates[pilots[i][2]][0], y, 20))),
+    // pilot cards: industry, application, status
+    ...pilots.map(([ind, app, stall, why], i) => g(
+      shadow(rr(CX, lanes[i] - 36, CW, 72, 10, C.navy8, `stroke="${stall === null ? C.ai : C.navy6}" stroke-width="${stall === null ? 3 : 2}"`), "sh2"),
+      rr(CX + 9, lanes[i] - 24, 5, 48, 2.5, stall === null ? C.ai : C.accent),
+      text(CX + 26, lanes[i] - 14, ind.toUpperCase().replace("&", "&amp;"), C.onNavyMuted, 14, 800, 'letter-spacing="1.2"'),
+      text(CX + 26, lanes[i] + 8, app, stall === null ? C.onNavy : "#d5dbe5", 18, 800),
+      text(CX + 26, lanes[i] + 28, why, stall === null ? "#7fd6a8" : C.accent3, 16, 600))),
+    // production: the live model, monitored
+    shadow(rr(PX, PY, PW, PH, 14, C.navy8, `stroke="${C.green}" stroke-width="3"`)),
+    text(PX + 20, PY + 38, "Compressor health", C.onNavy, 18, 800), text(PX + 20, PY + 61, "Predictive maintenance", C.onNavyMuted, 16, 600),
+    rr(PX + PW - 72, PY + 18, 56, 26, 13, C.green), text(PX + PW - 44, PY + 36, "Live", C.navy, 14, 800, 'text-anchor="middle"'),
+    rr(PX + 20, 378, PW - 40, 124, 8, C.navy7),
+    text(PX + 32, 400, "Failure risk", C.onNavyMuted, 14, 700), text(PX + 32, ry(0.7) + 19, "alert line", C.accent3, 14, 700),
+    line(PX + 32, ry(0.7), PX + PW - 32, ry(0.7), C.accent, 2, 'stroke-dasharray="6 6"'),
+    `<polyline points="${risk.map((v, i) => `${PX + 34 + i * 22.6},${ry(v)}`).join(" ")}" fill="none" stroke="${C.ai}" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>`,
+    circ(PX + 34 + 9 * 22.6, ry(risk[9]), 13, C.accent, 'opacity="0.35"'), circ(PX + 34 + 9 * 22.6, ry(risk[9]), 7, C.accent),
+    ...["Work order raised", "Drift monitored", "Audit log on"].map((t, i) => tick(PX + 30, 526 + i * 36, 10, C.green) + text(PX + 50, 532 + i * 36, t, C.onNavy, 16, 600)),
   ));
 }
 

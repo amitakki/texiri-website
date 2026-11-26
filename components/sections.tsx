@@ -35,7 +35,7 @@ export function Breadcrumbs({ items, tone = "light" }: { items: { label: string;
 }
 
 export function Hero({ kicker, title, lead, actions, aside, id = "hero-h" }:
-  { kicker: string; title: ReactNode; lead: string; actions: ReactNode; aside?: ReactNode; id?: string }) {
+  { kicker: string; title: ReactNode; lead: string; actions?: ReactNode; aside?: ReactNode; id?: string }) {
   return (
     <section aria-labelledby={id} className="py-[clamp(2.5rem,6vw,5.5rem)]">
       <div className={`container-content grid items-end gap-[clamp(2.5rem,5vw,5rem)] ${aside ? "lg:grid-cols-2" : ""}`}>
@@ -43,7 +43,7 @@ export function Hero({ kicker, title, lead, actions, aside, id = "hero-h" }:
           <Kicker>{kicker}</Kicker>
           <h1 id={id} className={`m-0 -ml-[0.04em] text-display ${aside ? "max-w-[16ch]" : "max-w-[22ch]"}`}>{title}</h1>
           <p className="mt-6 max-w-[52ch] text-lead text-muted">{lead}</p>
-          <div className="mt-8 flex flex-wrap gap-3">{actions}</div>
+          {actions && <div className="mt-8 flex flex-wrap gap-3">{actions}</div>}
         </div>
         {aside && <div className="hero-enter-late">{aside}</div>}
       </div>
@@ -132,13 +132,16 @@ export function CaseStudyCard({ sector, title, metric, metricLabel, href, verify
   );
 }
 
-export function FAQAccordion({ id, title, faqs }: { id: string; title: string; faqs: { q: string; a: string }[] }) {
+export function FAQAccordion({ id, title, faqs, vertical = "sap" }: { id: string; title: string; faqs: { q: string; a: string }[]; vertical?: "sap" | "ai" }) {
   // Answers still awaiting confirmation ("[TO CONFIRM]") are left out of the structured data.
   const jsonLd = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.filter((f) => !isUnconfirmed(f.a)).map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) };
   return (
     <section aria-labelledby={id} className="py-section">
       <div className="container-content flex flex-wrap gap-8">
-        <div className="flex-[1_1_280px]"><Kicker>FAQs</Kicker><H2 id={id} className="max-w-[12ch]">{title}</H2></div>
+        <div className="flex-[1_1_280px]">
+          <Kicker vertical={vertical}>FAQs</Kicker>
+          <H2 id={id} className="max-w-[12ch]">{title}</H2>
+        </div>
         <div className="min-w-0 flex-[2_1_480px] border-t-2 border-ink">
           {faqs.map((f) => (
             <details key={f.q} className="group border-b border-rule">
@@ -155,17 +158,18 @@ export function FAQAccordion({ id, title, faqs }: { id: string; title: string; f
   );
 }
 
-export function CTABand({ id = "contact", title, note, primary, secondary, vertical = "sap" }:
-  { id?: string; title: ReactNode; note: string; primary: { label: string; href: string }; secondary?: { label: string; href: string }; vertical?: "sap" | "ai" }) {
+/** `onNavy` (AI Services) puts the band on navy with an AI-blue glow and AI-blue primary button. */
+export function CTABand({ id = "contact", title, note, primary, secondary, vertical = "sap", onNavy }:
+  { id?: string; title: ReactNode; note: string; primary: { label: string; href: string }; secondary?: { label: string; href: string }; vertical?: "sap" | "ai"; onNavy?: boolean }) {
   return (
-    <section id={id} aria-labelledby={`${id}-h`} className={`border-t-4 bg-surface py-[clamp(3.5rem,7vw,5.5rem)] ${vertical === "ai" ? "border-ai" : "border-accent"}`}>
+    <section id={id} aria-labelledby={`${id}-h`} className={`border-t-4 py-[clamp(3.5rem,7vw,5.5rem)] ${vertical === "ai" ? "border-ai" : "border-accent"} ${onNavy ? "surface-dark ai-glow bg-navy-800 text-on-navy" : "bg-surface"}`}>
       <div className="container-content">
         <h2 id={`${id}-h`} className="m-0 max-w-[32ch] text-[clamp(1.75rem,3.4vw,2.75rem)] leading-[1.1] tracking-[-0.012em]">{title}</h2>
         <div className="mt-8 flex flex-wrap gap-3">
-          <Button href={primary.href} variant="navy" arrow data-track="cta_click">{primary.label}</Button>
-          {secondary && <Button href={secondary.href} variant="secondary" data-track="cta_click">{secondary.label}</Button>}
+          <Button href={primary.href} variant={onNavy ? "ai" : "navy"} arrow data-track="cta_click">{primary.label}</Button>
+          {secondary && <Button href={secondary.href} variant={onNavy ? "outline-on-navy" : "secondary"} data-track="cta_click">{secondary.label}</Button>}
         </div>
-        <p className="mb-0 mt-6 text-base text-muted">{note}</p>
+        <p className={`mb-0 mt-6 text-base ${onNavy ? "text-on-navy-muted" : "text-muted"}`}>{note}</p>
       </div>
     </section>
   );

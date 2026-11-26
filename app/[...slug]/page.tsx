@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Button, Placeholder, SiteImage } from "@/components/ui";
+import { ArticleRelated } from "@/components/article";
 import { Breadcrumbs, CheckList, CTABand, Hero } from "@/components/sections";
 import { images } from "@/lib/images";
 import { interimPages, isLive } from "@/lib/pages";
@@ -16,9 +16,6 @@ const pathOf = (slug: string[]) => `/${slug.join("/")}/`;
 /** Stand-in hero image per section until each page gets its own. Community pages have none (content decision M7). */
 function heroImage(href: string) {
   if (href.startsWith("/ai-community")) return undefined;
-  if (href.includes("re-fx")) return images.articleRefx;
-  if (href.includes("first-ai")) return images.articleAi;
-  if (href.startsWith("/insights")) return images.articleEcc;
   return images.consultingTeam;
 }
 
@@ -52,7 +49,8 @@ export default async function InterimPage({ params }: Props) {
         actions={
           <>
             {page.cta && <Button href={page.cta.href} arrow data-track="cta_click" data-vertical={page.vertical ?? "sap"}>{page.cta.label}</Button>}
-            <Placeholder>CONTENT IN PROGRESS</Placeholder>
+            {/* Marks stub content on previews, and lets `npm run placeholders -- --strict` find it before launch. */}
+            {!page.ready && <Placeholder>CONTENT IN PROGRESS</Placeholder>}
           </>
         }
       />
@@ -63,18 +61,7 @@ export default async function InterimPage({ params }: Props) {
         </section>
       )}
 
-      {related.length > 0 && (
-        <section aria-labelledby="related-h" className="border-t-2 border-ink">
-          <div className="container-content py-[clamp(2.5rem,5vw,4rem)]">
-            <h2 id="related-h" className="m-0 text-kicker font-semibold uppercase tracking-[0.1em] text-accent-700">Related</h2>
-            <ul className="mt-6 grid list-none gap-x-8 p-0 md:grid-cols-2 lg:grid-cols-3">
-              {related.map((r) => (
-                <li key={r.href} className="border-t border-hairline py-4"><Link href={r.href} className="font-extrabold">{r.label} →</Link></li>
-              ))}
-            </ul>
-          </div>
-        </section>
-      )}
+      <ArticleRelated items={related} />
 
       {page.cta && page.vertical !== "community" && (
         <CTABand title="Tell us what you're working on." note="A senior consultant reads every enquiry and replies personally." primary={page.cta} vertical={vertical} />

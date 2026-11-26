@@ -5,6 +5,7 @@ const routes = [
   "/", "/sap/", "/sap/data-migration/", "/sap/consulting/", "/sap/btp/", "/sap/managed-services/", "/industries/", "/case-studies/",
   "/case-studies/utility-australia/", "/2klicks/", "/ai-services/", "/ai-community/", "/ai-community/join/",
   "/about/", "/about/leadership/", "/about/csr/", "/careers/", "/careers/shambhavi-108/", "/contact/", "/legal/privacy/", "/legal/cookies/", "/legal/terms/",
+  "/insights/", "/insights/ecc-2027-start-with-the-data/", "/insights/re-fx-after-go-live/", "/insights/first-ai-use-case/",
 ];
 
 for (const path of routes) {

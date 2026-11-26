@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { caseHref, caseStudies } from "@/lib/case-studies";
+import { articles } from "@/lib/insights";
 import { interimPages, isReady } from "@/lib/pages";
 import { SITE_URL } from "@/lib/site";
 
@@ -21,6 +22,8 @@ const routes: { path: string; priority: number }[] = [
   { path: "/about/", priority: 0.6 },
   { path: "/about/leadership/", priority: 0.5 },
   { path: "/about/csr/", priority: 0.4 },
+  { path: "/insights/", priority: 0.6 },
+  ...articles.map((a) => ({ path: a.href, priority: 0.5 })),
   { path: "/careers/", priority: 0.6 },
   { path: "/careers/shambhavi-108/", priority: 0.6 },
   { path: "/contact/", priority: 0.7 },

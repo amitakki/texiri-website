@@ -47,16 +47,19 @@ export function SapServicesPanel() {
 }
 
 export function AiReferenceArchitecture() {
+  // Content decision A4: gateway, agents and LLM observability confirmed as delivered (Nov 2026).
   const layers = [
-    { name: "Data sources", items: ["ERP and CRM (incl. SAP)", "Databases and data lakes", "Documents", "Events and IoT"], edge: "border-ai" },
+    { name: "Data sources", items: ["ERP and CRM", "Databases and data lakes", "Documents", "Events and IoT"], edge: "border-ai" },
     { name: "Data platform", items: ["Ingestion: Kafka, Airflow", "Processing: Spark, Databricks", "Feature store, vector index"], edge: "border-on-navy/20" },
-    { name: "Model & LLM layer", items: ["Vertex AI · Azure ML · Bedrock", "Fine-tuned or hosted LLMs", "MLflow registry, evaluation"], edge: "border-on-navy/20" },
+    { name: "Model & LLM layer", items: ["Managed model APIs", "Fine-tuned or self-hosted LLMs", "MLflow model registry"], edge: "border-on-navy/20" },
+    { name: "Gateway & agents", items: ["LLM gateway: routing, semantic cache", "Token budgets, cost per use case", "Agents with tool calling", "MCP servers and APIs into your systems"], edge: "border-on-navy/20" },
     { name: "Applications", items: ["Assistants and chat", "Forecasts and dashboards", "Document workflows"], edge: "border-ai" },
   ];
-  const deploy = ["Your cloud tenancy", "Vertex AI · Azure ML · Bedrock", "Databricks", "Region-pinned for residency"];
+  const observe = ["Traces of prompts, tool calls and answers", "Evaluations in production", "Quality and drift alerts", "Cost per use case"];
+  const deploy = ["Your cloud tenancy", "Vertex AI · Azure ML · Amazon Bedrock", "Databricks", "Region-pinned for residency"];
   return (
-    <figure aria-label="Reference architecture: data sources, data platform, model and LLM layer, applications, with deployment options" className="m-0 mt-[clamp(2.5rem,5vw,4rem)]">
-      <ol className="m-0 grid list-none gap-3 p-0 md:grid-cols-2 lg:grid-cols-4">
+    <figure aria-label="Reference architecture: data sources, data platform, model and LLM layer, gateway and agents, applications, with observability and evaluation across all layers, and deployment options" className="m-0 mt-[clamp(2.5rem,5vw,4rem)]">
+      <ol className="m-0 grid list-none gap-3 p-0 md:grid-cols-2 lg:grid-cols-5">
         {layers.map((l, i) => (
           <li key={l.name} className={`flex flex-col border-2 bg-navy-800 ${l.edge}`}>
             <div className={`flex items-center justify-between border-b-2 px-4 py-3 ${l.edge}`}>
@@ -68,7 +71,11 @@ export function AiReferenceArchitecture() {
         ))}
       </ol>
       <div className="mt-3 grid gap-3 text-sm sm:grid-cols-2 lg:grid-cols-5">
-        <div className="bg-ai px-4 py-3 font-extrabold text-navy-900">Deployment options</div>
+        <div className="border-2 border-ai px-4 py-3 font-extrabold">Observability &amp; evaluation <span className="block font-semibold text-on-navy-muted">across every layer</span></div>
+        {observe.map((d) => <div key={d} className="border-2 border-on-navy/20 px-4 py-3">{d}</div>)}
+      </div>
+      <div className="mt-3 grid gap-3 text-sm sm:grid-cols-2 lg:grid-cols-5">
+        <div className="border-2 border-ai px-4 py-3 font-extrabold">Deployment options <span className="block font-semibold text-on-navy-muted">where it runs</span></div>
         {deploy.map((d) => <div key={d} className="border-2 border-on-navy/20 px-4 py-3">{d}</div>)}
       </div>
     </figure>

@@ -1,5 +1,5 @@
-// SAP-side placeholder illustrations: consulting, data migration, 2Klicks UI, offices, team, articles.
-import { C, SKIN, HAIR, arm, arrow, circ, cylinder, darr, g, grad, laptopBack, line, path, person, plant, poly, radial, rect, rr, shadow, sticky, svg, text, tick, warn } from "./illustration-kit.mjs";
+// SAP-side placeholder illustrations: consulting, 2Klicks UI, offices, team, articles.
+import { C, SKIN, HAIR, arm, circ, g, grad, laptopBack, line, path, person, plant, poly, radial, rect, rr, shadow, sticky, svg, text, tick, warn } from "./illustration-kit.mjs";
 
 const out = {};
 
@@ -70,54 +70,6 @@ const out = {};
     text(1272, 700, "Validated", C.onNavyMuted, 16, 700, 'letter-spacing="2"'), text(1536, 700, "98%", C.onNavy, 22, 800, 'text-anchor="end"'),
     rr(1272, 716, 264, 14, 7, C.navy7), rr(1272, 716, 258 * 0.98, 14, 7, C.accent),
     rr(1272, 800, 264, 62, 8, C.accent), text(1404, 840, "Upload to SAP  →", C.navy, 24, 800, 'text-anchor="middle"'),
-  ));
-}
-
-// ── S/4HANA data migration: sources → extract, cleanse, validate → S/4HANA, with mock-load loop ──────
-{
-  const tbl = (x, y, head, rows, w, tones) => g(
-    rect(x, y, w, 34, C.surface), ...head.map((h, i) => text(x + 14 + i * (w / head.length), y + 23, h, C.muted, 15, 800, 'letter-spacing="1"')),
-    ...rows.map((r, ri) => g(
-      tones[ri] ? rect(x, y + 34 + ri * 40, w, 40, tones[ri]) : "",
-      line(x, y + 74 + ri * 40, x + w, y + 74 + ri * 40, C.line, 2),
-      ...r.map((v, i) => text(x + 14 + i * (w / head.length), y + 61 + ri * 40, v, C.ink, 19, 600)))),
-  );
-  out["data-migration"] = svg(1600, 900, grad([[0, "#e9ecf2"], [1, C.ground]], "d"), g(
-    // sources
-    ...[["SAP ECC 6.0", "Custom tables and Z-fields", 90], ["Legacy systems", "Non-SAP databases", 300], ["Excel / CSV files", "Manual spreadsheets", 510]].map(([t, d, y], i) => g(
-      shadow(rr(60, y, 360, 170, 14, C.white)), rect(60, y + 14, 6, 142, C.accent),
-      i === 0 ? cylinder(96, y + 36, 84, 100, C.navy7, C.navy6) + text(138, y + 100, "ECC", C.onNavy, 24, 800, 'text-anchor="middle"') : "",
-      i === 1 ? g(...[0, 1, 2].map((k) => rr(96, y + 36 + k * 36, 84, 30, 5, C.navy7) + circ(112, y + 51 + k * 36, 5, C.accent) + rect(126, y + 47 + k * 36, 42, 8, C.navy6))) : "",
-      i === 2 ? g(rr(98, y + 34, 78, 104, 6, C.greenTint, `stroke="${C.green}" stroke-width="3"`), ...[0, 1, 2, 3].map((k) => line(104, y + 62 + k * 20, 170, y + 62 + k * 20, C.green, 2)), line(138, y + 46, 138, y + 130, C.green, 2), rr(104, y + 44, 30, 16, 3, C.green), text(119, y + 57, "XL", C.white, 12, 800, 'text-anchor="middle"')) : "",
-      text(200, y + 84, t, C.ink, 24, 800), text(200, y + 114, d, C.muted, 17, 600))),
-    ...[175, 385, 595].map((y) => path(`M426,${y} C450,${y} 452,445 476,445`, "none", `stroke="${C.accent}" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 12"`)),
-    // cleanse panel
-    shadow(rr(480, 70, 600, 730, 16, C.white)), rect(480, 70, 600, 10, C.accent),
-    text(512, 135, "Extract · Cleanse · Validate", C.ink, 32, 800),
-    rr(512, 160, 86, 30, 15, C.redTint), text(555, 181, "Before", C.red, 16, 800, 'text-anchor="middle"'),
-    tbl(512, 200, ["PARTNER", "CITY", "TAX ID"], [["Acme Ltd", "Pune", "27AAB…"], ["ACME Ltd.", "Pune", "27AAB…"], ["Bharat Co", "", "—"], ["Nova Pvt", "Delhi", "07CCD…"]], 536, [null, C.redTint, C.accent1, null]),
-    rr(954, 280, 92, 26, 13, C.red), text(1000, 298, "duplicate", C.white, 14, 800, 'text-anchor="middle"'),
-    rr(954, 320, 92, 26, 13, C.accent), text(1000, 338, "no city", C.navy, 14, 800, 'text-anchor="middle"'),
-    darr(560, 408, 462, C.accent, 5, 13), text(584, 442, "Rules agreed with data owners", C.muted, 18, 700),
-    rr(512, 474, 86, 30, 15, C.greenTint), text(555, 495, "After", C.green, 16, 800, 'text-anchor="middle"'),
-    tbl(512, 514, ["PARTNER", "CITY", "TAX ID"], [["Acme Ltd", "Pune", "27AAB…"], ["Bharat Co", "Mumbai", "27EEF…"], ["Nova Pvt", "Delhi", "07CCD…"]], 536, [null, null, null]),
-    ...[0, 1, 2].map((i) => tick(1022, 568 + i * 40, 11, C.green)),
-    ...["Extract", "Cleanse", "Map fields", "Validate"].map((t, i) => g(rr(512 + i * 138, 676, 128, 56, 8, i === 3 ? C.navy : C.surface), text(576 + i * 138, 710, t, i === 3 ? C.onNavy : C.ink, 18, 800, 'text-anchor="middle"'))),
-    text(512, 770, "Custom fields and validations are recognised, not rebuilt", C.muted, 17, 700),
-    // to S/4HANA
-    arrow(1090, 445, 1175, C.accent, 7, 15),
-    // target
-    shadow(rr(1180, 110, 370, 620, 16, C.navy)), rect(1180, 110, 370, 10, C.ai),
-    text(1214, 180, "S/4HANA", C.onNavy, 42, 800), text(1214, 212, "Target system", C.onNavyMuted, 19, 600),
-    ...["Business partners", "Materials", "Lease contracts", "Equipment", "Open items"].map((t, i) => g(
-      rr(1214, 244 + i * 78, 302, 62, 8, C.navy8), rr(1230, 262 + i * 78, 26, 26, 5, i === 2 ? C.accent : C.navy6),
-      text(1272, 284 + i * 78, t, C.onNavy, 21, 600), tick(1490, 275 + i * 78, 13, C.green))),
-    circ(1520, 118, 40, C.accent), `<polyline points="1502,118 1514,132 1540,102" fill="none" stroke="${C.navy}" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>`,
-    text(1365, 706, "Reconciled after every load", C.accent3, 18, 700, 'text-anchor="middle"'),
-    // mock load loop
-    path("M1365,735 V820 Q1365,845 1340,845 H800 Q780,845 780,825 V806", "none", `stroke="${C.accent}" stroke-width="5" stroke-dasharray="14 10" stroke-linecap="round"`),
-    poly([[766, 812], [780, 790], [794, 812]], C.accent),
-    rr(870, 826, 400, 40, 20, C.accent1, `stroke="${C.accent}" stroke-width="2"`), text(1070, 853, "Mock-load cycles · repeat until reconciled", C.accent7, 18, 800, 'text-anchor="middle"'),
   ));
 }
 
@@ -216,8 +168,9 @@ const out = {};
   const cx = 1130, cy = 440, R = 270;
   const tickM = Array.from({ length: 60 }, (_, i) => { const a = (i * 6 - 90) * Math.PI / 180, big = i % 5 === 0; return line(cx + Math.cos(a) * (R - 22), cy + Math.sin(a) * (R - 22), cx + Math.cos(a) * (R - (big ? 48 : 34)), cy + Math.sin(a) * (R - (big ? 48 : 34)), big ? C.navy : C.soft, big ? 6 : 3, 'stroke-linecap="round"'); }).join("");
   const sector = (() => { const a0 = -90 * Math.PI / 180, a1 = (-90 + 355) * Math.PI / 180; const r = R - 20; return path(`M${cx},${cy} L${cx + Math.cos(a0 + (300 * Math.PI) / 180) * r},${cy + Math.sin(a0 + (300 * Math.PI) / 180) * r} A${r},${r} 0 0 1 ${cx + Math.cos(a1) * r},${cy + Math.sin(a1) * r} Z`, "rgba(252,154,58,0.35)"); })();
-  out["article-ecc-2027"] = svg(1600, 900, grad([[0, "#eceae4"], [1, "#dfe3ea"]], "d"), g(
-    // calendar
+  out["article-ecc-2027"] = svg(1600, 900, grad([[0, C.ground], [1, "#f3e4d0"]], "d"), g(
+    // calendar, drawn at 600×700 and scaled up to fill the left of the frame
+    '<g transform="translate(-129,-69) scale(1.18)">',
     shadow(rr(150, 110, 600, 680, 18, C.white)),
     `<path d="M150,128 a18,18 0 0 1 18,-18 h564 a18,18 0 0 1 18,18 V230 H150 Z" fill="${C.navy}"/>`,
     ...[230, 450, 670].map((x) => rr(x - 8, 90, 16, 46, 8, C.strong) + rr(x - 4, 94, 8, 38, 4, C.soft)),
@@ -225,15 +178,18 @@ const out = {};
     ...["S", "M", "T", "W", "T", "F", "S"].map((d, i) => text(210 + i * 80 + 24, 272, d, C.soft, 22, 800, 'text-anchor="middle"')),
     ...days.map((d) => { const i = d - 1 + off, c = i % 7, r = Math.floor(i / 7), x = 210 + c * 80 + 24, y = 340 + r * 84; return d === 31 ? circ(x, y - 9, 34, C.accent) + text(x, y, "31", C.navy, 30, 800, 'text-anchor="middle"') : text(x, y, String(d), c === 0 || c === 6 ? C.soft : C.ink, 28, 700, 'text-anchor="middle"'); }),
     rr(190, 716, 520, 54, 27, C.accent1, `stroke="${C.accent}" stroke-width="3"`), text(450, 752, "ECC mainstream maintenance ends", C.accent7, 24, 800, 'text-anchor="middle"'),
-    // clock
-    shadow(circ(cx, cy, R + 24, C.navy)), circ(cx, cy, R, radial([[0, C.white], [1, "#e9ebf0"]])),
+    "</g>",
+    // clock, scaled up around its centre and moved right
+    `<g transform="translate(1179,450) scale(1.27) translate(${-cx},${-cy})">`,
+    shadow(circ(cx, cy, R + 24, C.navy)), circ(cx, cy, R, radial([[0, C.white], [1, C.surface]])),
     sector, tickM,
     ...[["12", 0, -1], ["3", 1, 0], ["6", 0, 1], ["9", -1, 0]].map(([t, dx, dy]) => text(cx + dx * (R - 84), cy + dy * (R - 84) + 17, t, C.navy, 52, 800, 'text-anchor="middle"')),
     line(cx, cy, cx + Math.cos((-92 + 330) * Math.PI / 180 + Math.PI) * 0, cy, C.navy, 0),
-    line(cx, cy, cx - 70, cy - 120, C.navy, 16, 'stroke-linecap="round"'), line(cx, cy, cx + 20, cy - 190, C.accent, 10, 'stroke-linecap="round"'),
+    line(cx, cy, cx - 70, cy - 120, C.navy, 16, 'stroke-linecap="round"'), line(cx, cy, cx + 16, cy - 146, C.accent, 10, 'stroke-linecap="round"'),
     circ(cx, cy, 20, C.navy), circ(cx, cy, 8, C.accent),
-    // ECC → S/4HANA chip
-    rr(940, 790, 380, 70, 35, C.navy), text(1130, 835, "ECC  →  S/4HANA", C.onNavy, 30, 800, 'text-anchor="middle"'), circ(980, 825, 12, C.accent),
+    "</g>",
+    // ECC → S/4HANA chip, sitting on the bottom of the clock rim
+    rr(969, 785, 420, 76, 38, C.navy, `stroke="${C.ground}" stroke-width="4"`), text(1193, 836, "ECC  →  S/4HANA", C.onNavy, 34, 800, 'text-anchor="middle"'), circ(1011, 823, 13, C.accent),
   ));
 }
 
